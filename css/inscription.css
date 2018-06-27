@@ -34,11 +34,20 @@ h1 {
     margin: 0 auto;
 }
 
-#user-img i {
+.user-img i {
     margin-top: 40px;
     font-size: 100px;
+   text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+}
+#centre-avatar {
     display: flex;
     justify-content: center;
+}
+#user-img {
+
+    display: none;
 }
 
 form i {
