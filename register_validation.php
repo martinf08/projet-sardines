@@ -1,4 +1,9 @@
-<?php /* validate.php */
+<?php /* register_validation.php */
+
+    session_start();
+    $_SESSION['message'] = '';
+    //$mysqli = new mysqli("localhost", "root", "", "sardines");
+
 
 //the form has been submitted with post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
