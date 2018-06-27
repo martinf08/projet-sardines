@@ -1,0 +1,57 @@
+#main-menu {
+    width: 243px;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-img i {
+    margin-top: 40px;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-bottom: 16px;
+}
+
+#mini-circle-sardine {
+    transform: translate(240%, 40%);
+}
+
+.mini-circle {
+    height: 35px;
+    width: 35px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+#mini-circle-sardine span {
+    height: 5px;
+    width: 5px;
+    transform: translate(70%, 280%);
+
+    display: block;
+}
+
+#title-firstname {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#title-email, #title-id {
+    font-size: 12px;
+}
+
+#title-email {
+
+    margin-bottom: 30px;
+}
+
+#title-id {
+    margin-bottom: 16px;
+}
+#sub-menu {
+    margin-top: 52px;
+}
+

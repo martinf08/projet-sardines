@@ -3,45 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
 <header>
     <!-- Header -->
-    <div class="fleche-retour"> <-Fleche retour</div>
+    <div class="fleche-retour"><i class="fas fa-arrow-left"></i></div>
     <h1>les sardines</h1>
 </header>
 <main>
     <!-- Main -->
-    <div>images</div>
+    <!-- AVATAR -->
+    <div class="user-img"><i class="fas fa-user-circle"></i></div>
 
     <br/> <!-- Optionnel -->
 
     <form>
-        <div>icon courrier</div>
-        <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
+        <div class="form-input">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
+        </div>
+        <br/> <!-- Optionnel -->
+
+
+        <div class="form-input">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" name="password" placeholder=".......">
+        </div>
 
         <br/> <!-- Optionnel -->
 
-        <div>icon cadenas</div>
-        <input type="password" id="password" name="password" placeholder=".......">
+        <div id="mdp-oublie" class="form-input"><a href="#">mot de passe oublié ?</a></div>
 
         <br/> <!-- Optionnel -->
 
-        <div><a href="#">mot de passe oublié ?</a></div>
+        <div class="flex-center"><input type="submit" value="Se connecter"></div>
 
         <br/> <!-- Optionnel -->
-
-        <input type="submit" value="Se connecter">
-
-        <br/> <!-- Optionnel -->
-
-        <p>Se connecter avec :</p>
-
-        <button id="btn-facebook">Facebook</button>
-        <button id="btn-twitter">Twitter</button>
-        <button id="btn-google">Google+</button>
 
     </form>
+    <div id="inscrire-social" class="flex-center">
+        <p>S'inscrire avec :</p>
+    </div>
+    <div class="socials-icon">
+        <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
+        <div class="cirle-social"><i class="fab fa-twitter"></i></div>
+        <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
+    </div>
 
 
 </main>

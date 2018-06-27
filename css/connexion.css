@@ -37,17 +37,8 @@ h1 {
 .user-img i {
     margin-top: 40px;
     font-size: 100px;
-   text-align: center;
-    cursor: pointer;
-    border-radius: 50%;
-}
-#centre-avatar {
     display: flex;
     justify-content: center;
-}
-#user-img {
-
-    display: none;
 }
 
 form i {
@@ -84,10 +75,20 @@ input[type="submit"] {
 
 }
 
+#mdp-oublie {
+    display: flex;
+    margin-top: 24px;
+    justify-content: flex-end;
+
+}
+#mdp-oublie a {
+    text-decoration: none;
+    color: black;
+}
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 }
 
 .socials-icon {

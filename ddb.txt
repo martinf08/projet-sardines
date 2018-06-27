@@ -1,4 +1,4 @@
-CREATE DATABASE accounts;
+CREATE DATABASE sardines;
 
 CREATE TABLE `sardines`.`users` 
 (
