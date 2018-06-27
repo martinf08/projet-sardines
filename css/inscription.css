@@ -1,5 +1,5 @@
 * {
-    font-size: 16px;
+    font-size: 10px;
     box-sizing: border-box;
 }
 
@@ -11,39 +11,45 @@ body {
 }
 
 header {
-    width: 660px;
-text-align: center;
+    width: 327px;
+    text-align: center;
 }
 
 main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
 }
 
 .fleche-retour {
-    font-size: 30px;
+    font-size: 16px;
     float: left;
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 10px;
     text-transform: uppercase;
     display: inline-block;
     margin: 0 auto;
 }
 
 #user-img i {
-    margin-top: 80px;
-    font-size: 200px;
+    margin-top: 40px;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
 }
 
 form i {
-    font-size: 25px;
-    transform: translate(265%,30%);
+    font-size: 12px;
+    transform: translate(130%, 30%);
     width: 10px;
     height: 10px;
+}
+
+.form-input {
+    display: block;
 }
 
 input[type="email"], input[type="password"] {
@@ -51,16 +57,64 @@ input[type="email"], input[type="password"] {
     border-top: none;
     border-left: none;
     border-right: none;
-    margin-top: 60px;
-    padding-bottom: 34px;
-    width: 660px;
-    padding-left: 70px;
+    margin-top: 30px;
+    padding-bottom: 15px;
+    width: 330px;
+    padding-left: 21px;
 }
+
 input[type="submit"] {
-    height: 70px;
-    width: 350px;
-    background-color: lightgray;
+    height: 36px;
+    width: 178px;
+    background-color: gray;
     color: white;
     border: none;
     text-transform: uppercase;
+    margin-top: 95px;
+    margin-bottom: 50px;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.socials-icon {
+
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
+
+#inscrire-social {
+    margin-bottom: 30px;
+}
+
+.cirle-social {
+    height: 54px;
+    width: 54px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.cirle-social:nth-child(1) i {
+    font-size: 16px;
+    transform: translate(255%, 110%);
+}
+
+.cirle-social:nth-child(2) i {
+    font-size: 16px;
+    transform: translate(120%, 110%);
+}
+
+.cirle-social:nth-child(3) i {
+    font-size: 16px;
+    transform: translate(85%, 110%);
 }

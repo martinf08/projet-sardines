@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Inscription</title>
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel="stylesheet" href="css/inscription.css">
 </head>
 <body>
 <header>
     <!-- Header -->
-    <div class="fleche-retour"> <i class="fas fa-arrow-left"></i></div>
+    <div class="fleche-retour"><i class="fas fa-arrow-left"></i></div>
     <h1>les sardines</h1>
 </header>
 <main>
@@ -20,18 +21,24 @@
     <br/> <!-- Optionnel -->
 
     <form>
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
+        <div class="form-input">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
+
+        </div>
+
+        <br/> <!-- Optionnel -->
+        <div class="form-input">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" name="password" placeholder=".......">
+        </div>
 
         <br/> <!-- Optionnel -->
 
-        <i class="fas fa-lock"></i>
-        <input type="password" id="password" name="password" placeholder=".......">
-
-        <br/> <!-- Optionnel -->
-
-        <i class="fas fa-lock"></i>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password">
+        <div class="form-input">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password">
+        </div>
 
         <br/> <!-- Optionnel -->
 
@@ -40,14 +47,16 @@
 
         <br/> <!-- Optionnel -->
 
-        <p>S'inscrire avec :</p>
-
-        <button id="btn-facebook">Facebook</button>
-        <button id="btn-twitter">Twitter</button>
-        <button id="btn-google">Google+</button>
 
     </form>
-
+    <div id="inscrire-social" class="flex-center">
+        <p>S'inscrire avec :</p>
+    </div>
+    <div class="socials-icon">
+        <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
+        <div class="cirle-social"><i class="fab fa-twitter"></i></div>
+        <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
+    </div>
 
 </main>
 <footer>
