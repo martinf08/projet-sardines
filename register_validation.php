@@ -2,7 +2,7 @@
 
     session_start();
     $_SESSION['message'] = '';
-    //$mysqli = new mysqli("localhost", "root", "", "sardines");
+    $mysqli = new mysqli("localhost", "root", "", "sardines");
 
 
 //the form has been submitted with post
@@ -14,15 +14,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $mysqli->real_escape_string($_POST['email']);
 
         //md5 hash password for security
-        $password = cha1($_POST['password']);
+        $password = sha1($_POST['password']);
 
         //path were our avatar image will be stored
         $avatar_path = $mysqli->real_escape_string('images/'.$_FILES['avatar']['name']);
-        
+
         //make sure the file type is image
         if (preg_match("!image!",$_FILES['avatar']['type'])) {
             
-            //copy image to images/ folder 
+            //copy image to images/ folder
             if (copy($_FILES['avatar']['tmp_name'], $avatar_path)){
                 
                 //set session variables to display on welcome page
@@ -31,9 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['avatar'] = $avatar_path;
 
                 //insert user data into database
-                $sql = 
-                "INSERT INTO users (username,email, password, avatar) "
-                . "VALUES ('$username',$email', '$password', '$avatar_path')";
+                $sql = "INSERT INTO users (username,email, password, avatar) VALUES ('$username','$email', '$password', '$avatar_path')";
                 
                 //check if mysql query is successful
                 if ($mysqli->query($sql) === true){
