@@ -6,6 +6,12 @@
  * Time: 16:08
  */
 
+function autoload_class($class) {
+    include $class . '.php';
+}
+spl_autoload_register('autoload_class');
 $hash_validation = md5(uniqid(rand(), true));
 echo '<a href="validation.php?url=' . $hash_validation . '"><button>Valider le compte</button></a>';
 require('validation.php');
+$conn = new ConnectDB();
+
