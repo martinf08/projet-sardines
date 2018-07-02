@@ -29,13 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $password = sha1($_POST['password']);
                 
                 //path were our avatar image will be stored
-                $avatar_path = $conn->real_escape_string('images/' . $_FILES['avatar']['name']);
+                // works both in windows and unix
+
+                $avatar_path = $conn->real_escape_string('images\\'.$_FILES['avatar']['name']);
                 //make sure the file type is image
                 if (preg_match("!image!", $_FILES['avatar']['type'])) {
-                    
+              
                     //copy image to images/ folder
-                    if (copy($_FILES['avatar']['tmp_name'], $avatar_path)){
-                        
+                    if(copy($_FILES['avatar']['tmp_name'], $avatar_path)){
                         //set session variables to display on welcome page
                         //$_SESSION['username']=--> unique ID
                         $_SESSION['email'] = $email;
@@ -53,14 +54,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         }
                         $conn->close();
                     } else {
+                        die("pas de fichier");
                         $_SESSION['message'] = "Échec du téléchargement du fichier!";
                     }
                 } else {
+                    
                     $_SESSION['message'] = "S'il vous plaît seulement télécharger des images GIF, JPG ou PNG!";
                 }
             }
         }
-        
     }else{
         $_SESSION['message'] = "les deux mots de passe ne correspondent pas!!";
     }
@@ -69,3 +71,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 function autoload_class($class) {
     include $class . '.php';
 }
+
