@@ -13,5 +13,11 @@ spl_autoload_register('autoload_class');
 $hash_validation = md5(uniqid(rand(), true));
 echo '<a href="validation.php?url=' . $hash_validation . '"><button>Valider le compte</button></a>';
 require('validation.php');
-$conn = new ConnectDB();
 
+function email_validation() {
+    $conn = new ConnectDB();
+    $sql = "SELECT * FROM user";
+    if ($result = mysqli_query($conn, $sql)) {
+       return $result;
+    }
+}
