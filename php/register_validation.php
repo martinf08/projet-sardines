@@ -7,7 +7,7 @@ function autoload_class($class) {
 }
 spl_autoload_register('autoload_class');
 $conn = new ConnectDB();
-
+var_dump($_FILES);
 //the form has been submitted with post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -16,8 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $email = $conn->real_escape_string($_POST['email']);
         // vérifier si l'email exist
-        $sql = "SELECT users WHERE email=" . $email;
-        if ($result = mysqli_query($conn, $sql)) {
+        $sql = 'SELECT * FROM users WHERE email="' . $email . '"';
+        $result = mysqli_query($conn, $sql);
+        var_dump($result);
+        if ($result) {
             $rescount = mysqli_num_rows($result);
             if ($rescount > 0) {
                 // cet email exigiste déjà
