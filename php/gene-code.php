@@ -54,7 +54,7 @@ function email_validation()
 }
 
 function send_validation(){
-    
+
 }
 
 email_validation('test2@test.fr');

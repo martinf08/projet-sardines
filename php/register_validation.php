@@ -2,9 +2,11 @@
 
 session_start();
 $_SESSION['message'] = '';
-function autoload_class($class) {
+function autoload_class($class)
+{
     include $class . '.php';
 }
+
 spl_autoload_register('autoload_class');
 $conn = new ConnectDB();
 var_dump($_FILES);
@@ -15,16 +17,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST['password'] == $_POST['confirmPassword']) {
 
         $email = $conn->real_escape_string($_POST['email']);
+
         // vérifier si l'email exist
-        $sql = 'SELECT * FROM users WHERE email="' . $email . '"';
-        $result = mysqli_query($conn, $sql);
-        var_dump($result);
-        if ($result) {
+        $sql = 'SELECT * From users WHERE email="' . $email . '"';
+
+        if ($result = mysqli_query($conn, $sql)) {
             $rescount = mysqli_num_rows($result);
+
             if ($rescount > 0) {
                 // cet email exigiste déjà
                 $_SESSION['message'] = 'cet email existe déjà';
-
             } else {
                 $sql = "";
                 //md5 hash password for security
@@ -36,8 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 //make sure the file type is image
                 if (preg_match("!image!", $_FILES['avatar']['type'])) {
 
+                    var_dump($_FILES);
+                    die($avatar_path);
+
+
                     //copy image to images/ folder
-                    if (copy($_FILES['avatar']['tmp_name'], $avatar_path)) {
+                    if (move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar_path)) {
 
                         //set session variables to display on welcome page
                         //$_SESSION['username']=--> unique ID
@@ -63,8 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['message'] = "S'il vous plaît seulement télécharger des images GIF, JPG ou PNG!";
                 }
             }
-        } else {
-            $_SESSION['message'] = 'lest deux mots de passe ne correspondent pas!!';
         }
+
+    } else {
+        $_SESSION['message'] = "lest deux mots de passe ne correspondent pas!!";
     }
 }
