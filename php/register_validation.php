@@ -23,8 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($result = mysqli_query($conn, $sql)) {
             $rescount = mysqli_num_rows($result);
-
-            if ($rescount > 0) {
+            if ($rescount > 0){
                 // cet email exigiste déjà
                 $_SESSION['message'] = 'cet email existe déjà';
             } else {
@@ -33,18 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $password = sha1($_POST['password']);
 
                 //path were our avatar image will be stored
-                $avatar_path = $conn->real_escape_string('images/' . $_FILES['avatar']['name']);
-
+                $avatar_path = $conn->real_escape_string('images\\' . $_FILES['avatar']['name']);
                 //make sure the file type is image
                 if (preg_match("!image!", $_FILES['avatar']['type'])) {
-
-                    var_dump($_FILES);
-                    die($avatar_path);
-
-
+                    
                     //copy image to images/ folder
-                    if (move_uploaded_file($_FILES['avatar']['tmp_name'], $avatar_path)) {
-
+                    if (copy($_FILES['avatar']['tmp_name'], $avatar_path)){
                         //set session variables to display on welcome page
                         //$_SESSION['username']=--> unique ID
                         $_SESSION['email'] = $email;
@@ -53,25 +46,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         //insert user data into database
                         $sql = "INSERT INTO users (username,email, password, avatar) VALUES ('$username','$email', '$password', '$avatar_path')";
                         //check if mysql query is successful
-                        if ($conn->query($sql) === true) {
+                        if ($conn->query($sql) === true){
                             $_SESSION['message'] = "Inscription réussi!!";
                             //redirect the user to welcome.php
                             header("location: welcome.php");
                         } else {
-                            echo 'test';
-                            $_SESSION['message'] = 'Ajouté impossible à la base de données!';
+                            $_SESSION['message'] = "Ajouté impossible à la base de données!";
                         }
                         $conn->close();
                     } else {
-                        $_SESSION['message'] = 'Échec du téléchargement du fichier!';
+                        $_SESSION['message'] = "Échec du téléchargement du fichier!";
                     }
                 } else {
                     $_SESSION['message'] = "S'il vous plaît seulement télécharger des images GIF, JPG ou PNG!";
                 }
             }
         }
-
-    } else {
-        $_SESSION['message'] = "lest deux mots de passe ne correspondent pas!!";
+    }else{
+        $_SESSION['message'] = "les deux mots de passe ne correspondent pas!!";
     }
 }
