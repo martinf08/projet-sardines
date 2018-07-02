@@ -14,10 +14,10 @@ $hash_validation = md5(uniqid(rand(), true));
 echo '<a href="validation.php?url=' . $hash_validation . '"><button>Valider le compte</button></a>';
 require('validation.php');
 
-function email_validation() {
+function email_validation($email) {
     $conn = new ConnectDB();
-    $sql = "SELECT * FROM user";
-    if ($result = mysqli_query($conn, $sql)) {
-       return $result;
-    }
+    $sql = "SELECT users WHERE email=" . $email;
+
+
 }
+email_validation();
