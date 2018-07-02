@@ -16,14 +16,14 @@ spl_autoload_register('autoload_class');
 require('validation.php');
 
 $hash_validation = md5(uniqid(rand(), true));
-//?code="1fa13762a6b91360f8741330d15ed38d"
+
+//?code=60169551c8be6bd3523327b2f6089148
 function email_validation()
 {
     //If code exists
     if (!empty($_GET['code'])) {
         $code = $_GET['code'];
         //Connexion
-        var_dump($code);
         $conn = new ConnectDB();
         //Query
         $sql = 'SELECT * FROM users WHERE activation="' . $code . '"';
@@ -57,4 +57,4 @@ function send_validation(){
 
 }
 
-email_validation('test2@test.fr');
+email_validation();
