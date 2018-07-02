@@ -2,8 +2,9 @@
 
 session_start();
 $_SESSION['message'] = '';
-$mysqli = new mysqli("localhost", "root", "", "sardines");
 
+spl_autoload_register('autoload_class');
+$conn = new ConnectDB();
 
 //the form has been submitted with post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -61,4 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['message'] = 'lest deux mots de passe ne correspondent pas!!';
         }
     }
+}
+function autoload_class($class) {
+    include $class . '.php';
 }
