@@ -21,7 +21,10 @@ main {
     justify-content: center;
     align-items: stretch;
 }
-
+.flex-center {
+    display: flex;
+    justify-content: center;
+}
 .fleche-retour {
     font-size: 16px;
     float: left;
@@ -39,6 +42,12 @@ h1 {
     font-size: 100px;
     display: flex;
     justify-content: center;
+}
+.img-connexion {
+    margin-top: 40px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
 }
 
 form i {

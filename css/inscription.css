@@ -33,18 +33,34 @@ h1 {
     display: inline-block;
     margin: 0 auto;
 }
+.user-img {
+    display: flex;
+    justify-content: center;
+}
 
 .user-img i {
     margin-top: 40px;
     font-size: 100px;
-   text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 0;
+    width: 0;
+}
+
+.img-inscription {
+    margin-top: 40px;
+    height: 100px;
+    width: 100px;
+    text-align: center;
     cursor: pointer;
     border-radius: 50%;
 }
+
 #centre-avatar {
     display: flex;
     justify-content: center;
 }
+
 #user-img {
 
     display: none;
