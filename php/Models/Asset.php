@@ -1,6 +1,6 @@
 <?php
 
-class Asset
+class Asset extends Model
 {
     private $_asset_id;
     private $_asset_value;
