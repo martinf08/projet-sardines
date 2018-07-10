@@ -6,7 +6,7 @@
  * Time: 15:19
  */
 
-class User
+class User extends Model
 {
     private $_user_id;
     private $_nickname;
