@@ -1,10 +1,18 @@
 <?php
+
+/*
+*
+* Page de la production finale
+* toute page n'ayant pas ce message sera considérée comme page de test
+*
+*/
+
 require_once 'php/Classes/Config.php';
 
 class Model {
 
   private $_connexion;
-  private $_configuration = array();
+  //private $_configuration = array();
   private $_table;
 
   public function __construct() {
@@ -18,7 +26,10 @@ class Model {
     catch(PDOException $e) {
       print "Erreur de connexion : " . $e->getMessage();
     }
-    
   }
+/*
+  public function test() {
+    return $_table;
+  }*/
 
 }
