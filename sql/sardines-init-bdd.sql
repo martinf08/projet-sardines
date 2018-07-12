@@ -57,6 +57,7 @@ CREATE TABLE asset(
         description  Text ,
         entry_date   TimeStamp NOT NULL ,
         removal_date TimeStamp ,
+        tag          Int NOT NULL COMMENT "identifiant alphanumérique"  ,
         id_user      Int ,
         id_type      Int NOT NULL ,
         id_quality   Int NOT NULL
