@@ -1,5 +1,0 @@
-dossier pour tester en miniature un MVC qui servira de modèle pour l'appli
-
-arranger tout en namespace à la fin, ça semble régler la confusion des chemins pour les require (qui deviendront des use)
-
-faut que j'arrive à faire fonctionner ma requête PDO dans le getName de TestManager (il manque des étapes, peut-être passer par du prepare()) après il me reste à créer un bon router et ça devrait être bon

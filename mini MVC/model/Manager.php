@@ -1,4 +1,6 @@
 <?php
+# on ne demande au Manager (le "model") que de fournir une connexion
+
 require_once './class/Config.php';
 
 class Manager {
