@@ -101,3 +101,28 @@ function send_validation($email)
     }
 }
 
+
+
+/**
+ * pdo statement
+ * 
+ * table--> un seul champ
+ * new row data = $objetPDO->exc("insert into table values('champ'));
+ * 
+ * select
+ * $result = $objetPDO->exc("select * from table where champ = value)
+ * 
+ * 
+ * 
+ * ???? 
+ * PDO query vs prepare vs quote
+ * <?php
+* $requete = $bdd->prepare('SELECT * FROM membres WHERE id = :id');
+* $requete->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
+* $requete->execute();
+* ?>
+* for($i=0; $row = $query->fetch(); $i++){
+* echo $i." - ".$row['name']."<br/>";
+* }
+ * 
+ */
