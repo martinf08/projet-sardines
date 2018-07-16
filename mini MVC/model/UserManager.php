@@ -1,13 +1,8 @@
 <?php
-#------------------------------------------------------------------------------------
-# ignorez ce fichier, c'était pour me représenter ça donnera quoi sur les sardines
-#------------------------------------------------------------------------------------
 
-require_once 'Manager.php';
-
-class UserManager extends Manager {
+class UserManager extends Model {
   
-  public function getUser($id) {
+  public function getUser() {
     /* pseudocode
     req = dbConnect().query() */
   }

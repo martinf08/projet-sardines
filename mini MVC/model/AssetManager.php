@@ -1,11 +1,6 @@
 <?php
-#------------------------------------------------------------------------------------
-# ignorez ce fichier, c'était pour me représenter ça donnera quoi sur les sardines
-#------------------------------------------------------------------------------------
 
-require_once 'Manager.php';
-
-class AssetManager extends Manager {
+class AssetManager extends Model {
   
   public function insertAsset() {
     /* pseudocode

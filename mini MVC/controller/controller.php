@@ -1,13 +1,9 @@
 <?php
-# dans ce fichier, chaque fonction est en fait une route, ou une action (opération pour récupérer/envoyer des données + vue)
-
-require_once './model/UserManager.php';
-require_once './model/AssetManager.php';
-require_once './model/TestManager.php';
 
 class Controller {
 
-    public function test($id = NULL) {
+    public function test($id = NULL) 
+    {
         # voir si le complexe controller.php - test.php - Manager.php et TestManager.php fonctionnent ensemble
         $testManager = new TestManager();
     
@@ -22,24 +18,62 @@ class Controller {
     }
     
     
-    # exemples (non fonctionnels) de fonctions dont on aura besoin pour les sardines
-    # cette partie peut être ignorée
+    #-------------------------------------------------------
+    #               CONTROLLER LES SARDINES
+    #-------------------------------------------------------
     
-    public function getUser($id) {
+    #---------
+    #  INDEX
+    #---------
+    public function index() 
+    {
+        require_once './view/index.php';
+    }
+
+    #----------
+    #  DONNER
+    #----------
+    public function dropGear() 
+    {
+        require_once './view/donner.php';
+    }
+
+    #-----------
+    #  SARDINES
+    #-----------
+    public function sardines() 
+    {
+        require_once './view/sardines.php';
+    }
+
+    #----------
+    #  PROFIL
+    #----------
+    public function account($id) 
+    {
         $userManager = new UserManager(); // Création d'un objet
         $user = $userManager->getUser($id); // Appel d'une fonction de cet objet
     
-        require_once '../view/account.php';
+        require_once './view/profil.php';
     }
     
-    public function getAllUsers($id) {
-      $userManager = new UserManager(); // Création d'un objet
-      $users = $userManager->getAllUsers(); // Appel d'une fonction de cet objet
-    
-      require_once '../view/account.php';
+    #-------------
+    #  CONNEXION
+    #-------------
+    public function logIn() 
+    {
+        require_once './view/connexion.php';
     }
-    
-    public function insertUser($pseudo, $mail/*, etc. */)
+
+    #------------------------------
+    #  INSCRIPTION (vue et ajout)
+    #------------------------------
+    public function signIn()
+    {
+        require_once './view/inscription.php';
+    }
+
+    public function insertUser($post)
     {
         $userManager = new UserManager();
     
@@ -49,11 +83,19 @@ class Controller {
             throw new Exception('Impossible d\'ajouter l\'utilisateur !');
         }
         else {
-            header('Location: index.php?action=creationcompte&id=' . $postId);
+            header('Location: ./view/index.php');
         }
     }
+
+    #-------------------------
+    #  ASSETS (vue et ajout)
+    #-------------------------
+    public function newAsset() 
+    {
+        require_once('./view/ajout.php');
+    }
     
-    public function insertAsset($quality, $type/*, etc. */)
+    public function insertAsset($post)
     {
         $assetManager = new AssetManager();
     
@@ -63,7 +105,7 @@ class Controller {
             throw new Exception('Impossible d\'ajouter l\'asset !');
         }
         else {
-            header('Location: index.php?action=ajout&id=' . $postId);
+            header('Location: newAsset');
         }
     }
 
