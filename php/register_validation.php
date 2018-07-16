@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $conn->real_escape_string($_POST['email']);
 
         // vérifier si l'email exist
-        $sql = 'SELECT * From users WHERE email="' . $email . '"';
+        
 
         if ($result = mysqli_query($conn, $sql)) {
             $rescount = mysqli_num_rows($result);

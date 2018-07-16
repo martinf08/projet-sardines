@@ -1,7 +1,6 @@
 <?php
-require_once 'Manager.php';
 
-class TestManager extends Manager {
+class TestManager extends Model {
   
   public function getName($id) {
     $conn = $this->dbConnect();
