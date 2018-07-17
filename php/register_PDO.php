@@ -14,14 +14,21 @@ spl_autoload_register('autoload_class');
 
 //the form has been submitted with post
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
+
     // vérification des mots de passe
-    if (prepare($_POST['password']) == prepare($_POST['confirmPassword']) {
+    if ($_POST['password'] === $_POST['confirmPassword'] {
         
-        $email = prepare($_POST['email']);
-        $sql = 'SELECT * From users WHERE email="' . $email . '"';
+        $email = $_POST['email']);
+        $Password = $_POST['password'];
+
+        $sql = "
+            SELECT * From users 
+            WHERE email= :email
+            LIMIT 1
+            ";
         $objetPDO = $db->prepare($sql)
-        $objetPDO->execute();
+        $objetPDO->execute([':email' => $email]);
         
         //Retourne le nombre de lignes effacées ++
         if($objetPDO->rowCount()){
@@ -31,10 +38,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $sql = "";
             //md5 hash password for security
-            $password = prepare(sha1($_POST['password']));
+            $password = sha1($_POST['password']));
             
             //path were our avatar image will be stored
-            $avatar_path = prepare($_FILES['avatar']['name']);
+            $avatar_path = $_FILES['avatar']['name'];
             //make sure the file type is image
             if (preg_match("!image!", $_FILES['avatar']['type'])) {
                 
@@ -46,9 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $_SESSION['avatar'] = $avatar_path;
                     
                     //insert user data into database
-                    $sql = "INSERT INTO users (username,email, password, avatar) VALUES ('$username','$email', '$password', '$avatar_path')";
+                    $sql = "INSERT INTO users (username,email, password, avatar) VALUES (:username,:email, :password, :avatar_path:)";
+                     
                     //check if mysql query is successful
-                    if ($db->prepare($sql) === true){
+                    $query = $db->prepare($sql)
+                    $query = $query->excecute(
+                            ':username' => $username,
+                            ':email' => $email,
+                            ':password' => $password, 
+                            ':avatar' => $avatar
+                    );
+
+                    if ($query=== true){
                         send_validation($email);
                         $_SESSION['message'] = "Inscription réussi!!";
                         //redirect the user to welcome.php
