@@ -5,4 +5,4 @@ INNER JOIN quality
 ON price_catalog.id_quality = quality.id_quality
 INNER JOIN type
 ON price_catalog.id_type = type.id_type
-WHERE type.id_type = 1 AND quality.id_qualty = 3
+WHERE type.id_type = 1 AND quality.id_quality = 3
