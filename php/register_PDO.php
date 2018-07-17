@@ -1,15 +1,8 @@
 <?php /* register_validation.php */
 
-session_start();
-$_SESSION['message'] = '';
-function autoload_class($class)
-{
-    include $class . '.php';
-}
 
-spl_autoload_register('autoload_class');
-/*$conn = new ConnectDB();*/
-//get $db --> pdo
+ $conn = new ConnectDB();*/
+
 
 
 //the form has been submitted with post
@@ -21,6 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $email = $_POST['email']);
         $Password = $_POST['password'];
+        $username = $_POST['username'];
+        $avatar = $_POST['avatar'];
 
         $sql = "
             SELECT * From users 
@@ -38,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $sql = "";
             //md5 hash password for security
-            $password = sha1($_POST['password']));
+            $password = sha1($_POST['password']);
             
             //path were our avatar image will be stored
             $avatar_path = $_FILES['avatar']['name'];
@@ -81,8 +76,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 $_SESSION['message'] = "S'il vous plaît seulement télécharger des images GIF, JPG ou PNG!";
             }
-        } }else{
+            
+        } 
+    }else{
+          
             $_SESSION['message'] = "les deux mots de passe ne correspondent pas!!";
         }
-    }
-    ?>
+}
+?>

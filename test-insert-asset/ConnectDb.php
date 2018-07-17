@@ -11,7 +11,7 @@ class ConnectDb extends PDO
     protected $_host = 'localhost';
     protected $_user = 'root';
     protected $_password = '';
-    protected $_database = 'sardine';
+    protected $_database = 'sardines';
     public function __construct()
     {
         try {

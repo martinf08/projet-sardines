@@ -28,6 +28,7 @@ class Asset
                 $this->$method($value);
             }
         }
+        //$this->setRandomTag();
     }
 
     public function getId()
@@ -148,5 +149,10 @@ class Asset
         if (isset($id) && !empty($id)) {
             $this->_id_staff = $id;
         }
+    }
+
+    public function setRandomTag()
+    {
+        $this->setTag(rand(1, 999999));
     }
 }
