@@ -21,6 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $email = $_POST['email']);
         $Password = $_POST['password'];
+        $username = $_POST['username'];
+        $avatar = $_POST['avatar'];
 
         $sql = "
             SELECT * From users 
