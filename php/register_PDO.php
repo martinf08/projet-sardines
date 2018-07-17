@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // vérification des mots de passe
     if (prepare($_POST['password']) == prepare($_POST['confirmPassword']) {
         
-        $email = $conn->prepare($_POST['email']);
+        $email = prepare($_POST['email']);
         $sql = 'SELECT * From users WHERE email="' . $email . '"';
         $objetPDO = $db->prepare($sql)
         $objetPDO->execute();
