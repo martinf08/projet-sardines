@@ -12,7 +12,7 @@
 </header>
 <main>
     <!-- Main -->
-    <form action="post">
+    <form action="targetstaff.php" method="post">
         <input type="radio" id="avecBeneficiaire" name="beneficiaire" value="avecBeneficiaire">
         <label for="avecBeneficiaire">avec bénéficiaire</label>
         <input type="radio" id="sansBeneficiaire" name="beneficiaire" value="sansBeneficiaire">
@@ -24,7 +24,7 @@
 
         <br /> <!-- Optionnel -->
 
-        <div id="error-id">compte non trouvé</div>
+        <div id="error-id">ID invalide</div>
 
         <br /> <!-- Optionnel -->
 
@@ -38,7 +38,7 @@
         <input type="radio" id="mobilier" name="type" value="mobilier">
         <label for="mobilier">Mobilier</label>
         <input type="radio" id="matelas" name="type" value="matelas">
-        <label for="matelas">Matelasr</label>
+        <label for="matelas">Matelas</label>
 
         <br /> <!-- Optionnel -->
 
@@ -51,7 +51,7 @@
 
         <br /> <!-- Optionnel -->
 
-        <textarea name="details" id="details" cols="30" rows="10">Détails ? (Optionnel)</textarea>
+        <textarea name="details" id="details" cols="30" rows="10">Infos supplémentaires (Optionnel)</textarea>
 
         <br /> <!-- Optionnel -->
 
