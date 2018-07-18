@@ -29,16 +29,16 @@
 
         <br /> 
 
-        <input type="radio" id="tent" name="type" value="tent">
+        <input type="radio" id="tent" name="type" value="1">
         <label for="tent">Tente</label>
-        <input type="radio" id="sleepingBag" name="type" value="sleeping bag">
+        <input type="radio" id="sleepingBag" name="type" value="2">
         <label for="sleepingBag">Sac de couchage</label>
 
         <br /> 
 
-        <input type="radio" id="chair" name="type" value="chair">
+        <input type="radio" id="chair" name="type" value="3">
         <label for="chair">Chaise</label>
-        <input type="radio" id="mattress" name="type" value="mattress">
+        <input type="radio" id="mattress" name="type" value="4">
         <label for="mattress">Matelas</label>
 
         <br /> 
@@ -72,7 +72,7 @@
     <!-- Footer -->
 </footer>
 
-<script src="../js/getvalue.js"></script>
+<script src="./js/getvalue.js"></script>
 
 </body>
 </html>
