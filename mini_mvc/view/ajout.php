@@ -21,7 +21,7 @@
 
         <br /> <!-- Optionnel -->
 
-        <input type="text" name="identifiant" id="identifiant" placeholder="identifiant">
+        <input type="text" name="iduser" id="idUser" placeholder="identifiant">
 
         <br /> <!-- Optionnel -->
 
@@ -29,25 +29,25 @@
 
         <br /> 
 
-        <input type="radio" id="tent" name="type" value="1">
+        <input type="radio" id="tent" name="idtype" value="1">
         <label for="tent">Tente</label>
-        <input type="radio" id="sleepingBag" name="type" value="2">
+        <input type="radio" id="sleepingBag" name="idtype" value="2">
         <label for="sleepingBag">Sac de couchage</label>
 
         <br /> 
 
-        <input type="radio" id="chair" name="type" value="3">
+        <input type="radio" id="chair" name="idtype" value="3">
         <label for="chair">Chaise</label>
-        <input type="radio" id="mattress" name="type" value="4">
+        <input type="radio" id="mattress" name="idtype" value="4">
         <label for="mattress">Matelas</label>
 
         <br /> 
 
-        <input type="radio" id="bad" name="quality" value="1">
+        <input type="radio" id="bad" name="idquality" value="1">
         <label for="bad">Mauvais</label>
-        <input type="radio" id="good" name="quality" value="2">
+        <input type="radio" id="good" name="idquality" value="2">
         <label for="good">Bon</label>
-        <input type="radio" id="excellent" name="quality" value="3">
+        <input type="radio" id="excellent" name="idquality" value="3">
         <label for="excellent">Excellent</label>
 
         <br /> <!-- détails sur l'état du matos -->
@@ -60,7 +60,7 @@
 
         <br /> 
 
-        <input type="text" name="staff" value="3" style="display: none;">
+        <input type="text" name="idstaff" value="FT43" style="display: none;">
         <input type="text" id="sardines" name="value" style="display: none;">
 
 

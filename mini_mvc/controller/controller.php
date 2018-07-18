@@ -100,8 +100,10 @@ class Controller {
         $assetManager = new AssetManager();
 
         if (isset($post)){
-            if(!empty($post['beneficiaire']) && !empty($post['identifiant']) && !empty($post['type']) && !empty($post['quality']) && !empty($post['description']) && !empty($post['staff'])) {
-                $result = $assetManager->insertAsset($post);
+            if(!empty($post['beneficiaire']) && !empty($post['iduser']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description']) && !empty($post['idstaff'] && !empty($post['value']))) {
+                $asset = new Asset($post);
+                $asset->setIdUser(2);
+                $result = $assetManager->insertAsset($asset);
             } else{
                 $result = "Il faut remplir tous les champs";
             }
