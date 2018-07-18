@@ -72,7 +72,7 @@
     <!-- Footer -->
 </footer>
 
-<script src="../js/getvalue.js"></script>
+<script src="./js/getvalue.js"></script>
 
 </body>
 </html>
