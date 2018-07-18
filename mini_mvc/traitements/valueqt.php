@@ -3,7 +3,7 @@
  * Dans ce fichier on va récuperer la value de l'asset 
  * en fonction de sa qté et don son type
  */
-    require_once './model/model.php';
+    require_once './model/Model.php';
     require_once './function/functions.php';
 
  
