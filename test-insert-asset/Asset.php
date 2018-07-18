@@ -28,6 +28,7 @@ class Asset
                 $this->$method($value);
             }
         }
+        //$this->setRandomTag();
     }
 
     public function getId()
@@ -80,4 +81,78 @@ class Asset
         return $this->_id_staff;
     }
 
+    public function setId($id)
+    {
+        if (isset($id) && !empty($id) && is_int($id)) {
+            $this->_id_asset = $id;
+        }
+    }
+
+    public function setValue($value)
+    {
+        if (isset($value) && !empty($value) && is_int($value)) {
+            $this->_value = $value;
+        }
+    }
+
+    public function setDescription($description)
+    {
+        if (isset($description) && !empty($description) && is_string($description)) {
+            $this->_description = $description;
+        }
+    }
+
+    public function setEntryDate($date)
+    {
+        if (isset($date) && !empty($date)) {
+            $this->_entry_date = $date;
+        }
+    }
+
+    public function setRemovalDate($date)
+    {
+        if (isset($date) && !empty($date)) {
+            $this->_removal_date = $date;
+        }
+    }
+
+    public function setTag($tag)
+    {
+        if (isset($tag) && !empty($tag)) {
+            $this->_tag = $tag;
+        }
+    }
+
+    public function setIdUser($id)
+    {
+        if (isset($id) && !empty($id) && is_int($id)) {
+            $this->_id_user = $id;
+        }
+    }
+
+    public function setIdType($id)
+    {
+        if (isset($id) && !empty($id) && is_int($id)) {
+            $this->_id_type = $id;
+        }
+    }
+
+    public function setIdQuality($id)
+    {
+        if (isset($id) && !empty($id) && is_int($id)) {
+            $this->_id_quality = $id;
+        }
+    }
+
+    public function setIdStaff($id)
+    {
+        if (isset($id) && !empty($id)) {
+            $this->_id_staff = $id;
+        }
+    }
+
+    public function setRandomTag()
+    {
+        $this->setTag(rand(1, 999999));
+    }
 }

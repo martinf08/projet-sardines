@@ -38,15 +38,15 @@ if(isset($_GET['url'])) {
   }
   else if($action == 'insertUser') 
   {
-    $ctrl->insertUser($post);
+    $ctrl->insertUser($_POST);
   } 
   else if($action == 'ajout') 
   {
     $ctrl->newAsset();
   }
-  else if($action == 'insertAssert') 
+  else if($action == 'insertAsset') 
   {
-    $ctrl->insertAsset($post);
+    $ctrl->insertAsset($_POST);
   } 
   else if($action == 'index.php') 
   {
