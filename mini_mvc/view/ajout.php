@@ -71,5 +71,8 @@
 <footer>
     <!-- Footer -->
 </footer>
+
+<script src="../js/getvalue.js"></script>
+
 </body>
 </html>
