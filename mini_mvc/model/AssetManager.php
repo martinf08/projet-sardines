@@ -2,8 +2,9 @@
 
 class AssetManager extends Model {
   
-  public function insertAsset($validate) {
-    return $validate;
+  public function insertAsset($post) 
+  {
+    return $post;
   }
 
 }
