@@ -23,5 +23,5 @@ $asset = new Asset([
 ]);
 $db = new ConnectDb();
 $assetManager = new AssetManager($db);
-//$assetManager->getValueAjax();
+//$assetManager->getValueAjax(2,3);
 //$assetManager->insertAsset($asset);
