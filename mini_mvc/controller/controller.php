@@ -98,15 +98,23 @@ class Controller {
     public function insertAsset($post)
     {
         $assetManager = new AssetManager();
-    
-        $queryResult = $assetManager->insertAsset($quality, $type/*, etc. */);
-    
-        if ($queryResult === false) {
-            throw new Exception('Impossible d\'ajouter l\'asset !');
+
+        if (isset($post)){
+            if(!empty($post['beneficiaire']) && !empty($post['identifiant']) && !empty($post['type']) && !empty($post['quality']) && !empty($post['description']) && !empty($post['staff'])) {
+                $result = $assetManager->insertAsset($post);
+            } else{
+                $result = "Il faut remplir tous les champs";
+            }
+        } else {
+            $result = "Il faut remplir le formulaire !";
         }
-        else {
-            header('Location: newAsset');
-        }
+
+        require_once './view/ajout.php';
+
+        # en vrai on préférera rediriger avec header('Location: newAsset');
+        # pour ne pas se retrouver avec "/insertAsset" dans l'url
+        # mais cette redirection peut se faire au niveau du manager
+
     }
 
 }

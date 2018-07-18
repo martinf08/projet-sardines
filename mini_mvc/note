@@ -1,0 +1,3 @@
+Dossier pour tester en miniature un MVC qui servira de modèle pour l'appli. Peut-être même y développer l'appli entière en prenant tous les bouts de codes qui sont à la racine, parce qu'il faut dire que c'est un peu le bazar et ici on peut repartir de zéro au propre.
+
+Arranger tout en namespace à la fin ? ça semble régler la confusion des chemins pour les require (qui deviendront des use).

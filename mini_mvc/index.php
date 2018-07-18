@@ -4,7 +4,7 @@ require_once 'model/Model.php';
 require_once 'model/UserManager.php';
 require_once 'model/AssetManager.php';
 
-#require_once 'model/TestManager.php';
+require_once 'model/TestManager.php';
 
 $ctrl = new Controller; 
 
@@ -38,25 +38,25 @@ if(isset($_GET['url'])) {
   }
   else if($action == 'insertUser') 
   {
-    $ctrl->insertUser($post);
+    $ctrl->insertUser($_POST);
   } 
   else if($action == 'ajout') 
   {
     $ctrl->newAsset();
   }
-  else if($action == 'insertAssert') 
+  else if($action == 'insertAsset') 
   {
-    $ctrl->insertAsset($post);
+    $ctrl->insertAsset($_POST);
   } 
   else if($action == 'index.php') 
   {
     $ctrl->index();
-  } /*
+  }
   else if($action == 'test') 
   {
     if(isset($param)) $ctrl->test($param);
     else $ctrl->test();
-  }*/
+  }
   else 
   {
     echo "page d'erreur";

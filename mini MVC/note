@@ -1,5 +1,0 @@
-Dossier pour tester en miniature un MVC qui servira de modèle pour l'appli.
-
-Arranger tout en namespace à la fin ? ça semble régler la confusion des chemins pour les require (qui deviendront des use).
-
-Ne vous occupez que de index.php, test.php, TestManager, Manager, Config et Controller pour examiner le mini MVC. Le reste est seulement en prévision de l'appli sardines mais rien ne fonctionne encore. Gardons simplement ce dossier de côté comme modèle pour l'appli.
