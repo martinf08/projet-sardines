@@ -41,11 +41,12 @@ class AssetManager
 
     public function insertAsset(Asset $asset)
     {
-
-      /*  while ($this->checkRandomTag($asset) == false) {
+        do {
             $asset->setRandomTag();
-            var_dump($asset->getTag());
-        }*/
+
+        } while ($this->checkRandomTag($asset) == false);
+
+        $value = $asset->getValue();
         $description = $asset->getDescription(); //:description
         $tag = $asset->getTag(); //:tag
         $id_user = $asset->getIdUser(); //:id_user
@@ -53,14 +54,18 @@ class AssetManager
         $id_quality = $asset->getIdQuality(); //:id_quality
         $id_staff = $asset->getIdStaff(); //:id_staff
 
-        $req = $this->_db->prepare('INSERT INTO `asset`(`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+        $req = $this->_db->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+        $req->bindParam(':value', $value);
         $req->bindParam(':description', $description);
         $req->bindParam(':tag', $tag);
         $req->bindParam(':id_user', $id_user);
         $req->bindParam(':id_type', $id_type);
         $req->bindParam(':id_quality', $id_quality);
         $req->bindParam(':id_staff', $id_staff);
-        //$req->execute();
+        $req->execute();
 
     }
+   public function getValueAjax($type, $quality) {
+      $sql = $this->_db->prepare();
+   }
 }

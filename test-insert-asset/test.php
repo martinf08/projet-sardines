@@ -14,8 +14,8 @@ function autoload_class($class)
 spl_autoload_register('autoload_class');
 
 $asset = new Asset([
+    'value' => 5,
     'description' => null,
-    'tag' => 123455,
     'iduser' => 2,
     'idtype' => 1,
     'idquality' => 1,
@@ -23,4 +23,5 @@ $asset = new Asset([
 ]);
 $db = new ConnectDb();
 $assetManager = new AssetManager($db);
+//$assetManager->getValueAjax();
 //$assetManager->insertAsset($asset);
