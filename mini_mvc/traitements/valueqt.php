@@ -3,15 +3,16 @@
  * Dans ce fichier on va récuperer la value de l'asset 
  * en fonction de sa qté et don son type
  */
-    require_once './model/Model.php';
-    require_once './function/functions.php';
 
+require_once '../class/Config.php';
+require_once '../model/Model.php';
+require_once '../functions/functions.php';
  
  /**connection à la base de donnée
   * injection de des pamars de la fonction
  */
    
-    $db = new dbConnect();
-    echo(getValueAjax( $db,$type, $quality));
+    $db = new Model;
+    echo(getValueAjax($db->dbConnect(),$_POST['type'], $_POST['quality']));
 
 ?>

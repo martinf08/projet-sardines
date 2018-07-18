@@ -1,10 +1,8 @@
 <?php
 
-require_once './class/Config.php';
-
 class Model {
 
-  protected function dbConnect() {
+  public function dbConnect() {
     try {
       $connexion = new PDO('mysql:host='.Config::$config['host'].';dbname='.Config::$config['db'].';',
                                                 Config::$config['username'], Config::$config['password']);

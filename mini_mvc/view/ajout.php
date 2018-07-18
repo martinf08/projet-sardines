@@ -56,11 +56,12 @@
 
         <br /> <!-- Recuperer la valeur de la recompense -->
 
-        <p>Recompense de <span id="recompense">10 (icon sardine)</span></p>
+        <p>Recompense de <span id="recompense">0</span> sardines</p>
 
         <br /> 
 
         <input type="text" name="staff" value="3" style="display: none;">
+        <input type="text" id="sardines" name="value" style="display: none;">
 
 
         <input type="submit" id="submit" value="valider">
@@ -72,7 +73,7 @@
     <!-- Footer -->
 </footer>
 
-<script src="./js/getvalue.js"></script>
+<script src="./js/getValue.js"></script>
 
 </body>
 </html>
