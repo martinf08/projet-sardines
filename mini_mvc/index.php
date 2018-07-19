@@ -65,11 +65,13 @@ try
     else 
     {
       throw new Exception('Cette page n\'existe pas');
+      # besoin d'envoyer page d'erreur ici
     }
   }
 } 
 catch(Exception $e) 
 {
   $errorMessage = $e->getMessage();
+  echo $errorMessage;
   # require_once 'view/erreur'; cette vue n'existe pas encore
 }
