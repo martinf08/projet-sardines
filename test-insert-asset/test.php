@@ -22,6 +22,7 @@ $asset = new Asset([
     'idstaff' => 3,
 ]);
 $db = new ConnectDb();
+$asset->setRandomTag();
 $assetManager = new AssetManager($db);
 //$assetManager->getValueAjax(2,3);
 //$assetManager->insertAsset($asset);

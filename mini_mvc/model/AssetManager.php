@@ -50,5 +50,4 @@ class AssetManager extends Model {
             return true;
         }
     }
-
 }
