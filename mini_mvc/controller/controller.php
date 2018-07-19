@@ -102,16 +102,16 @@ class Controller {
         if (isset($post)){
             if(!empty($post['beneficiaire']) && !empty($post['iduser']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description']) && !empty($post['idstaff'] && !empty($post['value']))) {
                 $asset = new Asset($post);
-                $asset->setIdUser(2);
-                $result = $assetManager->insertAsset($asset);
-            } else{
-                $result = "Il faut remplir tous les champs";
+                $asset->setIdUser(2); # à corriger, il faudra d'abord récupérer cet id en ajax avant validation
+                $assetManager->insertAsset($asset);
+            } else {
+                throw new Exception('Certains champs (ou tous) sont vides.');
             }
         } else {
-            $result = "Il faut remplir le formulaire !";
+            throw new Exception('Erreur monumentale.');
         }
 
-        require_once './view/ajout.php';
+        # require_once './view/ajout.php'; plus utile depuis que les throw sont installés, c'était pour débugger
 
         # en vrai on préférera rediriger avec header('Location: newAsset');
         # pour ne pas se retrouver avec "/insertAsset" dans l'url
