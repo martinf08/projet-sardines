@@ -17,8 +17,15 @@ function getValueAjax($db, $type, $quality)
 function getUserId($db, $id)
 {
     if (isset($id) && !empty($id)) {
-        $sql = $db->prepare('SELECT email FROM users WHERE identifier = :id');
+        $id = (int)$id;
+        $sql = $db->prepare('SELECT mail FROM users WHERE identifier = :id');
+        $sql->bindParam(':id', $id);
         $sql->execute();
-        return $sql->fetch()['identifier'];
+       $reponse = $sql->fetch()['mail'];
+        if ($reponse != NULL) {
+
+            return '<p>Email :'. $reponse .'</p>';
+        }
+        return '<p>Cet utilisateur n\'existe pas</p>';
     }
 }
