@@ -44,13 +44,15 @@ class UserManager extends Model {
         //check if mysql query is successful
         $query = $this->dbConnect()->prepare($sql);
         
+        // ':username' => $username,
         $query->excecute(array(
-          ':username' => $username,
           ':email' => $email,
           ':password' => $password, 
           ':avatar' => $avatar)
         );
         
+        $data = $query->fetchAll();
+
         if ($query=== true){
           send_validation($email);
           $_SESSION['message'] = "Inscription réussi!!";
