@@ -2,8 +2,16 @@
 
 class AssetManager extends Model {
 
-  public function insertAsset(Asset $asset)
-  {
+    public function getAll($table) {
+        $sql = "SELECT * FROM $table";
+        $req = $this->dbConnect()->prepare($sql);
+        $req->execute();
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        return $req->fetchAll();
+    }
+
+    public function insertAsset(Asset $asset)
+    {
       do {
           $asset->setRandomTag();
 
@@ -34,9 +42,9 @@ class AssetManager extends Model {
       } else {
         throw new Exception('L\'insertion d\'un nouveau matériel a échoué.');
       }
-  }
+    }
 
-  public function checkRandomTag(Asset $asset)
+    public function checkRandomTag(Asset $asset)
     {
         $tag = (int)$asset->getTag();
 

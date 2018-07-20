@@ -92,7 +92,18 @@ class Controller {
     #-------------------------
     public function newAsset() 
     {
-        require_once('./view/ajout.php');
+        $assetManager = new AssetManager();
+        # passer ici les valeurs des champs des radios pour la vue
+        $types = $assetManager->getAll('type');
+        $qualities = $assetManager->getAll('quality');
+
+        if(isset($types) && isset($qualities)) {
+
+            require_once('./view/ajout.php');
+
+        } else {
+            throw new Exception('Problème sur la récupération des tables type et qualite');
+        }
     }
     
     public function insertAsset($post)
