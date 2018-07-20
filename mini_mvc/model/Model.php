@@ -14,7 +14,8 @@ class Model {
       }
     }
 
-    public function saveData($data){
+    // cette fonction permet de d'ajouter dans la base de données stockées dans un array()
+    public function saveData($table,$data){
                 $data_fields = array();
                 $data_value = array();
                 
@@ -25,13 +26,16 @@ class Model {
                     $data_value[":$key"] = $value; 
                   }
                 }
-                
                 $data_fields = implode(',',$data_fields);
+                $sql='INSERT INTO '.$table.' SET '.$data_fields;
+                try {
+                  $req = $this->dbConnect()->prepare($sql);
+                  $req->execute($data_value);
+                }catch(PDOException $e){
 
-                $sql='INSERT INTO users SET '.$data_fields;
-                $req = $this->dbConnect()->prepare($sql);
-                $req->execute($data_value);
+                }
     }
+
     public function getRowdata($table,$condition){
 
       $sql ='SELECT *FROM '.$table.' as ' .$table. ' WHERE '.$condition;

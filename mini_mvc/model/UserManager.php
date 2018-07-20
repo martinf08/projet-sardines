@@ -19,7 +19,7 @@ class UserManager extends Model {
             // vérification des mots de passe
             if($_POST['password'] === $_POST['confirmPassword']){
               
-              $this->saveData($_POST);
+              $this->saveData('users',$_POST);
 
             }else{
               echo "mot de passe non identique";
