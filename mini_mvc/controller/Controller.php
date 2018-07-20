@@ -82,7 +82,7 @@ class Controller {
       
         $userManager = new UserManager();
        
-        $queryResult = $userManager->insertUser($post);
+        $queryResult = $userManager->insertUser();
          
        /*if ($queryResult === false) {
             throw new Exception('Impossible d\'ajouter l\'utilisateur !');

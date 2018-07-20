@@ -11,62 +11,22 @@ class UserManager extends Model {
     
   }
   
-  public function insertUser($post) {
+  public function insertUser() {
     
-    $email = $_POST['email'];
-    $avatar = $_POST['avatar'];
-    $db = $this->dbConnect();
-    
-    //the form has been submitted with post
-    
-    // vérification des mots de passe
-    if($_POST['password'] === $_POST['confirmPassword']){
-      
-  
-      //Vérification de l'eixistace de l'utilisateur
-      $sql = "SELECT * From users WHERE email= :email LIMIT 1";
-      $objetPDO = $this->dbConnect()->prepare($sql);
-      $objetPDO->bindParam(':email',  $email);
-      $objetPDO->execute();
-      $reponse = $objetPDO->fetch();
-      if ($reponse) {
-        // cet email exigiste déjà
-        $_SESSION['message'] = 'cet email existe déjà';
-      } else {
-        
-        //$_SESSION['username']=--> unique ID
-        $_SESSION['email'] = $email;
-        $_SESSION['avatar'] = $avatar;
-        
-        //insert user data into database
-        $sql = "INSERT INTO users (username,email, password, avatar) VALUES (':username',':email', ':password', ':avatar_path')";
-                                                                
-        //check if mysql query is successful
-        $query = $this->dbConnect()->prepare($sql);
-        
-        // ':username' => $username,
-        $query->excecute(array(
-          ':email' => $email,
-          ':password' => $password, 
-          ':avatar' => $avatar)
-        );
-        
-        $data = $query->fetchAll();
+      if(isset($_POST)){
 
-        if ($query=== true){
-          send_validation($email);
-          $_SESSION['message'] = "Inscription réussi!!";
-          //redirect the user to welcome.php
-          header("location: welcome.php");
-        } else {
-          $_SESSION['message'] = "Ajouté impossible à la base de données!";
-          echo  "Ajouté impossible à la base de données!";
-        }
+        //si 
+            // vérification des mots de passe
+            if($_POST['password'] === $_POST['confirmPassword']){
+              
+              $this->saveData($_POST);
+
+            }else{
+              echo "mot de passe non identique";
+            }
+
       }
       
-    }
-    return false;
-    
   }
 }
 ?>
