@@ -21,7 +21,7 @@
 
         <br /> <!-- Optionnel -->
 
-        <input type="text" name="iduser" id="idUser" placeholder="identifiant">
+        <input type="text" name="iduser" id="iduser" placeholder="identifiant">
 
         <br /> <!-- Optionnel -->
 
@@ -91,7 +91,8 @@
     <!-- Footer -->
 </footer>
 
-<script src="./js/getValue.js"></script>
+<script src="/projet-sardines/mini_mvc/js/getvalue.js"></script>
+<script src="/projet-sardines/mini_mvc/js/getuserid.js"></script>
 
 </body>
 </html>

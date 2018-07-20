@@ -4,7 +4,7 @@ class Controller {
 
     public function test($id = NULL) 
     {
-        # voir si le complexe controller.php - test.php - Manager.php et TestManager.php fonctionnent ensemble
+        # voir si le complexe Controller.php - test.php - Manager.php et TestManager.php fonctionnent ensemble
         $testManager = new TestManager();
     
         if(isset($id)) {
