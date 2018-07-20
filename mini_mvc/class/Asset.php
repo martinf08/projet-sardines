@@ -153,6 +153,11 @@ class Asset
 
     public function setRandomTag()
     {
-        $this->setTag(rand(1, 999999));
+        $tag = (string) rand(1, 999999);
+        $nb_turn = 6 - strlen($tag);
+        for ($i = 0; $i < $nb_turn; $i++) {
+            $tag = '0'.$tag;
+        }
+        $this->setTag($tag);
     }
 }

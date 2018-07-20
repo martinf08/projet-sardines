@@ -2,13 +2,6 @@
 
 class AssetManager extends Model {
 
-  /*
-  public function insertAsset($post) 
-  {
-    return $post;
-  }
-  */
-
   public function insertAsset(Asset $asset)
   {
       do {
@@ -32,7 +25,15 @@ class AssetManager extends Model {
       $req->bindParam(':id_type', $id_type);
       $req->bindParam(':id_quality', $id_quality);
       $req->bindParam(':id_staff', $id_staff);
-      return $req->execute();
+      
+      $result = $req->execute();
+
+      # GESTION D'ERREUR
+      if($result) {
+          header('Location: index.php'); # remplacer par une page 'transaction réussie'
+      } else {
+        throw new Exception('L\'insertion d\'un nouveau matériel a échoué.');
+      }
   }
 
   public function checkRandomTag(Asset $asset)
@@ -50,5 +51,4 @@ class AssetManager extends Model {
             return true;
         }
     }
-
 }
