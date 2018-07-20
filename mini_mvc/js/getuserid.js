@@ -1,9 +1,8 @@
 (function () {
     let textUser = document.getElementById('iduser');
     textUser.addEventListener('input', function () {
-        let userid = textUser.value;
         let response = document.getElementById('error-id');
-        if (checkedValue != null && textUser.value != null && textUser.value.length == 4) {
+        if (textUser.value != null && textUser.value.length == 4) {
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
@@ -13,7 +12,7 @@
             xhttp.open("POST", "./traitements/checkuserid.php", true); //True = async
             //encodage du formulaire
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("userid=" + userid);
+            xhttp.send("userid=" + textUser.value);
         }
 
     });

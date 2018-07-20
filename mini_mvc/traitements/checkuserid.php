@@ -17,5 +17,4 @@ require_once '../functions/functions.php';
  */
 
 $db = new Model;
-
-echo(getUserId($db->dbConnect(), $_POST['iduser']));
+echo(getUserId($db->dbConnect(), $_POST['userid']));
