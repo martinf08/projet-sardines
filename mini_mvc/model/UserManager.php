@@ -13,13 +13,14 @@ class UserManager extends Model {
   
   public function insertUser() {
     
+    die( print_r($_POST));
     $db = $this->dbConnect();
     //the form has been submitted with post
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
       
       // vérification des mots de passe
-      if($_POST['password'] === $_POST['confirmPassword'] {
+      if($_POST['password'] === $_POST['confirmPassword']){
         
         $email = $_POST['email'];
         $username = $_POST['username'];
@@ -30,7 +31,7 @@ class UserManager extends Model {
         WHERE email= :email
         LIMIT 1
         ";
-        $objetPDO = $db->prepare($sql)
+        $objetPDO = $db->prepare($sql);
         $objetPDO->execute([':email' => $email]);
         
         //Retourne le nombre de lignes effacées ++
@@ -59,16 +60,15 @@ class UserManager extends Model {
               $sql = "INSERT INTO users (username,email, password, avatar) VALUES (:username,:email, :password, :avatar_path:)";
               
               //check if mysql query is successful
-              $query = $db->prepare($sql)
-              $query = $query->excecute(
-                ':username' => $username,
-                ':email' => $email,
-                ':password' => $password, 
-                ':avatar' => $avatar
+              $query = $db->prepare($sql);
+              $query = $query->excecute(":username" => $username,
+                ":email" => $email,
+                ":password" => $password, 
+                ":avatar" => $avatar
               );
               
               if ($query=== true){
-                send_validation($email);
+                  send_validation($email);
                 $_SESSION['message'] = "Inscription réussi!!";
                 //redirect the user to welcome.php
                 header("location: welcome.php");

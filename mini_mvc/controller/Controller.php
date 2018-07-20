@@ -70,11 +70,15 @@ class Controller {
     #------------------------------
     public function signIn()
     {
+
         require_once './view/inscription.php';
+
     }
 
     public function insertUser($post)
     {
+
+      
         $userManager = new UserManager();
     
         $queryResult = $userManager->insertUser($pseudo, $mail/*, etc. */);
@@ -84,7 +88,7 @@ class Controller {
         }
         else {
             header('Location: ./view/index.php');
-        }
+        }*/
     }
 
     #-------------------------
