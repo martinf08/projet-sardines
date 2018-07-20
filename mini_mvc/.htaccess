@@ -4,6 +4,3 @@ RewriteRule ^([^/]+/?[a-zA-Z0-9]*)$ index.php?url=$1 [L,QSA]
 # l'original que j'ai modifié pour obtenir un format action/param :
 # RewriteRule ^([^/]+)/? index.php?url=$1 [L,QSA]
 # par contre le regex que j'ai composé lance une erreur d'url non trouvé si n'y a pas de deuxième slash dans l'adresse
-# il faudra pouvoir le rendre optionnel
-
-# il faudrait peut-être permettre dans le regexp rendre optionnel le /([0-9]+) est mettre tout dans $1 puis le parser après avec un explode, car s'il y a un $2 il sera obligatoire pour charger une page

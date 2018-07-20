@@ -29,26 +29,44 @@
 
         <br /> 
 
-        <input type="radio" id="tent" name="idtype" value="1">
-        <label for="tent">Tente</label>
-        <input type="radio" id="sleepingBag" name="idtype" value="2">
-        <label for="sleepingBag">Sac de couchage</label>
+        <!-- LES RADIOS TYPE -->
 
-        <br /> 
+        <?php foreach($types as $type):
+        # formatage du name pour en faire un identifiant en camelCase
+        $cssID = explode(' ', $type['name']);
+        $cssID = array_map(function($x) {
+            return ucfirst($x);
+        }, $cssID);
+        $cssID = lcfirst(implode('', $cssID));
+        ?>
 
-        <input type="radio" id="chair" name="idtype" value="3">
-        <label for="chair">Chaise</label>
-        <input type="radio" id="mattress" name="idtype" value="4">
-        <label for="mattress">Matelas</label>
+        <input type="radio" 
+                id="<?php echo $cssID ?>" 
+                name="idtype" 
+                value="<? echo $type['id_type'] ?>">
 
-        <br /> 
+        <label for="<?php echo $cssID ?>">
+            <?php echo ucfirst($type['name']) ?>
+        </label>
 
-        <input type="radio" id="bad" name="idquality" value="1">
-        <label for="bad">Mauvais</label>
-        <input type="radio" id="good" name="idquality" value="2">
-        <label for="good">Bon</label>
-        <input type="radio" id="excellent" name="idquality" value="3">
-        <label for="excellent">Excellent</label>
+        <?php endforeach; ?>
+
+        <br> <!-- LES RADIOS QUALITE -->
+
+        <?php foreach($qualities as $quality):
+        # pen l'état actuel, pas de formatage du label nécessaire pour les qualités
+        ?>
+
+        <input type="radio" 
+                id="<?php echo $quality['label'] ?>" 
+                name="idquality" 
+                value="<? echo $quality['id_quality'] ?>">
+
+        <label for="<?php echo $quality['label'] ?>">
+            <?php echo ucfirst($quality['label']) ?>
+        </label>
+
+        <?php endforeach; ?>
 
         <br /> <!-- détails sur l'état du matos -->
 
