@@ -135,7 +135,7 @@ INSERT INTO `type` (`id_type`, `name`) VALUES
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
   `nickname` varchar(45) DEFAULT NULL,
-  `mail` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `avatar` varchar(100) DEFAULT NULL,
   `identifier` varchar(4) NOT NULL,
   `account_creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -151,7 +151,7 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id_user`, `nickname`, `mail`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES
+INSERT INTO `users` (`id_user`, `nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES
 (2, 'xxx-Dark-Sasuke-xxx', 'darksasuke@troll.fr', NULL, '1234', '2018-07-16 13:28:55', '2018-07-16 13:28:55', '098f6bcd4621d373cade4e832627b4f6', '1', 10, 0, 0),
 (3, 'Jean-Marie', 'jeanmarie02@troll.com', NULL, '1235', '2018-07-16 13:34:10', '2018-07-16 13:34:10', 'ad0234829205b9033196ba818f7a872b', '1', 0, 0, 1),
 (4, 'wenceslas', 'wenceslas18@troll.net', NULL, '1236', '2018-07-16 13:38:04', '2018-07-16 13:38:04', '8ad8757baa8564dc136c1e07507f4a98', '1', 50, 0, 0),

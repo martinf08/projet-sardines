@@ -32,7 +32,6 @@ function getValue(type, quality) {
             console.log('ajax ok');
             sardinesDisplay.innerHTML = this.responseText;
             sardinesVal.value = this.responseText;
-            console.log(sardinesVal.value);
         }
     };
     xhttp.open("POST", "./traitements/valueqt.php", true); //True = async
