@@ -8,3 +8,4 @@ class Config {
                             'password'=> 'root'
                           );
 }
+$conf = new Config;
