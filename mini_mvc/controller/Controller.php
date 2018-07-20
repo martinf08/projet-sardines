@@ -62,6 +62,7 @@ class Controller {
     #-------------
     public function logIn() 
     {
+      
         require_once './view/connexion.php';
     }
 
@@ -80,10 +81,10 @@ class Controller {
 
       
         $userManager = new UserManager();
-    
-        $queryResult = $userManager->insertUser($pseudo, $mail/*, etc. */);
-    
-        if ($queryResult === false) {
+       
+        $queryResult = $userManager->insertUser($post);
+         
+       /*if ($queryResult === false) {
             throw new Exception('Impossible d\'ajouter l\'utilisateur !');
         }
         else {
