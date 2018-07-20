@@ -7,4 +7,5 @@ class Config {
                             'username'=> 'root',
                             'password'=> ''
                           );
+  public static $ghost = 'cabaretvert@anonymous.net';
 }
