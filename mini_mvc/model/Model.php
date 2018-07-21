@@ -38,11 +38,17 @@ class Model {
 
     public function getRowdata($table,$condition){
 
-      $sql ='SELECT *FROM '.$table.' as ' .$table. ' WHERE '.$condition;
-      $pre =$this->db->prepare($sql);
-      $pre->execute();
-      return $pre->fetchALL(PDO::FETCH_ASSOC); 
+      $sql ='SELECT *FROM '.$table.' as Table_'.$table.' WHERE '.$condition;
+     // die($sql);
+      try {
+        $pre = $this->dbConnect()->prepare($sql);
+        $pre->execute();
+        return $pre->fetch(PDO::FETCH_ASSOC); 
+      }catch(PDOException $e){
+        return $e->getMessage();
+      }
 
+      
     }
 
 
