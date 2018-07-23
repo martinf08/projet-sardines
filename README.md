@@ -2,7 +2,7 @@
 
 ## Configuration
 
-### BDD
+### BDD 
 Importer le fichier sardines-bdd-datas.sql dans phpmyadmin (ou l'exécuter en SQL dans la base).
 
 ### Accès BDD
