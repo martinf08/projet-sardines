@@ -32,12 +32,11 @@ class UserManager extends Model {
                 }else{
                   // password check
                   if($_POST['password'] === $_POST['confirmPassword'])
-
                     $this->saveData($_POST);
                     
-                  }else{
+                  else
                     echo "mot de passe non identique";
-                  }
+                  
                 }
             }
 
