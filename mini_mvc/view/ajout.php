@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Organisateur</title>
-</head>
-<body>
-<header>
-    <!-- Header -->
-    <div id="menu-berger">Menu</div>
-    <h1>Titre Page</h1>
-</header>
+<?php $title = 'Ajouter un matériel'; ?>
+
+<?php ob_start(); ?>
 <main>
 <?php if(isset($result)) { print_r($result); } ?>
     <!-- Main -->
@@ -32,12 +23,12 @@
         <!-- LES RADIOS TYPE -->
 
         <?php foreach($types as $type):
-        # formatage du name pour en faire un identifiant en camelCase
-        $cssID = explode(' ', $type['name']);
-        $cssID = array_map(function($x) {
-            return ucfirst($x);
-        }, $cssID);
-        $cssID = lcfirst(implode('', $cssID));
+            # formatage du name pour en faire un identifiant en camelCase
+            $cssID = explode(' ', $type['name']);
+            $cssID = array_map(function($x) {
+                return ucfirst($x);
+            }, $cssID);
+            $cssID = lcfirst(implode('', $cssID));
         ?>
 
         <input type="radio" 
@@ -54,7 +45,7 @@
         <br> <!-- LES RADIOS QUALITE -->
 
         <?php foreach($qualities as $quality):
-        # pen l'état actuel, pas de formatage du label nécessaire pour les qualités
+        # en l'état actuel, pas de formatage du label nécessaire pour les qualités
         ?>
 
         <input type="radio" 
@@ -72,14 +63,16 @@
 
         <textarea name="description" id="details" cols="30" rows="10">Infos supplémentaires (Optionnel)</textarea>
 
-        <br /> <!-- Recuperer la valeur de la recompense -->
+        <br /> <!-- Récuperer la valeur de la récompense -->
 
-        <p>Recompense de <span id="recompense">0</span> sardines</p>
+        <p>Recompense de <span id="recompense">?</span> sardines</p>
 
         <br /> 
 
         <input type="text" name="idstaff" value="FT43" style="display: none;">
+        <!-- INJECTER L'ID STAFF QUAND CONNEXIONS IMPLEMENTEES -->
         <input type="text" id="sardines" name="value" style="display: none;">
+        <!-- PAS SECURISE -->
 
 
         <input type="submit" id="submit" value="valider">
@@ -87,12 +80,9 @@
 
     </form>
 </main>
-<footer>
-    <!-- Footer -->
-</footer>
 
 <script src="/projet-sardines/mini_mvc/js/getvalue.js"></script>
 <script src="/projet-sardines/mini_mvc/js/getuserid.js"></script>
+<?php $content = ob_get_clean(); ?>
 
-</body>
-</html>
+<?php require_once 'view/template.php'; ?>
