@@ -31,10 +31,9 @@ class UserManager extends Model {
                     echo "This email already exists";
                 }else{
                   // password check
-                  if($_POST['password'] === $_POST['confirmPassword'])
+                  if($_POST['password'] === $_POST['confirmPassword']){
 
                     $this->saveData($_POST);
-                    
                   }else{
                     echo "mot de passe non identique";
                   }

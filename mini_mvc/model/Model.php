@@ -35,7 +35,7 @@ abstract class Model {
     $data_value = array();
   
     foreach ($data as $key => $value) {
-      if($key != 'confirmPassword'){
+      if($key !='confirmPassword'){
         $data_fields[] = "$key=:$key";  
         $data_value[":$key"] = $value; 
       }
