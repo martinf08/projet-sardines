@@ -2,7 +2,6 @@
 
 <?php ob_start(); ?>
 
-
 ici le contenu de <?= $title ?>
 <!-- Main -->
     <!-- AVATAR -->
@@ -48,7 +47,7 @@ ici le contenu de <?= $title ?>
         <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
     </div>
 
-
+    <script src="js/verif_form.js"></script>
 
 
 </main>
