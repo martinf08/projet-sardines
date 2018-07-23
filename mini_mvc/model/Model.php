@@ -28,13 +28,12 @@ abstract class Model {
       print "Erreur de connexion : " . $e->getMessage();
     }
   }
-  
+   /*---------------------------E2----------------------------------*/
   // cette fonction permet de d'ajouter dans la base des données stockées dans un array()
   public function saveData($data){
     $data_fields = array();
     $data_value = array();
-    
-    //if(isset($date->$key)) unset($date->$key);
+  
     foreach ($data as $key => $value) {
       if($key != 'confirmPassword'){
         $data_fields[] = "$key=:$key";  
@@ -46,30 +45,26 @@ abstract class Model {
     $sql='INSERT INTO '. $this->table.' SET '.$data_fields;
     
     try {
-      
       $req = $this->dbConnect()->prepare($sql);
       $req->execute($data_value);
-      
     }catch(PDOException $e){
       
     }
   }
-  
+  /*----------------------------E2---------------------------------*/
+  //cette permet de vérifier l'existence de l'utilisateur
   public function checkUser($request){
     
     try {
-
       $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = ?");
       $pre->execute($request);
       return $pre->fetch(PDO::FETCH_ASSOC);
-       
     }catch(PDOException $e){
       return $e->getMessage();
     }
-    
-    
+
   }
-  
+   /*----------------------------E2---------------------------------*/
   
   
   
