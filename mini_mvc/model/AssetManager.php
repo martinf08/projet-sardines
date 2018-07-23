@@ -85,7 +85,7 @@ class AssetManager extends Model
     {
         $id_user = $asset->getIdUser();
         if ($id_user != null) {
-            $req = $this->dbConnect()->prepare('SELECT email FROM users WHERE id_user = :id');
+            $req = $this->dbConnect()->prepare('SELECT email FROM user WHERE id_user = :id');
             $req->bindParam(':id',$id_user );
             $req->execute();
             $result = $req->fetch()['email'];
