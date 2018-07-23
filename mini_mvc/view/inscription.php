@@ -17,10 +17,10 @@
         <main>
             <!-- Main -->
             <!-- avatar -->
-            <form method="POST" action="insertUser" enctype="multipart/form-data> 
+            <form method="POST" action="insertUser" enctype="multipart/form-data"> 
                 <div id="centre-avatar">
                     <div class="user-img" ><label for="user-img" id="user-icon"><img src="./images/ressources/user.png" alt="user" class="img-inscription"></label></div>
-                    <input type="file" name="avatar" accept="image/*" id="user-img" required />
+                    <input type="file" name="avatar" accept="image/*" id="avatar"/>
                 </div>
 
 
