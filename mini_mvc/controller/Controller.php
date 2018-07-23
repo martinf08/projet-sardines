@@ -125,12 +125,7 @@ class Controller
 
     public function successInsertAsset()
     {
-        $test = new AssetManager();
 
-        session_start();
-        $asset = $_SESSION['lastAsset'];
-        $test2 = $test->setIdTypeToName($asset);
-        var_dump($test2);
         require_once('./view/success.php');
     }
 

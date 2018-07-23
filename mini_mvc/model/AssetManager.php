@@ -29,24 +29,62 @@ class AssetManager extends Model
 
         $result = $req->execute();
 
+
         # GESTION D'ERREUR
         if ($result) {
-            header('Location: index.php'); # remplacer par une page 'transaction réussie'
-        } else {
-            throw new Exception('L\'insertion d\'un nouveau matériel a échoué.');
+            $tag = $asset->getTag();
+            $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
+            $req2->bindParam(':tag', $tag);
+            $req2->execute();
+            $asset->setId((int)$req2->fetch()['id_asset']);
+            $this->setIdTypeToName($asset); //Recuperation nom du type
+            $this->setIdQualityToName($asset); //Recuperation nom de la quality
+            $this->setIdUserToName($asset); //Recuperation de l'email
+            session_start();
+            $_SESSION['lastAsset'] = $asset;
+
         }
     }
 
     public function setIdTypeToName(Asset $asset)
     {
-        $id = $asset->getIdType();
+        $id = $asset->getId();
         if ($id != null) {
-         //Bizarre
             $req = $this->dbConnect()->prepare('SELECT type.name FROM type INNER JOIN asset ON type.id_type = asset.id_type WHERE asset.id_asset = :id ');
+            $req->bindParam(':id', $id);
+            $req->execute();
+            $result = $req->fetch()['name'];
+            if ($result) {
+                $asset->setNameIdType($result);
+            }
+        }
+    }
 
-            $req = $this->bindParam(':id', $id);
-            $result = $req->execute()['name'];
-            return $result;
+    public function setIdQualityToName(Asset $asset)
+    {
+        $id = $asset->getId();
+        if ($id != null) {
+            $req = $this->dbConnect()->prepare('SELECT quality.label FROM quality INNER JOIN asset ON quality.id_quality = asset.id_type WHERE asset.id_asset = :id');
+            $req->bindParam(':id', $id);
+            $req->execute();
+            $result = $req->fetch()['label'];
+            if ($result) {
+                $asset->setNameIdQuality($result);
+            }
+        }
+    }
+
+    public function setIdUserToName(Asset $asset)
+    {
+        $id_user = $asset->getIdUser();
+        if ($id_user != null) {
+            $req = $this->dbConnect()->prepare('SELECT email FROM users WHERE id_user = :id');
+            $req->bindParam(':id',$id_user );
+            $req->execute();
+            $result = $req->fetch()['email'];
+            if ($result) {
+                $asset->setUserEmail($result);
+            }
         }
     }
 
