@@ -1,6 +1,7 @@
 <?php $title = 'Ajouter un matériel'; ?>
 
 <?php ob_start(); ?>
+
 <main>
 <?php if(isset($result)) { print_r($result); } ?>
     <!-- Main -->
