@@ -35,7 +35,7 @@
         <input type="radio" 
                 id="<?php echo $cssID ?>" 
                 name="idtype" 
-                value="<? echo $type['id_type'] ?>">
+                value="<?php echo $type['id_type'] ?>">
 
         <label for="<?php echo $cssID ?>">
             <?php echo ucfirst($type['name']) ?>
@@ -52,7 +52,7 @@
         <input type="radio" 
                 id="<?php echo $quality['label'] ?>" 
                 name="idquality" 
-                value="<? echo $quality['id_quality'] ?>">
+                value="<?php echo $quality['id_quality'] ?>">
 
         <label for="<?php echo $quality['label'] ?>">
             <?php echo ucfirst($quality['label']) ?>
