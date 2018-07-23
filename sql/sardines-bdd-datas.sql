@@ -101,9 +101,9 @@ CREATE TABLE `quality` (
 --
 
 INSERT INTO `quality` (`id_quality`, `level`, `label`) VALUES
-(1, 0, 'mauvais'),
-(2, 1, 'bon'),
-(3, 2, 'excellent');
+(1, 0, 'mauvaise'),
+(2, 1, 'bonne'),
+(3, 2, 'excellente');
 
 -- --------------------------------------------------------
 
@@ -121,10 +121,10 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`id_type`, `name`) VALUES
-(1, 'tent'),
-(2, 'sleeping bag'),
-(3, 'chair'),
-(4, 'mattress');
+(1, 'tente'),
+(2, 'sac de couchage'),
+(3, 'chaise'),
+(4, 'matelas');
 
 -- --------------------------------------------------------
 

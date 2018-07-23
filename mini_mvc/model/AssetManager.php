@@ -86,6 +86,7 @@ class AssetManager extends Model
                 $asset->setUserEmail($result);
             }
         }
+
     }
 
     public function checkRandomTag(Asset $asset)
