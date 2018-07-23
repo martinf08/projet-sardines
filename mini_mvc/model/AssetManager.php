@@ -2,6 +2,13 @@
 
 class AssetManager extends Model
 {
+    public function getAll($table) {
+        $sql = "SELECT * FROM $table";
+        $req = $this->dbConnect()->prepare($sql);
+        $req->execute();
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+        return $req->fetchAll();
+    }
 
     public function insertAsset(Asset $asset)
     {
