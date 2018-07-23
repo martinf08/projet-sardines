@@ -9,6 +9,7 @@ class Controller
         $testManager = new TestManager();
 
         if (isset($id)) {
+
             $type_name = $testManager->getName($id);
         } else {
             $type_name['name'] = 'aucun argument passé';
@@ -27,6 +28,7 @@ class Controller
     #  INDEX
     #---------
     public function index()
+
     {
         require_once './view/index.php';
     }
@@ -35,6 +37,7 @@ class Controller
     #  DONNER
     #----------
     public function dropGear()
+
     {
         require_once './view/donner.php';
     }
@@ -43,6 +46,7 @@ class Controller
     #  SARDINES
     #-----------
     public function sardines()
+
     {
         require_once './view/sardines.php';
     }
@@ -50,6 +54,7 @@ class Controller
     #----------
     #  PROFIL
     #----------
+
     public function account($id)
     {
         $userManager = new UserManager(); // Création d'un objet
@@ -72,6 +77,7 @@ class Controller
     public function signIn()
     {
         require_once './view/inscription.php';
+
     }
 
     public function insertUser($post)
@@ -107,10 +113,10 @@ class Controller
         }
     }
 
+
     public function insertAsset($post)
     {
         $assetManager = new AssetManager();
-
         if (isset($post)) {
             if (!empty($post['beneficiaire']) && !empty($post['iduser']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description']) && !empty($post['idstaff'] && !empty($post['value']))) {
                 $asset = new Asset($post);

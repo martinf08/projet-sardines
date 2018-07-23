@@ -1,13 +1,13 @@
 <?php
-require_once 'class/Config.php';
-require_once 'controller/Controller.php';
-require_once 'model/Model.php';
-//require_once 'model/UserManager.php';
-require_once 'class/Asset.php';
-require_once 'model/AssetManager.php';
-require_once 'functions/functions.php';
+require_once '../mini_mvc/class/Config.php';
+require_once '../mini_mvc/controller/Controller.php';
+require_once '../mini_mvc/model/Model.php';
+require_once '../mini_mvc/model/UserManager.php';
+require_once '../mini_mvc/class/Asset.php';
+require_once '../mini_mvc/model/AssetManager.php';
+require_once '../mini_mvc/functions/functions.php';
 
-require_once 'model/TestManager.php';
+require_once '../mini_mvc/model/TestManager.php';
 
 $ctrl = new Controller;
 
