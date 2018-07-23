@@ -70,6 +70,8 @@ try
       throw new Exception('Cette page n\'existe pas');
       # besoin d'envoyer page d'erreur ici
     }
+  } else {
+    throw new Exception('URL non trouvée.');
   }
 }
 catch(Exception $e)
