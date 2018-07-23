@@ -2,7 +2,8 @@
 
 class AssetManager extends Model
 {
-    public function getAll($table) {
+    public function getAll($table)
+    {
         $sql = "SELECT * FROM $table";
         $req = $this->dbConnect()->prepare($sql);
         $req->execute();
@@ -25,7 +26,23 @@ class AssetManager extends Model
         $id_quality = $asset->getIdQuality(); //:id_quality
         $id_staff = $asset->getIdStaff(); //:id_staff
 
-        $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+
+        if ($_POST['beneficiaire'] == 'avecBeneficiaire') {
+            $id_user = $asset->getIdUser(); //:id_user
+            $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+        }
+        else if ($_POST['beneficiaire'] == 'sansBeneficiaire') {
+            $mailGhost = Config::$ghost;
+            $req2 = $this->dbConnect()->prepare('SELECT id_user FROM `user` WHERE email = :email');
+            $req2->bindParam(':email', $mailGhost);
+            $req2->execute();
+            $reponse = $req2->fetch()['id_user'];
+            if ($reponse) {
+                $asset->setIdUser($reponse);
+                $id_user = $asset->getIdUser(); //:id_user
+                $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+            }
+        }
         $req->bindParam(':value', $value);
         $req->bindParam(':description', $description);
         $req->bindParam(':tag', $tag);
@@ -86,7 +103,7 @@ class AssetManager extends Model
         $id_user = $asset->getIdUser();
         if ($id_user != null) {
             $req = $this->dbConnect()->prepare('SELECT email FROM user WHERE id_user = :id');
-            $req->bindParam(':id',$id_user );
+            $req->bindParam(':id', $id_user);
             $req->execute();
             $result = $req->fetch()['email'];
             if ($result) {
