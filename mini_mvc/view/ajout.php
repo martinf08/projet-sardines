@@ -35,7 +35,7 @@
         <input type="radio" 
                 id="<?php echo $cssID ?>" 
                 name="idtype" 
-                value="<? echo $type['id_type'] ?>">
+                value="<?php echo $type['id_type'] ?>">
 
         <label for="<?php echo $cssID ?>">
             <?php echo ucfirst($type['name']) ?>
