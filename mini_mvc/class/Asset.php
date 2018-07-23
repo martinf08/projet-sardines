@@ -15,8 +15,11 @@ class Asset
     private $_removal_date;
     private $_tag;
     private $_id_user;
+    private $_user_email;
     private $_id_type;
     private $_id_quality;
+    private $_name_id_type;
+    private $_name_id_quality;
     private $_id_staff;
 
     public function __construct($datas)
@@ -66,6 +69,11 @@ class Asset
         return $this->_id_user;
     }
 
+    public function getUserEmail()
+    {
+        return $this->_user_email;
+    }
+
     public function getIdType()
     {
         return $this->_id_type;
@@ -74,6 +82,16 @@ class Asset
     public function getIdQuality()
     {
         return $this->_id_quality;
+    }
+
+    public function getNameIdType()
+    {
+        return $this->_name_id_type;
+    }
+
+    public function getNameIdQuality()
+    {
+        return $this->_name_id_quality;
     }
 
     public function getIdStaff()
@@ -130,6 +148,13 @@ class Asset
         }
     }
 
+    public function setUserEmail($email)
+    {
+        if (isset($email) && !empty($email)) {
+            $this->_user_email = $email;
+        }
+    }
+
     public function setIdType($id)
     {
         if (isset($id) && !empty($id)) {
@@ -144,6 +169,20 @@ class Asset
         }
     }
 
+    public function setNameIdType($type)
+    {
+        if (isset($type) && !empty($type)) {
+            $this->_name_id_type = $type;
+        }
+    }
+
+    public function setNameIdQuality($quality)
+    {
+        if (isset($quality) && !empty($quality)) {
+            $this->_name_id_quality = $quality;
+        }
+    }
+
     public function setIdStaff($id)
     {
         if (isset($id) && !empty($id)) {
@@ -153,6 +192,11 @@ class Asset
 
     public function setRandomTag()
     {
-        $this->setTag(rand(1, 999999));
+        $tag = (string)rand(1, 999999);
+        $nb_turn = 6 - strlen($tag);
+        for ($i = 0; $i < $nb_turn; $i++) {
+            $tag = '0' . $tag;
+        }
+        $this->setTag($tag);
     }
 }

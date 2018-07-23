@@ -101,9 +101,9 @@ CREATE TABLE `quality` (
 --
 
 INSERT INTO `quality` (`id_quality`, `level`, `label`) VALUES
-(1, 0, 'mauvais'),
-(2, 1, 'bon'),
-(3, 2, 'excellent');
+(1, 0, 'mauvaise'),
+(2, 1, 'bonne'),
+(3, 2, 'excellente');
 
 -- --------------------------------------------------------
 
@@ -121,21 +121,21 @@ CREATE TABLE `type` (
 --
 
 INSERT INTO `type` (`id_type`, `name`) VALUES
-(1, 'tent'),
-(2, 'sleeping bag'),
-(3, 'chair'),
-(4, 'mattress');
+(1, 'tente'),
+(2, 'sac de couchage'),
+(3, 'chaise'),
+(4, 'matelas');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Structure de la table `user`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id_user` int(11) NOT NULL,
   `nickname` varchar(45) DEFAULT NULL,
-  `mail` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
   `avatar` varchar(100) DEFAULT NULL,
   `identifier` varchar(4) NOT NULL,
   `account_creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -148,10 +148,10 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `users`
+-- Déchargement des données de la table `user`
 --
 
-INSERT INTO `users` (`id_user`, `nickname`, `mail`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES
+INSERT INTO `user` (`id_user`, `nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES
 (2, 'xxx-Dark-Sasuke-xxx', 'darksasuke@troll.fr', NULL, '1234', '2018-07-16 13:28:55', '2018-07-16 13:28:55', '098f6bcd4621d373cade4e832627b4f6', '1', 10, 0, 0),
 (3, 'Jean-Marie', 'jeanmarie02@troll.com', NULL, '1235', '2018-07-16 13:34:10', '2018-07-16 13:34:10', 'ad0234829205b9033196ba818f7a872b', '1', 0, 0, 1),
 (4, 'wenceslas', 'wenceslas18@troll.net', NULL, '1236', '2018-07-16 13:38:04', '2018-07-16 13:38:04', '8ad8757baa8564dc136c1e07507f4a98', '1', 50, 0, 0),
@@ -190,9 +190,9 @@ ALTER TABLE `type`
   ADD PRIMARY KEY (`id_type`);
 
 --
--- Index pour la table `users`
+-- Index pour la table `user`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
@@ -218,9 +218,9 @@ ALTER TABLE `type`
   MODIFY `id_type` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT pour la table `user`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -233,7 +233,7 @@ ALTER TABLE `users`
 ALTER TABLE `asset`
   ADD CONSTRAINT `asset_quality1_FK` FOREIGN KEY (`id_quality`) REFERENCES `quality` (`id_quality`),
   ADD CONSTRAINT `asset_type0_FK` FOREIGN KEY (`id_type`) REFERENCES `type` (`id_type`),
-  ADD CONSTRAINT `asset_user_FK` FOREIGN KEY (`id_user`) REFERENCES `users` (`id_user`);
+  ADD CONSTRAINT `asset_user_FK` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 
 --
 -- Contraintes pour la table `price_catalog`

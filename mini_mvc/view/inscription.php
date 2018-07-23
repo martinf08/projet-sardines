@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,3 +73,4 @@
         <script src="js/inscription.js"></script>
     </body>
 </html>
+
