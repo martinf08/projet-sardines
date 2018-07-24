@@ -11,14 +11,19 @@ require_once 'model/TestManager.php';
 
 $ctrl = new Controller;
 
+function getURI() {
+    $basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
+    $uri = substr($_SERVER['REQUEST_URI'], strlen($basepath));
+    if (strstr($uri, '?')) $uri = substr($uri, 0, strpos($uri, '?'));
+    return $uri = trim($uri, '/');
+}
+
 try
 {
-  if(isset($_GET['url'])) {
     # ici, parser l'url en /action/paramètres
     # par exemple /test/2 (2 = l'id qu'on cible)
-    $url = explode('/', $_GET['url']);
+    $url = explode('/', getURI());
     $action = $url[0];
-    # j'ai écris le rewrite de manière à ce que '/paramètre' soit facultatif, donc il faut contrôler son existence
     $param = isset($url[1]) && !empty($url[1]) ? $url[1] : NULL;
 
     if($action == 'donner')
@@ -70,9 +75,6 @@ try
       throw new Exception('Cette page n\'existe pas');
       # besoin d'envoyer page d'erreur ici
     }
-  } else {
-    throw new Exception('URL non trouvée.');
-  }
 }
 catch(Exception $e)
 {
