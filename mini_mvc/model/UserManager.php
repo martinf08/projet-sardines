@@ -36,7 +36,7 @@ class UserManager extends Model {
                         $data =array(
                           'email' => $_POST['email'],
                           'password' => $_POST['password'],
-                          'nickname' => nickname_generator
+                          'nickname' => $nickname_generator
                         );
                         $this->saveData($data);
                     }else{
