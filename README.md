@@ -15,3 +15,4 @@ class Config {
                             'password'=> 'le mdp'
                           );
 }
+public static $ghost = 'adresse email';
