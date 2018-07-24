@@ -13,6 +13,7 @@ class AssetManager extends Model
 
     public function insertAsset(Asset $asset)
     {
+        return var_dump($_POST);
         do {
             $asset->setRandomTag();
 

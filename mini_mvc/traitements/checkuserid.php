@@ -10,11 +10,12 @@
 
 require_once '../class/Config.php';
 require_once '../model/Model.php';
+require_once '../model/AssetManager.php';
 require_once '../functions/functions.php';
 
 /**connection à la base de donnée
  * injection de des pamars de la fonction
  */
 
-$db = new Model;
+$db = new AssetManager();
 echo(getUserId($db->dbConnect(), $_POST['userid']));
