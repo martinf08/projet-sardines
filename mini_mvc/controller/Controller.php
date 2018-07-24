@@ -84,7 +84,7 @@ class Controller
     {
         $userManager = new UserManager();
 
-        $queryResult = $userManager->insertUser($pseudo, $mail/*, etc. */);
+        $queryResult = $userManager->insertUser();
 
         if ($queryResult === false) {
             throw new Exception('Impossible d\'ajouter l\'utilisateur !');
