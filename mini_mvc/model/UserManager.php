@@ -25,10 +25,10 @@ class UserManager extends Model {
       if(empty($errors)){
         
         $email = htmlentities($_POST['email']);
-        $user = $this->checkUser($email);
+      
        
         // user check
-        if($user['id_user']){
+        if($this->checkUser($email)){
           echo "This email already exists";
         }else{
           // password check
@@ -74,5 +74,44 @@ class UserManager extends Model {
     shuffle($temp_array);
     return implode('', $temp_array);     
   }
+
+  public function logIn(){
+  
+        /**
+         * vérifier si l'utilisateur existe
+         * si oui récupérer son status admin ou user
+         */
+        $user_Model=$this->loadModel("User");
+        
+        if($_POST){
+             $email = $_POST['email'];
+             $pass =  $_POST['password'];
+
+            $user = $this->checkUser(array(
+              'email'=> $email,
+              'password_User'=>$pass
+            ));
+            
+            if(empty($user)){
+                echo $this->e404('Identifiant ou mot de passe incorrect');
+            }else{
+            
+                header('Location: /');
+            }  
+        }  
+        
+      
+    }
+
+
+
+
+
+
+
+
+
+
+
 /**------------fin de la classe ------------------ */
 }

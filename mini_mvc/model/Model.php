@@ -67,10 +67,22 @@ abstract class Model {
    /*----------------------------E2---------------------------------*/
    //cette permet de vérifier l'existence ou pas du checkName
   public function checkName($request){
-    
     try {
       $pre = $this->dbConnect()->prepare("SELECT * FROM user where nickname = :nickname");
       $pre->execute(array('nickname' =>$request));
+      return $pre->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      return $e->getMessage();
+    }
+
+  }
+  public function checkUser_connect($request){
+    try {
+      $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = :email AND password = :password");
+      $pre->execute(array(
+        'email' =>$request['email'],
+        'password' =>$request['password']
+        ));
       return $pre->fetch(PDO::FETCH_ASSOC);
     }catch(PDOException $e){
       return $e->getMessage();
