@@ -17,8 +17,8 @@ Félicitation, <?= $_SESSION['lastAsset']->getUserEmail(); ?>,
 vous venez de donner un objet de type <?= $_SESSION['lastAsset']->getNameIdType(); ?>,
 de qualité <?= $_SESSION['lastAsset']->getNameIdQuality(); ?>.
 Vous remportez ainsi <?= $_SESSION['lastAsset']->getValue(); ?> Sardines.
-
 </main>
 <?php $content = ob_get_clean(); ?>
-
+<?php
+?>
 <?php require_once 'view/template.php'; ?>
