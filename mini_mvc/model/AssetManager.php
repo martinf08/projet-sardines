@@ -27,9 +27,9 @@ class AssetManager extends Model
         $idType = $asset->getIdType(); //:id_type
         $idQuality = $asset->getIdQuality(); //:id_quality
         $idStaff = $asset->getIdStaff(); //:id_staff
+
         if (is_int($idUser) && is_int($idType) && is_int($idQuality)) {
             if ($this->checkIdentifier($_POST['iduser'])) {
-
                 if ($_POST['beneficiaire'] == 'avecBeneficiaire') {
                     $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
                     $req->bindParam(':value', $value);
@@ -79,7 +79,7 @@ class AssetManager extends Model
                         $this->setIdTypeToName($asset); //Recovery name of type
                         $this->setIdQualityToName($asset); //Recovery name of quality
                         $this->setIdUserToEmail($asset); //Recovery email of user id
-                        $this->setEntryDateById($asset); ////Recovery and set Entry_date in object
+                        $this->setEntryDateById($asset); //Recovery and set Entry_date in object
                         $_SESSION['lastAsset'] = $asset;
                     }
                 }
@@ -140,7 +140,7 @@ class AssetManager extends Model
     {
         $id = $asset->getId();
         if ($id != null) {
-            $req = $this->dbConnect()->prepare('SELECT quality.label FROM quality INNER JOIN asset ON quality.id_quality = asset.id_type WHERE asset.id_asset = :id');
+            $req = $this->dbConnect()->prepare('SELECT quality.label FROM quality INNER JOIN asset ON quality.id_quality = asset.id_quality WHERE asset.id_asset = :id');
             $req->bindParam(':id', $id);
             $req->execute();
             $result = $req->fetch()['label'];
