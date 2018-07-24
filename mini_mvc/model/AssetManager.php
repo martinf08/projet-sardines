@@ -53,8 +53,6 @@ class AssetManager extends Model
 
         $result = $req->execute();
 
-
-        # GESTION D'ERREUR
         if ($result) {
             $tag = $asset->getTag();
             $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
