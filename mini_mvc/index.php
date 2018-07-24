@@ -3,8 +3,8 @@ require_once 'class/Config.php';
 require_once 'controller/Controller.php';
 require_once 'model/Model.php';
 require_once 'model/UserManager.php';
-require_once 'class/Asset.php';
 require_once 'model/AssetManager.php';
+require_once 'class/Asset.php';
 require_once 'functions/functions.php';
 
 require_once 'model/TestManager.php';

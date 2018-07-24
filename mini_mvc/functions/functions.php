@@ -18,7 +18,7 @@ function getUserId($db, $id)
 {
     if (isset($id) && !empty($id)) {
         $id = (int)$id;
-        $sql = $db->prepare('SELECT email FROM users WHERE identifier = :id');
+        $sql = $db->prepare('SELECT email FROM user WHERE identifier = :id');
         $sql->bindParam(':id', $id);
         $sql->execute();
        $reponse = $sql->fetch()['email'];
