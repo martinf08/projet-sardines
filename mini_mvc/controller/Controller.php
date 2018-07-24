@@ -89,7 +89,7 @@ class Controller
         if ($queryResult === false) {
             throw new Exception('Impossible d\'ajouter l\'utilisateur !');
         } else {
-            header('Location: ./view/index.php');
+            //header('Location: ./view/index.php');
         }
     }
 

@@ -13,8 +13,6 @@ class UserManager extends Model {
   
   public function insertUser() {
     
-
-    print_r($_POST);
     if(isset($_POST)){
       
       $errors=array();
@@ -27,7 +25,8 @@ class UserManager extends Model {
       if(empty($errors)){
         
         $email = htmlentities($_POST['email']);
-        $user = $this->checkUser(array($email));
+        $user = $this->checkUser($email);
+       
         // user check
         if($user['id_user']){
           echo "This email already exists";
@@ -35,12 +34,19 @@ class UserManager extends Model {
           // password check
           if($_POST['password'] === $_POST['confirmPassword']){
             
-            $data =array(
+            if($this->checkName($this->nickname_generator())){
+              die('existe');
+            }else{
+               die('existe pas ');
+               $data =array(
               'email' => $_POST['email'],
               'password' => $_POST['password'],
-              'nickname' => $this->nickname_generator
+              'nickname' => $this->nickname_generator()
             );
-            $this->saveData($data);
+        
+              $this->saveData($data);
+            }
+            
           }else{
             echo "mot de passe non identique";
           }
@@ -54,7 +60,7 @@ class UserManager extends Model {
   /**------------ nickname_generator ------------------ 
    *  4 characters: 2 lower-case alphabets and 2 digit
   */
-  function nickname_generator(){
+  public function nickname_generator(){
    
     $character_set_array = array();
     $character_set_array[] = array('count' => 2, 'characters' => 'abcdefghijklmnopqrstuvwxyz');

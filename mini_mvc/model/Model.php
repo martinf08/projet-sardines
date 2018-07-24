@@ -56,8 +56,8 @@ abstract class Model {
   public function checkUser($request){
     
     try {
-      $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = ?");
-      $pre->execute($request);
+      $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = :email");
+      $pre->execute(array(':email' => $request));
       return $pre->fetch(PDO::FETCH_ASSOC);
     }catch(PDOException $e){
       return $e->getMessage();
@@ -65,6 +65,18 @@ abstract class Model {
 
   }
    /*----------------------------E2---------------------------------*/
+   //cette permet de vérifier l'existence ou pas du checkName
+  public function checkName($request){
+    
+    try {
+      $pre = $this->dbConnect()->prepare("SELECT * FROM user where nickname = :nickname");
+      $pre->execute(array('nickname' =>$request));
+      return $pre->fetch(PDO::FETCH_ASSOC);
+    }catch(PDOException $e){
+      return $e->getMessage();
+    }
+
+  }
   
   
   
