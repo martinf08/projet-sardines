@@ -51,6 +51,8 @@ abstract class Model {
       
     }
   }
+
+  // voir pour dévélopper une suele function pour vérifier les différents champs
   /*----------------------------E2---------------------------------*/
   //cette permet de vérifier l'existence de l'utilisateur
   public function checkUser($request){

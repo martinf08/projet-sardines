@@ -35,9 +35,9 @@ class UserManager extends Model {
           if($_POST['password'] === $_POST['confirmPassword']){
             
             if($this->checkName($this->nickname_generator())){
-              die('existe');
+      
             }else{
-               die('existe pas ');
+             
                $data =array(
               'email' => $_POST['email'],
               'password' => $_POST['password'],
