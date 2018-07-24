@@ -55,7 +55,7 @@ abstract class Model {
   // voir pour dévélopper une suele function pour vérifier les différents champs
   /*----------------------------E2---------------------------------*/
   //cette permet de vérifier l'existence de l'utilisateur
-  public function checkUser($request){
+  public function UserChecker($request){
     
     try {
       $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = :email");
@@ -68,17 +68,17 @@ abstract class Model {
   }
    /*----------------------------E2---------------------------------*/
    //cette permet de vérifier l'existence ou pas du checkName
-  public function checkName($request){
+  public function identifierChecker($request){
     try {
       $pre = $this->dbConnect()->prepare("SELECT * FROM user where nickname = :nickname");
-      $pre->execute(array('nickname' =>$request));
+      $pre->execute(array('identifier' =>$request));
       return $pre->fetch(PDO::FETCH_ASSOC);
     }catch(PDOException $e){
       return $e->getMessage();
     }
 
   }
-  public function checkUser_connect($request){
+  public function userConnection($request){
     try {
       $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = :email AND password = :password");
       $pre->execute(array(

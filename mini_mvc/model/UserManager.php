@@ -21,29 +21,27 @@ class UserManager extends Model {
         $errors[] = "email non valide";
       }
       
-      
       if(empty($errors)){
         
         $email = htmlentities($_POST['email']);
-      
-       
+        
+        
         // user check
-        if($this->checkUser($email)){
+        if($this->UserChecker($email)){
           echo "This email already exists";
         }else{
           // password check
           if($_POST['password'] === $_POST['confirmPassword']){
             
-            if($this->checkName($this->nickname_generator())){
-      
+            if($this->identifierChecker($this->identiferGenerator())){
+              
             }else{
-             
-               $data =array(
-              'email' => $_POST['email'],
-              'password' => $_POST['password'],
-              'nickname' => $this->nickname_generator()
-            );
-        
+              
+              $data =array(
+                'email' => $_POST['email'],
+                'password' => $_POST['password'],
+                'identifier' => $this->identiferGenerator()
+              );
               $this->saveData($data);
             }
             
@@ -54,14 +52,14 @@ class UserManager extends Model {
       }
       
     }
-  
+    
   }
-
+  
   /**------------ nickname_generator ------------------ 
-   *  4 characters: 2 lower-case alphabets and 2 digit
+  *  4 characters: 2 lower-case alphabets and 2 digit
   */
-  public function nickname_generator(){
-   
+  public function identiferGenerator(){
+    
     $character_set_array = array();
     $character_set_array[] = array('count' => 2, 'characters' => 'abcdefghijklmnopqrstuvwxyz');
     $character_set_array[] = array('count' => 2, 'characters' => '0123456789');
@@ -74,44 +72,37 @@ class UserManager extends Model {
     shuffle($temp_array);
     return implode('', $temp_array);     
   }
-
-  public function logIn(){
   
-        /**
-         * vérifier si l'utilisateur existe
-         * si oui récupérer son status admin ou user
-         */
-        $user_Model=$this->loadModel("User");
-        
-        if($_POST){
-             $email = $_POST['email'];
-             $pass =  $_POST['password'];
-
-            $user = $this->checkUser(array(
-              'email'=> $email,
-              'password_User'=>$pass
-            ));
-            
-            if(empty($user)){
-                echo $this->e404('Identifiant ou mot de passe incorrect');
-            }else{
-            
-                header('Location: /');
-            }  
-        }  
-        
+  public function logIn(){
+    
+    if($_POST){
+      $email = $_POST['email'];
+      $pass =  $_POST['password'];
       
-    }
-
-
-
-
-
-
-
-
-
-
-
-/**------------fin de la classe ------------------ */
+      $user = $this->userConnection(array(
+        'email'=> $email,
+        'password_User'=>$pass
+      ));
+      
+      if(empty($user)){
+        echo $this->e404('Identifiant ou mot de passe incorrect');
+      }else{
+        $_SESSION['user'] = $user;
+        header('Location: /');
+      }  
+    }  
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  /**------------fin de la classe ------------------ */
 }
