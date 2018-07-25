@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
     <header>
@@ -20,4 +21,6 @@
         <!-- Footer -->
     </footer>
 </body>
+
+<script src="js/verif_form.js"></script>
 </html>

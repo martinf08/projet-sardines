@@ -50,6 +50,12 @@ class AssetManager extends Model
                         $this->setIdUserToEmail($asset); //Recovery email of user id
                         $this->setEntryDateById($asset); ////Recovery and set Entry_date in object
                         $_SESSION['lastAsset'] = $asset;
+
+                        # CREDITER L'USER
+                        $reqPay = $this->dbConnect()->prepare('UPDATE `user` SET `balance` = `balance` + :value WHERE `id_user` = :id_user');
+                        $reqPay->bindParam(':value', $value);
+                        $reqPay->bindParam(':id_user', $idUser);
+                        $reqPay->execute();
                     }
                 }
             } else if ($_POST['beneficiaire'] == 'sansBeneficiaire') {
