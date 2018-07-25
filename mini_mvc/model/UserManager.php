@@ -77,7 +77,8 @@ class UserManager extends Model {
    * Login function
    */
   public function logIn(User $user){
-    
+
+    $_SESSION['user']="";
     if($user->getPassword()!=null && filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)){
 
       $conx = $this->userConnection(array(
@@ -89,7 +90,7 @@ class UserManager extends Model {
         echo ('Identifiant ou mot de passe incorrect');
         return false;
       }else{
-    
+        
         $user->setId_user($conx['id_user']);
         $user->setStaff($conx['staff']);
         $_SESSION['user'] = $user;

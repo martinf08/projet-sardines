@@ -21,7 +21,7 @@
 
 
 
-		public function __construct($userdatas = null)
+		public function __construct($userdatas)
 		{
 			//Hydrate
 			if($userdatas){

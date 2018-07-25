@@ -15,7 +15,7 @@ require_once 'functions/functions.php';
 require_once 'class/Router.php';
 
 require_once 'model/TestManager.php';
-
+session_start();
 try
 {
     $router = new Router;
