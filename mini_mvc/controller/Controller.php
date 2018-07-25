@@ -93,15 +93,12 @@ class Controller
     public function insertUser()
     {
 
-        
         $userManager = new UserManager(); // Création d'un objet
         $user = new User($_POST); 
         $reponse = $userManager->insertUser($user);
 
-
-
         if($reponse) {
-              header('Location: index');
+              header('Location: connexion');
         } else {
          
              throw new Exception('Impossible d\'ajouter l\'utilisateur !');

@@ -21,6 +21,7 @@ try
     $router = new Router;
 
     $router->setRoute('', 'index');
+    $router->setRoute('insertUser', 'insertUser');
     $router->setRoute('ajout', 'newAsset');
     $router->setRoute('insertAsset', 'insertAsset');
     $router->setRoute('success', 'successInsertAsset');

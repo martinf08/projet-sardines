@@ -46,6 +46,7 @@ abstract class Model {
     try {
       $req = $this->dbConnect()->prepare($sql);
       $req->execute($data_value);
+      
     }catch(PDOException $e){
       
     }

@@ -10,6 +10,7 @@ class UserManager extends Model {
 
   public function insertUser(User $user) {
     
+  
     $errors = array();
     //email check
     if(filter_var($user->getEmail(),FILTER_VALIDATE_EMAIL === false)){
@@ -40,6 +41,7 @@ class UserManager extends Model {
               'identifier' => $this->identiferGenerator()
             );
             $this->saveData($data);
+          
             return true;
           }
           
