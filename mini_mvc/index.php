@@ -1,79 +1,36 @@
 <?php
-require_once '../mini_mvc/class/Config.php';
-require_once '../mini_mvc/controller/Controller.php';
-require_once '../mini_mvc/model/Model.php';
-require_once '../mini_mvc/model/UserManager.php';
-require_once '../mini_mvc/class/Asset.php';
-require '../mini_mvc/class/User.php';
-require_once '../mini_mvc/model/AssetManager.php';
-require_once '../mini_mvc/functions/functions.php';
 
-require_once '../mini_mvc/model/TestManager.php';
 
-$ctrl = new Controller;
+require_once 'class/Config.php';
+require_once 'controller/Controller.php';
+
+require_once 'model/Model.php';
+require_once 'model/UserManager.php';
+require_once 'model/AssetManager.php';
+
+require 'class/User.php';
+require_once 'class/Asset.php';
+
+require_once 'functions/functions.php';
+require_once 'class/Router.php';
+
+require_once 'model/TestManager.php';
 
 try
 {
-  if(isset($_GET['url'])) {
-    # ici, parser l'url en /action/paramètres
-    # par exemple /test/2 (2 = l'id qu'on cible)
-    $url = explode('/', $_GET['url']);
-    $action = $url[0];
-    # j'ai écris le rewrite de manière à ce que '/paramètre' soit facultatif, donc il faut contrôler son existence
-    $param = isset($url[1]) && !empty($url[1]) ? $url[1] : NULL;
+    $router = new Router;
 
-    if($action == 'donner')
-    {
-      $ctrl->dropGear();
-    }
-    else if($action == 'sardines')
-    {
-      $ctrl->sardines();
-    }
-    else if($action == 'profil')
-    {
-      $ctrl->account($id);
-    }
-    else if($action == 'connexion')
-    {
-      $ctrl->logIn();
-    }
-    else if($action == 'inscription')
-    {
-      $ctrl->signIn();
-    }
-    else if($action == 'insertUser')
-    {
-      $ctrl->insertUser($_POST);
-    }
-    else if($action == 'ajout')
-    {
-      $ctrl->newAsset();
-    }
-    else if($action == 'insertAsset')
-    {
-      $ctrl->insertAsset($_POST);
-    }
-    else if ($action == 'success') {
-        $ctrl->successInsertAsset();
-    }
-    else if($action == 'index.php')
-    {
-      $ctrl->index();
-    }
-    else if($action == 'test')
-    {
-      if(isset($param)) $ctrl->test($param);
-      else $ctrl->test();
-    }
-    else
-    {
-      throw new Exception('Cette page n\'existe pas');
-      # besoin d'envoyer page d'erreur ici
-    }
-  } else {
-    throw new Exception('URL non trouvée.');
-  }
+    $router->setRoute('', 'index');
+    $router->setRoute('ajout', 'newAsset');
+    $router->setRoute('insertAsset', 'insertAsset');
+    $router->setRoute('success', 'successInsertAsset');
+    $router->setRoute('inscription', 'signIn');
+    $router->setRoute('connexion', 'logIn');
+    $router->setRoute('profil', 'account');
+    $router->setRoute('sardines', 'sardines');
+    $router->setRoute('donner', 'dropGear');
+
+    $router->execute();
 }
 catch(Exception $e)
 {

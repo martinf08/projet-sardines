@@ -70,7 +70,7 @@
 
         <br /> 
 
-        <input type="text" name="idstaff" value="FT43" style="display: none;">
+        <input type="text" name="idstaff" value="1235" style="display: none;">
         <!-- INJECTER L'ID STAFF QUAND CONNEXIONS IMPLEMENTEES -->
         <input type="text" id="sardines" name="value" style="display: none;">
         <!-- PAS SECURISE -->
@@ -84,6 +84,7 @@
 
 <script src="/projet-sardines/mini_mvc/js/getvalue.js"></script>
 <script src="/projet-sardines/mini_mvc/js/getuserid.js"></script>
+<script src="/projet-sardines/mini_mvc/js/insert_form.js"></script>
 <?php $content = ob_get_clean(); ?>
 
 <?php require_once 'view/template.php'; ?>

@@ -7,12 +7,8 @@ class UserManager extends Model {
     req = dbConnect().query() */
   }
   
-  public function getAllUsers() {
-    
-  }
-  
+
   public function insertUser(User $user) {
-    
     
     $errors = array();
     //email check
@@ -74,8 +70,7 @@ class UserManager extends Model {
     return implode('', $temp_array);     
   }
   
-  
-  
+ 
   /**
    * Login function
    */
@@ -101,7 +96,6 @@ class UserManager extends Model {
     }
     
   }
-  
-  
+ 
   /**------------fin de la classe ------------------ */
 }

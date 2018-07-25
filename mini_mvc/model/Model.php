@@ -6,7 +6,6 @@ abstract class Model {
   
   
   
-  
   public function __construct() {
     
     if($this->table===false){

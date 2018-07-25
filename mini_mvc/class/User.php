@@ -1,3 +1,4 @@
+
 <?php
 
 	
@@ -56,6 +57,7 @@
         {
                 $this->nickName = $nickName;
 
+
                 return $this;
         }
 
@@ -74,8 +76,7 @@
          */ 
         public function setIdentifier($identifier)
         {
-                $this->identifier = $identifier;
-
+                $this->identifier = $identifier
                 return $this;
         }
 
@@ -321,6 +322,5 @@
 
 				return $this;
 		}
-    }
-
+   }
 ?>
