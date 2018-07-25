@@ -10,7 +10,7 @@
 		private $last_login;
 		private $password;
 		private $avatar;
-		private $accout_status;
+		private $account_status;
 		private $staff;
 		private $admin;
 		private $balance;
@@ -76,7 +76,7 @@
          */ 
         public function setIdentifier($identifier)
         {
-                $this->identifier = $identifier
+                $this->identifier = $identifier;
                 return $this;
         }
 
@@ -203,9 +203,9 @@
 		/**
 		 * Get the value of accoutStatus
 		 */ 
-		public function getAccoutStatus()
+		public function getAccount_status()
 		{
-				return $this->accoutStatus;
+				return $this->account_status;
 		}
 
 		/**
@@ -213,9 +213,9 @@
 		 *
 		 * @return  self
 		 */ 
-		public function setAccoutStatus($accoutStatus)
+		public function setAccount_status($account_status)
 		{
-				$this->accoutStatus = $accoutStatus;
+				$this->account_status = $account_status;
 
 				return $this;
 		}
@@ -266,7 +266,7 @@
 		/**
 		 * Get the value of last_loogin
 		 */ 
-		public function getLast_loogin()
+		public function getLast_login()
 		{
 				return $this->last_loogin;
 		}
@@ -276,7 +276,7 @@
 		 *
 		 * @return  self
 		 */ 
-		public function setLast_loogin($last_loogin)
+		public function setLast_login($last_loogin)
 		{
 				$this->last_loogin = $last_loogin;
 

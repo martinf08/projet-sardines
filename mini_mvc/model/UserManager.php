@@ -48,7 +48,7 @@ class UserManager extends Model {
         }
       }
     }
-    die('usermana');
+  
   }
   /**
    *  IdentiferGenerator 
