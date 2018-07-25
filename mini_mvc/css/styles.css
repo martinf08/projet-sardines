@@ -1,3 +1,10 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,tr,td,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,article,aside,audio,canvas,datalist,details,figcaption,figure,footer,header,hgroup,mark,meter,nav,output,progress,section,subline,summary,time,video{margin:0;padding:0;border:0;outline:0;font-size:100%}ol,ul{list-style:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}img,article,aside,audio,canvas,datalist,details,figcaption,figure,footer,header,hgroup,mark,meter,nav,output,progress,section,subline,summary,time,video{display:block}
+
+html{
+  font-size: 100%;
+  background: lightpink;
+}
+
 @font-face{
     font-family:'SourceSansProRegular';
     src: url('../fonts/sourcesansproregular/SourceSansProRegular.otf') format('truetype'),
@@ -28,7 +35,66 @@
 
 /* ///////////////////////////  GENERAL ELEMENTS /////////////////////////*/
 
-/* Buttons */
+/************** BUTTONS **************/
+
+.btn-full-login{
+  border: 1px solid #4FB8C4;
+  text-decoration: none;
+  -webkit-border-radius: 17px; 
+  -moz-border-radius: 17px;
+  border-radius: 17px;
+  width: 218px;
+  height: 35px;
+  background: #0cd18f;  
+  background: -moz-linear-gradient(to right,  #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+  background: -webkit-linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%); 
+  background: linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+  
+}
+
+.btn-full-signup{
+  border: 1px solid #4FB8C4;
+  text-decoration: none;
+  -webkit-border-radius: 17px; 
+  -moz-border-radius: 17px;
+  border-radius: 17px;
+  width: 218px;
+  height: 35px;
+  background: #0cd18f;  
+  background: -moz-linear-gradient(to left,  #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+  background: -webkit-linear-gradient(to left, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%); 
+  background: linear-gradient(to left, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+}
+
+.btn-full-donation{
+  border: 1px solid #4FB8C4;
+  text-decoration: none;
+  -webkit-border-radius: 17px; 
+  -moz-border-radius: 17px;
+  border-radius: 17px;
+  width: 159px;
+  height: 35px;
+  background: #0cd18f;  
+  background: -moz-linear-gradient(to right,  #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+  background: -webkit-linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%); 
+  background: linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+}
+
+.btn-full-login, .btn-full-signup, .btn-full-donation, .btn-outlined{
+  font-family: 'SourceSansProRegular';
+  line-height: 0.15;
+  letter-spacing: 0.06em;
+  color: #fefefe;
+  font-size: 18px;
+}
+
+.btn-full-signup:active, .btn-full-login:active, .btn-full-donation:active{
+  background: #009688;
+}
+
+
+
+/************* FIELDS **************/
 
 /*/////////////////////////////  Media Queries //////////////////////////*/
 
