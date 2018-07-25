@@ -10,6 +10,6 @@ class Config {
                             'host'=> 'localhost',
                             'db'=> 'sardines',
                             'username'=> 'root',
-                            'password'=> 'root'
+                            'password'=> ''
                           );
 }

@@ -41,18 +41,6 @@ CREATE TABLE `asset` (
   `id_staff` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `asset`
---
-
-INSERT INTO `asset` (`id_asset`, `value`, `description`, `entry_date`, `removal_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES
-(6, 5, NULL, '2018-07-17 12:17:53', '2018-07-17 12:17:53', 123456, 2, 1, 3, 1247),
-(7, 5, NULL, '2018-07-17 12:20:22', '2018-07-17 12:20:22', 123456, 2, 1, 3, 1247),
-(8, 5, NULL, '2018-07-17 12:26:20', '2018-07-17 12:26:20', 123456, 2, 1, 3, 1247),
-(9, 0, NULL, '2018-07-17 14:45:47', '0000-00-00 00:00:00', 001234, 2, 1, 1, 3),
-(10, 0, NULL, '2018-07-18 12:23:36', '0000-00-00 00:00:00', 644447, 2, 1, 1, 3),
-(11, 5, NULL, '2018-07-18 12:41:50', '0000-00-00 00:00:00', 711154, 2, 1, 1, 3),
-(12, 5, NULL, '2018-07-18 12:59:33', '0000-00-00 00:00:00', 922321, 2, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -66,23 +54,6 @@ CREATE TABLE `price_catalog` (
   `value` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `price_catalog`
---
-
-INSERT INTO `price_catalog` (`id_quality`, `id_type`, `value`) VALUES
-(1, 1, 5),
-(1, 2, 5),
-(1, 3, 5),
-(1, 4, 5),
-(2, 1, 5),
-(2, 2, 5),
-(2, 3, 5),
-(2, 4, 5),
-(3, 1, 5),
-(3, 2, 5),
-(3, 3, 5),
-(3, 4, 5);
 
 -- --------------------------------------------------------
 
@@ -96,14 +67,6 @@ CREATE TABLE `quality` (
   `label` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `quality`
---
-
-INSERT INTO `quality` (`id_quality`, `level`, `label`) VALUES
-(1, 0, 'mauvaise'),
-(2, 1, 'bonne'),
-(3, 2, 'excellente');
 
 -- --------------------------------------------------------
 
@@ -116,15 +79,6 @@ CREATE TABLE `type` (
   `name` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `type`
---
-
-INSERT INTO `type` (`id_type`, `name`) VALUES
-(1, 'tente'),
-(2, 'sac de couchage'),
-(3, 'chaise'),
-(4, 'matelas');
 
 -- --------------------------------------------------------
 
@@ -146,16 +100,6 @@ CREATE TABLE `user` (
   `admin` tinyint(1) NOT NULL COMMENT 'user est admin ou non',
   `staff` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`id_user`, `nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES
-(2, 'xxx-Dark-Sasuke-xxx', 'darksasuke@troll.fr', NULL, '1234', '2018-07-16 13:28:55', '2018-07-16 13:28:55', '098f6bcd4621d373cade4e832627b4f6', '1', 10, 0, 0),
-(3, 'Jean-Marie', 'jeanmarie02@troll.com', NULL, '1235', '2018-07-16 13:34:10', '2018-07-16 13:34:10', 'ad0234829205b9033196ba818f7a872b', '1', 0, 0, 1),
-(4, 'wenceslas', 'wenceslas18@troll.net', NULL, '1236', '2018-07-16 13:38:04', '2018-07-16 13:38:04', '8ad8757baa8564dc136c1e07507f4a98', '1', 50, 0, 0),
-(5, 'bienni', 'bienni@troll.net', NULL, '1247', '2018-07-16 14:03:37', '2018-07-16 13:41:05', '05a671c66aefea124cc08b76ea6d30bb', '1', 200, 1, 0);
 
 --
 -- Index pour les tables déchargées
