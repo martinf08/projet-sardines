@@ -11,59 +11,60 @@ class UserManager extends Model {
     
   }
   
-  public function insertUser() {
+  public function insertUser(User $user) {
     
-    if(isset($_POST)){
-      
-      $errors=array();
-      //email check
-      if(filter_var($_POST['email'],FILTER_VALIDATE_EMAIL === false)){
-        $errors[] = "email non valide";
-      }
-      
-      if(empty($errors)){
-        
-        $email = htmlentities($_POST['email']);
-        
-        
-        // user check
-        if($this->UserChecker($email)){
-          echo "This email already exists";
-        }else{
-          // password check
-          if($_POST['password'] === $_POST['confirmPassword']){
-            
-            if($this->identifierChecker($this->identiferGenerator())){
-              
-            }else{
-              
-              $data =array(
-                'email' => $_POST['email'],
-                'password' => $_POST['password'],
-                'identifier' => $this->identiferGenerator()
-              );
-              $this->saveData($data);
-            }
-            
-          }else{
-            echo "mot de passe non identique";
-          }
-        }
-      }
-      
+    
+    $errors = array();
+    //email check
+    if(filter_var($user->getEmail(),FILTER_VALIDATE_EMAIL === false)){
+      $errors[] = "email non valide";
     }
     
-  }
-  
-  /**------------ nickname_generator ------------------ 
-  *  4 characters: 2 lower-case alphabets and 2 digit
-  */
-  public function identiferGenerator(){
     
+    if(empty($errors)){
+      
+      $email = htmlentities($user->getEmail());
+      
+      // user check
+      if($this->UserChecker($user->getEmail())){
+        echo "This email already exists";
+      }else{
+        // password check
+        if($user->getPassword() === $user->getConfirmPassword()){
+          
+          $reponse = $this->identifierChecker($this->identiferGenerator());
+          
+          if($reponse){
+            echo "identifier déjà utilisé";
+          }else{
+            
+            $data =array(
+              'email' => $user->getEmail(),
+              'password' => $user->getPassword(),
+              'identifier' => $this->identiferGenerator()
+            );
+            $this->saveData($data);
+            return true;
+          }
+          
+        }else{
+          echo "mot de passe non identique";
+        }
+      }
+    }
+    die('usermana');
+  }
+  /**
+   *  IdentiferGenerator 
+   *  4 characters : 2 Lettres and 2 numbers
+   */
+  public function identiferGenerator(){
+
     $character_set_array = array();
     $character_set_array[] = array('count' => 2, 'characters' => 'abcdefghijklmnopqrstuvwxyz');
     $character_set_array[] = array('count' => 2, 'characters' => '0123456789');
     $temp_array = array();
+
     foreach ($character_set_array as $character_set) {
       for ($i = 0; $i < $character_set['count']; $i++) {
         $temp_array[] = $character_set['characters'][rand(0, strlen($character_set['characters']) - 1)];
@@ -73,35 +74,33 @@ class UserManager extends Model {
     return implode('', $temp_array);     
   }
   
-  public function logIn(){
+  
+  
+  /**
+   * Login function
+   */
+  public function logIn(User $user){
     
-    if($_POST){
-      $email = $_POST['email'];
-      $pass =  $_POST['password'];
-      
-      $user = $this->userConnection(array(
-        'email'=> $email,
-        'password_User'=>$pass
+    if($user->getPassword()!=null && filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)){
+
+      $conx = $this->userConnection(array(
+        'email'=> $user->getEmail(),
+        'password'=>$user->getPassword()
       ));
       
-      if(empty($user)){
-        echo $this->e404('Identifiant ou mot de passe incorrect');
+      if(empty($conx)){
+        echo ('Identifiant ou mot de passe incorrect');
+        return false;
       }else{
+    
+        $user->setId_user($conx['id_user']);
+        $user->setStaff($conx['staff']);
         $_SESSION['user'] = $user;
-        header('Location: /');
+        return true;
       }  
-    }  
+    }
     
   }
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   /**------------fin de la classe ------------------ */

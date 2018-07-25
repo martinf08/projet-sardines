@@ -15,6 +15,10 @@
 		private $balance;
 		private $post;
 		private $account_creation_date;
+		private $confirmPassword;
+
+
+
 
 		public function __construct($userdatas = null)
 		{
@@ -26,6 +30,7 @@
 					if (method_exists($this, $method)) {
 						$this->$method($value);
 					}
+					
 				}
 			}
 		}
@@ -236,26 +241,7 @@
 
 		/**-------------------------------- fin de la classe */
 
-		/**
-		 * Set the value of post
-		 *
-		 * @return  self
-		 */ 
-		public function setPost($post)
-		{
-				setIdUser;
-				setNickName;
-				setIdentifier;
-				setEmail;
-				setLastLogin;
-				setPassword;
-				setAvatar;
-				setAccoutStatus;
-				setStaff;
-				setAdmin;
-				setBalance;
-		}
-
+		
         /**
          * Get the value of id_user
          */ 
@@ -312,6 +298,26 @@
 		public function setAccount_creation_date($account_creation_date)
 		{
 				$this->account_creation_date = $account_creation_date;
+
+				return $this;
+		}
+
+		/**
+		 * Get the value of confirmPassword
+		 */ 
+		public function getConfirmPassword()
+		{
+				return $this->confirmPassword;
+		}
+
+		/**
+		 * Set the value of confirmPassword
+		 *
+		 * @return  self
+		 */ 
+		public function setConfirmPassword($confirmPassword)
+		{
+				$this->confirmPassword = $confirmPassword;
 
 				return $this;
 		}

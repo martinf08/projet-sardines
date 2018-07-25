@@ -28,12 +28,12 @@ abstract class Model {
       print "Erreur de connexion : " . $e->getMessage();
     }
   }
-   /*---------------------------E2----------------------------------*/
+  /*---------------------------E2----------------------------------*/
   // cette fonction permet de d'ajouter dans la base des données stockées dans un array()
   public function saveData($data){
     $data_fields = array();
     $data_value = array();
-  
+    
     foreach ($data as $key => $value) {
       if($key !='confirmPassword'){
         $data_fields[] = "$key=:$key";  
@@ -51,7 +51,7 @@ abstract class Model {
       
     }
   }
-
+  
   // voir pour dévélopper une suele function pour vérifier les différents champs
   /*----------------------------E2---------------------------------*/
   //cette permet de vérifier l'existence de l'utilisateur
@@ -64,19 +64,26 @@ abstract class Model {
     }catch(PDOException $e){
       return $e->getMessage();
     }
-
+    
   }
-   /*----------------------------E2---------------------------------*/
-   //cette permet de vérifier l'existence ou pas du checkName
+  /*----------------------------E2---------------------------------*/
+  //cette permet de vérifier l'existence ou pas du checkName
   public function identifierChecker($request){
+    
     try {
-      $pre = $this->dbConnect()->prepare("SELECT * FROM user where nickname = :nickname");
+      $pre = $this->dbConnect()->prepare("SELECT * FROM user where identifier = :identifier");
       $pre->execute(array('identifier' =>$request));
-      return $pre->fetch(PDO::FETCH_ASSOC);
+      $pre->fetch(PDO::FETCH_ASSOC);
+      if($pre){
+        return false;
+      }else{
+        return true;
+      }
+      
     }catch(PDOException $e){
       return $e->getMessage();
     }
-
+    
   }
   public function userConnection($request){
     try {
@@ -84,12 +91,12 @@ abstract class Model {
       $pre->execute(array(
         'email' =>$request['email'],
         'password' =>$request['password']
-        ));
+      ));
       return $pre->fetch(PDO::FETCH_ASSOC);
     }catch(PDOException $e){
       return $e->getMessage();
     }
-
+    
   }
   
   

@@ -1,7 +1,11 @@
 <?php $title = 'Connexion'; ?>
 
 <?php ob_start(); ?>
-
+<?php 
+        echo'<pre>'; 
+        print_r($_SESSION['user']);
+        echo'</pre>';
+ ?>
 ici le contenu de <?= $title ?>
 <!-- Main -->
     <!-- AVATAR -->
