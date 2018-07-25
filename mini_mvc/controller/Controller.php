@@ -105,7 +105,7 @@ class Controller
         $types = $assetManager->getAll('type');
         $qualities = $assetManager->getAll('quality');
 
-        if(isset($types) && isset($qualities)) {
+        if (isset($types) && isset($qualities)) {
 
             require_once('./view/ajout.php');
 
@@ -120,13 +120,18 @@ class Controller
         $post = $_POST;
         $assetManager = new AssetManager();
         if (isset($post)) {
-            if (!empty($post['beneficiaire']) && !empty($post['iduser']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description']) && !empty($post['idstaff'] && !empty($post['value']))) {
-                $asset = new Asset($post);
-                $asset->setIdUser(2); # à corriger, il faudra d'abord récupérer cet id en ajax avant validation
-                $assetManager->insertAsset($asset);
-                session_start();
-                $_SESSION['lastAsset'] = $asset;
-                header('location:success');
+            if (!empty($post['beneficiaire']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description']) && !empty($post['idstaff'] && !empty($post['value']))) {
+                if (empty($post['iduser']) && $post['beneficiaire'] == 'avecBeneficiaire') {
+                    throw  new Exception('Le champ du bénéficiaire est vide');
+                } else {
+                    $asset = new Asset($post);
+                    $asset->setIdUser(2); # à corriger, il faudra d'abord récupérer cet id en ajax avant validation
+                    $assetManager->insertAsset($asset);
+                    session_start();
+                    $_SESSION['lastAsset'] = $asset;
+                    header('location:success');
+                }
+
             } else {
                 throw new Exception('Certains champs (ou tous) sont vides.');
             }

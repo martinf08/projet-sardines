@@ -13,6 +13,8 @@ class AssetManager extends Model
 
     public function insertAsset(Asset $asset)
     {
+        session_start(); //Remove when sessions are integrated
+        unset($_SESSION['lastAsset']);
         do {
             $asset->setRandomTag();
 
@@ -21,51 +23,104 @@ class AssetManager extends Model
         $value = $asset->getValue();
         $description = $asset->getDescription(); //:description
         $tag = $asset->getTag(); //:tag
-        $id_user = $asset->getIdUser(); //:id_user
-        $id_type = $asset->getIdType(); //:id_type
-        $id_quality = $asset->getIdQuality(); //:id_quality
-        $id_staff = $asset->getIdStaff(); //:id_staff
+        $idUser = $asset->getIdUser(); //:id_user
+        $idType = $asset->getIdType(); //:id_type
+        $idQuality = $asset->getIdQuality(); //:id_quality
+        $idStaff = $asset->getIdStaff(); //:id_staff
 
-
-        if ($_POST['beneficiaire'] == 'avecBeneficiaire') {
-            $id_user = $asset->getIdUser(); //:id_user
-            $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+        if (is_int($idUser) && is_int($idType) && is_int($idQuality)) {
+            if ($this->checkIdentifier($_POST['iduser'])) {
+                if ($_POST['beneficiaire'] == 'avecBeneficiaire') {
+                    $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+                    $req->bindParam(':value', $value);
+                    $req->bindParam(':description', $description);
+                    $req->bindParam(':tag', $tag);
+                    $req->bindParam(':id_user', $idUser);
+                    $req->bindParam(':id_type', $idType);
+                    $req->bindParam(':id_quality', $idQuality);
+                    $req->bindParam(':id_staff', $idStaff);
+                    $result = $req->execute();
+                    if ($result) {
+                        $tag = $asset->getTag();
+                        $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
+                        $req2->bindParam(':tag', $tag);
+                        $req2->execute();
+                        $asset->setId((int)$req2->fetch()['id_asset']);
+                        $this->setIdTypeToName($asset); //Recovery name of type
+                        $this->setIdQualityToName($asset); //Recovery name of quality
+                        $this->setIdUserToEmail($asset); //Recovery email of user id
+                        $this->setEntryDateById($asset); ////Recovery and set Entry_date in object
+                        $_SESSION['lastAsset'] = $asset;
+                    }
+                }
+            } else if ($_POST['beneficiaire'] == 'sansBeneficiaire') {
+                $mailGhost = Config::$ghost;
+                $req2 = $this->dbConnect()->prepare('SELECT id_user FROM `user` WHERE email = :email');
+                $req2->bindParam(':email', $mailGhost);
+                $req2->execute();
+                $response = $req2->fetch()['id_user'];
+                if ($response) {
+                    $asset->setIdUser($response);
+                    $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+                    $req->bindParam(':value', $value);
+                    $req->bindParam(':description', $description);
+                    $req->bindParam(':tag', $tag);
+                    $req->bindParam(':id_user', $idUser);
+                    $req->bindParam(':id_type', $idType);
+                    $req->bindParam(':id_quality', $idQuality);
+                    $req->bindParam(':id_staff', $idStaff);
+                    $result = $req->execute();
+                    if ($result) {
+                        $tag = $asset->getTag();
+                        $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
+                        $req2->bindParam(':tag', $tag);
+                        $req2->execute();
+                        $asset->setId((int)$req2->fetch()['id_asset']);
+                        $this->setIdTypeToName($asset); //Recovery name of type
+                        $this->setIdQualityToName($asset); //Recovery name of quality
+                        $this->setIdUserToEmail($asset); //Recovery email of user id
+                        $this->setEntryDateById($asset); //Recovery and set Entry_date in object
+                        $_SESSION['lastAsset'] = $asset;
+                    }
+                }
+            } else {
+                throw new Exception('L\'utilisateur n\'existe pas');
+            }
+        } else {
+            throw new Exception('Une donnée est incorrect');
         }
-        else if ($_POST['beneficiaire'] == 'sansBeneficiaire') {
-            $mailGhost = Config::$ghost;
-            $req2 = $this->dbConnect()->prepare('SELECT id_user FROM `user` WHERE email = :email');
-            $req2->bindParam(':email', $mailGhost);
-            $req2->execute();
-            $reponse = $req2->fetch()['id_user'];
-            if ($reponse) {
-                $asset->setIdUser($reponse);
-                $id_user = $asset->getIdUser(); //:id_user
-                $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+    }
+
+    public function checkIdentifier($identifier)
+    {
+        if (isset($identifier) && !empty($identifier)) {
+            $identifier = htmlspecialchars($identifier);
+            $req = $this->dbConnect()->prepare('SELECT email FROM `user` WHERE identifier = :identifier');
+            $req->bindParam(':identifier', $identifier);
+            $req->execute();
+            $response = $req->fetch();
+            if ($response) {
+                return true;
             }
         }
-        $req->bindParam(':value', $value);
-        $req->bindParam(':description', $description);
-        $req->bindParam(':tag', $tag);
-        $req->bindParam(':id_user', $id_user);
-        $req->bindParam(':id_type', $id_type);
-        $req->bindParam(':id_quality', $id_quality);
-        $req->bindParam(':id_staff', $id_staff);
+        return false;
+    }
 
-        $result = $req->execute();
 
-        if ($result) {
-            $tag = $asset->getTag();
-            $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
-            $req2->bindParam(':tag', $tag);
-            $req2->execute();
-            $asset->setId((int)$req2->fetch()['id_asset']);
-            $this->setIdTypeToName($asset); //Recuperation nom du type
-            $this->setIdQualityToName($asset); //Recuperation nom de la quality
-            $this->setIdUserToName($asset); //Recuperation de l'email
-            session_start();
-            $_SESSION['lastAsset'] = $asset;
 
+    public function setEntryDateById(Asset $asset)
+    {
+        $idUser = $asset->getIdUser();
+        if ($idUser != null) {
+            $req = $this->dbConnect()->prepare('SELECT entry_date FROM asset WHERE id_user = :id');
+            $req->bindParam(':id', $idUser);
+            $req->execute();
+            $result = $req->fetch()['entry_date'];
+            if ($result) {
+                $asset->setEntryDate($result);
+            }
         }
+
     }
 
     public function setIdTypeToName(Asset $asset)
@@ -86,7 +141,7 @@ class AssetManager extends Model
     {
         $id = $asset->getId();
         if ($id != null) {
-            $req = $this->dbConnect()->prepare('SELECT quality.label FROM quality INNER JOIN asset ON quality.id_quality = asset.id_type WHERE asset.id_asset = :id');
+            $req = $this->dbConnect()->prepare('SELECT quality.label FROM quality INNER JOIN asset ON quality.id_quality = asset.id_quality WHERE asset.id_asset = :id');
             $req->bindParam(':id', $id);
             $req->execute();
             $result = $req->fetch()['label'];
@@ -96,12 +151,12 @@ class AssetManager extends Model
         }
     }
 
-    public function setIdUserToName(Asset $asset)
+    public function setIdUserToEmail(Asset $asset)
     {
-        $id_user = $asset->getIdUser();
-        if ($id_user != null) {
+        $idUser = $asset->getIdUser();
+        if ($idUser != null) {
             $req = $this->dbConnect()->prepare('SELECT email FROM user WHERE id_user = :id');
-            $req->bindParam(':id', $id_user);
+            $req->bindParam(':id', $idUser);
             $req->execute();
             $result = $req->fetch()['email'];
             if ($result) {

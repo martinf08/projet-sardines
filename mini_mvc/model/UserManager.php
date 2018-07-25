@@ -7,9 +7,7 @@ class UserManager extends Model {
     req = dbConnect().query() */
   }
   
-  public function getAllUsers() {
-    
-  }
+
   
   public function insertUser() {
  
