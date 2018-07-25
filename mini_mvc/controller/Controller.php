@@ -68,7 +68,17 @@ class Controller
     #-------------
     public function logIn()
     {
-        require_once './view/connexion.php';
+        $userManager = new UserManager(); // Création d'un objet
+        $user = new User($_POST); 
+        $reponse = $userManager->logIn($user);
+        if($reponse){
+            header('Location: index');
+             echo"connexion ok";
+        }else{
+            //echo "404";
+            require_once './view/connexion.php';
+        }
+        
     }
 
     #------------------------------
@@ -82,15 +92,19 @@ class Controller
 
     public function insertUser()
     {
-        $post = $_POST;
-        $userManager = new UserManager();
 
-        $queryResult = $userManager->insertUser($pseudo, $mail/*, etc. */);
+        
+        $userManager = new UserManager(); // Création d'un objet
+        $user = new User($_POST); 
+        $reponse = $userManager->insertUser($user);
 
-        if ($queryResult === false) {
-            throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+
+
+        if($reponse) {
+              header('Location: index');
         } else {
-            header('Location: ./view/index.php');
+         
+             throw new Exception('Impossible d\'ajouter l\'utilisateur !');
         }
     }
 
