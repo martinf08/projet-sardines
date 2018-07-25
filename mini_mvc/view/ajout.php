@@ -22,7 +22,6 @@
         <br /> 
 
         <!-- LES RADIOS TYPE -->
-
         <?php foreach($types as $type):
             # formatage du name pour en faire un identifiant en camelCase
             $cssID = explode(' ', $type['name']);
@@ -44,7 +43,6 @@
         <?php endforeach; ?>
 
         <br> <!-- LES RADIOS QUALITE -->
-
         <?php foreach($qualities as $quality):
         # en l'état actuel, pas de formatage du label nécessaire pour les qualités
         ?>

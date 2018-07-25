@@ -17,9 +17,7 @@ class AssetManager extends Model
         unset($_SESSION['lastAsset']);
         do {
             $asset->setRandomTag();
-
         } while ($this->checkRandomTag($asset) == false);
-
         $value = $asset->getValue();
         $description = $asset->getDescription(); //:description
         $tag = $asset->getTag(); //:tag
@@ -27,10 +25,11 @@ class AssetManager extends Model
         $idType = $asset->getIdType(); //:id_type
         $idQuality = $asset->getIdQuality(); //:id_quality
         $idStaff = $asset->getIdStaff(); //:id_staff
-
+        $asset->setIdUser(7);
+        $idUser = $asset->getIdUser();
         if (is_int($idUser) && is_int($idType) && is_int($idQuality)) {
-            if ($this->checkIdentifier($_POST['iduser'])) {
-                if ($_POST['beneficiaire'] == 'avecBeneficiaire') {
+            if ($_POST['beneficiaire'] == 'avecBeneficiaire') {
+                if ($this->checkIdentifier($_POST['iduser'])) {
                     $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
                     $req->bindParam(':value', $value);
                     $req->bindParam(':description', $description);
@@ -55,10 +54,12 @@ class AssetManager extends Model
                 }
             } else if ($_POST['beneficiaire'] == 'sansBeneficiaire') {
                 $mailGhost = Config::$ghost;
+
                 $req2 = $this->dbConnect()->prepare('SELECT id_user FROM `user` WHERE email = :email');
                 $req2->bindParam(':email', $mailGhost);
                 $req2->execute();
                 $response = $req2->fetch()['id_user'];
+                $_SESSION['test'] = $mailGhost;
                 if ($response) {
                     $asset->setIdUser($response);
                     $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
@@ -70,6 +71,7 @@ class AssetManager extends Model
                     $req->bindParam(':id_quality', $idQuality);
                     $req->bindParam(':id_staff', $idStaff);
                     $result = $req->execute();
+                    var_dump($result);
                     if ($result) {
                         $tag = $asset->getTag();
                         $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
@@ -106,8 +108,6 @@ class AssetManager extends Model
         return false;
     }
 
-
-
     public function setEntryDateById(Asset $asset)
     {
         $idUser = $asset->getIdUser();
@@ -120,7 +120,6 @@ class AssetManager extends Model
                 $asset->setEntryDate($result);
             }
         }
-
     }
 
     public function setIdTypeToName(Asset $asset)
@@ -163,17 +162,14 @@ class AssetManager extends Model
                 $asset->setUserEmail($result);
             }
         }
-
     }
 
     public function checkRandomTag(Asset $asset)
     {
         $tag = (int)$asset->getTag();
-
         $req = $this->dbConnect()->prepare('SELECT tag FROM asset WHERE tag = :tag');
         $req->bindParam(':tag', $tag);
         $req->execute();
-
         $reponse = $req->fetch();
         if ($reponse) {
             return false;
@@ -181,5 +177,4 @@ class AssetManager extends Model
             return true;
         }
     }
-
 }

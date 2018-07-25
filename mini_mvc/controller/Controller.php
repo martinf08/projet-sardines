@@ -125,7 +125,6 @@ class Controller
                     throw  new Exception('Le champ du bénéficiaire est vide');
                 } else {
                     $asset = new Asset($post);
-                    $asset->setIdUser(2); # à corriger, il faudra d'abord récupérer cet id en ajax avant validation
                     $assetManager->insertAsset($asset);
                     session_start();
                     $_SESSION['lastAsset'] = $asset;
