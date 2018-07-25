@@ -97,8 +97,8 @@ CREATE TABLE `user` (
   `password` varchar(32) NOT NULL,
   `account_status` varchar(1) NOT NULL DEFAULT 1,
   `balance` int(11) NOT NULL,
-  `admin` tinyint(1) NOT NULL COMMENT 'user est admin ou non',
-  `staff` tinyint(1) NOT NULL
+  `admin` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'user est admin ou non',
+  `staff` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
