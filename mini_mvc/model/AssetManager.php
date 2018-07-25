@@ -107,6 +107,7 @@ class AssetManager extends Model
     }
 
 
+
     public function setEntryDateById(Asset $asset)
     {
         $idUser = $asset->getIdUser();

@@ -80,8 +80,9 @@ class Controller
 
     }
 
-    public function insertUser($post)
+    public function insertUser()
     {
+        $post = $_POST;
         $userManager = new UserManager();
 
         $queryResult = $userManager->insertUser($pseudo, $mail/*, etc. */);
@@ -114,8 +115,9 @@ class Controller
     }
 
 
-    public function insertAsset($post)
+    public function insertAsset()
     {
+        $post = $_POST;
         $assetManager = new AssetManager();
         if (isset($post)) {
             if (!empty($post['beneficiaire']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description']) && !empty($post['idstaff'] && !empty($post['value']))) {
@@ -149,6 +151,13 @@ class Controller
     {
 
         require_once('./view/success.php');
+    }
+
+    #--------------
+    #  ERREUR 404
+    #--------------
+    public function notFound() {
+        echo 'ici, la vue pour page non trouvée';
     }
 
 }
