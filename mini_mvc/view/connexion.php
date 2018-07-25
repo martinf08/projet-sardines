@@ -12,7 +12,7 @@ ici le contenu de <?= $title ?>
 
     <br/> <!-- Optionnel -->
 
-    <form>
+    <form method="POST" action="connexion" enctype="multipart/form-data"> 
         <div class="form-input">
             <i class="fas fa-envelope"></i>
             <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
@@ -26,7 +26,7 @@ ici le contenu de <?= $title ?>
         </div>
 
         <br>
-        <input type="text"> <!-- test -->
+    
         <br/> <!-- Optionnel -->
 
         <div id="mdp-oublie" class="form-input"><a href="#">mot de passe oublié ?</a></div>

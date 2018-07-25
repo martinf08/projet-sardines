@@ -4,6 +4,7 @@ require_once '../mini_mvc/controller/Controller.php';
 require_once '../mini_mvc/model/Model.php';
 require_once '../mini_mvc/model/UserManager.php';
 require_once '../mini_mvc/class/Asset.php';
+require '../mini_mvc/class/User.php';
 require_once '../mini_mvc/model/AssetManager.php';
 require_once '../mini_mvc/functions/functions.php';
 
