@@ -2,52 +2,41 @@
 
 class Router
 {
-    protected $_routes = array();
-    #protected $_action;
-    #protected $_param;
+    private $_routes = array();
+    private $_ctrl;
 
-    /*
-    public function __construct($url = null) {
-        $basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
-        $url = substr($_SERVER['REQUEST_URI'], strlen($basepath));
-        if (strstr($url, '?')) $url = substr($url, 0, strpos($url, '?'));
-        $url = trim($url, '/');
-
-        $url = explode('/', getURI());
-        $this->_action = $url[0];
-        $this->_param = isset($url[1]) && !empty($url[1]) ? $url[1] : NULL;
+    public function __construct() {
+        $this->_ctrl = new Controller;
     }
-    */
 
     public function setRoute($route, $callback) {
         array_push($this->_routes, array('action'=>$route, 'callback'=>$callback));
-    }
-
-    /* pour tester */
-    public function getRoutes() {
-        #return $this->_routes;
-        return array_search('ajout', $this->_routes); # j'ai arrêté là, ça affiche rien, sûrement parce que c'est un tableau à deux niveaux
+        # on peut éventuellement demander une regexp en troisième paramètre
+        # pour savoir quel genre de paramètre la route autorise à son callback
     }
 
     public function execute() {
         # ici, parser l'url en /action/paramètres
         # par exemple /test/2 (2 = l'id qu'on cible)
-        $url = explode('/', getURI());
+        $url = explode('/', $this->getURI());
         $action = $url[0];
         $param = isset($url[1]) && !empty($url[1]) ? $url[1] : NULL;
 
-        if (in_array($action, $this->_routes)) {
-            echo 'route trouvée, on lance le callback avec ses params s\'il y en a';
-            # ici trouver dans _routes le bon callback
-        } else {
-            echo 'route non trouvée, on lance la page 404';
+        foreach ($this->_routes as $route) {
+            # voir si l'action existe dans _routes et appeler son callback
+            if (array_search($action, $route)) {
+                call_user_func(array($this->_ctrl, $route['callback']), $param);
+            }
         }
     }
 
     private function getURI() {
+        # retire le /var/www/html/
         $basepath = implode('/', array_slice(explode('/', $_SERVER['SCRIPT_NAME']), 0, -1)) . '/';
         $uri = substr($_SERVER['REQUEST_URI'], strlen($basepath));
+        # supprime les '?' de l'url
         if (strstr($uri, '?')) $uri = substr($uri, 0, strpos($uri, '?'));
+
         return $uri = trim($uri, '/');
     }
 }
