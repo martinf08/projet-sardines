@@ -13,7 +13,6 @@ class AssetManager extends Model
 
     public function insertAsset(Asset $asset)
     {
-        session_start(); //Remove when sessions are integrated
         unset($_SESSION['lastAsset']);
         do {
             $asset->setRandomTag();
@@ -21,14 +20,25 @@ class AssetManager extends Model
         $value = $asset->getValue();
         $description = $asset->getDescription(); //:description
         $tag = $asset->getTag(); //:tag
-        $idUser = $asset->getIdUser(); //:id_user
         $idType = $asset->getIdType(); //:id_type
         $idQuality = $asset->getIdQuality(); //:id_quality
         $idStaff = $asset->getIdStaff(); //:id_staff
-        $asset->setIdUser(7);
+        #SEARCH ID USER WITH IDENTIFIER
+        $identifier = htmlspecialchars($_POST['iduser']);
+        $reqUser = $this->dbConnect()->prepare('SELECT id_user FROM `user` WHERE identifier = :id');
+        $reqUser->bindParam(':id', $identifier);
+        $reqUser->execute();
+        $responseUser = (int) $reqUser->fetch()['id_user'];
+        if ($responseUser) {
+            $asset->setIdUser($responseUser);
+        }
+        else {
+            throw new Exception('L\'utilisateur n\'as pas été trouvé');
+        }
         $idUser = $asset->getIdUser();
+        #With beneficiary
         if (is_int($idUser) && is_int($idType) && is_int($idQuality)) {
-            if ($_POST['beneficiaire'] == 'avecBeneficiaire') {
+            if (htmlspecialchars($_POST['beneficiary']) == 'withBeneficiary') {
                 if ($this->checkIdentifier($_POST['iduser'])) {
                     $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
                     $req->bindParam(':value', $value);
@@ -51,14 +61,15 @@ class AssetManager extends Model
                         $this->setEntryDateById($asset); ////Recovery and set Entry_date in object
                         $_SESSION['lastAsset'] = $asset;
 
-                        # CREDITER L'USER
+                        # CREDIT THE USER
                         $reqPay = $this->dbConnect()->prepare('UPDATE `user` SET `balance` = `balance` + :value WHERE `id_user` = :id_user');
                         $reqPay->bindParam(':value', $value);
                         $reqPay->bindParam(':id_user', $idUser);
                         $reqPay->execute();
                     }
                 }
-            } else if ($_POST['beneficiaire'] == 'sansBeneficiaire') {
+                #without Beneficiary
+            } else if ($_POST['beneficiary'] == 'withoutBeneficiary') {
                 $mailGhost = Config::$ghost;
 
                 $req2 = $this->dbConnect()->prepare('SELECT id_user FROM `user` WHERE email = :email');

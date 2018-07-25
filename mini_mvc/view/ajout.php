@@ -6,10 +6,10 @@
 <?php if(isset($result)) { print_r($result); } ?>
     <!-- Main -->
     <form action="insertAsset" method="post">
-        <input type="radio" id="avecBeneficiaire" name="beneficiaire" value="avecBeneficiaire">
-        <label for="avecBeneficiaire">avec bénéficiaire</label>
-        <input type="radio" id="sansBeneficiaire" name="beneficiaire" value="sansBeneficiaire">
-        <label for="sansBeneficiaire">sans bénéficiaire</label>
+        <input type="radio" id="withBeneficiary" name="beneficiary" value="withBeneficiary">
+        <label for="withBeneficiary">avec bénéficiaire</label>
+        <input type="radio" id="withoutBeneficiary" name="beneficiary" value="withoutBeneficiary">
+        <label for="withoutBeneficiary">sans bénéficiaire</label>
 
         <br /> <!-- Optionnel -->
 
