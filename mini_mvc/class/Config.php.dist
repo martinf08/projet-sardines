@@ -1,0 +1,11 @@
+<?php
+class Config {
+    public static $config = array(
+                              'host'=> '',
+                              'db'=> '',
+                              'username'=> '',
+                              'password'=> ''
+                            );
+
+    public static $ghost = 'email@mail.net';
+  }
