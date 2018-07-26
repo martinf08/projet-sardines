@@ -7,10 +7,14 @@
 
 <!-- je mets les champs brut sans me soucier du layout, il suffira de les copier/coller où il faut -->
 <!-- je suppose que les valeurs seront récupérées dans l'objet user et pas dans la session -->
-<!-- PAGE PAS ENCORE TESTÉES AVEC DES DONNÉES ! c'est un modèle -->
 
 <div id="avatar-field">
-    <div id="avatar" style="background-image: url('../css/img/<?= $user->getAvatar(); ?>');"></div><!-- chemin de stockage images par encore défini -->
+
+    <?php if(!empty($user->getAvatar())): ?>
+        <div id="avatar" style="background-image: url('../css/img/<?= $user->getAvatar(); ?>');"></div><!-- chemin de stockage images par encore défini -->
+    <?php else: ?>
+        mettre un avatar par défaut ici dans le html (cas d'un user n'ayant pas encore enregistré d'avatar)
+    <?php endif; ?>
     <input type="file" name="" id=""><!-- input pour changer d'image -->
 </div>
 
@@ -23,12 +27,12 @@
 </span></p>
 
 <form action="accountUpdate" method="post">
-    <!-- chaque champ est disable pas défaut pour ne montrer que la valeur actuelle -->
-    <!-- pour les modifier il faudra cliquer sur le petit crayon qui ciblera son input voisin pour l'enable -->
+    <!-- chaque champ est désactivé pas défaut pour ne montrer que la valeur actuelle -->
+    <!-- il faudra cliquer sur le petit crayon qui ciblera son input voisin pour permettre de le réécrire -->
     <p>Email : <input type="email" name="" id="" value="<?= $user->getEmail(); ?>"> 
                 <span class="write">ici fonticone d'un crayon</span>
     </p>
-    <p>Pseudo : <input type="text" name="" id="" value="<?= $user->getNickName(); ?>"> 
+    <p>Pseudo : <input type="text" name="" id="" value="<?= $user->getNickname(); ?>"> 
                 <span class="write">ici fonticone d'un crayon</span>
     </p>
     <input type="submit" value="Enregistrer">
