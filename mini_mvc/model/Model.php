@@ -92,7 +92,10 @@ abstract class Model {
         'email' =>$request['email'],
         'password' =>$request['password']
       ));
+      
       return $pre->fetch(PDO::FETCH_ASSOC);
+
+
     }catch(PDOException $e){
       return $e->getMessage();
     }
