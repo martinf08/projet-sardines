@@ -219,9 +219,6 @@
 
 				return $this;
 		}
-
-		/**-------------------------------- fin de la classe */
-
 		
         /**
          * Get the value of id_user
@@ -244,7 +241,7 @@
         }
 
 		/**
-		 * Get the value of last_loogin
+		 * Get the value of last_login
 		 */ 
 		public function getLast_login()
 		{
@@ -252,13 +249,13 @@
 		}
 
 		/**
-		 * Set the value of last_loogin
+		 * Set the value of last_login
 		 *
 		 * @return  self
 		 */ 
 		public function setLast_login($last_login)
 		{
-				$this->last_loogin = $last_login;
+				$this->last_login = $last_login;
 
 				return $this;
 		}
