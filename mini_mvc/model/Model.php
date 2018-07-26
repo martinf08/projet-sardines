@@ -89,36 +89,32 @@ abstract class Model {
  
   // select User rowdata
   public function selectUserrowdata($request){
-    debug($request['password']);
-
+ 
     $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = :email AND password = :password");
       $pre->execute(array(
         'email' =>htmlspecialchars($request['email']),
         'password' =>$request['password']
       ));
-    $data =$pre->fetch(PDO::FETCH_ASSOC);
-   
 
-    return $pre->fetch(PDO::FETCH_ASSOC);
+      return $pre->fetch(PDO::FETCH_ASSOC);
   }
 
   // user Connection
   public function userConnection($request){
     try {
-      
+
       if($this->selectUserrowdata($request)){
         $lastlogin = date('Y-m-d H:i:s', time());
         $updatesql = "UPDATE user SET last_login='".$lastlogin."' WHERE email='".$request['email']."'";
         $query = $this->dbConnect()->prepare($updatesql);
         $query->execute(); 
+
         return $this->selectUserrowdata($request);
       }else{
          return;
       }
 
     }catch(PDOException $e){
-      debug($e->getMessage());
-      die();
       return $e->getMessage();
     }
     

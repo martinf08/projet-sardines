@@ -103,6 +103,7 @@ class Controller
             $userManager = new UserManager(); // Création d'un objet
             $user = new User($_POST); 
             $reponse = $userManager->logIn($user);
+           
             if($reponse){
                 $_SESSION['islog']=true;
                 $this->set('title','Acceuil');
