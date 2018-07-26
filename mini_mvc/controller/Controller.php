@@ -55,12 +55,31 @@ class Controller
     #  PROFIL
     #----------
 
-    public function account($id)
+    public function account($identifier)
     {
-        $userManager = new UserManager(); // Création d'un objet
-        $user = $userManager->getUser($id); // Appel d'une fonction de cet objet
+        if (isset($identifier)) {
+            $userManager = new UserManager();
+            $user = new User($userManager->getUser($identifier));
+            
+            require_once './view/profil.php';
+        } else {
+            header('Location: index');
+        }     
+    }
 
-        require_once './view/profil.php';
+    public function accountUpdate()
+    {
+        $userManager = new UserManager();
+        
+        # requête
+
+        if($reponse) {
+            $identifier = $_SESSION['user']['identifier'];
+            header("Location: account/$identifier");
+        } else {
+        
+            throw new Exception('Échec de modification du champ !');
+        }
     }
 
     #-------------

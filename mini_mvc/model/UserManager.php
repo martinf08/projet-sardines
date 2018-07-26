@@ -1,5 +1,6 @@
 <?php
 
+
 class UserManager extends Model
 {
 
@@ -103,48 +104,82 @@ class UserManager extends Model
                 $_SESSION['user'] = $user;
                 return true;
             }
+class UserManager extends Model {
+  
+  public function getUser($identifier) {
+      $sql = "SELECT * FROM `user` WHERE `identifier` = :identifier";
+      $req = $this->dbConnect()->prepare($sql);
+      $req->bindParam(':identifier', $identifier);
+      $req->execute();
+      $req->setFetchMode(PDO::FETCH_ASSOC);
+      return $req->fetch();
+  }
+  
+
+  public function insertUser(User $user) {
+    
+  
+    $errors = array();
+    //email check
+    if(filter_var($user->getEmail(),FILTER_VALIDATE_EMAIL === false)){
+      $errors[] = "email non valide";
+    }
+    
+    
+    if(empty($errors)){
+      
+      $email = htmlentities($user->getEmail());
+      
+      // user check
+      if($this->UserChecker($user->getEmail())){
+        echo "This email already exists";
+      }else{
+        // password check
+        if($user->getPassword() === $user->getConfirmPassword()){
+          
+          $reponse = $this->identifierChecker($this->identiferGenerator());
+          
+          if($reponse){
+            echo "identifier déjà utilisé";
+          }else{
+            
+            $data =array(
+              'email' => $user->getEmail(),
+              'password' => $user->getPassword(),
+              'identifier' => $this->identiferGenerator()
+            );
+
+            $this->saveData($data);
+          
+            return true;
+          }
+          
+        }else{
+          echo "mot de passe non identique";
+
         }
 
     }
+    
+  
+  
+ 
+  /**
+   * Login function
+   */
+  public function logIn(User $user){
 
-    public function send_validation(User $user)
-    {
-        $email = $user->getEmail();
-        $code = md5(uniqid(rand(), true));
-        $req = $this->dbConnect()->prepare('UPDATE `user` SET account_status= :code WHERE email= :email');
-        $req->bindParam(':code', $code);
-        $req->bindParam(':email', $email);
-        if ($req->execute()) {
-            $destinataire = $email;
-            $sujet = 'Validation compte, Les Sardines';
-            $message = '<html>';
-            $message .= '<head><title>Titre du message</title></head>';
-            $message .= '<body>';
-            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="http://simplon-charleville.fr/ftp-groupe/sardines/' . $code . '"><button>Cliquez ici</button></a></p>';
-            $message .= '<body>';
-            $message .= '</html>';
-            $headers = 'MIME-Version: 1.0' . "\r\n";
-            $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
-            mail($destinataire, $sujet, $message, $headers);
-            $req->close();
-        }
-    }
+    $_SESSION['user']="";
+    if($user->getPassword()!=null && filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)){
 
-    public function email_validation()
-    {
-        if (!empty($_GET['code'])) {
-            $code = htmlspecialchars($_GET['code']);
-            $req = $this->dbConnect()->prepare('SELECT activation_code FROM `user` WHERE activation_code = :code');
-            $req->bindParam(':code', $code);
-            $req->execute();
-            if ($req->fetch()['activation_code'] != false) {
-                $reqActivation = $this->dbConnect()->prepare("UPDATE `user` SET account_status= '1' WHERE activation_code = :code ");
-                $reqActivation->bindParam(':code', $code);
-                $reqActivation->execute();
-                return true;
-            }
-            return false;
-        }
+      $conx = $this->userConnection(array(
+        'email'=> $user->getEmail(),
+        'password'=>$user->getPassword()
+      ));
+  
+      if(empty($conx)){
+        echo ('Identifiant ou mot de passe incorrect');
+
         return false;
     }
 
