@@ -44,6 +44,7 @@ class UserManager extends Model
                             'identifier' => $this->identiferGenerator()
                         );
                         $this->saveData($data);
+                        $this->send_validation($user);
 
                         return true;
                     }
@@ -119,7 +120,7 @@ class UserManager extends Model
             $message = '<html>';
             $message .= '<head><title>Titre du message</title></head>';
             $message .= '<body>';
-            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="http://localhost/projet-sardines/php/validation.php?=' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="http://simplon-charleville.fr/ftp-groupe/sardines/' . $code . '"><button>Cliquez ici</button></a></p>';
             $message .= '<body>';
             $message .= '</html>';
             $headers = 'MIME-Version: 1.0' . "\r\n";
@@ -129,7 +130,7 @@ class UserManager extends Model
         }
     }
 
-    public function email_validation(User $user)
+    public function email_validation()
     {
         if (!empty($_GET['code'])) {
             $code = htmlspecialchars($_GET['code']);
@@ -137,18 +138,16 @@ class UserManager extends Model
             $req->bindParam(':code', $code);
             $req->execute();
             if ($req->fetch()['activation_code'] != false) {
-                $email = $user->getEmail();
-                $reqActivation = $this->dbConnect()->prepare("UPDATE `user` SET account_status= '1' WHERE email = :email ");
-                $reqActivation->bindParam(':email', $email);
+                $reqActivation = $this->dbConnect()->prepare("UPDATE `user` SET account_status= '1' WHERE activation_code = :code ");
+                $reqActivation->bindParam(':code', $code);
                 $reqActivation->execute();
-                echo 'Compte activé';
-            } else {
-                throw new Exception('Le code ne correspond pas');
+                return true;
             }
-
+            return false;
         }
-
+        return false;
     }
+
 
     /**------------fin de la classe ------------------ */
 }
