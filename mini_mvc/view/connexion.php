@@ -1,11 +1,7 @@
 <?php $title = 'Connexion'; ?>
 
 <?php ob_start(); ?>
-<?php 
-        echo'<pre>'; 
-        print_r($_SESSION['user']);
-        echo'</pre>';
- ?>
+
 ici le contenu de <?= $title ?>
 <!-- Main -->
     <!-- AVATAR -->
@@ -16,7 +12,7 @@ ici le contenu de <?= $title ?>
 
     <br/> <!-- Optionnel -->
 
-    <form method="POST" action="connexion" enctype="multipart/form-data"> 
+    <form method="POST" action="log" enctype="multipart/form-data"> 
         <div class="form-input">
             <i class="fas fa-envelope"></i>
             <input type="email" id="email" name="email" placeholder="johndoe@mail.com">

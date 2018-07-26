@@ -26,11 +26,12 @@ try
     $router->setRoute('insertAsset', 'insertAsset');
     $router->setRoute('success', 'successInsertAsset');
     $router->setRoute('inscription', 'signIn');
-    $router->setRoute('connexion', 'logIn');
+    $router->setRoute('connexion', 'logView');
+    $router->setRoute('log', 'logIn');
     $router->setRoute('profil', 'account');
     $router->setRoute('sardines', 'sardines');
     $router->setRoute('donner', 'dropGear');
-
+  
 
     $router->execute();
 }
