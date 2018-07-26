@@ -2,6 +2,12 @@
 
 class Controller
 {
+    /**
+     * E2 - 
+     * $vars: cette variable permet de stocker temporairement des données 
+     *        destinées à  la vue
+     */
+    private $vars = array(); 
 
     public function test($id = NULL)
     {
@@ -18,7 +24,6 @@ class Controller
         # on balance la vue demandée par le router par un require pour qu'elle dispose de la variable type_name
         require_once './view/test.php';
     }
-
 
     #-------------------------------------------------------
     #               CONTROLLER LES SARDINES
@@ -85,17 +90,34 @@ class Controller
     #-------------
     #  CONNEXION
     #-------------
+    public function logView(){
+       
+         $this->set('title','Connexion');
+         $this->render('./view/connexion.php');
+    }
     public function logIn()
     {
-        $userManager = new UserManager(); // Création d'un objet
-        $user = new User($_POST); 
-        $reponse = $userManager->logIn($user);
-        if($reponse){
-            header('Location: index');
-             echo"connexion ok";
+
+        if($_POST['email']!="" || $_POST['password']!=""){
+
+            $userManager = new UserManager(); // Création d'un objet
+            $user = new User($_POST); 
+            $reponse = $userManager->logIn($user);
+           
+            if($reponse){
+                $_SESSION['islog']=true;
+                $this->set('title','Acceuil');
+                $this->render('./view/index.php');
+            }else{
+                $_SESSION['islog']=false;
+                 
+                 echo('Identifiant ou mot de passe incorrect');
+                 //header('Location: connexion');
+               
+            }
         }else{
-            //echo "404";
-            require_once './view/connexion.php';
+            throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
+         
         }
         
     }
@@ -105,21 +127,25 @@ class Controller
     #------------------------------
     public function signIn()
     {
-        require_once './view/inscription.php';
-
+        $this->set('title','inscription');
+        $this->render('./view/inscription.php');
     }
 
     public function insertUser()
     {
+         if($_POST['email']!="" && $_POST['password']!="" && $_POST['confirmPassword']!=""){
+            $userManager = new UserManager(); // Création d'un objet
+            $user = new User($_POST); 
+            $reponse = $userManager->insertUser($user);
 
-        $userManager = new UserManager(); // Création d'un objet
-        $user = new User($_POST); 
-        $reponse = $userManager->insertUser($user);
-
-        if($reponse) {
-              header('Location: connexion');
-        } else {
-         
+            if($reponse) {
+                $this->set('title','Connextion');
+                $this->render('./view/connexion.php');
+              
+            } else {
+                throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+            }
+        }else{
              throw new Exception('Impossible d\'ajouter l\'utilisateur !');
         }
     }
@@ -201,5 +227,50 @@ class Controller
     public function notFound() {
         echo 'ici, la vue pour page non trouvée';
     }
+
+    /** E2
+     * Cette fonction va nous permettre de de rendre dynamiquement des vues 
+     * et des données au templete.
+     * la vue doit être passé en paramètre
+     */
+    public function render($view)
+    {
+        extract($this->vars);
+        if (file_exists($view)) {
+            ob_start();
+            require($view);
+            $content = ob_get_clean();
+            require_once 'view/template.php';
+        }
+        else {
+            $this->e404("la vue demandé d'existe pas");
+        }
+        
+    }
+
+    /**
+     * E2:
+     * cette fonction permet de stocker temporairement des données 
+     * destinées à  la vue dans la variable $vars
+     * exemple : $this->set('user',$user);
+     * utilisation dans la vue --> <?php echo $user->id_user ?>
+     */
+    public function set ($key, $value=null)
+    {
+        if(is_array($key)){
+            $this->vars +=$key;
+        }else{
+            $this->vars[$key] =$value;
+        }
+        
+        return $this;
+    }
+
+
+
+
+
+
+
 
 }
