@@ -161,6 +161,7 @@ class Controller
         $post = $_POST;
         $assetManager = new AssetManager();
         if (isset($post)) {
+
             if (!empty($post['beneficiary']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description'])) {
                 if (empty($post['iduser']) && $post['beneficiary'] == 'withBeneficiary') {
                     throw  new Exception('Le champ du bénéficiaire est vide');
