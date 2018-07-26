@@ -103,10 +103,11 @@ class Controller
             $userManager = new UserManager(); // Création d'un objet
             $user = new User($_POST); 
             $reponse = $userManager->logIn($user);
-           
+         
             if($reponse){
                 $_SESSION['islog']=true;
-                $this->set('title','Acceuil');
+                header('location: index');
+                $this->set('title','Les Sardines');
                 $this->render('./view/index.php');
             }else{
                 $_SESSION['islog']=false;

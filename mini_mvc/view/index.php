@@ -1,11 +1,2 @@
-<?php $title = 'Les Sardines'; ?>
-
-<?php ob_start(); ?>
-<main>
-
-ici le contenu de <?= $title ?>
-
-</main>
-<?php $content = ob_get_clean(); ?>
-
-<?php require_once 'view/template.php'; ?>
+<h1><?php echo'Bonjour '.$_SESSION['user']->getEmail();?></h1>
+<h3>Bienvenue dans votre nouvel espace Sardines</h3>
