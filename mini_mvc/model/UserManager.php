@@ -8,7 +8,7 @@ class UserManager extends Model {
       $req->bindParam(':identifier', $identifier);
       $req->execute();
       $req->setFetchMode(PDO::FETCH_ASSOC);
-      return $req->fetchAll();
+      return $req->fetch();
   }
   
 
