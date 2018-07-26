@@ -89,13 +89,16 @@ abstract class Model {
  
   // select User rowdata
   public function selectUserrowdata($request){
+    debug($request['password']);
 
     $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = :email AND password = :password");
       $pre->execute(array(
         'email' =>htmlspecialchars($request['email']),
         'password' =>$request['password']
       ));
-      
+    $data =$pre->fetch(PDO::FETCH_ASSOC);
+    debug($data);
+
     return $pre->fetch(PDO::FETCH_ASSOC);
   }
 

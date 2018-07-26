@@ -25,7 +25,6 @@ class Controller
         require_once './view/test.php';
     }
 
-
     #-------------------------------------------------------
     #               CONTROLLER LES SARDINES
     #-------------------------------------------------------
@@ -92,7 +91,9 @@ class Controller
     #  CONNEXION
     #-------------
     public function logView(){
-        require_once './view/connexion.php';
+       
+         $this->set('title','Connexion');
+         $this->render('./view/connexion.php');
     }
     public function logIn()
     {
@@ -104,7 +105,8 @@ class Controller
             $reponse = $userManager->logIn($user);
             if($reponse){
                 $_SESSION['islog']=true;
-                header('Location: index');
+                $this->set('title','Acceuil');
+                $this->render('./view/index.php');
             }else{
                 $_SESSION['islog']=false;
                  
@@ -124,21 +126,25 @@ class Controller
     #------------------------------
     public function signIn()
     {
-        require_once './view/inscription.php';
-
+        $this->set('title','inscription');
+        $this->render('./view/inscription.php');
     }
 
     public function insertUser()
     {
+         if($_POST['email']!="" && $_POST['password']!="" && $_POST['confirmPassword']!=""){
+            $userManager = new UserManager(); // Création d'un objet
+            $user = new User($_POST); 
+            $reponse = $userManager->insertUser($user);
 
-        $userManager = new UserManager(); // Création d'un objet
-        $user = new User($_POST); 
-        $reponse = $userManager->insertUser($user);
-
-        if($reponse) {
-              header('Location: connexion');
-        } else {
-         
+            if($reponse) {
+                $this->set('title','Connextion');
+                $this->render('./view/connexion.php');
+              
+            } else {
+                throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+            }
+        }else{
              throw new Exception('Impossible d\'ajouter l\'utilisateur !');
         }
     }
@@ -230,7 +236,7 @@ class Controller
         if (file_exists($view)) {
             ob_start();
             require($view);
-            $content_for_layout = ob_get_clean();
+            $content = ob_get_clean();
             require_once 'view/template.php';
         }
         else {
