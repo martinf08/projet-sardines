@@ -2,9 +2,13 @@
 
 class UserManager extends Model {
   
-  public function getUser() {
-    /* pseudocode
-    req = dbConnect().query() */
+  public function getUser($identifier) {
+      $sql = "SELECT * FROM `user` WHERE `identifier` = :identifier";
+      $req = $this->dbConnect()->prepare($sql);
+      $req->bindParam(':identifier', $identifier);
+      $req->execute();
+      $req->setFetchMode(PDO::FETCH_ASSOC);
+      return $req->fetch();
   }
   
 
