@@ -89,9 +89,8 @@ class UserManager extends Model {
         'email'=> $user->getEmail(),
         'password'=>$user->getPassword()
       ));
-      
+     
       if(empty($conx)){
-        echo ('Identifiant ou mot de passe incorrect');
         return false;
       }else{
         
