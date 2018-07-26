@@ -124,6 +124,17 @@ class Controller
         }
     }
 
+    public function emailValidation() {
+        $userManager = new UserManager();
+        $userManager->email_validation();
+        require_once './view/validation.php';
+        if ($userManager->email_validation()) {
+            echo 'Compte validé';
+        }
+        else {
+            echo 'Erreur lors de la validation';
+        }
+    }
 
     #-------------------------
     #  ASSETS (vue et ajout)
