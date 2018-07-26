@@ -11,9 +11,7 @@
 <body>
     <header>
         <!-- Header -->
-        <?php 
-        # je ne l'include pas tout de suite parce que les variables de session ne sont pas encore en place
-        #include_once 'inc/_menu.php'; ?>
+        <?php #include_once 'inc/_menu.php'; ?>
         <h1><?= $title ?></h1>
     </header>
 
