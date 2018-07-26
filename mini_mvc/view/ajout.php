@@ -17,7 +17,7 @@
 
         <br /> <!-- Optionnel -->
 
-        <div id="error-id">ID invalide</div>
+        <div id="error-id"></div>
 
         <br /> 
 
@@ -66,13 +66,7 @@
 
         <p>Recompense de <span id="recompense">?</span> sardines</p>
 
-        <br /> 
-
-        <input type="text" name="idstaff" value="1235" style="display: none;">
-        <!-- INJECTER L'ID STAFF QUAND CONNEXIONS IMPLEMENTEES -->
-        <input type="text" id="sardines" name="value" style="display: none;">
-        <!-- PAS SECURISE -->
-
+        <br />
 
         <input type="submit" id="submit" value="valider">
 
