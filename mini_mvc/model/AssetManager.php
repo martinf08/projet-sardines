@@ -88,7 +88,6 @@ class AssetManager extends Model
                     $req->bindParam(':id_quality', $idQuality);
                     $req->bindParam(':id_staff', $idStaff);
                     $result = $req->execute();
-                    var_dump($result);
                     if ($result) {
                         $tag = $asset->getTag();
                         $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
