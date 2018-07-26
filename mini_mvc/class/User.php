@@ -101,26 +101,6 @@
         }
 
 		/**
-		 * Get the value of lastLogin
-		 */ 
-		public function getLastLogin()
-		{
-				return $this->lastLogin;
-		}
-
-		/**
-		 * Set the value of lastLogin
-		 *
-		 * @return  self
-		 */ 
-		public function setLastLogin($lastLogin)
-		{
-				$this->lastLogin = $lastLogin;
-
-				return $this;
-		}
-
-		/**
 		 * Get the value of password
 		 */ 
 		public function getPassword()
@@ -268,7 +248,7 @@
 		 */ 
 		public function getLast_login()
 		{
-				return $this->last_loogin;
+				return $this->last_login;
 		}
 
 		/**
@@ -276,9 +256,9 @@
 		 *
 		 * @return  self
 		 */ 
-		public function setLast_login($last_loogin)
+		public function setLast_login($last_login)
 		{
-				$this->last_loogin = $last_loogin;
+				$this->last_loogin = $last_login;
 
 				return $this;
 		}
