@@ -11,7 +11,7 @@
 <body>
     <header>
         <!-- Header -->
-        <?php #include_once 'inc/_menu.php'; ?>
+        <?php include_once 'inc/_menu.php'; ?>
         <h1><?= $title ?></h1>
     </header>
 
