@@ -147,7 +147,7 @@
 		 */ 
 		public function setPassword($password)
 		{
-				$this->password = $password;
+				$this->password = md5($password);
 
 				return $this;
 		}
@@ -287,7 +287,7 @@
 		 */ 
 		public function setConfirmPassword($confirmPassword)
 		{
-				$this->confirmPassword = $confirmPassword;
+				$this->confirmPassword = md5($confirmPassword);
 
 				return $this;
 		}
