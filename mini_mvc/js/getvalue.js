@@ -19,7 +19,20 @@ for(quality of qualities) {
         }
         
         // maintenant qu'on a les id, on les envoie à la requête ajax
-        getValue(typeId, qualityId);
+        if(typeId) getValue(typeId, qualityId);
+    });
+}
+
+// la requête doit s'effectuer également quand on revient changer le type après avoir coché une qualité
+for(type of types) {
+    type.addEventListener("click", function() {
+        typeId = this.value;
+
+        for(quality of qualities) {
+            if(quality.checked) qualityId = quality.value;
+        }
+        
+        if(qualityId) getValue(typeId, qualityId);
     });
 }
 
