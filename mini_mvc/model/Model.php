@@ -97,7 +97,7 @@ abstract class Model {
         'password' =>$request['password']
       ));
     $data =$pre->fetch(PDO::FETCH_ASSOC);
-    debug($data);
+   
 
     return $pre->fetch(PDO::FETCH_ASSOC);
   }
