@@ -98,5 +98,8 @@ class UserManager extends Model {
     
   }
   
+  public function  forgetPassword(){
+    
+  }
   /**------------fin de la classe ------------------ */
 }

@@ -79,6 +79,32 @@ class Controller
          $this->set('title','Connexion');
          $this->render('./view/connexion.php');
     }
+    public function passForget(){
+        if (!isset($_POST['email'])){
+
+            $html = '<h2>Mot de passe oublié?</h2>';
+            $html .= '<p>Vous pouvez réinitialiser votre mot de passe ici.</p>';
+            $html .= '<div>';
+            $html .= '<form  role="form" action="forget" autocomplete="off" class="" method="post">';
+            $html .= '<div class="">';
+            $html .= '<input id="email" name="email" placeholder="adresse email" class="form-control"  type="email" required>';
+            $html .= '</div>';
+            $html .= '<div>';
+            $html .= '<input name="recover-submit" class="btn btn-lg btn-primary btn-block" value="Enoyer" type="submit">';
+            $html .= '</div>';
+            $html .= '</form></div>';
+
+        }else{
+            $html="<h1>Un email vous a été envoyé avec un lien pour réinitialiser votre mot de passe</h1>";
+       
+        }
+        
+        $this->set('title','forget');
+        $this->set('form',$html);
+        $this->render('./view/forgotpassword.php');
+
+
+    }
 
     public function logIn()
     {
