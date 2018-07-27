@@ -11,7 +11,7 @@ function send_validation($email)
 {
     $servername = "";
     $username = "";
-    $password = "!";
+    $password = "";
     $dbname = "";
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $code = md5(uniqid(rand(), true));
