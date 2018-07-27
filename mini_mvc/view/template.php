@@ -7,6 +7,7 @@
     <title><?= $title ?></title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/connexion.css">
+    <link rel="stylesheet" href="css/insert-test.css">
 </head>
 <body>
     <header>
