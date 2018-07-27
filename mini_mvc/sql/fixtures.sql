@@ -39,3 +39,4 @@ INSERT INTO `user`(`nickname`, `email`, `avatar`, `identifier`, `account_creatio
 INSERT INTO `user`(`nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES ('Jean-Marie','jeanmarie02@troll.com',null,1235,NOW(),NOW(),'ad0234829205b9033196ba818f7a872b',1,0,0,1);
 INSERT INTO `user`(`nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES ('wenceslas','wenceslas18@troll.net',null,1236,NOW(),NOW(),'8ad8757baa8564dc136c1e07507f4a98',1,0,0,0);
 INSERT INTO `user`(`nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES ('bienni','bienni@troll.net',null,1247,NOW(),NOW(),'05a671c66aefea124cc08b76ea6d30bb',1,0,1,0);
+

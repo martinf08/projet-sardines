@@ -288,6 +288,4 @@ class Controller
         }
         return $this;
     }
-
-
 }

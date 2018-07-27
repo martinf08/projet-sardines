@@ -30,7 +30,6 @@ $title = 'Ajouter un matériel';
 
             <div id="error-id"></div>
         </div>
-
         <div class="view">
             <p>Etape 2 : Choisir le type de matériel</p>
             <!-- LES RADIOS TYPE -->
@@ -82,7 +81,6 @@ $title = 'Ajouter un matériel';
     <p>Recompense de <span id="recompense">?</span> sardines</p>
 
         <br />
-
         <input type="submit" id="submit" name="submit-asset" value="valider">
 
 
