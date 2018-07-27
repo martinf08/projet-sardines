@@ -48,7 +48,7 @@ abstract class Model {
       $req->execute($data_value);
       
     }catch(PDOException $e){
-      
+      throw new Exception('ajout impossible');
     }
   }
   

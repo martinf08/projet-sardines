@@ -91,6 +91,7 @@ class Controller
             
                 if ($reponse){
                     $_SESSION['islog']=true;
+                 
                     $this->set('title','Les Sardines');
                     $this->render('./view/donner.php');
                 } else {
@@ -106,6 +107,7 @@ class Controller
             }
         } else {
             header('Location: index');
+        
         }
         
     }
@@ -126,6 +128,7 @@ class Controller
     public function signIn()
     {
         session_destroy();
+     
         $this->set('title','inscription');
         $this->render('./view/inscription.php');
     }
@@ -139,7 +142,7 @@ class Controller
                 $reponse = $userManager->insertUser($user);
     
                 if ($reponse) {
-                    header('Location: index');
+                    header("Location: logView");
                     $this->set('title','Connexion');
                     $this->render('./view/connexion.php');
                   
