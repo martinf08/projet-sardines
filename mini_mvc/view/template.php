@@ -44,4 +44,5 @@
 </body>
 
 <script src="js/verif_form.js"></script>
+<script src="js/inscription.js"></script>
 </html>
