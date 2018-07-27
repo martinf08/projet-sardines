@@ -57,6 +57,9 @@
 
 
             </form>
+
+            <p>Vous avez déjà un compte <a href="connexion">connectez vous ici.</a></p>
+
             <div id="inscrire-social" class="flex-center">
                 <p>S'inscrire avec :</p>
             </div>
