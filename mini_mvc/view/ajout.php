@@ -30,7 +30,7 @@
                     return ucfirst($x);
                 }, $cssID);
                 $cssID = lcfirst(implode('', $cssID));
-                
+
                 ?>
 
                 <input type="radio"
@@ -88,10 +88,10 @@
     </form>
 </main>
 
-<script src="/projet-sardines/mini_mvc/js/getvalue.js"></script>
-<script src="/projet-sardines/mini_mvc/js/getuserid.js"></script>
-<script src="/projet-sardines/mini_mvc/js/insert_form.js"></script>
-<script src="/projet-sardines/mini_mvc/js/smooth_scroll.js"></script>
+
+<script src="/projet-sardines/mini_mvc/js/insert_asset_process.js"></script>
+
+
 <?php $content = ob_get_clean(); ?>
 
 <?php require_once 'view/template.php'; ?>
