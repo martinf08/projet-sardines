@@ -10,12 +10,28 @@
     <link rel="stylesheet" href="css/insert-test.css">
 </head>
 <body>
+    <?php
+    # à nettoyer quand plus besoin
+    #debug($_SESSION);
+    ?>
+
     <header>
         <!-- Header -->
-        <?php 
-        # je ne l'include pas tout de suite parce que les variables de session ne sont pas encore en place
-        #include_once 'inc/_menu.php'; ?>
-<!--        <h1>--><?//= $title ?><!--</h1>-->
+        <div id="display-user" style="background: #eee;"><!-- ici l'affiche des infos de l'user connecté -->
+            <?php if(isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
+                <div id="avatar">ici sa photo</div>
+                <p id="pseudo"><?php echo $_SESSION['user']->getNickname(); ?></p>
+                <p id="mail"><?php echo $_SESSION['user']->getEmail(); ?></p>
+                <p id="user-id">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>
+                <p id="sardines-balance">J'ai <span>
+                    <?php echo $_SESSION['user']->getBalance(); ?>
+                </span> sardines</p>
+            <?php endif; ?>
+        </div>
+
+        <?php include_once 'inc/_menu.php'; ?>
+        <h1><?= $title ?></h1>
+
     </header>
 
     <?= $content ?>
@@ -26,4 +42,5 @@
 </body>
 
 <script src="js/verif_form.js"></script>
+<script src="js/inscription.js"></script>
 </html>

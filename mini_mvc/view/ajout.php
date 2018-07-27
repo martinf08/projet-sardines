@@ -1,4 +1,15 @@
-<?php $title = 'Ajouter un matériel'; ?>
+<?php
+
+# CONTRÔLE DE L'ACCÈS
+if (!isset($_SESSION['user'])) {
+    header('Location: index');
+} elseif ($_SESSION['user']->getStaff() == false AND $_SESSION['user']->getAdmin() == false) {
+    header('Location: index');
+}
+
+$title = 'Ajouter un matériel';
+
+?>
 
 <?php ob_start(); ?>
 

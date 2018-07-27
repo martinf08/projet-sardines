@@ -35,7 +35,7 @@
     <p>Pseudo : <input type="text" name="" id="" value="<?= $user->getNickname(); ?>"> 
                 <span class="write">ici fonticone d'un crayon</span>
     </p>
-    <input type="submit" value="Enregistrer">
+    <input type="submit" name="submit-account" value="Enregistrer">
 </form>
 
 <div id="log">
