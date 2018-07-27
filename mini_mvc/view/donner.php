@@ -6,6 +6,5 @@
     ?>
 </h1>
 
-<?php debug($_SESSION);?>;
-<h1>Je suis pret à dovenir chiche des sardines</h1>
-<h2>Pas vous </h2>
+<h1>tu es pret à devenir riche en sardines</h1>
+<p>Alors donne !!!!!</p>
