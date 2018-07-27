@@ -202,7 +202,7 @@ class Controller
 
     public function insertAsset()
     {
-        if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
+        if (isset($_SESSION['user']) AND !empty($_SESSION['user']) ) { # contrôler que la méthode est accédée uniquement par un staff ou admin
             if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
                 if (isset($_POST['submit-asset'])) { # vérifie qu'on accède bien à insertAsset suite à un submit
                     $post = $_POST;
@@ -213,12 +213,16 @@ class Controller
                             if (empty($post['iduser']) && $post['beneficiary'] == 'withBeneficiary') {
                                 throw  new Exception('Le champ du bénéficiaire est vide');
                             } else {
-                                $asset = new Asset($post);
-                                $assetManager->insertAsset($asset);
-                                session_start();
-                                $_SESSION['lastAsset'] = $asset;
+                                if ($post['iduser'] == $_SESSION['user']->getIdentifier()) {
+                                    throw new Exception('Un membre de l\'équipe ne doit pas se créditer lui-même !');
+                                } else {
+                                    $asset = new Asset($post);
+                                    $assetManager->insertAsset($asset);
+                                    session_start();
+                                    $_SESSION['lastAsset'] = $asset;
 
-                                header('location:success');
+                                    header('location:success');
+                                }
                             }
 
                         } else {
