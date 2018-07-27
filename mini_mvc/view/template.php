@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
+    <?php #debug($_SESSION['user']); ?>
     <header>
         <!-- Header -->
         <?php include_once 'inc/_menu.php'; ?>
