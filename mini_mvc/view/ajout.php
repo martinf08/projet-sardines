@@ -72,10 +72,6 @@
 
     <br />
 
-    <input type="text" name="idstaff" value="1235" style="display: none;">
-    <!-- INJECTER L'ID STAFF QUAND CONNEXIONS IMPLEMENTEES -->
-
-
     <input type="submit" id="submit" value="valider">
 </div>
 
