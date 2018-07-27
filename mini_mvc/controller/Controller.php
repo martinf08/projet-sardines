@@ -79,6 +79,10 @@ class Controller
          $this->set('title','Connexion');
          $this->render('./view/connexion.php');
     }
+    public function PassForget(){
+         $this->set('title','forget');
+         $this->render('./view/forgotpassword.php');
+    }
 
     public function logIn()
     {

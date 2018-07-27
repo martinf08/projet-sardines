@@ -25,7 +25,7 @@
     
         <br/> <!-- Optionnel -->
 
-        <div id="mdp-oublie" class="form-input"><a href="#">mot de passe oublié ?</a></div>
+        <div id="mdp-oublie" class="form-input"><a href="forget">mot de passe oublié ?</a></div>
 
         <br/> <!-- Optionnel -->
 
