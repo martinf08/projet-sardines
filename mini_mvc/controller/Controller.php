@@ -111,7 +111,6 @@ class Controller
             
                 if ($reponse){
                     $_SESSION['islog']=true;
-               
                     $this->set('title','Les Sardines');
                     $this->render('./view/donner.php');
                 } else {
