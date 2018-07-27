@@ -9,12 +9,15 @@
     <link rel="stylesheet" href="css/connexion.css">
 </head>
 <body>
-    <?php #debug($_SESSION['user']); ?>
+    <?php 
+    # à nettoyer quand plus besoin
+    #debug($_SESSION); 
+    ?>
+
     <header>
         <!-- Header -->
         <?php include_once 'inc/_menu.php'; ?>
         <h1><?= $title ?></h1>
-       <?= debug($_SESSION)?>
     </header>
 
 
