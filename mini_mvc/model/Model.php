@@ -95,8 +95,19 @@ abstract class Model {
         'email' =>htmlspecialchars($request['email']),
         'password' =>$request['password']
       ));
-
-      return $pre->fetch(PDO::FETCH_ASSOC);
+      $data = $pre->fetch(PDO::FETCH_ASSOC);
+      session_destroy();
+      $userdata = new stdClass();
+      if($userdata){
+        foreach ($data as $key => $value){
+          if($key!="password"){
+             $userdata->$key=$value;
+          }
+        }
+      }
+  
+      debug($usersata);
+      return $userdata;
   }
 
   // user Connection
@@ -108,7 +119,6 @@ abstract class Model {
         $updatesql = "UPDATE user SET last_login='".$lastlogin."' WHERE email='".$request['email']."'";
         $query = $this->dbConnect()->prepare($updatesql);
         $query->execute(); 
-
         return $this->selectUserrowdata($request);
       }else{
          return;

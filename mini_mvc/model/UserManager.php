@@ -14,7 +14,7 @@ class UserManager extends Model {
 
   public function insertUser(User $user) {
     
-  
+    session_destroy();
     $errors = array();
     //email check
     if(filter_var($user->getEmail(),FILTER_VALIDATE_EMAIL === false)){
@@ -81,26 +81,23 @@ class UserManager extends Model {
    */
   public function logIn(User $user){
 
-    $_SESSION['user']="";
     if($user->getPassword()!=null && filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)){
-
       $conx = $this->userConnection(array(
         'email'=> $user->getEmail(),
         'password'=>$user->getPassword()
       ));
-     
+       $user = new User($conx);
+
       if(empty($conx)){
         return false;
       }else{
-        
-        $user->setId_user($conx['id_user']);
-        $user->setStaff($conx['staff']);
+        session_start();
         $_SESSION['user'] = $user;
         return true;
       }  
     }
     
   }
- 
+  
   /**------------fin de la classe ------------------ */
 }
