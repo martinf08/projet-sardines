@@ -114,6 +114,8 @@ class Controller
     {
         $_SESSION['user']="";
         $_SESSION['islog']= 0;
+        
+        header('Location: index');
         $this->set('title','index');
         $this->render('./view/index.php');
     }
