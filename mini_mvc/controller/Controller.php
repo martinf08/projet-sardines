@@ -121,7 +121,7 @@ class Controller
         }
         
     }
-    
+
     public function logOut(){
      
         $_SESSION['user']="";
@@ -149,7 +149,7 @@ class Controller
             $reponse = $userManager->insertUser($user);
 
             if($reponse) {
-                $this->set('title','Connextion');
+                $this->set('title','Connexion');
                 $this->render('./view/connexion.php');
               
             } else {
