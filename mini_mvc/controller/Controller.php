@@ -111,9 +111,9 @@ class Controller
             
                 if ($reponse){
                     $_SESSION['islog']=true;
-                    header('location: index');
+               
                     $this->set('title','Les Sardines');
-                    $this->render('./view/index.php');
+                    $this->render('./view/donner.php');
                 } else {
                     $_SESSION['islog']=false;
                     
