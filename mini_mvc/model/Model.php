@@ -97,16 +97,15 @@ abstract class Model {
       ));
       $data = $pre->fetch(PDO::FETCH_ASSOC);
       $userdata = new stdClass();
-   
       if($data){
         foreach ($data as $key => $value){
           if($key!="password"){
              $userdata->$key=$value;
           }
         }
+        return $userdata;
       }
-
-      return $userdata;
+      return;
   }
 
   // user Connection
