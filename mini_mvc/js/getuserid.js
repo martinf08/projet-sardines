@@ -14,7 +14,9 @@
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("userid=" + textUser.value);
         }
-
+        else {
+            response.innerHTML = "";
+        }
     });
 
 })();

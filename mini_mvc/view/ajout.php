@@ -1,4 +1,15 @@
-<?php $title = 'Ajouter un matériel'; ?>
+<?php 
+
+# CONTRÔLE DE L'ACCÈS
+if (!isset($_SESSION['user'])) {
+    header('Location: index');
+} elseif ($_SESSION['user']->getStaff() == false AND $_SESSION['user']->getAdmin() == false) {
+    header('Location: index');
+}
+
+$title = 'Ajouter un matériel';
+
+?>
 
 <?php ob_start(); ?>
 
@@ -17,7 +28,7 @@
 
         <br /> <!-- Optionnel -->
 
-        <div id="error-id">ID invalide</div>
+        <div id="error-id"></div>
 
         <br /> 
 
@@ -66,15 +77,9 @@
 
         <p>Recompense de <span id="recompense">?</span> sardines</p>
 
-        <br /> 
+        <br />
 
-        <input type="text" name="idstaff" value="1235" style="display: none;">
-        <!-- INJECTER L'ID STAFF QUAND CONNEXIONS IMPLEMENTEES -->
-        <input type="text" id="sardines" name="value" style="display: none;">
-        <!-- PAS SECURISE -->
-
-
-        <input type="submit" id="submit" value="valider">
+        <input type="submit" id="submit" name="submit-asset" value="valider">
 
 
     </form>
