@@ -51,12 +51,15 @@
                 <br/> <!-- Optionnel -->
 
 
-                <input type="submit" value="S'inscrire">
+                <input type="submit" name="submit-signin" value="S'inscrire">
 
                 <br/> <!-- Optionnel -->
 
 
             </form>
+
+            <p>Vous avez déjà un compte <a href="connexion">connectez vous ici.</a></p>
+
             <div id="inscrire-social" class="flex-center">
                 <p>S'inscrire avec :</p>
             </div>

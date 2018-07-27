@@ -48,7 +48,7 @@ abstract class Model {
       $req->execute($data_value);
       
     }catch(PDOException $e){
-      
+      throw new Exception('ajout impossible');
     }
   }
   
@@ -96,18 +96,16 @@ abstract class Model {
         'password' =>$request['password']
       ));
       $data = $pre->fetch(PDO::FETCH_ASSOC);
-      session_destroy();
       $userdata = new stdClass();
-      if($userdata){
+      if($data){
         foreach ($data as $key => $value){
           if($key!="password"){
              $userdata->$key=$value;
           }
         }
+        return $userdata;
       }
-  
-      debug($usersata);
-      return $userdata;
+      return;
   }
 
   // user Connection
