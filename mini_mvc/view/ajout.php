@@ -80,10 +80,10 @@ $title = 'Ajouter un matériel';
 
     <p>Recompense de <span id="recompense">?</span> sardines</p>
 
-        <br />
-        <input type="submit" id="submit" name="submit-asset" value="valider">
+    <br />
 
-
+    <input type="submit" id="submit" value="valider">
+</div>
     </form>
 </main>
 

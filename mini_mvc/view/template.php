@@ -7,6 +7,7 @@
     <title><?= $title ?></title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/connexion.css">
+    <link rel="stylesheet" href="css/insert-test.css">
 </head>
 <body>
     <?php
@@ -41,4 +42,5 @@
 </body>
 
 <script src="js/verif_form.js"></script>
+<script src="js/inscription.js"></script>
 </html>

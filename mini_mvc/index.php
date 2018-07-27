@@ -31,6 +31,10 @@ try
     $router->setRoute('profil', 'account');
     $router->setRoute('sardines', 'sardines');
     $router->setRoute('donner', 'dropGear');
+    $router->setRoute('forget', 'passForget');
+  
+    
+
   
 
     $router->execute();
