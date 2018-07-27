@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,6 +8,7 @@
     <title><?php echo $title;?></title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/connexion.css">
+
 </head>
 <body>
     <header>
@@ -15,7 +17,7 @@
         # je ne l'include pas tout de suite parce que les variables de session ne sont pas encore en place
         #include_once 'inc/_menu.php'; ?>
         <h1><?= $title ?></h1>
-       <?= debug($_SESSION)?>
+       
     </header>
 
 

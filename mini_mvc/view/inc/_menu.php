@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <nav>
     <ul>
         <li><a href="index">Accueil</a></li>

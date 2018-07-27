@@ -96,7 +96,6 @@ abstract class Model {
         'password' =>$request['password']
       ));
       $data = $pre->fetch(PDO::FETCH_ASSOC);
-      session_destroy();
       $userdata = new stdClass();
       if($userdata){
         foreach ($data as $key => $value){
@@ -105,8 +104,7 @@ abstract class Model {
           }
         }
       }
-  
-      debug($usersata);
+
       return $userdata;
   }
 
