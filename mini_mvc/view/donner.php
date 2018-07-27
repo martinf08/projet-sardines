@@ -1,11 +1,10 @@
-<?php $title = 'Déposer mon matos'; ?>
+<h1>
+    <?php 
+        if(!empty($_SESSION['user'])){echo'Bonjour '.$_SESSION['user']->getEmail();
+            echo'<h3>Bienvenue dans votre nouvel espace Sardines</h3>';
+        }else{ echo"<h3>Page d'accueil</h3>";}
+    ?>
+</h1>
 
-<?php ob_start(); ?>
-<main>
-
-ici le contenu de <?= $title ?>
-
-</main>
-<?php $content = ob_get_clean(); ?>
-
-<?php require_once 'view/template.php'; ?>
+<h1>Je suis pret à dovenir chiche des sardines</h1>
+<h2>Pas vous </h2>

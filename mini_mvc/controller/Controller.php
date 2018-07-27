@@ -74,11 +74,10 @@ class Controller
     #  CONNEXION
     #-------------
 
-    public function logView()
-    {
-        session_destroy();
-        $this->set('title','Connexion');
-        $this->render('./view/connexion.php');
+    public function logView(){
+     
+         $this->set('title','Connexion');
+         $this->render('./view/connexion.php');
     }
 
     public function logIn()
@@ -92,9 +91,8 @@ class Controller
             
                 if ($reponse){
                     $_SESSION['islog']=true;
-                    header('location: index');
                     $this->set('title','Les Sardines');
-                    $this->render('./view/index.php');
+                    $this->render('./view/donner.php');
                 } else {
                     $_SESSION['islog']=false;
                     
@@ -104,6 +102,7 @@ class Controller
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
+
             }
         } else {
             header('Location: index');

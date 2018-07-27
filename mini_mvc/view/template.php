@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,6 +8,7 @@
     <title><?php echo $title;?></title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/connexion.css">
+
 </head>
 <body>
     <?php 
@@ -18,6 +20,7 @@
         <!-- Header -->
         <?php include_once 'inc/_menu.php'; ?>
         <h1><?= $title ?></h1>
+
     </header>
 
 
