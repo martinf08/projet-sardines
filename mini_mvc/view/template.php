@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= $title ?></title>
+    <title><?php echo $title;?></title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/connexion.css">
 </head>

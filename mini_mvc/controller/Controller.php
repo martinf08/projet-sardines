@@ -65,7 +65,6 @@ class Controller
         if (isset($identifier)) {
             $userManager = new UserManager();
             $user = new User($userManager->getUser($identifier));
-            
             require_once './view/profil.php';
         } else {
             header('Location: index');
@@ -103,10 +102,11 @@ class Controller
             $userManager = new UserManager(); // Création d'un objet
             $user = new User($_POST); 
             $reponse = $userManager->logIn($user);
-           
+         
             if($reponse){
                 $_SESSION['islog']=true;
-                $this->set('title','Acceuil');
+                header('location: index');
+                $this->set('title','Les Sardines');
                 $this->render('./view/index.php');
             }else{
                 $_SESSION['islog']=false;
@@ -208,7 +208,6 @@ class Controller
         }
 
         # require_once './view/ajout.php'; plus utile depuis que les throw sont installés, c'était pour débugger
-
         # en vrai on préférera rediriger avec header('Location: newAsset');
         # pour ne pas se retrouver avec "/insertAsset" dans l'url
         # mais cette redirection peut se faire au niveau du manager
@@ -217,7 +216,6 @@ class Controller
 
     public function successInsertAsset()
     {
-
         require_once('./view/success.php');
     }
 
@@ -235,17 +233,17 @@ class Controller
      */
     public function render($view)
     {
-        extract($this->vars);
+        
         if (file_exists($view)) {
+            extract($this->vars);
             ob_start();
             require($view);
             $content = ob_get_clean();
             require_once 'view/template.php';
         }
         else {
-            $this->e404("la vue demandé d'existe pas");
+            throw new Exception("la vue demandé d'existe pas");
         }
-        
     }
 
     /**
@@ -262,7 +260,6 @@ class Controller
         }else{
             $this->vars[$key] =$value;
         }
-        
         return $this;
     }
 
