@@ -1,7 +1,6 @@
 let types = document.querySelectorAll("input[name='idtype']");
 let qualities = document.querySelectorAll("input[name='idquality']");
 let sardinesDisplay = document.querySelector("#recompense");
-let sardinesVal = document.querySelector("#sardines");
 let typeId;
 let qualityId;
 
@@ -42,7 +41,6 @@ function getValue(type, quality) {
         if (this.readyState == 4 && this.status == 200) {
             // ici on applique la valeur rendue par this.responseText au bon input
             sardinesDisplay.innerHTML = this.responseText;
-            sardinesVal.value = this.responseText;
         }
     };
     xhttp.open("POST", "./traitements/valueqt.php", true); //True = async
