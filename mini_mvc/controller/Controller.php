@@ -71,59 +71,68 @@ class Controller
         }     
     }
 
-    public function accountUpdate()
+    public function accountUpdate() # PAS ENCORE CODÉ
     {
-        $userManager = new UserManager();
+        if(isset($_POST['submit-account'])) { # vérifie que le submit ayant le name convenu sur la vue profil existe
+            $userManager = new UserManager();
         
-        # requête
+            # requête
 
-        if($reponse) {
-            $identifier = $_SESSION['user']['identifier'];
-            header("Location: account/$identifier");
-        } else {
-        
-            throw new Exception('Échec de modification du champ !');
+            if($reponse) {
+                $identifier = $_SESSION['user']['identifier'];
+                header("Location: account/$identifier");
+            } else {
+            
+                throw new Exception('Échec de modification du champ !');
+            }
+        } else { # sinon l'user n'a rien à faire là
+            header('Location: index');
         }
     }
 
     #-------------
     #  CONNEXION
     #-------------
-    public function logView(){
+
+    public function logView()
+    {
         session_destroy();
-         $this->set('title','Connexion');
-         $this->render('./view/connexion.php');
+        $this->set('title','Connexion');
+        $this->render('./view/connexion.php');
     }
+
     public function logIn()
     {
+        if (isset($_POST['email'])) { # est-ce que l'user est passé par le formulaire de logView ? sinon redirection
+            if($_POST['email']!="" || $_POST['password']!=""){
 
-        if($_POST['email']!="" || $_POST['password']!=""){
-
-            $userManager = new UserManager(); // Création d'un objet
-            $user = new User($_POST); 
-            $reponse = $userManager->logIn($user);
-         
-            if($reponse){
-                $_SESSION['islog']=true;
-                header('location: index');
-                $this->set('title','Les Sardines');
-                $this->render('./view/index.php');
-            }else{
-                $_SESSION['islog']=false;
-                 
-                 echo('Identifiant ou mot de passe incorrect');
-                 //header('Location: connexion');
-               
+                $userManager = new UserManager(); // Création d'un objet
+                $user = new User($_POST); 
+                $reponse = $userManager->logIn($user);
+            
+                if ($reponse){
+                    $_SESSION['islog']=true;
+                    header('location: index');
+                    $this->set('title','Les Sardines');
+                    $this->render('./view/index.php');
+                } else {
+                    $_SESSION['islog']=false;
+                    
+                    echo('Identifiant ou mot de passe incorrect');
+                    //header('Location: connexion');
+                
+                }
+            } else {
+                throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
             }
-        }else{
-            throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
-         
+        } else {
+            header('Location: index');
         }
         
     }
 
-    public function logOut(){
-     
+    public function logOut()
+    {
         $_SESSION['user']="";
         $_SESSION['islog']= 0;
         $this->set('title','index');
@@ -142,21 +151,24 @@ class Controller
 
     public function insertUser()
     {
-        
-         if($_POST['email']!="" && $_POST['password']!="" && $_POST['confirmPassword']!=""){
-            $userManager = new UserManager(); // Création d'un objet
-            $user = new User($_POST); 
-            $reponse = $userManager->insertUser($user);
-
-            if($reponse) {
-                $this->set('title','Connexion');
-                $this->render('./view/connexion.php');
-              
+        if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
+            if ($_POST['email']!="" && $_POST['password']!="" && $_POST['confirmPassword']!=""){
+                $userManager = new UserManager(); // Création d'un objet
+                $user = new User($_POST); 
+                $reponse = $userManager->insertUser($user);
+    
+                if ($reponse) {
+                    $this->set('title','Connexion');
+                    $this->render('./view/connexion.php');
+                  
+                } else {
+                    throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+                }
             } else {
-                throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+                 throw new Exception('Impossible d\'ajouter l\'utilisateur !');
             }
-        }else{
-             throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+        } else {
+            header('Location: index');
         }
     }
 
@@ -180,50 +192,66 @@ class Controller
     #-------------------------
     public function newAsset()
     {
-        $assetManager = new AssetManager();
-        # passer ici les valeurs des champs des radios pour la vue
-        $types = $assetManager->getAll('type');
-        $qualities = $assetManager->getAll('quality');
+        if (isset($_SESSION['user'])) { # contrôle du droit d'accès
+            if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
+                $assetManager = new AssetManager();
+                # passer ici les valeurs des champs des radios pour la vue
+                $types = $assetManager->getAll('type');
+                $qualities = $assetManager->getAll('quality');
 
-        if (isset($types) && isset($qualities)) {
+                if (isset($types) && isset($qualities)) {
 
-            require_once('./view/ajout.php');
+                    require_once('./view/ajout.php');
 
+                } else {
+                    throw new Exception('Problème sur la récupération des tables type et qualite');
+                }
+            } else {
+                header('Location: index');
+            }
         } else {
-            throw new Exception('Problème sur la récupération des tables type et qualite');
+            header('Location: index');
         }
     }
 
 
     public function insertAsset()
     {
-        $post = $_POST;
-        $assetManager = new AssetManager();
-        if (isset($post)) {
+        if (isset($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
+            if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
+                if (isset($_POST['submit-asset'])) { # vérifie qu'on accède bien à insertAsset suite à un submit
+                    $post = $_POST;
+                    $assetManager = new AssetManager();
+                    if (isset($post)) {
 
-            if (!empty($post['beneficiary']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description'])) {
-                if (empty($post['iduser']) && $post['beneficiary'] == 'withBeneficiary') {
-                    throw  new Exception('Le champ du bénéficiaire est vide');
+                        if (!empty($post['beneficiary']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description'])) {
+                            if (empty($post['iduser']) && $post['beneficiary'] == 'withBeneficiary') {
+                                throw  new Exception('Le champ du bénéficiaire est vide');
+                            } else {
+                                $asset = new Asset($post);
+                                $assetManager->insertAsset($asset);
+                                session_start();
+                                $_SESSION['lastAsset'] = $asset;
+
+                                header('location:success');
+                            }
+
+                        } else {
+                            throw new Exception('Certains champs (ou tous) sont vides.');
+                        }
+                    } else {
+                        throw new Exception('Erreur monumentale.');
+                    }
                 } else {
-                    $asset = new Asset($post);
-                    $assetManager->insertAsset($asset);
-                    session_start();
-                    $_SESSION['lastAsset'] = $asset;
-
-                    header('location:success');
+                    header('Location: index');
                 }
-
             } else {
-                throw new Exception('Certains champs (ou tous) sont vides.');
+                header('Location: index');
             }
         } else {
-            throw new Exception('Erreur monumentale.');
+            header('Location: index');
         }
-
-        # require_once './view/ajout.php'; plus utile depuis que les throw sont installés, c'était pour débugger
-        # en vrai on préférera rediriger avec header('Location: newAsset');
-        # pour ne pas se retrouver avec "/insertAsset" dans l'url
-        # mais cette redirection peut se faire au niveau du manager
+        
 
     }
 
@@ -275,12 +303,6 @@ class Controller
         }
         return $this;
     }
-
-
-
-
-
-
 
 
 }
