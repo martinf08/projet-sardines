@@ -90,7 +90,7 @@ class Controller
     #  CONNEXION
     #-------------
     public function logView(){
-       
+        session_destroy();
          $this->set('title','Connexion');
          $this->render('./view/connexion.php');
     }
@@ -122,24 +122,34 @@ class Controller
         
     }
 
+    public function logOut(){
+     
+        $_SESSION['user']="";
+        $_SESSION['islog']= 0;
+        $this->set('title','index');
+        $this->render('./view/index.php');
+    }
+
     #------------------------------
     #  INSCRIPTION (vue et ajout)
     #------------------------------
     public function signIn()
     {
+        session_destroy();
         $this->set('title','inscription');
         $this->render('./view/inscription.php');
     }
 
     public function insertUser()
     {
+        
          if($_POST['email']!="" && $_POST['password']!="" && $_POST['confirmPassword']!=""){
             $userManager = new UserManager(); // Création d'un objet
             $user = new User($_POST); 
             $reponse = $userManager->insertUser($user);
 
             if($reponse) {
-                $this->set('title','Connextion');
+                $this->set('title','Connexion');
                 $this->render('./view/connexion.php');
               
             } else {
@@ -161,6 +171,9 @@ class Controller
             echo 'Erreur lors de la validation';
         }
     }
+ 
+
+
 
     #-------------------------
     #  ASSETS (vue et ajout)

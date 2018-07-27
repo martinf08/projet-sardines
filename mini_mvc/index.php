@@ -28,6 +28,7 @@ try
     $router->setRoute('inscription', 'signIn');
     $router->setRoute('connexion', 'logView');
     $router->setRoute('log', 'logIn');
+    $router->setRoute('exit', 'logOut');
     $router->setRoute('profil', 'account');
     $router->setRoute('sardines', 'sardines');
     $router->setRoute('donner', 'dropGear');
