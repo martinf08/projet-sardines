@@ -67,7 +67,6 @@
         <p>Recompense de <span id="recompense">?</span> sardines</p>
 
         <br />
-
         <input type="submit" id="submit" value="valider">
 
 
