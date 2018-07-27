@@ -21,7 +21,6 @@ class UserManager extends Model {
       $errors[] = "email non valide";
     }
     
-    
     if(empty($errors)){
       
       $email = htmlentities($user->getEmail());
