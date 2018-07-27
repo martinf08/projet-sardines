@@ -142,7 +142,7 @@ class Controller
                 $reponse = $userManager->insertUser($user);
     
                 if ($reponse) {
-                    header("Location: logView");
+                    header("Location: connexion");
                     $this->set('title','Connexion');
                     $this->render('./view/connexion.php');
                   

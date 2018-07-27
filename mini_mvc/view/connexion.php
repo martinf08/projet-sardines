@@ -2,7 +2,7 @@
 <!-- Main -->
     <!-- AVATAR -->
     <div class="flex-center">
-        <img src="./images/ressources/user.png" alt="user" class="img-connexion">
+        <!--<img src="./images/ressources/user.png" alt="user" class="img-connexion">-->
     </div>
 
 
