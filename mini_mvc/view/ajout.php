@@ -30,6 +30,7 @@
                     return ucfirst($x);
                 }, $cssID);
                 $cssID = lcfirst(implode('', $cssID));
+                
                 ?>
 
                 <input type="radio"
