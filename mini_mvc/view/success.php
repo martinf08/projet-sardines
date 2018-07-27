@@ -6,11 +6,7 @@
  * Time: 16:34
  */
 
-session_start();
 $title = 'Succès de la transaction';
-?>
-<?php
-var_dump($_SESSION);
 ?>
 
 <?php ob_start(); ?>
