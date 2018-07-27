@@ -2,6 +2,12 @@
 
 class Controller
 {
+    /**
+     * E2 - 
+     * $vars: cette variable permet de stocker temporairement des données 
+     *        destinées à  la vue
+     */
+    private $vars = array(); 
 
     public function test($id = NULL)
     {
@@ -85,17 +91,30 @@ class Controller
     #-------------
     #  CONNEXION
     #-------------
+    public function logView(){
+        require_once './view/connexion.php';
+    }
     public function logIn()
     {
-        $userManager = new UserManager(); // Création d'un objet
-        $user = new User($_POST); 
-        $reponse = $userManager->logIn($user);
-        if($reponse){
-            header('Location: index');
-             echo"connexion ok";
+
+        if($_POST['email']!="" || $_POST['password']!=""){
+
+            $userManager = new UserManager(); // Création d'un objet
+            $user = new User($_POST); 
+            $reponse = $userManager->logIn($user);
+            if($reponse){
+                $_SESSION['islog']=true;
+                header('Location: index');
+            }else{
+                $_SESSION['islog']=false;
+                 
+                 echo('Identifiant ou mot de passe incorrect');
+                 //header('Location: connexion');
+               
+            }
         }else{
-            //echo "404";
-            require_once './view/connexion.php';
+            throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
+         
         }
         
     }
@@ -161,7 +180,7 @@ class Controller
         $post = $_POST;
         $assetManager = new AssetManager();
         if (isset($post)) {
-            if (!empty($post['beneficiary']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description']) && !empty($post['idstaff'] && !empty($post['value']))) {
+            if (!empty($post['beneficiary']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description']) && !empty($post['idstaff'])) {
                 if (empty($post['iduser']) && $post['beneficiary'] == 'withBeneficiary') {
                     throw  new Exception('Le champ du bénéficiaire est vide');
                 } else {
@@ -199,5 +218,50 @@ class Controller
     public function notFound() {
         echo 'ici, la vue pour page non trouvée';
     }
+
+    /** E2
+     * Cette fonction va nous permettre de de rendre dynamiquement des vues 
+     * et des données au templete.
+     * la vue doit être passé en paramètre
+     */
+    public function render($view)
+    {
+        extract($this->vars);
+        if (file_exists($view)) {
+            ob_start();
+            require($view);
+            $content_for_layout = ob_get_clean();
+            require_once 'view/template.php';
+        }
+        else {
+            $this->e404("la vue demandé d'existe pas");
+        }
+        
+    }
+
+    /**
+     * E2:
+     * cette fonction permet de stocker temporairement des données 
+     * destinées à  la vue dans la variable $vars
+     * exemple : $this->set('user',$user);
+     * utilisation dans la vue --> <?php echo $user->id_user ?>
+     */
+    public function set ($key, $value=null)
+    {
+        if(is_array($key)){
+            $this->vars +=$key;
+        }else{
+            $this->vars[$key] =$value;
+        }
+        
+        return $this;
+    }
+
+
+
+
+
+
+
 
 }

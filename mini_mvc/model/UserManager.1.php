@@ -2,14 +2,10 @@
 
 class UserManager extends Model {
   
-    public function getUser($identifier) {
-        $sql = "SELECT * FROM `user` WHERE `identifier` = :identifier";
-        $req = $this->dbConnect()->prepare($sql);
-        $req->bindParam(':identifier', $identifier);
-        $req->execute();
-        $req->setFetchMode(PDO::FETCH_ASSOC);
-        return $req->fetch();
-    }
+  public function getUser() {
+    /* pseudocode
+    req = dbConnect().query() */
+  }
   
 
   public function insertUser(User $user) {
@@ -89,8 +85,9 @@ class UserManager extends Model {
         'email'=> $user->getEmail(),
         'password'=>$user->getPassword()
       ));
-     
+      
       if(empty($conx)){
+        echo ('Identifiant ou mot de passe incorrect');
         return false;
       }else{
         
