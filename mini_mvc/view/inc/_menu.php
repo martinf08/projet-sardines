@@ -5,8 +5,10 @@
     <ul>
         <li><a href="index">Accueil</a></li>
 
-        <?php if (!isset($_SESSION['isLogged'])): ?>
+        <?php if (!isset($_SESSION['islog'])): ?>
             <li><a href="inscription">S'inscrire</a></li>
+        <?php elseif ($_SESSION['islog'] == false): ?>
+            <li><a href="connexion">Se connecter</a></li>
         <?php endif; ?>
 
         <?php 
@@ -19,9 +21,9 @@
             endif; 
         ?>
 
-        <?php if (isset($_SESSION['isLogged']) AND $_SESSION['isLogged'] == true): ?>
+        <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] == true): ?>
             <li><a href="profil/<?= $_SESSION['user']->getIdentifier(); ?>">Voir mes informations</a></li>
-            <li><a href="logOut">Me déconnecter</a></li>
+            <li><a href="exit">Me déconnecter</a></li>
         <?php endif; ?>
 
         <li><a href="#">F.A.Q. (c'est quoi ?)</a></li>
