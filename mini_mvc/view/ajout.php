@@ -3,6 +3,7 @@
 <?php ob_start(); ?>
 
 <main>
+    <nav id="test-bar"></nav>
 <?php if(isset($result)) { print_r($result); } ?>
     <!-- Main -->
     <form action="insertAsset" method="post">
