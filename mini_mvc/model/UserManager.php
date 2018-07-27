@@ -91,7 +91,6 @@ class UserManager extends Model {
       if(empty($conx)){
         return false;
       }else{
-        session_start();
         $_SESSION['user'] = $user;
         return true;
       }  

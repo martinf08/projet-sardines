@@ -94,11 +94,10 @@ class Controller
     #  CONNEXION
     #-------------
 
-    public function logView()
-    {
-        session_destroy();
-        $this->set('title','Connexion');
-        $this->render('./view/connexion.php');
+    public function logView(){
+     
+         $this->set('title','Connexion');
+         $this->render('./view/connexion.php');
     }
 
     public function logIn()
@@ -124,6 +123,7 @@ class Controller
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
+
             }
         } else {
             header('Location: index');

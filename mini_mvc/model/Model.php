@@ -96,7 +96,6 @@ abstract class Model {
         'password' =>$request['password']
       ));
       $data = $pre->fetch(PDO::FETCH_ASSOC);
-   
       $userdata = new stdClass();
       if($userdata){
         foreach ($data as $key => $value){
