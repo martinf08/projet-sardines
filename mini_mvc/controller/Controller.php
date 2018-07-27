@@ -166,7 +166,7 @@ class Controller
     public function logOut(){
      
         $_SESSION['user']="";
-        $_SESSION['islog']=0;
+        $_SESSION['islog']= 0;
         $this->set('title','index');
         $this->render('./view/index.php');
     }
