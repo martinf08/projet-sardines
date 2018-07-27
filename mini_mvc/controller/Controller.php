@@ -121,6 +121,14 @@ class Controller
         }
         
     }
+    
+    public function logOut(){
+     
+        $_SESSION['user']="";
+        $_SESSION['islog']= 0;
+        $this->set('title','index');
+        $this->render('./view/index.php');
+    }
 
     #------------------------------
     #  INSCRIPTION (vue et ajout)
@@ -163,13 +171,7 @@ class Controller
             echo 'Erreur lors de la validation';
         }
     }
-    public function logOut(){
-     
-        $_SESSION['user']="";
-        $_SESSION['islog']= 0;
-        $this->set('title','index');
-        $this->render('./view/index.php');
-    }
+ 
 
 
 
