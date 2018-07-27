@@ -90,7 +90,7 @@ class Controller
     #  CONNEXION
     #-------------
     public function logView(){
-        session_destroy();
+         session_destroy();
          $this->set('title','Connexion');
          $this->render('./view/connexion.php');
     }
@@ -105,6 +105,7 @@ class Controller
          
             if($reponse){
                 $_SESSION['islog']=true;
+                //die(ici);
                 header('location: index');
                 $this->set('title','Les Sardines');
                 $this->render('./view/index.php');
@@ -149,7 +150,7 @@ class Controller
             $reponse = $userManager->insertUser($user);
 
             if($reponse) {
-                $this->set('title','Connexion');
+                $this->set('title','Connexion ---ici');
                 $this->render('./view/connexion.php');
               
             } else {
