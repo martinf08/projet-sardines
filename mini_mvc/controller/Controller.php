@@ -9,26 +9,6 @@ class Controller
      */
     private $vars = array(); 
 
-    public function test($id = NULL)
-    {
-        # voir si le complexe Controller.php - test.php - Manager.php et TestManager.php fonctionnent ensemble
-        $testManager = new TestManager();
-
-        if (isset($id)) {
-
-            $type_name = $testManager->getName($id);
-        } else {
-            $type_name['name'] = 'aucun argument passé';
-        }
-
-        # on balance la vue demandée par le router par un require pour qu'elle dispose de la variable type_name
-        require_once './view/test.php';
-    }
-
-    #-------------------------------------------------------
-    #               CONTROLLER LES SARDINES
-    #-------------------------------------------------------
-
     #---------
     #  INDEX
     #---------

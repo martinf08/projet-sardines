@@ -9,12 +9,11 @@ require_once 'model/Model.php';
 require_once 'model/UserManager.php';
 require_once 'model/AssetManager.php';
 
-require 'class/User.php';
+require_once 'class/User.php';
 require_once 'class/Asset.php';
 
 require_once 'class/Router.php';
 
-require_once 'model/TestManager.php';
 session_start();
 try
 {
