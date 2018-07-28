@@ -31,6 +31,7 @@
 
         details.value = "";
 
+
         //Identifier
         let response = document.getElementById('error-id');
         textUser.setAttribute('maxlength', 4);
