@@ -239,9 +239,6 @@ class Controller
                                 if (strtolower($post['iduser']) == strtolower($_SESSION['user']->getIdentifier())) {
                                     throw new Exception('Un membre de l\'équipe ne doit pas se créditer lui-même !');
                                 } else {
-                                    var_dump($post['iduser']);
-                                    var_dump($_SESSION['user']->getIdentifier());
-                                    die();
                                     $asset = new Asset($post);
                                     $assetManager->insertAsset($asset);
                                     session_start();
