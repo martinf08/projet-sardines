@@ -1,7 +1,7 @@
 (function () {
     let textUser = document.getElementById('iduser');
     let views = document.querySelectorAll('.view');
-    let nav = document.querySelector('nav');
+    let nav = document.getElementById('test-bar');
     let types = document.querySelectorAll('input[name="idtype"]');
     let qualities = document.querySelectorAll('input[name="idquality"]');
     textUser.addEventListener('input', function () {

@@ -14,7 +14,7 @@ $title = 'Ajouter un matériel';
 <?php ob_start(); ?>
 
 <main>
-    <nav id="test-bar"></nav>
+    <div id="test-bar"></div>
 <?php if(isset($result)) { print_r($result); } ?>
     <!-- Main -->
     <form action="insertAsset" method="post">
@@ -95,7 +95,7 @@ $title = 'Ajouter un matériel';
     </form>
 </main>
 
-
+<script src="/projet-sardines/mini_mvc/js/getvalue.js"></script>
 <script src="/projet-sardines/mini_mvc/js/insert_asset_process.js"></script>
 
 
