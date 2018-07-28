@@ -42,14 +42,14 @@
                     response.innerHTML = xhttp.responseText;
                     if (xhttp.responseText != '<p>Cet utilisateur n\'existe pas</p>') {
                         setTimeout(function () {
-                            smoothScroll(views[1], 100);
+                            smoothScroll(views[1], 60);
                             divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
                         }, 2000);
                         //Types
                         for (let i = 0; i < types.length; i++) {
                             types[i].addEventListener('click', function (e) {
                                 setTimeout(function () {
-                                    smoothScroll(views[2], 100);
+                                    smoothScroll(views[2], 60);
                                     divType.innerHTML = '<p>Type : ' + e.target.nextElementSibling.textContent + '</p>';
                                 }, 2000);
                             });
