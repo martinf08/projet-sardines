@@ -1,9 +1,10 @@
 (function () {
     let textUser = document.getElementById('iduser');
     let views = document.querySelectorAll('.view');
-    let nav = document.getElementById('test-bar');
+    let nav = document.getElementById('basket-bar');
     let types = document.querySelectorAll('input[name="idtype"]');
     let qualities = document.querySelectorAll('input[name="idquality"]');
+
     textUser.addEventListener('input', function () {
         let errorDiv = document.getElementById('error-id');
         let divEmail = document.createElement('div');
@@ -52,11 +53,27 @@
         }
     });
 
+    let navTopPosition = nav.offsetTop;
+    document.addEventListener('scroll', function () {
+        let scrollPage = window.pageYOffset;
+
+        if (scrollPage > navTopPosition) {
+            nav.classList.add('fixed');
+            nav.classList.remove('not-fixed');
+        }
+        else if (scrollPage <= navTopPosition) {
+            nav.classList.add('not-fixed');
+            nav.classList.remove('fixed');
+        }
+    });
+
     function smoothScroll(target, speed_millisecond) {
-        let range = target.offsetTop - nav.clientHeight;
+        let scrollPage = window.pageYOffset;
+        let range = target.offsetTop - nav.clientHeight * 2;
         let speed = range / speed_millisecond;
-        let i = 0;
+        let i = 0 + scrollPage;
         setInterval(function () {
+
             if (i <= range) {
                 if (i >= range - (range / 2) && i <= range - (range / 4)) {
                     scrollTo(0, i);

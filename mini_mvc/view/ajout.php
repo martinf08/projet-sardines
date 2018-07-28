@@ -14,7 +14,7 @@ $title = 'Ajouter un matériel';
 <?php ob_start(); ?>
 
 <main>
-    <div id="test-bar"></div>
+    <div id="basket-bar"></div>
 <?php if(isset($result)) { print_r($result); } ?>
     <!-- Main -->
     <form action="insertAsset" method="post">
