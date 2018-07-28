@@ -75,7 +75,7 @@ $title = 'Ajouter un matériel';
     <?php endforeach; ?>
     <br /> <!-- détails sur l'état du matos -->
 
-    <textarea name="description" id="details" cols="30" rows="10">Infos supplémentaires (Optionnel)</textarea>
+    <textarea name="description" id="details" cols="30" rows="10" placeholder="Infos supplémentaires (Optionnel)"></textarea>
 
     <br /> <!-- Récuperer la valeur de la récompense -->
 
