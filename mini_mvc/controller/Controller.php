@@ -227,13 +227,13 @@ class Controller
     {
         if (isset($_SESSION['user']) AND !empty($_SESSION['user']) ) { # contrôler que la méthode est accédée uniquement par un staff ou admin
             if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
-                if (isset($_POST['submit-asset'])) { # vérifie qu'on accède bien à insertAsset suite à un submit
+                if (isset($_POST) && !empty($_POST)) {
                     $post = $_POST;
                     $assetManager = new AssetManager();
                     if (isset($post)) {
 
-                        if (!empty($post['beneficiary']) && !empty($post['idtype']) && !empty($post['idquality']) && !empty($post['description'])) {
-                            if (empty($post['iduser']) && $post['beneficiary'] == 'withBeneficiary') {
+                        if (!empty($post['idtype']) && !empty($post['idquality'])) {
+                            if (empty($post['iduser'])) {
                                 throw  new Exception('Le champ du bénéficiaire est vide');
                             } else {
                                 if ($post['iduser'] == $_SESSION['user']->getIdentifier()) {
