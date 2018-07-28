@@ -30,7 +30,6 @@ $title = 'Ajouter un matériel';
 
             <div id="error-id"></div>
         </div>
-
         <div class="view">
             <p>Etape 2 : Choisir le type de matériel</p>
             <!-- LES RADIOS TYPE -->
@@ -85,13 +84,6 @@ $title = 'Ajouter un matériel';
 
     <input type="submit" id="submit" value="valider">
 </div>
-
-
-
-
-
-
-
     </form>
 </main>
 
