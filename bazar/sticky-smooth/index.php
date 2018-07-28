@@ -9,7 +9,7 @@
 <h1 id="2">H1</h1>
 <h1 id="3">H1</h1>
 
-<script src="smoothScroll.js"></script>
+<script src="../../mini_mvc/js/smooth_scroll.js"></script>
 <script src="stickyNav.js"></script>
 </body>
 </html>

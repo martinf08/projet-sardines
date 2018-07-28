@@ -1,12 +1,8 @@
-<?php $title = 'Connexion'; ?>
 
-<?php ob_start(); ?>
-
-ici le contenu de <?= $title ?>
 <!-- Main -->
     <!-- AVATAR -->
     <div class="flex-center">
-        <img src="./images/ressources/user.png" alt="user" class="img-connexion">
+        <!--<img src="./images/ressources/user.png" alt="user" class="img-connexion">-->
     </div>
 
 
@@ -29,7 +25,7 @@ ici le contenu de <?= $title ?>
     
         <br/> <!-- Optionnel -->
 
-        <div id="mdp-oublie" class="form-input"><a href="#">mot de passe oublié ?</a></div>
+        <div id="mdp-oublie" class="form-input"><a href="forget">mot de passe oublié ?</a></div>
 
         <br/> <!-- Optionnel -->
 
@@ -49,8 +45,4 @@ ici le contenu de <?= $title ?>
 
     <script src="js/verif_form.js"></script>
 
-
 </main>
-<?php $content = ob_get_clean(); ?>
-
-<?php require_once 'view/template.php'; ?>

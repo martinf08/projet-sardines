@@ -48,7 +48,7 @@ abstract class Model {
       $req->execute($data_value);
       
     }catch(PDOException $e){
-      
+      throw new Exception('ajout impossible');
     }
   }
   
@@ -89,20 +89,29 @@ abstract class Model {
  
   // select User rowdata
   public function selectUserrowdata($request){
-
+ 
     $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = :email AND password = :password");
       $pre->execute(array(
         'email' =>htmlspecialchars($request['email']),
         'password' =>$request['password']
       ));
-      
-    return $pre->fetch(PDO::FETCH_ASSOC);
+      $data = $pre->fetch(PDO::FETCH_ASSOC);
+      $userdata = new stdClass();
+      if($data){
+        foreach ($data as $key => $value){
+          if($key!="password"){
+             $userdata->$key=$value;
+          }
+        }
+        return $userdata;
+      }
+      return;
   }
 
   // user Connection
   public function userConnection($request){
     try {
-      
+
       if($this->selectUserrowdata($request)){
         $lastlogin = date('Y-m-d H:i:s', time());
         $updatesql = "UPDATE user SET last_login='".$lastlogin."' WHERE email='".$request['email']."'";
@@ -114,8 +123,6 @@ abstract class Model {
       }
 
     }catch(PDOException $e){
-      debug($e->getMessage());
-      die();
       return $e->getMessage();
     }
     
