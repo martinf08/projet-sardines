@@ -1,34 +1,34 @@
+<?php 
+    $prefix = $prefix ?? ''; # corrige les liens pour la page profil (prefix = '../' si on se trouve dans profil)
+?>
 
 <nav style="background:#ccc;">
-    <?php 
-    # debug, à nettoyer
-    #if(isset($_SESSION['user'])) print_r($_SESSION['user']); ?>
     <ul>
-        <li><a href="index">Accueil</a></li>
+        <li><a href="<?= $prefix ?>index">Accueil</a></li>
 
         <?php if (!isset($_SESSION['islog'])): ?>
-            <li><a href="inscription">S'inscrire</a></li>
+            <li><a href="<?= $prefix ?>inscription">S'inscrire</a></li>
         <?php elseif ($_SESSION['islog'] == false): ?>
-            <li><a href="connexion">Se connecter</a></li>
+            <li><a href="<?= $prefix ?>connexion">Se connecter</a></li>
         <?php endif; ?>
 
         <?php 
             if (!empty($_SESSION['user'])):
             if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()):
         ?>
-            <li><a href="ajout">Ajouter du matériel</a></li>
+            <li><a href="<?= $prefix ?>ajout">Ajouter du matériel</a></li>
         <?php
             endif; 
             endif; 
         ?>
 
         <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] == true): ?>
-            <li><a href="profil/<?= $_SESSION['user']->getIdentifier(); ?>">Voir mes informations</a></li>
-            <li><a href="exit">Me déconnecter</a></li>
+            <li><a href="<?= $prefix ?>profil/<?= $_SESSION['user']->getIdentifier(); ?>">Voir mes informations</a></li>
+            <li><a href="<?= $prefix ?>exit">Me déconnecter</a></li>
         <?php endif; ?>
 
-        <li><a href="#">F.A.Q. (c'est quoi ?)</a></li>
-        <li><a href="#">Mentions légales</a></li>
+        <li><a href="<?= $prefix ?>#">F.A.Q. (c'est quoi ?)</a></li>
+        <li><a href="<?= $prefix ?>#">Mentions légales</a></li>
     </ul>
 
 </nav>

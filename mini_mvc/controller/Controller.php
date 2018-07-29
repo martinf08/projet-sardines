@@ -45,6 +45,9 @@ class Controller
         if (isset($identifier)) {
             $userManager = new UserManager();
             $user = new User($userManager->getUser($identifier));
+
+            $prefix = '../'; # petit cheat pour réparer les liens du menu dans cette vue
+
             require_once './view/profil.php';
         } else {
             header('Location: index');
