@@ -1,12 +1,16 @@
 .view {
     height: 100vh;
 }
-.view:first-child {
-    padding-top: 80px;
-}
-#test-bar {
-    background-color: red;
+
+#basket-bar {
+    background-color: lightgreen;
     height: 80px;
     width: 100%;
-    position: fixed;
+}
+.fixed {
+position: fixed;
+    top: 0;
+}
+.not-fixed {
+    position: relative;
 }

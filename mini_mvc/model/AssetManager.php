@@ -20,7 +20,7 @@ class AssetManager extends Model
 
         if ($this->getValueWithQandT($asset) || $this->getValueWithQandT($asset) == "") { //Recovery the value
             $value = $asset->getValue();
-            $asset->setIdStaff(1235); //Fake staff
+            $asset->setIdStaff($_SESSION['user']->getId_user()); //id staff
             $description = $asset->getDescription(); //:description
             $tag = $asset->getTag(); //:tag
             $idType = $asset->getIdType(); //:id_type
@@ -55,9 +55,9 @@ class AssetManager extends Model
                         $req2->bindParam(':tag', $tag);
                         $req2->execute();
                         $asset->setId((int)$req2->fetch()['id_asset']);
-                        $this->setIdTypeToName($asset); //Recovery name of type
-                        $this->setIdQualityToName($asset); //Recovery name of quality
-                        $this->setIdUserToEmail($asset); //Recovery email of user id
+                        $this->setIdTypeByName($asset); //Recovery name of type
+                        $this->setIdQualityByName($asset); //Recovery name of quality
+                        $this->setIdUserbyEmail($asset); //Recovery email of user id
                         $this->setEntryDateById($asset); ////Recovery and set Entry_date in object
                         $_SESSION['lastAsset'] = $asset;
 
@@ -107,7 +107,7 @@ class AssetManager extends Model
         }
     }
 
-    public function setIdTypeToName(Asset $asset)
+    public function setIdTypeByName(Asset $asset)
     {
         $id = $asset->getId();
         if ($id != null) {
@@ -121,7 +121,7 @@ class AssetManager extends Model
         }
     }
 
-    public function setIdQualityToName(Asset $asset)
+    public function setIdQualityByName(Asset $asset)
     {
         $id = $asset->getId();
         if ($id != null) {
@@ -135,7 +135,7 @@ class AssetManager extends Model
         }
     }
 
-    public function setIdUserToEmail(Asset $asset)
+    public function setIdUserByEmail(Asset $asset)
     {
         $idUser = $asset->getIdUser();
         if ($idUser != null) {
@@ -148,6 +148,19 @@ class AssetManager extends Model
             }
         }
     }
+    /*public function setIdStaffByEmail(Asset $asset)
+    {
+        $idUser = $asset->getIdStaff();
+        if ($idUser != null) {
+            $req = $this->dbConnect()->prepare('SELECT id_user FROM user WHERE identifier = :id');
+            $req->bindParam(':id', $idUser);
+            $req->execute();
+            $result = $req->fetch()['email'];
+            if ($result) {
+                $asset->setUserEmail($result);
+            }
+        }
+    }*/
 
     public function checkRandomTag(Asset $asset)
     {

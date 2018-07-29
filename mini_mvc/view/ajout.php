@@ -14,7 +14,7 @@ $title = 'Ajouter un matériel';
 <?php ob_start(); ?>
 
 <main>
-    <nav id="test-bar"></nav>
+    <div id="basket-bar"></div>
 <?php if(isset($result)) { print_r($result); } ?>
     <!-- Main -->
     <form action="insertAsset" method="post">
@@ -74,7 +74,7 @@ $title = 'Ajouter un matériel';
     <?php endforeach; ?>
     <br /> <!-- détails sur l'état du matos -->
 
-    <textarea name="description" id="details" cols="30" rows="10">Infos supplémentaires (Optionnel)</textarea>
+    <textarea name="description" id="details" cols="30" rows="10" placeholder="Infos supplémentaires (Optionnel)"></textarea>
 
     <br /> <!-- Récuperer la valeur de la récompense -->
 
@@ -87,7 +87,7 @@ $title = 'Ajouter un matériel';
     </form>
 </main>
 
-
+<script src="/projet-sardines/mini_mvc/js/getvalue.js"></script>
 <script src="/projet-sardines/mini_mvc/js/insert_asset_process.js"></script>
 
 
