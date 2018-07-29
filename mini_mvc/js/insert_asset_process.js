@@ -42,14 +42,14 @@
                     response.innerHTML = xhttp.responseText;
                     if (xhttp.responseText != '<p>Cet utilisateur n\'existe pas</p>') {
                         setTimeout(function () {
-                            smoothScroll(views[1], 60);
+                            smoothScroll(1, 60);
                             divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
                         }, 2000);
                         //Types
                         for (let i = 0; i < types.length; i++) {
                             types[i].addEventListener('click', function (e) {
                                 setTimeout(function () {
-                                    smoothScroll(views[2], 60);
+                                    smoothScroll(2, 60);
                                     divType.innerHTML = '<p>Type : ' + e.target.nextElementSibling.textContent + '</p>';
                                 }, 2000);
                             });
@@ -87,11 +87,12 @@
         }
     });
     //Smooth scroll
-    function smoothScroll(target, speed_millisecond) {
+    function smoothScroll(nb_viewport, speed_millisecond) {
         let scrollPage = window.pageYOffset;
-        let range = target.offsetTop - nav.clientHeight * 2;
+        let target = window.innerHeight;
+        let range = target * nb_viewport + nav.clientHeight;
         let speed = range / speed_millisecond;
-        let i = 0 + scrollPage;
+        let i = scrollPage;
         setInterval(function () {
 
             if (i <= range) {
