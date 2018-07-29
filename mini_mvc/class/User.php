@@ -1,8 +1,7 @@
-
 <?php
-
 	
-    class User{
+	class User
+	{
         private $id_user;
         private $nickname;
         private $identifier;
@@ -20,8 +19,7 @@
 		public function __construct($userdatas)
 		{
 			//Hydrate
-			if($userdatas){
-
+			if ($userdatas){
 				foreach ($userdatas as $key => $value) {
 					$method = 'set' . ucfirst($key);
 					if (method_exists($this, $method)) {
@@ -38,8 +36,8 @@
         public function getId_user()
         {
                 return $this->id_user;
-        }
-
+		}
+		
         /**
          * Set the value of id_user
          *
@@ -47,19 +45,20 @@
          */ 
         public function setId_user($id_user)
         {
-                $this->id_user = $id_user;
-
+			if (isset($id_user) AND !empty($id_user) AND (int)$id_user) {
+				$this->id_user = $id_user;
                 return $this;
-        }
-
+			}
+		}
+		
         /**
          * Get the value of nickname
          */ 
         public function getNickname()
         {
                 return $this->nickname;
-        }
-
+		}
+		
         /**
          * Set the value of nickname
          *
@@ -67,19 +66,23 @@
          */ 
         public function setNickname($nickname)
         {
-                $this->nickname = $nickname;
-
+			if (isset($nickname) AND !empty($nickname) AND is_string($nickname)) {
+				$this->nickname = $nickname;
                 return $this;
-        }
-
+			} else {
+				$this->nickname = '';
+                return $this;
+			}
+		}
+		
         /**
          * Get the value of identifier
          */ 
         public function getIdentifier()
         {
                 return $this->identifier;
-        }
-
+		}
+		
         /**
          * Set the value of identifier
          *
@@ -87,11 +90,12 @@
          */ 
         public function setIdentifier($identifier)
         {
-                $this->identifier = $identifier;
-
+			if (isset($identifier) AND !empty($identifier) AND is_string($identifier)) {
+				$this->identifier = $identifier;
                 return $this;
-        }
-
+			}
+		}
+		
 		/**
 		 * Get the value of email
 		 */ 
@@ -107,9 +111,10 @@
 		 */ 
 		public function setEmail($email)
 		{
+			if (isset($email) AND !empty($email) AND is_string($email)) {
 				$this->email = $email;
-
 				return $this;
+			}
 		}
 
 		/**
@@ -127,9 +132,10 @@
 		 */ 
 		public function setLast_login($last_login)
 		{
+			if (isset($last_login) AND !empty($last_login)) {
 				$this->last_login = $last_login;
-
 				return $this;
+			}
 		}
 
 		/**
@@ -147,9 +153,10 @@
 		 */ 
 		public function setPassword($password)
 		{
+			if (isset($password) AND !empty($password)) {
 				$this->password = md5($password);
-
 				return $this;
+			}	
 		}
 
 		/**
@@ -167,9 +174,10 @@
 		 */ 
 		public function setAvatar($avatar)
 		{
+			if (isset($avatar) AND !empty($avatar)) {
 				$this->avatar = $avatar;
-
 				return $this;
+			}
 		}
 
 		/**
@@ -187,9 +195,10 @@
 		 */ 
 		public function setAccount_status($account_status)
 		{
+			if (isset($account_status) AND !empty($account_status) AND is_numeric($account_status)) {
 				$this->account_status = $account_status;
-
 				return $this;
+			}
 		}
 
 		/**
@@ -199,7 +208,7 @@
 		{
 				return $this->staff;
 		}
-
+		
 		/**
 		 * Set the value of staff
 		 *
@@ -207,9 +216,10 @@
 		 */ 
 		public function setStaff($staff)
 		{
+			if (isset($staff) AND !empty($staff) AND is_numeric($staff)) {
 				$this->staff = $staff;
-
 				return $this;
+			}
 		}
 
 		/**
@@ -227,9 +237,10 @@
 		 */ 
 		public function setAdmin($admin)
 		{
+			if (isset($admin) AND !empty($admin) AND is_numeric($admin)) {
 				$this->admin = $admin;
-
 				return $this;
+			}
 		}
 
 		/**
@@ -247,9 +258,10 @@
 		 */ 
 		public function setBalance($balance)
 		{
+			if (isset($balance)) {
 				$this->balance = $balance;
-
 				return $this;
+			}	
 		}
 
 		/**
@@ -267,9 +279,10 @@
 		 */ 
 		public function setAccount_creation_date($account_creation_date)
 		{
+			if (isset($account_creation_date) AND !empty($account_creation_date)) {
 				$this->account_creation_date = $account_creation_date;
-
 				return $this;
+			}	
 		}
 
 		/**
@@ -287,9 +300,9 @@
 		 */ 
 		public function setConfirmPassword($confirmPassword)
 		{
+			if (isset($confirmPassword) AND !empty($confirmPassword)) {
 				$this->confirmPassword = md5($confirmPassword);
-
 				return $this;
+			}	
 		}
    }
-?>
