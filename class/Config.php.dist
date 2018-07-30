@@ -1,0 +1,12 @@
+<?php
+
+class Config 
+{ 
+    public static $config = array( 
+                            'host'=> 'nom du serveur', 
+                            'db'=> 'nom de la bdd', 
+                            'username'=> 'le username', 
+                            'password'=> 'le mdp' ); 
+    
+    public static $ghost = 'email@mail.com';
+}
