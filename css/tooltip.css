@@ -1,0 +1,42 @@
+/* j'ai créé ce fichier pour inclure un tooltip
+    dans la page d'inscription
+    Le tooltip sert à informer que le mdp doit être de 6 caractères
+    au minimum. Si tu préfères donner cette info dans le label ou en
+    placeholder, on peut supprimer le tooltip, sinon tu peux arranger son style
+    Kévin    
+*/
+
+.form-input {
+    position: relative;
+}
+
+.tooltip {
+    display: none;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip.show {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.3s;
+}

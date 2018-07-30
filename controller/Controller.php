@@ -80,16 +80,15 @@ class Controller
     #  CONNEXION
     #-------------
 
-    public function logView()
+    public function logView() 
     {
 
         $this->set('title', 'Connexion');
         $this->render('./view/connexion.php');
     }
 
-    public function passForget()
+    public function passForget() 
     {
-
         if (!isset($_POST['email'])) {
 
             $html = '<h2>Mot de passe oublié?</h2>';
@@ -113,9 +112,7 @@ class Controller
                 } else {
 
                 }
-
             }
-
 
             $html = "<h1>Un email vous a été envoyé avec un lien pour réinitialiser votre mot de passe</h1>";
 
@@ -124,8 +121,6 @@ class Controller
         $this->set('title', 'forget');
         $this->set('form', $html);
         $this->render('./view/forgotpassword.php');
-
-
     }
 
     public function logIn()
@@ -147,7 +142,6 @@ class Controller
 
                     echo('Identifiant ou mot de passe incorrect');
                     //header('Location: connexion');
-
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
@@ -177,7 +171,8 @@ class Controller
     {
         session_destroy();
 
-        $this->set('title', 'inscription');
+        $this->set('title','inscription');
+        $this->set('css', 'tooltip');
         $this->render('./view/inscription.php');
     }
 
@@ -198,18 +193,19 @@ class Controller
                     throw new Exception('Impossible d\'ajouter l\'utilisateur !');
                 }
             } else {
-                throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+                 throw new Exception('Il reste des champs à remplir.');
             }
         } else {
             header('Location: index');
         }
     }
 
-    public function emailValidation()
+    public function emailValidation() 
     {
         $userManager = new UserManager();
         $userManager->email_validation();
         require_once './view/validation.php';
+
         if ($userManager->email_validation()) {
             echo 'Compte validé';
         } else {
@@ -307,7 +303,7 @@ class Controller
      * et des données au templete.
      * la vue doit être passé en paramètre
      */
-    public function render($view)
+    public function render($view) # j'ai apporté cette modification pour injecter mon css sur inscription
     {
 
         if (file_exists($view)) {
@@ -317,7 +313,7 @@ class Controller
             $content = ob_get_clean();
             require_once 'view/template.php';
         } else {
-            throw new Exception("la vue demandé d'existe pas");
+            throw new Exception("la vue demandée n'existe pas");
         }
     }
 
