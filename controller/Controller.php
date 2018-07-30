@@ -243,8 +243,7 @@ class Controller
                 } else {
                     $_SESSION['islog'] = false;
 
-                    echo('Identifiant ou mot de passe incorrect');
-                    //header('Location: connexion');
+                    throw new Exception('Identifiant ou mot de passe incorrect');
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
@@ -398,7 +397,7 @@ class Controller
     #--------------
     public function notFound()
     {
-        echo 'ici, la vue pour page non trouvée';
+        require_once 'view/notfound.php';
     }
 
     /** E2
