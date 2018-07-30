@@ -82,45 +82,132 @@ class Controller
          $this->set('title','Connexion');
          $this->render('./view/connexion.php');
     }
-    public function passForget(){
+    public function passForget($request = null){
 
-        if (!isset($_POST['email'])){
+        $error ="";
+        $code_recover = false;
+        $model = new UserManager();
 
-            $html = '<h2>Mot de passe oublié?</h2>';
-            $html .= '<p>Vous pouvez réinitialiser votre mot de passe ici.</p>';
-            $html .= '<div>';
-            $html .= '<form  role="form" action="forget" autocomplete="off" class="" method="post">';
-            $html .= '<div class="">';
-            $html .= '<input id="email" name="email_recuperation" placeholder="adresse email" class="form-control"  type="email" required>';
-            $html .= '</div>';
-            $html .= '<div>';
-            $html .= '<input name="recover_submit" class="btn btn-lg btn-primary btn-block" value="Enoyer" type="submit">';
-            $html .= '</div>';
-            $html .= '</form></div>';
+    
+        
+  
+        if (!isset($_POST['email_recuperation'])){
 
         }else{
-            //récupération du mail 
-
             if(isset($_POST['recover_submit'],$_POST['email_recuperation'])){
+                
                 if(!empty($_POST['email_recuperation'])){
+                    $email = htmlspecialchars($_POST['email_recuperation']);
+                    if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+                        //check if the email exit
+                        $user = $model->UserChecker($email);
+                      
+                        if($user){
+                            $_SESSION['email_recuperation'] = $email;
+                            $code = "";
+                            for($i=0; $i <8; $i++){
+                                $code .= md5(mt_rand(0,9));
+                            }
+                                $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
+                                $pre->execute(array(':email'=> $email));
+                                $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
 
-                }else{
+                            if($reponse){
+                                $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET code = :code WHERE email =:email");
+                                $pre->execute(array(':code'=> $code,':email'=> $email));
+                            }else{
+                                $pre = $model->dbConnect()->prepare("INSERT INTO recovery_password(code,email) VALUES (?,?)");
+                                $pre->execute(array($code,$email));
+                            }
+                           
+    
+                            $to = $_SESSION['email_recuperation'];
+                            $subject = "Récupération de mot de passe";
+                            
+                            $message = "
+                            <html>
+                                <head>
+                                    <title>HTML email</title>
+                                </head>
+                                <body>
+                                    Cliquez sur <a href='http://localhost/projet-sardines/forget?section=code&code='.$code.'>ici</a>
+                                    pour réinitialiser votre mot de passe
+                                </body>
+                            </html>
+                            ";
+                            
+                            // Always set content-type when sending HTML email
+                            $headers  = "MIME-Version: 1.0" . "\r\n";
+                            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                            $headers .="content-Transfer-Encoding: 8bit";
+                            // More headers
+                            $headers .= 'From:"eudes"eudes<@ici08.fr>' . "\r\n";
                     
-                }
+            
+                            mail($to,$subject,$message,$headers);
+                            //header(location );
+                        }else{
+                            $error = "Cette adresse email n'est pas enregistrée";
+                        }
 
+                    }else{
+                        $error = "Adresse email non valide";
+                    }
+                }else{
+                    $error ="Veuillez entrer votre adresse email";
+                }  
             }
-
-
-
-
-            $html="<h1>Un email vous a été envoyé avec un lien pour réinitialiser votre mot de passe</h1>";
-
+      
         }
 
-        $this->set('title','forget');
-        $this->set('form',$html);
-        $this->render('./view/forgotpassword.php');
+        
+        if(isset($request)){
+            $request = htmlspecialchars($request);
+            $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email AND code =:code");
+            $pre->bindParam(':email', $_SESSION['email_recuperation']);
+            $pre->bindParam(':code',$request);
+            $pre->execute();
+            $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
+     
+            if($reponse){
+                $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
+                $pre->execute(array($_SESSION['email_recuperation']));
+                $code_recover = true;
+            }else{
+                $code_recover = false;
+                $error = "Modification de mot de passe impossible"; 
+            }
+        }
+        if(isset($_POST['submitNewpassword'])){
+            if(isset($_POST['newPasseword'],$_POST['confirmNewpasseword'])){
+                $newPasseword = htmlspecialchars($_POST['newPasseword']);
+                $confirmNewpasseword = htmlspecialchars($_POST['confirmNewpasseword']);
+                if(!empty($newPasseword) AND !empty($confirmNewpasseword)){
+                    if($newPasseword === $confirmNewpasseword){
+                        $newPasseword = md5($newPasseword);
+                        //update
+                        $pre = $model->dbConnect()->prepare("UPDATE user SET password= ? WHERE email = ?");
+                        $pre->execute(array( $newPasseword,$_SESSION['email_recuperation']));
+                        $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
+                        $pre->execute(array(':email'=>$_SESSION['email_recuperation']));
+                         header("location: connexion");
+                    }else{
+                        $error = "Vos deux mots de passe ne sont pas identiques";
+                    }
+                }else{
+                    $error = "Veuiller remplir tous les champs";
+                }
 
+            }else{
+                $error = "Veuiller remplir tous les champs";
+            }
+        }
+            
+
+        $this->set('title','forget');
+        $this->set('errors',$error);
+        $this->set('code_recover',$code_recover);
+        $this->render('./view/forgotpassword.php');
 
     }
 
