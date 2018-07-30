@@ -3,7 +3,7 @@
 # CONTRÔLE DE L'ACCÈS
 if (!isset($_SESSION['user'])) {
     header('Location: index');
-} elseif ($_SESSION['user']->getStaff() == false AND $_SESSION['user']->getAdmin() == false) {
+} elseif ($_SESSION['user']->getStaff() == false) {
     header('Location: index');
 }
 

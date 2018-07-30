@@ -1,5 +1,5 @@
 <?php 
-    $prefix = $prefix ?? ''; # corrige les liens pour la page profil (prefix = '../' si on se trouve dans profil)
+    $prefix = $prefix ?? ''; # corrige les liens pour la page profil (prefix = '../' si on se trouve dans profil ou forget)
 ?>
 
 <nav style="background:#ccc;">
@@ -14,7 +14,7 @@
 
         <?php 
             if (!empty($_SESSION['user'])):
-            if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()):
+            if ($_SESSION['user']->getStaff()):
         ?>
             <li><a href="<?= $prefix ?>ajout">Ajouter du matériel</a></li>
         <?php
