@@ -1,4 +1,8 @@
 # projet-sardines
+**Application née de la collaboration entre l'association HackArdennes et la fabrique de développeurs Simplon Charleville !**
+*@HackArdennes*
+*@Simplon08*
+
 
 La présente application sera exploitée au festival du Cabaret Vert de Charleville-Mézières pour inciter les festivaliers-campeurs à échanger leur matériel de camping contre un token intitulé 'sardine' plutôt que de laisser ce matériel à l'abandon à la fin du festival.
 
