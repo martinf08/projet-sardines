@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/connexion.css">
     <link rel="stylesheet" href="css/insert-test.css">
+    <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
+        <link rel="stylesheet" href="css/<?= $css ?>.css">
+    <?php endif; ?>
 </head>
 <body>
     <?php
@@ -39,8 +42,9 @@
     <footer>
         <!-- Footer -->
     </footer>
-</body>
 
+    <!-- plus utilisés ? ils se trouvent maintenant dans bazar
 <script src="js/verif_form.js"></script>
-<script src="js/inscription.js"></script>
+<script src="js/inscription.js"></script> -->
+</body>
 </html>
