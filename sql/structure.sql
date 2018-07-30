@@ -109,14 +109,10 @@ CREATE TABLE `user` (
 
 CREATE TABLE `recovery_password`
 (
-  `id` int
-(11) NOT NUL,
-  `email` varchar
-(100) NOT NULL,
-  `code` varchar
-(100) NOT NULL,
-  `confirm` int
-(11) NOT NULL DEFAULT '0'
+  `id` int(11) NOT NUL,
+  `email` varchar(100) NOT NULL,
+  `code` varchar(100) NOT NULL,
+  `confirm` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Indexes for table `recovery_password`
