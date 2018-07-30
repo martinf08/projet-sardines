@@ -39,8 +39,9 @@
     <footer>
         <!-- Footer -->
     </footer>
-</body>
 
+    <!-- plus utilisés ? ils se trouvent maintenant dans bazar
 <script src="js/verif_form.js"></script>
-<script src="js/inscription.js"></script>
+<script src="js/inscription.js"></script> -->
+</body>
 </html>
