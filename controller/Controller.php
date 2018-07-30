@@ -109,9 +109,12 @@ class Controller
                         if($user){
                             $_SESSION['email_recuperation'] = $email;
                             $code = "";
+                            $sending_code ="";
                             for($i=0; $i <8; $i++){
-                                $code .= md5(mt_rand(0,9));
+                                $sending_code .=  mt_rand(0,9);
                             }
+                                debug($sending_code);
+                                $code .= md5($sending_code);
                                 $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
                                 $pre->execute(array(':email'=> $email));
                                 $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
@@ -166,13 +169,22 @@ class Controller
 
         
         if(isset($request)){
-            $request = htmlspecialchars($request);
-            $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email AND code =:code");
-            $pre->bindParam(':email', $_SESSION['email_recuperation']);
-            $pre->bindParam(':code',$request);
-            $pre->execute();
-            $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
-     
+         
+            try{
+                $request = md5(htmlspecialchars($request));
+                $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email AND code =:code");
+                $pre->bindParam(':email', $_SESSION['email_recuperation']);
+                $pre->bindParam(':code',$request);
+                $pre->execute();
+                $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
+            debug($request);
+            debug($_SESSION['email_recuperation']);
+
+            }catch (Exception $e) {
+                 debug($e);
+            }
+           
+        
             if($reponse){
                 $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
                 $pre->execute(array($_SESSION['email_recuperation']));
@@ -182,6 +194,8 @@ class Controller
                 $error = "Modification de mot de passe impossible"; 
             }
         }
+
+
         if(isset($_POST['submitNewpassword'])){
             if(isset($_POST['newPasseword'],$_POST['confirmNewpasseword'])){
                 $newPasseword = htmlspecialchars($_POST['newPasseword']);
@@ -194,7 +208,8 @@ class Controller
                         $pre->execute(array( $newPasseword,$_SESSION['email_recuperation']));
                         $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
                         $pre->execute(array(':email'=>$_SESSION['email_recuperation']));
-                         header("location: connexion");
+                         header("location: ../connexion");
+                         die();
                     }else{
                         $error = "Vos deux mots de passe ne sont pas identiques";
                     }

@@ -5,10 +5,10 @@
 
   <form  role="form" action="forget" autocomplete="off" class="" method="post">
       <div class="">
-        <input id="newPasseword" name="newPasseword" placeholder="nouveau mot de passe" class="form-control"  type="email">
+        <input id="newPasseword" name="newPasseword" placeholder="nouveau mot de passe" class="form-control"  type="password">
       </div>
       <div class="">
-        <input id="confirmNewpasseword" name="confirmNewpasseword" placeholder="confirmer votre nouveau mot de passe" class="form-control"  type="email">
+        <input id="confirmNewpasseword" name="confirmNewpasseword" placeholder="confirmer votre nouveau mot de passe" class="form-control"  type="password">
       </div>
       <div>
         <input name="submitNewpassword" class="btn btn-lg btn-primary btn-block" value="Enoyer" type="submit">
