@@ -194,7 +194,7 @@ class Controller
                     throw new Exception('Impossible d\'ajouter l\'utilisateur !');
                 }
             } else {
-                 throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+                 throw new Exception('Il reste des champs à remplir.');
             }
         } else {
             header('Location: index');
