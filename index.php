@@ -33,16 +33,11 @@ try
     $router->setRoute('donner', 'dropGear');
     $router->setRoute('forget', 'passForget');
     $router->setRoute('accountUpdate', 'accountUpdate');
-  
-    
-
-  
 
     $router->execute();
 }
 catch(Exception $e)
 {
   $errorMessage = $e->getMessage();
-  echo $errorMessage;
-  # require_once 'view/erreur'; cette vue n'existe pas encore
+  require_once 'view/erreur.php';
 }
