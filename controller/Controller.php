@@ -77,14 +77,16 @@ class Controller
     #  CONNEXION
     #-------------
 
-    public function logView(){
+    public function logView() 
+    {
 
          $this->set('title','Connexion');
          $this->render('./view/connexion.php');
     }
-    public function passForget(){
 
-        if (!isset($_POST['email'])){
+    public function passForget() 
+    {
+        if (!isset($_POST['email'])) {
 
             $html = '<h2>Mot de passe oublié?</h2>';
             $html .= '<p>Vous pouvez réinitialiser votre mot de passe ici.</p>';
@@ -98,7 +100,7 @@ class Controller
             $html .= '</div>';
             $html .= '</form></div>';
 
-        }else{
+        } else {
             //récupération du mail 
 
             if(isset($_POST['recover_submit'],$_POST['email_recuperation'])){
@@ -107,11 +109,7 @@ class Controller
                 }else{
                     
                 }
-
             }
-
-
-
 
             $html="<h1>Un email vous a été envoyé avec un lien pour réinitialiser votre mot de passe</h1>";
 
@@ -120,8 +118,6 @@ class Controller
         $this->set('title','forget');
         $this->set('form',$html);
         $this->render('./view/forgotpassword.php');
-
-
     }
 
     public function logIn()
@@ -143,7 +139,6 @@ class Controller
 
                     echo('Identifiant ou mot de passe incorrect');
                     //header('Location: connexion');
-
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
@@ -174,13 +169,14 @@ class Controller
         session_destroy();
 
         $this->set('title','inscription');
-        $this->render('./view/inscription.php');
+        $this->set('css', 'tooltip');
+        $this->render('./view/inscription.php', 'tooltip');
     }
 
     public function insertUser()
     {
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
-            if ($_POST['email']!="" && $_POST['password']!="" && $_POST['confirmPassword']!=""){
+            if ($_POST['email']!="" && $_POST['password']!="" && $_POST['confirmPassword']!="") {
                 $userManager = new UserManager(); // Création d'un objet
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
@@ -201,10 +197,12 @@ class Controller
         }
     }
 
-    public function emailValidation() {
+    public function emailValidation() 
+    {
         $userManager = new UserManager();
         $userManager->email_validation();
         require_once './view/validation.php';
+
         if ($userManager->email_validation()) {
             echo 'Compte validé';
         }
@@ -302,7 +300,7 @@ class Controller
      * et des données au templete.
      * la vue doit être passé en paramètre
      */
-    public function render($view)
+    public function render($view) # j'ai apporté cette modification pour injecter mon css sur inscription
     {
 
         if (file_exists($view)) {
@@ -313,7 +311,7 @@ class Controller
             require_once 'view/template.php';
         }
         else {
-            throw new Exception("la vue demandé d'existe pas");
+            throw new Exception("la vue demandée n'existe pas");
         }
     }
 
