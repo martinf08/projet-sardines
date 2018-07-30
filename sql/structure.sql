@@ -101,6 +101,27 @@ CREATE TABLE `user` (
   `staff` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+
+--
+-- Table structure for table `recovery_password`
+--
+
+CREATE TABLE `recovery_password`
+(
+  `id` int
+(11) NOT NUL,
+  `email` varchar
+(100) NOT NULL,
+  `code` varchar
+(100) NOT NULL,
+  `confirm` int
+(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Indexes for table `recovery_password`
+--
+
 --
 -- Index pour les tables déchargées
 --
@@ -140,8 +161,19 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
+-- Index pour la table `recovery_password`
+--
+ALTER TABLE `recovery_password`
+ADD PRIMARY KEY(`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
+--
+-- AUTO_INCREMENT pour la table `asset`
+--
+ALTER TABLE `recovery_password`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `asset`

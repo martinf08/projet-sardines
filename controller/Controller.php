@@ -176,10 +176,6 @@ class Controller
                 $pre->bindParam(':email', $_SESSION['email_recuperation']);
                 $pre->bindParam(':code',$request);
                 $pre->execute();
-                $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
-            debug($request);
-            debug($_SESSION['email_recuperation']);
-
             }catch (Exception $e) {
                  debug($e);
             }
