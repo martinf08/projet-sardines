@@ -87,8 +87,8 @@ $title = 'Ajouter un matériel';
     </form>
 </main>
 
-<script src="/projet-sardines/mini_mvc/js/getvalue.js"></script>
-<script src="/projet-sardines/mini_mvc/js/insert_asset_process.js"></script>
+<script src="js/getvalue.js"></script>
+<script src="js/insert_asset_process.js"></script>
 
 
 <?php $content = ob_get_clean(); ?>
