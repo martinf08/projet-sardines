@@ -311,7 +311,7 @@ class Controller
     public function newAsset()
     {
         if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôle du droit d'accès
-            if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
+            if ($_SESSION['user']->getStaff()) {
                 $assetManager = new AssetManager();
                 # passer ici les valeurs des champs des radios pour la vue
                 $types = $assetManager->getAll('type');
@@ -336,7 +336,7 @@ class Controller
     public function insertAsset()
     {
         if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
-            if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
+            if ($_SESSION['user']->getStaff()) {
                 if (isset($_POST) && !empty($_POST)) {
                     $post = $_POST;
                     $assetManager = new AssetManager();
