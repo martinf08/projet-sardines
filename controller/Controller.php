@@ -51,24 +51,27 @@ class Controller
             require_once './view/profil.php';
         } else {
             header('Location: index');
-        }     
+        }
     }
 
-    public function accountUpdate() # PAS ENCORE CODÉ
+    public function accountUpdate($post) # PAS ENCORE CODÉ
     {
-        if(isset($_POST['submit-account'])) { # vérifie que le submit ayant le name convenu sur la vue profil existe
+        if (isset($_POST['submit-account'])) { # vérifie que le submit ayant le name convenu sur la vue profil existe
+
             $userManager = new UserManager();
-        
-            # requête
-
-            if($reponse) {
-                $identifier = $_SESSION['user']['identifier'];
-                header("Location: account/$identifier");
-            } else {
-
-                throw new Exception('Échec de modification du champ !');
+            if (strtolower($userManager->getEmailUserByIdentifier($_SESSION['user']) == $_SESSION['user']->getEmail())) {
+                if (isset($_POST['pseudo_account']) && !empty($_POST['pseudo_account'])) {
+                    if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
+                        $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{3,25}#";
+                        if (preg_match($regex, $_POST['pseudo_account'])) {
+                            $_SESSION['user']->setNickname($_POST['pseudo_account']);
+                            $userManager->updatePseudo($_SESSION['user']);
+                            header('Location: profil/'.$_SESSION['user']->getIdentifier());
+                        }
+                    }
+                }
             }
-        } else { # sinon l'user n'a rien à faire là
+        } else {
             header('Location: index');
         }
     }
@@ -80,8 +83,8 @@ class Controller
     public function logView() 
     {
 
-         $this->set('title','Connexion');
-         $this->render('./view/connexion.php');
+        $this->set('title', 'Connexion');
+        $this->render('./view/connexion.php');
     }
 
     public function passForget() 
@@ -103,39 +106,39 @@ class Controller
         } else {
             //récupération du mail 
 
-            if(isset($_POST['recover_submit'],$_POST['email_recuperation'])){
-                if(!empty($_POST['email_recuperation'])){
+            if (isset($_POST['recover_submit'], $_POST['email_recuperation'])) {
+                if (!empty($_POST['email_recuperation'])) {
 
-                }else{
-                    
+                } else {
+
                 }
             }
 
-            $html="<h1>Un email vous a été envoyé avec un lien pour réinitialiser votre mot de passe</h1>";
+            $html = "<h1>Un email vous a été envoyé avec un lien pour réinitialiser votre mot de passe</h1>";
 
         }
 
-        $this->set('title','forget');
-        $this->set('form',$html);
+        $this->set('title', 'forget');
+        $this->set('form', $html);
         $this->render('./view/forgotpassword.php');
     }
 
     public function logIn()
     {
         if (isset($_POST['email'])) { # est-ce que l'user est passé par le formulaire de logView ? sinon redirection
-            if($_POST['email']!="" || $_POST['password']!=""){
+            if ($_POST['email'] != "" || $_POST['password'] != "") {
 
                 $userManager = new UserManager(); // Création d'un objet
                 $user = new User($_POST);
                 $reponse = $userManager->logIn($user);
 
-                if ($reponse){
-                    $_SESSION['islog']=true;
+                if ($reponse) {
+                    $_SESSION['islog'] = true;
 
-                    $this->set('title','Les Sardines');
+                    $this->set('title', 'Les Sardines');
                     $this->render('./view/donner.php');
                 } else {
-                    $_SESSION['islog']=false;
+                    $_SESSION['islog'] = false;
 
                     echo('Identifiant ou mot de passe incorrect');
                     //header('Location: connexion');
@@ -153,11 +156,11 @@ class Controller
 
     public function logOut()
     {
-        $_SESSION['user']="";
-        $_SESSION['islog']= 0;
+        $_SESSION['user'] = "";
+        $_SESSION['islog'] = 0;
 
         header('Location: index');
-        $this->set('title','index');
+        $this->set('title', 'index');
         $this->render('./view/index.php');
     }
 
@@ -170,20 +173,20 @@ class Controller
 
         $this->set('title','inscription');
         $this->set('css', 'tooltip');
-        $this->render('./view/inscription.php', 'tooltip');
+        $this->render('./view/inscription.php');
     }
 
     public function insertUser()
     {
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
-            if ($_POST['email']!="" && $_POST['password']!="" && $_POST['confirmPassword']!="") {
+            if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "") {
                 $userManager = new UserManager(); // Création d'un objet
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
 
                 if ($reponse) {
                     header("Location: connexion");
-                    $this->set('title','Connexion');
+                    $this->set('title', 'Connexion');
                     $this->render('./view/connexion.php');
 
                 } else {
@@ -205,8 +208,7 @@ class Controller
 
         if ($userManager->email_validation()) {
             echo 'Compte validé';
-        }
-        else {
+        } else {
             echo 'Erreur lors de la validation';
         }
     }
@@ -241,7 +243,7 @@ class Controller
 
     public function insertAsset()
     {
-        if (isset($_SESSION['user']) AND !empty($_SESSION['user']) ) { # contrôler que la méthode est accédée uniquement par un staff ou admin
+        if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
             if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
                 if (isset($_POST) && !empty($_POST)) {
                     $post = $_POST;
@@ -291,7 +293,8 @@ class Controller
     #--------------
     #  ERREUR 404
     #--------------
-    public function notFound() {
+    public function notFound()
+    {
         echo 'ici, la vue pour page non trouvée';
     }
 
@@ -309,8 +312,7 @@ class Controller
             require($view);
             $content = ob_get_clean();
             require_once 'view/template.php';
-        }
-        else {
+        } else {
             throw new Exception("la vue demandée n'existe pas");
         }
     }
@@ -322,12 +324,12 @@ class Controller
      * exemple : $this->set('user',$user);
      * utilisation dans la vue --> <?php echo $user->id_user ?>
      */
-    public function set ($key, $value=null)
+    public function set($key, $value = null)
     {
-        if(is_array($key)){
-            $this->vars +=$key;
-        }else{
-            $this->vars[$key] =$value;
+        if (is_array($key)) {
+            $this->vars += $key;
+        } else {
+            $this->vars[$key] = $value;
         }
         return $this;
     }

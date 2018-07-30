@@ -9,7 +9,6 @@
 <!-- je suppose que les valeurs seront récupérées dans l'objet user et pas dans la session -->
 
 <div id="avatar-field">
-
     <?php if(!empty($user->getAvatar())): ?>
         <div id="avatar" style="background-image: url('../css/img/<?= $user->getAvatar(); ?>');"></div><!-- chemin de stockage images par encore défini -->
     <?php else: ?>
@@ -26,14 +25,13 @@
     <?= $user->getBalance(); ?> 
 </span></p>
 
-<form action="accountUpdate" method="post">
+<form action="../accountUpdate" method="post">
     <!-- chaque champ est désactivé pas défaut pour ne montrer que la valeur actuelle -->
     <!-- il faudra cliquer sur le petit crayon qui ciblera son input voisin pour permettre de le réécrire -->
-    <p>Email : <input type="email" name="" id="" value="<?= $user->getEmail(); ?>"> 
-                <span class="write">ici fonticone d'un crayon</span>
+    <p>Email : <span><?= $user->getEmail(); ?></span>
     </p>
-    <p>Pseudo : <input type="text" name="" id="" value="<?= $user->getNickname(); ?>"> 
-                <span class="write">ici fonticone d'un crayon</span>
+    <p>Pseudo : <input type="text" name="pseudo_account" id="pseudo-account" value="<?= $user->getNickname(); ?>">
+        
     </p>
     <input type="submit" name="submit-account" value="Enregistrer">
 </form>
