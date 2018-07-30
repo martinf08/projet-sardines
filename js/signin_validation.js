@@ -8,7 +8,7 @@ const mailReg = /^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$/i;
 
 let okMail = okPass = okConfirm = false;
 
-submit.setAttribute("disabled", "true");
+submit.setAttribute("disabled", "");
 
 // is email
 mail.addEventListener('keyup', function(e) {
@@ -20,6 +20,7 @@ mail.addEventListener('keyup', function(e) {
     } else {
         mail.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
         okMail = false;
+        enable();
     }
 });
 
@@ -38,6 +39,7 @@ pass.addEventListener('keyup', function(e) {
         // lancer un tooltip puisqu'on a pas utilisé le placeholder pour énoncer la règle de 6 minimum (si ça change, on peut le supprimer)
         tooltip.classList.add('show');
         okPass = false;
+        enable();
     }
 });
 
@@ -55,6 +57,7 @@ confirm.addEventListener('keyup', function(e) {
     } else {
         confirm.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
         okConfirm = false;
+        enable();
     }
 });
 
@@ -64,6 +67,7 @@ function enable() {
         submit.removeAttribute("disabled");
         return true;
     } else {
+        submit.setAttribute("disabled", "");
         return false;
     }
 }
