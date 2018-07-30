@@ -14,7 +14,7 @@
 
     <div class="form-input">
         <i class="fas fa-envelope"></i>
-    <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
+    <input type="email" id="email" name="email" placeholder="johndoe@mail.com" required>
 
     </div>
 
@@ -22,20 +22,20 @@
     
     <div class="form-input">
         <i class="fas fa-lock"></i>
-        <input type="password" id="password" name="password" placeholder=".......">
+        <input type="password" id="password" name="password" minlength="6" placeholder="......." required>
     </div>
 
     <br/> <!-- Optionnel -->
 
     <div class="form-input">
         <i class="fas fa-lock"></i>
-        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password">
+        <input type="password" id="confirmPassword" name="confirmPassword" minlength="6" placeholder="Confirm password" required>
     </div>
 
     <br/> <!-- Optionnel -->
 
 
-    <input type="submit" name="submit-signin" value="S'inscrire">
+    <input type="submit" id="submit-signin" name="submit-signin" value="S'inscrire">
 
     <br/> <!-- Optionnel -->
 
@@ -53,4 +53,5 @@
     <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
 </div>
 
+<script src="js/signin_validation.js"></script>
 </main>
