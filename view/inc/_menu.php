@@ -30,5 +30,4 @@
         <li><a href="<?= $prefix ?>#">F.A.Q. (c'est quoi ?)</a></li>
         <li><a href="<?= $prefix ?>#">Mentions légales</a></li>
     </ul>
-
 </nav>

@@ -21,7 +21,6 @@ class Router
         $url = explode('/', $this->getURI());
         $action = $url[0];
         $param = isset($url[1]) && !empty($url[1]) ? $url[1] : NULL;
-
         foreach ($this->_routes as $route) {
             # voir si l'action existe dans _routes et appeler son callback
             if (array_search($action, $route)) {
