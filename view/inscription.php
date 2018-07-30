@@ -23,6 +23,7 @@
     <div class="form-input">
         <i class="fas fa-lock"></i>
         <input type="password" id="password" name="password" minlength="6" placeholder="......." required>
+        <div class="tooltip">entre au minimum 6 caractères</div>
     </div>
 
     <br/> <!-- Optionnel -->
