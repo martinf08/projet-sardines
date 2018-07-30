@@ -2,7 +2,6 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 html{
   font-size: 100%;
-  
 }
 
 @font-face{
@@ -81,7 +80,7 @@ html{
 }
 
 .btn-full-login, .btn-full-signup, .btn-full-donation, .btn-outlined{
-  font-family: 'SourceSansProRegular';
+  font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
   line-height: 0.15;
   letter-spacing: 0.06em;
   color: #fefefe;
@@ -93,7 +92,7 @@ html{
   border: none;
 }
 
-.btn-outlined {
+.btn-outlined{
   width: 218px;
   height: 35px;
   border-radius: 17px;
@@ -104,7 +103,7 @@ html{
   font-size: 18px;
 }  
 
-.btn-outlined:after  {
+.btn-outlined:after{
   content: "";
   position: absolute;
   width: calc(100% - 6px);  
@@ -127,7 +126,7 @@ html{
   width: inherit;
   height: inherit;
   margin: auto;
-  font-family: 'SourceSansProRegular';
+  font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
   line-height: 0.15;
   letter-spacing: 0.06em;
   color: #009688;
@@ -146,12 +145,70 @@ html{
   color: white;
 }
 
-.btn-outlined-next{
-  
+/************** SQUARE WHITE BUTTONS **************/
+
+.btn-white{
+  width: 90px;
+  height: 90px;
+  background-color: #fefefe;
+  -webkit-border-radius: 8px; 
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0, 0.3);
+  margin-left: 20px;  
+}
+
+.btn-white-clicked{
+  width: 90px;
+  height: 90px;
+  background-color: #f4f4f4;
+  border: 1px solid rgb(190, 190, 190);
+  -webkit-border-radius: 8px; 
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 4px 0 rgba(0,0,0, 0.5);
+  margin-left: 20px; 
+}
+
+/************** INPUT FIELDS **************/
+
+input[type=email] {   
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.input{
+  border: 1px solid rgb(233, 230, 230);
+  -webkit-border-radius: 17px; 
+  -moz-border-radius: 17px;
+  border-radius: 17px;
+  width: 203px;
+  height: 35px;
+  background: #0cd18f;  
+  background: -moz-linear-gradient(to right,  rgba(12, 209, 143, 0.3) 20%, rgba(25, 170, 187, 0.3) 100%);
+  background: -webkit-linear-gradient(to right, rgba(12, 209, 143, 0.3) 20%, rgba(25, 170, 187, 0.3) 100%); 
+  background: linear-gradient(to right, rgba(12, 209, 143, 0.3) 20%, rgba(25, 170, 187, 0.3) 100%);
+  font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
+  font-size: 14px;
+  padding-left: 15px;
+  color: #009688;
+}
+
+::placeholder{
+  font-family: 'SourceSansProLight', 'Helvetica', sans-serif;
+  font-size: 14px;
+  color: #009688;
+
+}
+
+.input:focus{
+  border:none;
+  background: rgba(25, 170, 187, 0.1);  
 }
 
 
-/************* FIELDS **************/
+
 
 /*/////////////////////////////  Media Queries //////////////////////////*/
 
