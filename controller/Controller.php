@@ -172,23 +172,23 @@ class Controller
          
             try{
                 $request = md5(htmlspecialchars($request));
-                $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email AND code =:code");
-                $pre->bindParam(':email', $_SESSION['email_recuperation']);
+                $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code',$request);
                 $pre->execute();
+                $reponse  = $pre->fetch()['email'];
+
+                if($reponse){
+                    $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
+                    $pre->execute(array($_SESSION['email_recuperation']));
+                    $code_recover = true;
+                }else{
+                    $code_recover = false;
+                    $error = "Modification de mot de passe impossible"; 
+                }
             }catch (Exception $e) {
                  debug($e);
             }
-           
-        
-            if($reponse){
-                $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
-                $pre->execute(array($_SESSION['email_recuperation']));
-                $code_recover = true;
-            }else{
-                $code_recover = false;
-                $error = "Modification de mot de passe impossible"; 
-            }
+
         }
 
 
