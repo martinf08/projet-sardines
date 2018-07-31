@@ -54,12 +54,12 @@ class Controller
         }
     }
 
-    public function accountUpdate($post) # PAS ENCORE CODÉ
+    public function accountUpdate($post)
     {
         if (isset($_POST['submit-account'])) { # vérifie que le submit ayant le name convenu sur la vue profil existe
 
             $userManager = new UserManager();
-            if (strtolower($userManager->getEmailUserByIdentifier($_SESSION['user']) == $_SESSION['user']->getEmail())) {
+            if (strtolower($userManager->getEmailUserByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                 if (isset($_POST['pseudo_account']) && !empty($_POST['pseudo_account'])) {
                     if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                         $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{3,25}#";
