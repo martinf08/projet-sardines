@@ -1,7 +1,7 @@
 const mail = document.querySelector('#email');
 const pass = document.querySelector('#password');
 const confirm = document.querySelector('#confirmPassword');
-const submit = document.querySelector('#submit-signin');
+const submit = document.querySelector('input[type="submit"]');
 const tooltip = document.querySelectorAll('.tooltip')[0];
 
 const mailReg = /^[0-9a-z._-]+@{1}[0-9a-z.-]{2,}[.]{1}[a-z]{2,5}$/i;
@@ -47,27 +47,40 @@ pass.addEventListener('blur', function(e) {
     tooltip.classList.remove('show');
 });
 
-// is pass == confirm
-confirm.addEventListener('keyup', function(e) {
-    let confirmValue = this.value;
-    if (confirmValue == pass.value) {
-        confirm.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
-        okConfirm = true;
-        enable();
-    } else {
-        confirm.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
-        okConfirm = false;
-        enable();
-    }
-});
+// is pass == confirm (uniquement pour la page inscription)
+if (confirm != null) {
+    confirm.addEventListener('keyup', function(e) {
+        let confirmValue = this.value;
+        if (confirmValue == pass.value) {
+            confirm.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
+            okConfirm = true;
+            enable();
+        } else {
+            confirm.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
+            okConfirm = false;
+            enable();
+        }
+    });
+}
 
 // is all ok
 function enable() {
-    if (okMail === true && okPass === true && okConfirm === true) {
-        submit.removeAttribute("disabled");
-        return true;
+    if (confirm == null) {
+        // si on se trouve sur la page de connexion, on confirme seulement deux champs
+        if (okMail === true && okPass === true) {
+            submit.removeAttribute("disabled");
+            return true;
+        } else {
+            submit.setAttribute("disabled", "");
+            return false;
+        }
     } else {
-        submit.setAttribute("disabled", "");
-        return false;
+        if (okMail === true && okPass === true && okConfirm === true) {
+            submit.removeAttribute("disabled");
+            return true;
+        } else {
+            submit.setAttribute("disabled", "");
+            return false;
+        }
     }
 }
