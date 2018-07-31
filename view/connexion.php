@@ -18,7 +18,7 @@
 
         <div class="form-input">
             <i class="fas fa-lock"></i>
-            <input type="password" id="password" name="password" placeholder=".......">
+            <input type="password" class="tooltip" id="password" name="password" placeholder=".......">
         </div>
 
         <br>
@@ -43,6 +43,5 @@
         <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
     </div>
 
-    <script src="js/verif_form.js"></script>
-
+    <script src="js/signin_validation.js"></script>
 </main>
