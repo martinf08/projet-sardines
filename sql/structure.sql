@@ -109,7 +109,7 @@ CREATE TABLE `user` (
 
 CREATE TABLE `recovery_password`
 (
-  `id` int(11) NOT NUL,
+  `id` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `code` varchar(100) NOT NULL,
   `confirm` int(11) NOT NULL DEFAULT '0'
