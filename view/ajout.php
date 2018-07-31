@@ -64,34 +64,37 @@ $title = 'Ajouter un matériel';
         </div>
 
         <div class="view">
-            <p>Etape 3 : Précisez l'état du matériel</p>
+            <h4 class="row-buttons">Etape 3 : Précisez l'état du matériel</h4>
             <br> <!-- LES RADIOS QUALITE -->
-            <?php foreach ($qualities as $quality):
-                # en l'état actuel, pas de formatage du label nécessaire pour les qualités
-                ?>
+            <div class="row-buttons">
+                <?php foreach ($qualities as $quality):
+                    # en l'état actuel, pas de formatage du label nécessaire pour les qualités
+                    ?>
 
-                <input type="radio"
-                       id="<?php echo $quality['label'] ?>"
-                       name="idquality"
-                       value="<?php echo $quality['id_quality'] ?>">
+                    <input type="radio"
+                           id="<?php echo $quality['label'] ?>"
+                           name="idquality"
+                           value="<?php echo $quality['id_quality'] ?>">
+                    <button class="btn-white" name="<?php echo $quality['label'] ?>"></button>
 
-                <label for="<?php echo $quality['label'] ?>">
-                    <?php echo ucfirst($quality['label']) ?>
-                </label>
-
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
             <br/> <!-- détails sur l'état du matos -->
-
-            <textarea name="description" id="details" cols="30" rows="10"
+            <div class="row-buttons">
+            <textarea class="row-buttons" name="description" id="details" cols="30" rows="10"
                       placeholder="Infos supplémentaires (Optionnel)"></textarea>
+
+            </div>
 
             <br/> <!-- Récuperer la valeur de la récompense -->
 
-            <p>Recompense de <span id="recompense">?</span> sardines</p>
+            <p class="row-buttons">Recompense de <span id="recompense">?</span> sardines</p>
 
             <br/>
+            <div class="row-buttons">
+                <input type="submit" id="submit" value="valider">
+            </div>
 
-            <input type="submit" id="submit" value="valider">
         </div>
     </form>
 </main>

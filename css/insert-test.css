@@ -40,6 +40,23 @@ button[name="matelas"] {
     background-size: contain;
     background-position: center;
 }
+button[name="mauvaise"] {
+    background: url('../images/pictos/sad.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="bonne"] {
+    background: url('../images/pictos/normal.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="excellente"] {
+    background: url('../images/pictos/happy.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+
 
 .row-buttons {
     display: flex;
