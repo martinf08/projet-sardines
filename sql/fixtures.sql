@@ -37,11 +37,10 @@ INSERT INTO `price_catalog` (`id_quality`, `id_type`, `value`) VALUES
 
 --
 -- Fake users
--- Password = test
+-- Passwords = test@test.fr -> testtest ; staff@staff.fr -> staffstaff ; admin@admin.fr -> adminadmin
 --
 
-
-INSERT INTO `user`(`nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES ('xxx-Dark-Sasuke-xxx','darksasuke@troll.fr',null,'ea69',NOW(),NOW(),'098f6bcd4621d373cade4e832627b4f6',1,0,0,0);
-INSERT INTO `user`(`nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES ('Jean-Marie','jeanmarie02@troll.com',null,'3t6x',NOW(),NOW(),'098f6bcd4621d373cade4e832627b4f6',1,0,0,1);
-INSERT INTO `user`(`nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES ('wenceslas','wenceslas18@troll.net',null,'b55l',NOW(),NOW(),'098f6bcd4621d373cade4e832627b4f6',1,0,0,0);
-INSERT INTO `user`(`nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES ('bienni','bienni@troll.net',null,'bb08',NOW(),NOW(),'098f6bcd4621d373cade4e832627b4f6',1,0,1,1);
+INSERT INTO `user` (`id_user`, `nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `account_status`, `balance`, `admin`, `staff`) VALUES
+(1, 'Testeur', 'test@test.fr', NULL, 'v5d6', '2018-07-31 14:42:21', '2018-07-31 14:42:09', '05a671c66aefea124cc08b76ea6d30bb', '0', 0, 0, 0),
+(2, 'im-a-staffmaaaan', 'staff@staff.fr', NULL, 't03s', '2018-07-31 14:43:10', '2018-07-31 14:42:37', '65b240be59a308af3e840efb5bea320b', '0', 0, 0, 1),
+(3, 'Adm1nistrat0R', 'admin@admin.fr', NULL, 'sr33', '2018-07-31 14:43:55', '2018-07-31 14:43:34', 'f6fdffe48c908deb0f4c3bd36c032e72', '0', 0, 1, 1);
