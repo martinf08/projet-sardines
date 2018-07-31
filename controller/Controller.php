@@ -82,10 +82,10 @@ class Controller
 
     public function logView() 
     {
-
         $this->set('title', 'Connexion');
         $this->render('./view/connexion.php');
     }
+
     public function passForget($request = null){
 
         $error ="";
@@ -192,38 +192,36 @@ class Controller
         }
 
 
-        if(isset($_POST['submitNewpassword'])){
-            if(isset($_POST['newPasseword'],$_POST['confirmNewpasseword'])){
+        if (isset($_POST['submitNewpassword'])){
+            if (isset($_POST['newPasseword'],$_POST['confirmNewpasseword'])){
                 $newPasseword = htmlspecialchars($_POST['newPasseword']);
                 $confirmNewpasseword = htmlspecialchars($_POST['confirmNewpasseword']);
-                if(!empty($newPasseword) AND !empty($confirmNewpasseword)){
-                    if($newPasseword === $confirmNewpasseword){
+                if (!empty($newPasseword) AND !empty($confirmNewpasseword)){
+                    if ($newPasseword === $confirmNewpasseword){
                         $newPasseword = md5($newPasseword);
                         //update
                         $pre = $model->dbConnect()->prepare("UPDATE user SET password= ? WHERE email = ?");
                         $pre->execute(array( $newPasseword,$_SESSION['email_recuperation']));
                         $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
                         $pre->execute(array(':email'=>$_SESSION['email_recuperation']));
-                         header("location: ../connexion");
-                         die();
-                    }else{
+                        header("location: ../connexion");
+                        die();
+                    } else {
                         $error = "Vos deux mots de passe ne sont pas identiques";
                     }
-                }else{
+                } else {
                     $error = "Veuiller remplir tous les champs";
                 }
 
-            }else{
+            } else {
                 $error = "Veuiller remplir tous les champs";
             }
         }
             
-
         $this->set('title','forget');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
         $this->render('./view/forgotpassword.php');
-
     }
 
     public function logIn()
@@ -231,7 +229,7 @@ class Controller
         if (isset($_POST['email'])) { # est-ce que l'user est passé par le formulaire de logView ? sinon redirection
             if ($_POST['email'] != "" || $_POST['password'] != "") {
 
-                $userManager = new UserManager(); // Création d'un objet
+                $userManager = new UserManager();
                 $user = new User($_POST);
                 $reponse = $userManager->logIn($user);
 
@@ -243,17 +241,14 @@ class Controller
                 } else {
                     $_SESSION['islog'] = false;
 
-                    throw new Exception('Identifiant ou mot de passe incorrect');
+                    throw new Exception('Identifiant ou mot de passe incorrect.');
                 }
             } else {
-                throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
-
+                throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
             }
         } else {
             header('Location: index');
-
         }
-
     }
 
     public function logOut()
@@ -282,7 +277,7 @@ class Controller
     {
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "") {
-                $userManager = new UserManager(); // Création d'un objet
+                $userManager = new UserManager();
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
 
@@ -290,7 +285,6 @@ class Controller
                     header("Location: connexion");
                     $this->set('title', 'Connexion');
                     $this->render('./view/connexion.php');
-
                 } else {
                     throw new Exception('Impossible d\'ajouter l\'utilisateur !');
                 }
@@ -311,7 +305,7 @@ class Controller
         if ($userManager->email_validation()) {
             echo 'Compte validé';
         } else {
-            echo 'Erreur lors de la validation';
+            throw new Exception('Erreur lors de la validation');
         }
     }
 
@@ -332,7 +326,7 @@ class Controller
                     require_once('./view/ajout.php');
 
                 } else {
-                    throw new Exception('Problème sur la récupération des tables type et qualite');
+                    throw new Exception('Problème sur la récupération des tables.');
                 }
             } else {
                 header('Location: index');
@@ -400,12 +394,21 @@ class Controller
         require_once 'view/notfound.php';
     }
 
+    #--------------
+    #  EXCEPTIONS
+    #--------------
+    public function error()
+    {
+        $errorMessage = $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.';
+        require_once 'view/erreur.php';
+    }
+
     /** E2
      * Cette fonction va nous permettre de de rendre dynamiquement des vues
      * et des données au templete.
      * la vue doit être passé en paramètre
      */
-    public function render($view) # j'ai apporté cette modification pour injecter mon css sur inscription
+    public function render($view)
     {
 
         if (file_exists($view)) {
@@ -415,7 +418,7 @@ class Controller
             $content = ob_get_clean();
             require_once 'view/template.php';
         } else {
-            throw new Exception("la vue demandée n'existe pas");
+            throw new Exception("La vue demandée n'existe pas");
         }
     }
 
