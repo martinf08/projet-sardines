@@ -20,6 +20,8 @@ try
     $router = new Router;
 
     $router->setRoute('', 'index');
+    $router->setRoute('index', 'index');
+    $router->setRoute('index.php', 'index');
     $router->setRoute('insertUser', 'insertUser');
     $router->setRoute('ajout', 'newAsset');
     $router->setRoute('insertAsset', 'insertAsset');
