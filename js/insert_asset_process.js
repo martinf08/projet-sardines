@@ -1,4 +1,5 @@
 (function () {
+
     let textUser = document.getElementById('iduser');
     let views = document.querySelectorAll('.view');
     let nav = document.getElementById('basket-bar');
