@@ -82,15 +82,16 @@ class Controller
 
     public function logView() 
     {
-
         $this->set('title', 'Connexion');
         $this->render('./view/connexion.php');
     }
+
     public function passForget($request = null){
 
         $error ="";
         $code_recover = false;
         $model = new UserManager();
+        $email ="";
 
     
         
@@ -105,15 +106,14 @@ class Controller
                     if(filter_var($email,FILTER_VALIDATE_EMAIL)){
                         //check if the email exit
                         $user = $model->UserChecker($email);
-                      
+                        debug($user);
                         if($user){
-                            $_SESSION['email_recuperation'] = $email;
+                           
                             $code = "";
                             $sending_code ="";
                             for($i=0; $i <8; $i++){
                                 $sending_code .=  mt_rand(0,9);
                             }
-                                debug($sending_code);
                                 $code .= md5($sending_code);
                                 $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
                                 $pre->execute(array(':email'=> $email));
@@ -121,27 +121,20 @@ class Controller
 
                             if($reponse){
                                 $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET code = :code WHERE email =:email");
+                                $email = md5($email);
                                 $pre->execute(array(':code'=> $code,':email'=> $email));
                             }else{
                                 $pre = $model->dbConnect()->prepare("INSERT INTO recovery_password(code,email) VALUES (?,?)");
+                          
                                 $pre->execute(array($code,$email));
                             }
                            
     
-                            $to = $_SESSION['email_recuperation'];
+                            $to = $email;
                             $subject = "Récupération de mot de passe";
+                            $link="http://localhost/projet-sardines/forget/".$sending_code;
+                            $message = '<a href="'.$link.'">ici</a>';
                             
-                            $message = "
-                            <html>
-                                <head>
-                                    <title>HTML email</title>
-                                </head>
-                                <body>
-                                    Cliquez sur <a href='http://localhost/projet-sardines/forget?section=code&code='.$code.'>ici</a>
-                                    pour réinitialiser votre mot de passe
-                                </body>
-                            </html>
-                            ";
                             
                             // Always set content-type when sending HTML email
                             $headers  = "MIME-Version: 1.0" . "\r\n";
@@ -151,10 +144,17 @@ class Controller
                             $headers .= 'From:"eudes"eudes<@ici08.fr>' . "\r\n";
                     
             
-                            mail($to,$subject,$message,$headers);
+                            if(mail($to,$subject,$message,$headers)){
+                                echo "méssage envoyé";
+                            }else{
+                                  echo "méssage non nenvoyé";
+                                  echo $message;
+                                  die();
+                            }
                             //header(location );
                         }else{
                             $error = "Cette adresse email n'est pas enregistrée";
+                            
                         }
 
                     }else{
@@ -171,16 +171,18 @@ class Controller
         if(isset($request)){
          
             try{
-                $request = md5(htmlspecialchars($request));
-                $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE code =:code");
-                $pre->bindParam(':code',$request);
+         
+                $code = md5(htmlspecialchars($request));
+                $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
+                $pre->bindParam(':code',$code);
                 $pre->execute();
-                $reponse  = $pre->fetch()['email'];
+                $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
 
                 if($reponse){
+                    $_SESSION['email'] = $reponse['email'];
                     $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
-                    $pre->execute(array($_SESSION['email_recuperation']));
-                    $code_recover = true;
+                    $pre->execute(array($email));
+                     $code_recover = true;
                 }else{
                     $code_recover = false;
                     $error = "Modification de mot de passe impossible"; 
@@ -192,38 +194,42 @@ class Controller
         }
 
 
-        if(isset($_POST['submitNewpassword'])){
-            if(isset($_POST['newPasseword'],$_POST['confirmNewpasseword'])){
+        if (isset($_POST['submitNewpassword'])){
+            if (isset($_POST['newPasseword'],$_POST['confirmNewpasseword'])){
+
                 $newPasseword = htmlspecialchars($_POST['newPasseword']);
                 $confirmNewpasseword = htmlspecialchars($_POST['confirmNewpasseword']);
-                if(!empty($newPasseword) AND !empty($confirmNewpasseword)){
-                    if($newPasseword === $confirmNewpasseword){
+               
+                if (!empty($newPasseword) AND !empty($confirmNewpasseword)){
+                    if ($newPasseword === $confirmNewpasseword){
                         $newPasseword = md5($newPasseword);
                         //update
+                          
                         $pre = $model->dbConnect()->prepare("UPDATE user SET password= ? WHERE email = ?");
-                        $pre->execute(array( $newPasseword,$_SESSION['email_recuperation']));
+                  
+                        $pre->execute(array($newPasseword,$_SESSION['email']));
+
                         $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
-                        $pre->execute(array(':email'=>$_SESSION['email_recuperation']));
-                         header("location: ../connexion");
-                         die();
-                    }else{
+                        $pre->execute(array(':email'=> $_SESSION['email']));
+                        $_SESSION['email'] = "";
+                        header("location: ../connexion");
+                      
+                    } else {
                         $error = "Vos deux mots de passe ne sont pas identiques";
                     }
-                }else{
+                } else {
                     $error = "Veuiller remplir tous les champs";
                 }
 
-            }else{
+            } else {
                 $error = "Veuiller remplir tous les champs";
             }
         }
             
-
         $this->set('title','forget');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
         $this->render('./view/forgotpassword.php');
-
     }
 
     public function logIn()
@@ -231,7 +237,7 @@ class Controller
         if (isset($_POST['email'])) { # est-ce que l'user est passé par le formulaire de logView ? sinon redirection
             if ($_POST['email'] != "" || $_POST['password'] != "") {
 
-                $userManager = new UserManager(); // Création d'un objet
+                $userManager = new UserManager();
                 $user = new User($_POST);
                 $reponse = $userManager->logIn($user);
 
@@ -243,17 +249,14 @@ class Controller
                 } else {
                     $_SESSION['islog'] = false;
 
-                    throw new Exception('Identifiant ou mot de passe incorrect');
+                    throw new Exception('Identifiant ou mot de passe incorrect.');
                 }
             } else {
-                throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
-
+                throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
             }
         } else {
             header('Location: index');
-
         }
-
     }
 
     public function logOut()
@@ -282,7 +285,7 @@ class Controller
     {
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "") {
-                $userManager = new UserManager(); // Création d'un objet
+                $userManager = new UserManager();
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
 
@@ -290,7 +293,6 @@ class Controller
                     header("Location: connexion");
                     $this->set('title', 'Connexion');
                     $this->render('./view/connexion.php');
-
                 } else {
                     throw new Exception('Impossible d\'ajouter l\'utilisateur !');
                 }
@@ -311,7 +313,7 @@ class Controller
         if ($userManager->email_validation()) {
             echo 'Compte validé';
         } else {
-            echo 'Erreur lors de la validation';
+            throw new Exception('Erreur lors de la validation');
         }
     }
 
@@ -332,7 +334,7 @@ class Controller
                     require_once('./view/ajout.php');
 
                 } else {
-                    throw new Exception('Problème sur la récupération des tables type et qualite');
+                    throw new Exception('Problème sur la récupération des tables.');
                 }
             } else {
                 header('Location: index');
@@ -400,12 +402,21 @@ class Controller
         require_once 'view/notfound.php';
     }
 
+    #--------------
+    #  EXCEPTIONS
+    #--------------
+    public function error()
+    {
+        $errorMessage = $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.';
+        require_once 'view/erreur.php';
+    }
+
     /** E2
      * Cette fonction va nous permettre de de rendre dynamiquement des vues
      * et des données au templete.
      * la vue doit être passé en paramètre
      */
-    public function render($view) # j'ai apporté cette modification pour injecter mon css sur inscription
+    public function render($view)
     {
 
         if (file_exists($view)) {
@@ -415,7 +426,7 @@ class Controller
             $content = ob_get_clean();
             require_once 'view/template.php';
         } else {
-            throw new Exception("la vue demandée n'existe pas");
+            throw new Exception("La vue demandée n'existe pas");
         }
     }
 

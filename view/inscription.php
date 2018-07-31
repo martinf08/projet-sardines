@@ -36,7 +36,7 @@
     <br/> <!-- Optionnel -->
 
 
-    <input type="submit" id="submit-signin" name="submit-signin" value="S'inscrire">
+    <input type="submit" name="submit-signin" value="S'inscrire">
 
     <br/> <!-- Optionnel -->
 
@@ -54,5 +54,5 @@
     <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
 </div>
 
-<script src="js/signin_validation.js"></script>
+<script src="js/signin_login_validation.js"></script>
 </main>

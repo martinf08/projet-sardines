@@ -14,7 +14,7 @@ Chaque asset sera évalué selon un type et une qualité (voir la structure de l
 ## Configuration
 
 ### BDD 
-Importer le fichier structure.sql dans phpmyadmin (ou l'exécuter en SQL dans la base).
+Importer le fichier structure.sql dans phpmyadmin puis le fichier fixtures.sql pour remplir les tables avec les valeurs prédéfinies.
 
 ### Accès BDD
 Pour configurer l'accès à la base de donnée, remplir le fichier class/Config.php.dist avec les bonnes valeurs et supprimer l'extension '.dist'.
