@@ -36,7 +36,7 @@
     <br/> <!-- Optionnel -->
 
 
-    <input type="submit" id="submit-signin" name="submit-signin" value="S'inscrire">
+    <input type="submit" name="submit-signin" value="S'inscrire">
 
     <br/> <!-- Optionnel -->
 
