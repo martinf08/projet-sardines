@@ -12,23 +12,29 @@
     let divQuality = document.createElement('div');
 
     let whiteButtons = document.querySelectorAll('button.btn-white');
-console.log(whiteButtons);
-function removePushedClass() {
-    for (let i = 0; i < whiteButtons.length; i++) {
-        whiteButtons[i].classList.remove('btn-white-clicked');
-        whiteButtons[i].classList.add('btn-white');
+    console.log(whiteButtons);
+
+    function removePushedTypeClass() {
+        for (let i = 0; i < whiteButtons.length; i++) {
+            whiteButtons[i].classList.remove('btn-white-clicked');
+            whiteButtons[i].classList.add('btn-white');
+            let nameId = whiteButtons[i].name;
+            let radioTarget = document.getElementById(nameId);
+            radioTarget.checked = false;
+        }
     }
-}
-
 
 
     for (let i = 0; i < whiteButtons.length; i++) {
-        whiteButtons[i].addEventListener('click', function(event) {
+        whiteButtons[i].addEventListener('click', function (event) {
             event.preventDefault();
-            removePushedClass();
+            removePushedTypeClass();
             whiteButtons[i].classList.add('btn-white-clicked');
             whiteButtons[i].classList.remove('btn-white');
-
+            let nameId = whiteButtons[i].name;
+            let radioTarget = document.getElementById(nameId);
+            radioTarget.checked = true;
+            console.log(radioTarget.checked);
         });
     }
 
@@ -107,6 +113,7 @@ function removePushedClass() {
             nav.classList.remove('fixed');
         }
     });
+
     //Smooth scroll
     function smoothScroll(nb_viewport, speed_millisecond) {
         let scrollPage = window.pageYOffset;
