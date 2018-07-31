@@ -1,0 +1,10 @@
+body {
+    display: flex;
+}
+
+header {
+    position: absolute;
+    z-index: 1;
+    width: 300px;
+    height: 100vh;
+}
