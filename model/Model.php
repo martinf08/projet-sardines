@@ -25,6 +25,7 @@ abstract class Model {
     }
     catch(PDOException $e) {
       print "Erreur de connexion : " . $e->getMessage();
+      die();
     }
   }
   /*---------------------------E2----------------------------------*/
@@ -57,11 +58,12 @@ abstract class Model {
   //cette permet de vérifier l'existence de l'utilisateur
   public function UserChecker($request){
     
-    try {
+    try {  
       $pre = $this->dbConnect()->prepare("SELECT * FROM user where email = :email");
       $pre->execute(array(':email' => $request));
       return $pre->fetch(PDO::FETCH_ASSOC);
-    }catch(PDOException $e){
+    }
+    catch(PDOException $e){
       return $e->getMessage();
     }
     

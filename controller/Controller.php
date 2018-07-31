@@ -91,6 +91,7 @@ class Controller
         $error ="";
         $code_recover = false;
         $model = new UserManager();
+        $email ="";
 
     
         
@@ -107,41 +108,34 @@ class Controller
                         $user = $model->UserChecker($email);
                       
                         if($user){
-                            $_SESSION['email_recuperation'] = $email;
+                           
                             $code = "";
                             $sending_code ="";
                             for($i=0; $i <8; $i++){
                                 $sending_code .=  mt_rand(0,9);
                             }
-                                debug($sending_code);
                                 $code .= md5($sending_code);
                                 $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
+                                $email = md5($email);
                                 $pre->execute(array(':email'=> $email));
                                 $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
 
                             if($reponse){
                                 $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET code = :code WHERE email =:email");
+                                $email = md5($email);
                                 $pre->execute(array(':code'=> $code,':email'=> $email));
                             }else{
                                 $pre = $model->dbConnect()->prepare("INSERT INTO recovery_password(code,email) VALUES (?,?)");
+                                $email = md5($email);
                                 $pre->execute(array($code,$email));
                             }
                            
     
-                            $to = $_SESSION['email_recuperation'];
+                            $to = $email;
                             $subject = "Récupération de mot de passe";
+                            $link="http://localhost/projet-sardines/forget/".$sending_code.'-'.$email;
+                            $message = '<a href="'.$link.'">ici</a>';
                             
-                            $message = "
-                            <html>
-                                <head>
-                                    <title>HTML email</title>
-                                </head>
-                                <body>
-                                    Cliquez sur <a href='http://localhost/projet-sardines/forget?section=code&code='.$code.'>ici</a>
-                                    pour réinitialiser votre mot de passe
-                                </body>
-                            </html>
-                            ";
                             
                             // Always set content-type when sending HTML email
                             $headers  = "MIME-Version: 1.0" . "\r\n";
@@ -151,10 +145,17 @@ class Controller
                             $headers .= 'From:"eudes"eudes<@ici08.fr>' . "\r\n";
                     
             
-                            mail($to,$subject,$message,$headers);
+                            if(mail($to,$subject,$message,$headers)){
+                                echo "méssage envoyé";
+                            }else{
+                                  echo "méssage non nenvoyé";
+                                  echo $message;
+                                  die();
+                            }
                             //header(location );
                         }else{
                             $error = "Cette adresse email n'est pas enregistrée";
+                            
                         }
 
                     }else{
@@ -171,16 +172,20 @@ class Controller
         if(isset($request)){
          
             try{
+                $pos = strpos($request, '-');
+                $code = md5(htmlspecialchars(substr($request,0,$pos)));
+                $code_mail = substr($request,$pos+1);
+          
                 $request = md5(htmlspecialchars($request));
-                $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE code =:code");
-                $pre->bindParam(':code',$request);
+                $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
+                $pre->bindParam(':code',$code);
                 $pre->execute();
-                $reponse  = $pre->fetch()['email'];
+                $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
 
                 if($reponse){
                     $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
-                    $pre->execute(array($_SESSION['email_recuperation']));
-                    $code_recover = true;
+                    $pre->execute(array($code_mail));
+                     $code_recover = true;
                 }else{
                     $code_recover = false;
                     $error = "Modification de mot de passe impossible"; 
