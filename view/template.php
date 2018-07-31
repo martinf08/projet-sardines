@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/connexion.css">
     <link rel="stylesheet" href="css/insert-test.css">
+    <link rel="stylesheet" href="css/menu.css"><!-- contient simplement les classes pour position et effet tiroir -->
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <link rel="stylesheet" href="css/<?= $css ?>.css">
     <?php endif; ?>
@@ -37,14 +38,15 @@
 
     </header>
 
-    <?= $content ?>
+    <div id="container">
 
-    <footer>
-        <!-- Footer -->
-    </footer>
+        <?= $content ?>
 
-    <!-- plus utilisés ? ils se trouvent maintenant dans bazar
-<script src="js/verif_form.js"></script>
-<script src="js/inscription.js"></script> -->
+        <footer>
+            <!-- Footer -->
+        </footer>
+
+    </div>
+    
 </body>
 </html>
