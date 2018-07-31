@@ -5,7 +5,7 @@
 
 #basket-bar {
     background-color: lightgreen;
-    height: 20%;
+    height: 15%;
     width: 100%;
 }
 .fixed {
@@ -58,7 +58,7 @@ button[name="excellente"] {
 
 
 
-.row-buttons {
+.flex-center {
     display: flex;
     justify-content: center;
     margin-bottom: 15px;

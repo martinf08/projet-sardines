@@ -21,26 +21,28 @@ $title = 'Ajouter un matériel';
     <!-- Main -->
     <form action="insertAsset" method="post">
         <div class="view">
-            <h1>nouvelle saisie</h1>
-            <h2>Etape 1 : Saisir l'ID du festivalier ou le code générique</h2>
+            <h1 class="flex-center">nouvelle saisie</h1>
+
+            <h2 class="flex-center">Etape 1 : Saisir l'ID du festivalier ou le code générique</h2>
+
+            <br/> <!-- Optionnel -->
+            <div class="flex-center">
+                <input type="text" name="iduser" id="iduser" placeholder="identifiant">
+            </div>
 
             <br/> <!-- Optionnel -->
 
-            <input type="text" name="iduser" id="iduser" placeholder="identifiant">
-
-            <br/> <!-- Optionnel -->
-
-            <div id="error-id"></div>
+            <div class="flex-center" id="error-id"></div>
         </div>
         <div class="view">
-            <h4 class="row-buttons">Etape 2 : Choisir le type de matériel</h4>
+            <h4 class="flex-center">Etape 2 : Choisir le type de matériel</h4>
             <!-- LES RADIOS TYPE -->
             <?php
             $i = 1
             ?>
             <?php foreach ($types as $type):
                 if ($i % 2 == 1) {
-                    echo '<div class="row-buttons">';
+                    echo '<div class="flex-center">';
                 }
                 # formatage du name pour en faire un identifiant en camelCase
                 $cssID = explode(' ', $type['name']);
@@ -64,9 +66,9 @@ $title = 'Ajouter un matériel';
         </div>
 
         <div class="view">
-            <h4 class="row-buttons">Etape 3 : Précisez l'état du matériel</h4>
+            <h4 class="flex-center">Etape 3 : Précisez l'état du matériel</h4>
             <br> <!-- LES RADIOS QUALITE -->
-            <div class="row-buttons">
+            <div class="flex-center">
                 <?php foreach ($qualities as $quality):
                     # en l'état actuel, pas de formatage du label nécessaire pour les qualités
                     ?>
@@ -80,19 +82,19 @@ $title = 'Ajouter un matériel';
                 <?php endforeach; ?>
             </div>
             <br/> <!-- détails sur l'état du matos -->
-            <div class="row-buttons">
-            <textarea class="row-buttons" name="description" id="details" cols="30" rows="10"
+            <div class="flex-center">
+            <textarea class="flex-center" name="description" id="details" cols="30" rows="10"
                       placeholder="Infos supplémentaires (Optionnel)"></textarea>
 
             </div>
 
             <br/> <!-- Récuperer la valeur de la récompense -->
 
-            <p class="row-buttons">Recompense de <span id="recompense">?</span> sardines</p>
+            <p class="flex-center">Recompense de <span id="recompense">?</span> sardines</p>
 
             <br/>
-            <div class="row-buttons">
-                <input type="submit" id="submit" value="valider">
+            <div class="flex-center">
+                <input class="btn-full-login" type="submit" id="submit" value="valider">
             </div>
 
         </div>
