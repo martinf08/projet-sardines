@@ -35,11 +35,12 @@ try
     $router->setRoute('donner', 'dropGear');
     $router->setRoute('forget', 'passForget');
     $router->setRoute('accountUpdate', 'accountUpdate');
+    $router->setRoute('erreur', 'error');
 
     $router->execute();
 }
 catch(Exception $e)
 {
-  $errorMessage = $e->getMessage();
-  require_once 'view/erreur.php';
+  $_SESSION['error_msg'] = $e->getMessage();
+  header('Location: erreur');
 }
