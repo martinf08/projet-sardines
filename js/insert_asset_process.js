@@ -14,6 +14,10 @@
     let typeButtons = views[1].querySelectorAll('button.btn-white');
     let qualityButtons = views[2].querySelectorAll('button.btn-white');
 
+    let sardinesDisplay = document.querySelector("#recompense");
+    let type;
+    let quality;
+
     nav.appendChild(divEmail);
     nav.appendChild(divType);
     nav.appendChild(divQuality);
@@ -67,6 +71,8 @@
                                 let nameId = typeButtons[i].name;
                                 let radioTarget = document.getElementById(nameId);
                                 radioTarget.checked = true;
+                                type = i + 1;
+                                getValue();
                                 setTimeout(function () {
                                     smoothScroll(1.9, 60);
                                     divType.innerHTML = '<p>Type : ' + event.target.name + '</p>';
@@ -82,6 +88,8 @@
                                 let nameId = qualityButtons[i].name;
                                 let radioTarget = document.getElementById(nameId);
                                 radioTarget.checked = true;
+                                quality = i + 1;
+                                getValue();
                                 divQuality.innerHTML = '<p>Qualité : ' + event.target.name + '</p>';
                             });
                         }
@@ -162,4 +170,20 @@
             }
         }, 1)
     }
+
+    function getValue() {
+        if (type > 0 && quality > 0) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    sardinesDisplay.innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "./traitements/valueqt.php", true); //True = async
+            //encodage du formulaire
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("type=" + type + "&quality=" + quality);
+        }
+    }
+
 })();

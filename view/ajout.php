@@ -89,8 +89,9 @@ $title = 'Ajouter un matériel';
             </div>
 
             <br/> <!-- Récuperer la valeur de la récompense -->
-
-            <p class="flex-center">Recompense de <span id="recompense">?</span> sardines</p>
+            <div class="flex-center">
+                <p>Recompense de <b><span id="recompense"> ? </span></b> sardines</p>
+            </div>
 
             <br/>
             <div class="flex-center">
@@ -101,7 +102,6 @@ $title = 'Ajouter un matériel';
     </form>
 </main>
 
-<script src="js/getvalue.js"></script>
 <script src="js/insert_asset_process.js"></script>
 
 
