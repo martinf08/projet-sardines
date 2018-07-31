@@ -7,7 +7,9 @@
     <title><?= $title ?></title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/connexion.css">
+    <link rel="stylesheet" href="css/cheatsheet.css">
     <link rel="stylesheet" href="css/insert-test.css">
+
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <link rel="stylesheet" href="css/<?= $css ?>.css">
     <?php endif; ?>

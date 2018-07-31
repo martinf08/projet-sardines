@@ -1,5 +1,6 @@
 .view {
     height: 100vh;
+
 }
 
 #basket-bar {
@@ -13,4 +14,35 @@ position: fixed;
 }
 .not-fixed {
     position: relative;
+}
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+button[name="tente"] {
+    background: url('../images/pictos/tente.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="sacDeCouchage"] {
+    background: url('../images/pictos/sac-couchage.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="chaise"] {
+    background: url('../images/pictos/chaise.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="matelas"] {
+    background: url('../images/pictos/matelas-gonflable.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.row-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
 }

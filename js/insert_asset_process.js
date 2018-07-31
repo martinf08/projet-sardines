@@ -11,6 +11,27 @@
     let divType = document.createElement('div');
     let divQuality = document.createElement('div');
 
+    let whiteButtons = document.querySelectorAll('button.btn-white');
+console.log(whiteButtons);
+function removePushedClass() {
+    for (let i = 0; i < whiteButtons.length; i++) {
+        whiteButtons[i].classList.remove('btn-white-clicked');
+        whiteButtons[i].classList.add('btn-white');
+    }
+}
+
+
+
+    for (let i = 0; i < whiteButtons.length; i++) {
+        whiteButtons[i].addEventListener('click', function(event) {
+            event.preventDefault();
+            removePushedClass();
+            whiteButtons[i].classList.add('btn-white-clicked');
+            whiteButtons[i].classList.remove('btn-white');
+
+        });
+    }
+
     nav.appendChild(divEmail);
     nav.appendChild(divType);
     nav.appendChild(divQuality);
