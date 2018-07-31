@@ -106,7 +106,7 @@ class Controller
                     if(filter_var($email,FILTER_VALIDATE_EMAIL)){
                         //check if the email exit
                         $user = $model->UserChecker($email);
-                      
+                        debug($user);
                         if($user){
                            
                             $code = "";
@@ -116,7 +116,6 @@ class Controller
                             }
                                 $code .= md5($sending_code);
                                 $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
-                                $email = md5($email);
                                 $pre->execute(array(':email'=> $email));
                                 $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
 
@@ -126,14 +125,14 @@ class Controller
                                 $pre->execute(array(':code'=> $code,':email'=> $email));
                             }else{
                                 $pre = $model->dbConnect()->prepare("INSERT INTO recovery_password(code,email) VALUES (?,?)");
-                                $email = md5($email);
+                          
                                 $pre->execute(array($code,$email));
                             }
                            
     
                             $to = $email;
                             $subject = "Récupération de mot de passe";
-                            $link="http://localhost/projet-sardines/forget/".$sending_code.'-'.$email;
+                            $link="http://localhost/projet-sardines/forget/".$sending_code;
                             $message = '<a href="'.$link.'">ici</a>';
                             
                             
@@ -172,19 +171,17 @@ class Controller
         if(isset($request)){
          
             try{
-                $pos = strpos($request, '-');
-                $code = md5(htmlspecialchars(substr($request,0,$pos)));
-                $code_mail = substr($request,$pos+1);
-          
-                $request = md5(htmlspecialchars($request));
+         
+                $code = md5(htmlspecialchars($request));
                 $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code',$code);
                 $pre->execute();
                 $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
 
                 if($reponse){
+                    $_SESSION['email'] = $reponse['email'];
                     $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
-                    $pre->execute(array($code_mail));
+                    $pre->execute(array($email));
                      $code_recover = true;
                 }else{
                     $code_recover = false;
@@ -199,18 +196,24 @@ class Controller
 
         if (isset($_POST['submitNewpassword'])){
             if (isset($_POST['newPasseword'],$_POST['confirmNewpasseword'])){
+
                 $newPasseword = htmlspecialchars($_POST['newPasseword']);
                 $confirmNewpasseword = htmlspecialchars($_POST['confirmNewpasseword']);
+               
                 if (!empty($newPasseword) AND !empty($confirmNewpasseword)){
                     if ($newPasseword === $confirmNewpasseword){
                         $newPasseword = md5($newPasseword);
                         //update
+                          
                         $pre = $model->dbConnect()->prepare("UPDATE user SET password= ? WHERE email = ?");
-                        $pre->execute(array( $newPasseword,$_SESSION['email_recuperation']));
+                  
+                        $pre->execute(array($newPasseword,$_SESSION['email']));
+
                         $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
-                        $pre->execute(array(':email'=>$_SESSION['email_recuperation']));
+                        $pre->execute(array(':email'=> $_SESSION['email']));
+                        $_SESSION['email'] = "";
                         header("location: ../connexion");
-                        die();
+                      
                     } else {
                         $error = "Vos deux mots de passe ne sont pas identiques";
                     }
