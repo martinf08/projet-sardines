@@ -35,7 +35,7 @@ class Router
         $uri = substr($_SERVER['REQUEST_URI'], strlen($basepath));
         # supprime les '?' de l'url
         if (strstr($uri, '?')) $uri = substr($uri, 0, strpos($uri, '?'));
-
+       
         return $uri = trim($uri, '/');
     }
 }

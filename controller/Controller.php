@@ -80,51 +80,149 @@ class Controller
     #  CONNEXION
     #-------------
 
-    public function logView()
+    public function logView() 
     {
 
         $this->set('title', 'Connexion');
         $this->render('./view/connexion.php');
     }
+    public function passForget($request = null){
 
-    public function passForget()
-    {
+        $error ="";
+        $code_recover = false;
+        $model = new UserManager();
 
-        if (!isset($_POST['email'])) {
+    
+        
+  
+        if (!isset($_POST['email_recuperation'])){
 
-            $html = '<h2>Mot de passe oublié?</h2>';
-            $html .= '<p>Vous pouvez réinitialiser votre mot de passe ici.</p>';
-            $html .= '<div>';
-            $html .= '<form  role="form" action="forget" autocomplete="off" class="" method="post">';
-            $html .= '<div class="">';
-            $html .= '<input id="email" name="email_recuperation" placeholder="adresse email" class="form-control"  type="email" required>';
-            $html .= '</div>';
-            $html .= '<div>';
-            $html .= '<input name="recover_submit" class="btn btn-lg btn-primary btn-block" value="Enoyer" type="submit">';
-            $html .= '</div>';
-            $html .= '</form></div>';
+        }else{
+            if(isset($_POST['recover_submit'],$_POST['email_recuperation'])){
+                
+                if(!empty($_POST['email_recuperation'])){
+                    $email = htmlspecialchars($_POST['email_recuperation']);
+                    if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+                        //check if the email exit
+                        $user = $model->UserChecker($email);
+                      
+                        if($user){
+                            $_SESSION['email_recuperation'] = $email;
+                            $code = "";
+                            $sending_code ="";
+                            for($i=0; $i <8; $i++){
+                                $sending_code .=  mt_rand(0,9);
+                            }
+                                debug($sending_code);
+                                $code .= md5($sending_code);
+                                $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
+                                $pre->execute(array(':email'=> $email));
+                                $reponse  = $pre->fetch(PDO::FETCH_ASSOC);
 
-        } else {
-            //récupération du mail 
+                            if($reponse){
+                                $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET code = :code WHERE email =:email");
+                                $pre->execute(array(':code'=> $code,':email'=> $email));
+                            }else{
+                                $pre = $model->dbConnect()->prepare("INSERT INTO recovery_password(code,email) VALUES (?,?)");
+                                $pre->execute(array($code,$email));
+                            }
+                           
+    
+                            $to = $_SESSION['email_recuperation'];
+                            $subject = "Récupération de mot de passe";
+                            
+                            $message = "
+                            <html>
+                                <head>
+                                    <title>HTML email</title>
+                                </head>
+                                <body>
+                                    Cliquez sur <a href='http://localhost/projet-sardines/forget?section=code&code='.$code.'>ici</a>
+                                    pour réinitialiser votre mot de passe
+                                </body>
+                            </html>
+                            ";
+                            
+                            // Always set content-type when sending HTML email
+                            $headers  = "MIME-Version: 1.0" . "\r\n";
+                            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                            $headers .="content-Transfer-Encoding: 8bit";
+                            // More headers
+                            $headers .= 'From:"eudes"eudes<@ici08.fr>' . "\r\n";
+                    
+            
+                            mail($to,$subject,$message,$headers);
+                            //header(location );
+                        }else{
+                            $error = "Cette adresse email n'est pas enregistrée";
+                        }
 
-            if (isset($_POST['recover_submit'], $_POST['email_recuperation'])) {
-                if (!empty($_POST['email_recuperation'])) {
-
-                } else {
-
-                }
-
+                    }else{
+                        $error = "Adresse email non valide";
+                    }
+                }else{
+                    $error ="Veuillez entrer votre adresse email";
+                }  
             }
+      
+        }
 
+        
+        if(isset($request)){
+         
+            try{
+                $request = md5(htmlspecialchars($request));
+                $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE code =:code");
+                $pre->bindParam(':code',$request);
+                $pre->execute();
+                $reponse  = $pre->fetch()['email'];
 
-            $html = "<h1>Un email vous a été envoyé avec un lien pour réinitialiser votre mot de passe</h1>";
+                if($reponse){
+                    $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
+                    $pre->execute(array($_SESSION['email_recuperation']));
+                    $code_recover = true;
+                }else{
+                    $code_recover = false;
+                    $error = "Modification de mot de passe impossible"; 
+                }
+            }catch (Exception $e) {
+                 debug($e);
+            }
 
         }
 
-        $this->set('title', 'forget');
-        $this->set('form', $html);
-        $this->render('./view/forgotpassword.php');
 
+        if(isset($_POST['submitNewpassword'])){
+            if(isset($_POST['newPasseword'],$_POST['confirmNewpasseword'])){
+                $newPasseword = htmlspecialchars($_POST['newPasseword']);
+                $confirmNewpasseword = htmlspecialchars($_POST['confirmNewpasseword']);
+                if(!empty($newPasseword) AND !empty($confirmNewpasseword)){
+                    if($newPasseword === $confirmNewpasseword){
+                        $newPasseword = md5($newPasseword);
+                        //update
+                        $pre = $model->dbConnect()->prepare("UPDATE user SET password= ? WHERE email = ?");
+                        $pre->execute(array( $newPasseword,$_SESSION['email_recuperation']));
+                        $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
+                        $pre->execute(array(':email'=>$_SESSION['email_recuperation']));
+                         header("location: ../connexion");
+                         die();
+                    }else{
+                        $error = "Vos deux mots de passe ne sont pas identiques";
+                    }
+                }else{
+                    $error = "Veuiller remplir tous les champs";
+                }
+
+            }else{
+                $error = "Veuiller remplir tous les champs";
+            }
+        }
+            
+
+        $this->set('title','forget');
+        $this->set('errors',$error);
+        $this->set('code_recover',$code_recover);
+        $this->render('./view/forgotpassword.php');
 
     }
 
@@ -145,9 +243,7 @@ class Controller
                 } else {
                     $_SESSION['islog'] = false;
 
-                    echo('Identifiant ou mot de passe incorrect');
-                    //header('Location: connexion');
-
+                    throw new Exception('Identifiant ou mot de passe incorrect');
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter');
@@ -177,7 +273,8 @@ class Controller
     {
         session_destroy();
 
-        $this->set('title', 'inscription');
+        $this->set('title','inscription');
+        $this->set('css', 'tooltip');
         $this->render('./view/inscription.php');
     }
 
@@ -198,18 +295,19 @@ class Controller
                     throw new Exception('Impossible d\'ajouter l\'utilisateur !');
                 }
             } else {
-                throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+                 throw new Exception('Il reste des champs à remplir.');
             }
         } else {
             header('Location: index');
         }
     }
 
-    public function emailValidation()
+    public function emailValidation() 
     {
         $userManager = new UserManager();
         $userManager->email_validation();
         require_once './view/validation.php';
+
         if ($userManager->email_validation()) {
             echo 'Compte validé';
         } else {
@@ -223,7 +321,7 @@ class Controller
     public function newAsset()
     {
         if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôle du droit d'accès
-            if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
+            if ($_SESSION['user']->getStaff()) {
                 $assetManager = new AssetManager();
                 # passer ici les valeurs des champs des radios pour la vue
                 $types = $assetManager->getAll('type');
@@ -248,7 +346,7 @@ class Controller
     public function insertAsset()
     {
         if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
-            if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()) {
+            if ($_SESSION['user']->getStaff()) {
                 if (isset($_POST) && !empty($_POST)) {
                     $post = $_POST;
                     $assetManager = new AssetManager();
@@ -299,7 +397,7 @@ class Controller
     #--------------
     public function notFound()
     {
-        echo 'ici, la vue pour page non trouvée';
+        require_once 'view/notfound.php';
     }
 
     /** E2
@@ -307,7 +405,7 @@ class Controller
      * et des données au templete.
      * la vue doit être passé en paramètre
      */
-    public function render($view)
+    public function render($view) # j'ai apporté cette modification pour injecter mon css sur inscription
     {
 
         if (file_exists($view)) {
@@ -317,7 +415,7 @@ class Controller
             $content = ob_get_clean();
             require_once 'view/template.php';
         } else {
-            throw new Exception("la vue demandé d'existe pas");
+            throw new Exception("la vue demandée n'existe pas");
         }
     }
 
