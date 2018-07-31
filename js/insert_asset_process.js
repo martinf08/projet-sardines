@@ -34,7 +34,6 @@
             let nameId = whiteButtons[i].name;
             let radioTarget = document.getElementById(nameId);
             radioTarget.checked = true;
-            console.log(radioTarget.checked);
         });
     }
 
