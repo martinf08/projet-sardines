@@ -9,9 +9,27 @@
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-test.css">
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-asset.css">
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/slider.css">
+
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $css ?>.css">
     <?php endif; ?>
+
+     <?php if (isset($connexion_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
+        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $connexion_css ?>.css">
+    <?php endif; ?>
+
+    <?php if (isset($inscription_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
+        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $inscription_css ?>.css">
+    <?php endif; ?>
+
+    <?php if (isset($forget_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
+        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $forget_css ?>.css">
+    <?php endif; ?>
+
+
+   
+
 </head>
 <body>
 

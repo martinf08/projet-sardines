@@ -47,14 +47,13 @@ class Controller
                 $userManager = new UserManager();
                 $user = new User($userManager->getUser($identifier));
 
-                $prefix = '../'; # petit cheat pour réparer les liens du menu dans cette vue
                 require_once './view/profil.php';
             } else {
-                header('Location: ../index');
+                header('Location: '.PUBLIC_URL);
             }
 
         } else {
-            header('Location: ../index');
+            header('Location: '.PUBLIC_URL);
         }
     }
 
@@ -76,7 +75,7 @@ class Controller
                 }
             }
         } else {
-            header('Location: index');
+            header('Location: '.PUBLIC_URL);
         }
     }
 
@@ -87,13 +86,15 @@ class Controller
     public function logView()
     {
         $this->set('title', 'Connexion');
-        //$this->set('css', 'tooltip'); // fait mystérieusement sauter l'input password
+        $this->set('css', 'tooltip');
+        $this->set('connexion_css', 'connexion');
+        
+
         $this->render(ROOT.DS.'view/connexion.php');
     }
 
     public function passForget($request = null)
     {
-
         $error = "";
         $code_recover = false;
         $model = new UserManager();
@@ -112,7 +113,7 @@ class Controller
                         $user = $model->UserChecker($email);
                   
                         if ($user) {
-
+  
                             $code = "";
                             $sending_code = "";
                             for ($i = 0; $i < 8; $i++) {
@@ -122,10 +123,9 @@ class Controller
                             $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
                             $pre->execute(array(':email' => $email));
                             $reponse = $pre->fetch(PDO::FETCH_ASSOC);
-
-                            if ($reponse) {
+                         
+                            if ($reponse['id'] > 0) {
                                 $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET code = :code WHERE email =:email");
-                                $email = md5($email);
                                 $pre->execute(array(':code' => $code, ':email' => $email));
                             } else {
                                 $pre = $model->dbConnect()->prepare("INSERT INTO recovery_password(code,email) VALUES (?,?)");
@@ -138,7 +138,6 @@ class Controller
                             $subject = "Récupération de mot de passe";
                             $link = PUBLIC_URL."forget".DS. $sending_code;
                             $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
-
 
                             // Always set content-type when sending HTML email
                             $headers = "MIME-Version: 1.0" . "\r\n";
@@ -195,6 +194,7 @@ class Controller
 
         }
 
+         
 
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
@@ -231,9 +231,9 @@ class Controller
         $this->set('title','forget');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
-        $this->render('./view/forgotpassword.php');
-    }
 
+        $this->render('view'.DS.'forgotpassword.php');
+    }
     public function logIn()
     {
         if (isset($_POST['email'])) { # est-ce que l'user est passé par le formulaire de logView ? sinon redirection
@@ -257,7 +257,7 @@ class Controller
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
             }
         } else {
-            header('Location: index');
+            header('Location: '.PUBLIC_URL);
         }
     }
 
@@ -266,9 +266,7 @@ class Controller
         $_SESSION['user'] = "";
         $_SESSION['islog'] = 0;
 
-        header('Location: index');
-        $this->set('title', 'index');
-        $this->render('./view/index.php');
+        header('Location: '.PUBLIC_URL);
     }
 
     #------------------------------
@@ -280,6 +278,7 @@ class Controller
 
         $this->set('title', 'inscription');
         $this->set('css', 'tooltip');
+        $this->set('inscription_css', 'inscription');
         $this->render('./view/inscription.php');
     }
 
@@ -302,7 +301,7 @@ class Controller
                 throw new Exception('Il reste des champs à remplir.');
             }
         } else {
-            header('Location: index');
+            header('Location: '.PUBLIC_URL);
         }
     }
 
@@ -339,10 +338,10 @@ class Controller
                     throw new Exception('Problème sur la récupération des tables.');
                 }
             } else {
-                header('Location: index');
+                header('Location: '.PUBLIC_URL);
             }
         } else {
-            header('Location: index');
+            header('Location: '.PUBLIC_URL);
         }
     }
 
@@ -379,15 +378,14 @@ class Controller
                         throw new Exception('Erreur monumentale.');
                     }
                 } else {
-                    header('Location: index');
+                    header('Location: '.PUBLIC_URL);
                 }
             } else {
-                header('Location: index');
+                header('Location: '.PUBLIC_URL);
             }
         } else {
-            header('Location: index');
+            header('Location: '.PUBLIC_URL);
         }
-
 
     }
 
@@ -426,7 +424,8 @@ class Controller
             ob_start();
             require($view);
             $content = ob_get_clean();
-            require_once 'view/template.php';
+            require_once ROOT.DS.'view'.DS.'template.php';
+        
         } else {
             throw new Exception("La vue demandée n'existe pas");
         }

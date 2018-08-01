@@ -17,7 +17,8 @@
     </form>
 
   <?php }else {?>
-    <form  role="form" action="<?=PUBLIC_URL?>" autocomplete="off" class="" method="post">
+
+    <form  role="form" action="<?=PUBLIC_URL?>forget" autocomplete="off" class="" method="post">
         <div class="flex-center">
           <input class="input"  id="email" name="email_recuperation" placeholder="adresse email" type="email">
         </div>
@@ -27,5 +28,4 @@
         </div>
     </form>
   <?php }?>
-
   <div class="flex-center"><?php if(isset($errors)){echo'<br><span style="color:red">'.$errors.'</span>';}else{echo'<br/>';}?></div>

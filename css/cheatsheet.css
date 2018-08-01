@@ -36,7 +36,7 @@ html{
 
 /************** BUTTONS **************/
 
-.btn-full-login{
+.btn-full-1{
   border: 1px solid #4FB8C4;
   text-decoration: none;
   -webkit-border-radius: 17px; 
@@ -51,7 +51,7 @@ html{
   
 }
 
-.btn-full-signup{
+.btn-full-2{
   border: 1px solid #4FB8C4;
   text-decoration: none;
   -webkit-border-radius: 17px; 
@@ -79,7 +79,7 @@ html{
   background: linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
 }
 
-.btn-full-login, .btn-full-signup, .btn-full-donation, .btn-outlined{
+.btn-full-1, .btn-full-2, .btn-full-donation, .btn-outlined{
   font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
   line-height: 0.15;
   letter-spacing: 0.06em;
@@ -87,7 +87,7 @@ html{
   font-size: 18px;
 }
 
-.btn-full-signup:active, .btn-full-login:active, .btn-full-donation:active{
+.btn-full-1:active, .btn-full-2:active, .btn-full-donation:active{
   background: #009688;
   border: none;
 }
@@ -101,9 +101,20 @@ html{
   overflow: hidden;
   color: #009688;
   font-size: 18px;
-}  
+} 
 
-.btn-outlined:after{
+.btn-outlined-2{
+    width: 146px;
+    height: 35px;
+    border-radius: 17px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    color: #009688;
+    font-size: 18px;
+  }  
+
+.btn-outlined:after, .btn-outlined-2:after{
   content: "";
   position: absolute;
   width: calc(100% - 6px);  
@@ -120,6 +131,10 @@ html{
                40px 0px 20px 6px rgb(26, 119, 158);
 }
 
+.btn-outlined-2 a{
+    text-decoration: none;
+}
+
 .btn-outlined-txt{
   background: inherit;
   border: none;
@@ -133,7 +148,20 @@ html{
   font-size: 18px;
 }
 
-.btn-outlined:active{
+a{
+    background: inherit;
+    border: none;
+    width: inherit;
+    height: inherit;
+    margin: auto;
+    font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
+    line-height: 0.15;
+    letter-spacing: 0.06em;
+    color: #009688;
+    font-size: 18px;
+  }
+
+.btn-outlined:active, .btn-outlined-2:active{
   background: -moz-linear-gradient(to right,  #0cd18f 0%, rgb(25, 170, 187) 100%);
   background: -webkit-linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%); 
   background: linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
@@ -141,7 +169,7 @@ html{
   
 }
 
-.btn-outlined:active .btn-outlined-txt{
+.btn-outlined:active .btn-outlined-txt, .btn-outlined-2:active .btn-outlined-txt{
   color: white;
 }
 
