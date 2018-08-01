@@ -68,13 +68,15 @@
         {
 			if (isset($nickname) AND !empty($nickname) AND is_string($nickname)) {
 				$this->nickname = $nickname;
+
                 return $this;
 			} else {
 				$this->nickname = '';
+
                 return $this;
 			}
-		}
-		
+        }
+
         /**
          * Get the value of identifier
          */ 
@@ -92,10 +94,11 @@
         {
 			if (isset($identifier) AND !empty($identifier) AND is_string($identifier)) {
 				$this->identifier = $identifier;
+
                 return $this;
 			}
-		}
-		
+        }
+
 		/**
 		 * Get the value of email
 		 */ 

@@ -1,0 +1,63 @@
+.view {
+    height: 100vh;
+
+}
+
+#basket-bar {
+    background-color: lightgreen;
+    height: 15%;
+    width: 100%;
+}
+.fixed {
+position: fixed;
+    top: 0;
+}
+.not-fixed {
+    position: relative;
+}
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+button[name="tente"] {
+    background: url('../images/pictos/tente.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="sacDeCouchage"] {
+    background: url('../images/pictos/sac-couchage.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="chaise"] {
+    background: url('../images/pictos/chaise.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="matelas"] {
+    background: url('../images/pictos/matelas-gonflable.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="mauvaise"] {
+    background: url('../images/pictos/sad.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="bonne"] {
+    background: url('../images/pictos/normal.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+button[name="excellente"] {
+    background: url('../images/pictos/happy.jpg') no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}

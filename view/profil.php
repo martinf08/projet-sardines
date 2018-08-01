@@ -31,7 +31,7 @@
     <p>Email : <span><?= $user->getEmail(); ?></span>
     </p>
     <p>Pseudo : <input type="text" name="pseudo_account" id="pseudo-account" value="<?= $user->getNickname(); ?>">
-        
+
     </p>
     <input type="submit" name="submit-account" value="Enregistrer">
 </form>
