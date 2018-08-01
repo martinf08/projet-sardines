@@ -87,6 +87,7 @@ class Controller
     public function logView()
     {
         $this->set('title', 'Connexion');
+        //$this->set('css', 'tooltip'); // fait mystérieusement sauter l'input password
         $this->render(ROOT.DS.'view/connexion.php');
     }
 
