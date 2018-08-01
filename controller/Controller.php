@@ -125,7 +125,6 @@ class Controller
 
                             if ($reponse) {
                                 $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET code = :code WHERE email =:email");
-                                $email = md5($email);
                                 $pre->execute(array(':code' => $code, ':email' => $email));
                             } else {
                                 $pre = $model->dbConnect()->prepare("INSERT INTO recovery_password(code,email) VALUES (?,?)");
@@ -231,7 +230,7 @@ class Controller
         $this->set('title','forget');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
-        $this->render('./view/forgotpassword.php');
+        $this->render('view/forgotpassword.php');
     }
 
     public function logIn()
@@ -426,7 +425,7 @@ class Controller
             ob_start();
             require($view);
             $content = ob_get_clean();
-            require_once 'view/template.php';
+            require_once ROOT.DS.'view'.DS.'template.php';
         } else {
             throw new Exception("La vue demandée n'existe pas");
         }
