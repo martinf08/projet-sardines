@@ -24,7 +24,9 @@ class Controller
     public function dropGear()
 
     {
-        require_once './view/donner.php';
+        $this->set('title', 'Les Sardines');
+        $this->set('css', 'donner');
+        $this->render(ROOT.DS.'view/donner.php');
     }
 
     #-----------
