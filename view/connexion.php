@@ -1,47 +1,40 @@
-
 <!-- Main -->
-    <!-- AVATAR -->
-    <div class="flex-center">
-        <!--<img src="./images/ressources/user.png" alt="user" class="img-connexion">-->
-    </div>
+<!-- AVATAR -->
+<div class="flex-center">
+    <!--<img src="./images/ressources/user.png" alt="user" class="img-connexion">-->
+</div>
 
 
-    <br/> <!-- Optionnel -->
+<br/> <!-- Optionnel -->
 
     <form method="POST" action="log" enctype="multipart/form-data"> 
-        <div class="form-input">
-            <i class="fas fa-envelope"></i>
-            <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
-        </div>
-        <br/> <!-- Optionnel -->
-
-
-        <div class="form-input">
-            <i class="fas fa-lock"></i>
-            <input type="password" class="tooltip" id="password" name="password" placeholder=".......">
+        <div class="flex-center form-input">
+            <input class ="input" type="email" id="email" name="email" placeholder="johndoe@mail.com">
         </div>
 
-        <br>
-    
-        <br/> <!-- Optionnel -->
 
-        <div id="mdp-oublie" class="form-input"><a href="forget">mot de passe oublié ?</a></div>
+        <div class="flex-center form-input">
+            <input type="password" class="input tooltip" id="password" name="password" placeholder=".......">
+        </div>
 
-        <br/> <!-- Optionnel -->
 
-        <div class="flex-center"><input type="submit" value="Se connecter"></div>
+        <div id="mdp-oublie" class="flex-center"><a href="forget">mot de passe oublié ?</a></div>
+        <div class="flex-center">
+            <input class="btn-full-signup" type="submit" value="Se connecter">
+        </div>
 
-        <br/> <!-- Optionnel -->
+</form>
 
-    </form>
-    <div id="inscrire-social" class="flex-center">
-        <p>S'inscrire avec :</p>
-    </div>
-    <div class="socials-icon">
-        <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
-        <div class="cirle-social"><i class="fab fa-twitter"></i></div>
-        <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
-    </div>
+<p>Pas de compte ? <a href="inscription">Je m'inscris.</a></p>
 
-    <script src="js/signin__login_validation.js"></script>
+<!--<div id="inscrire-social" class="flex-center">
+    <p>S'inscrire avec :</p>
+</div>
+<div class="socials-icon">
+    <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
+    <div class="cirle-social"><i class="fab fa-twitter"></i></div>
+    <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
+</div>-->
+
+<script src="js/signin_login_validation.js"></script>
 </main>
