@@ -16,7 +16,7 @@
 <body>
 
     <header>
-        
+
         <div id="close"><!-- fermeture du menu -->
             <div class="cross"></div>
         </div>
@@ -33,6 +33,9 @@
         </div>
 
         <?php include_once 'inc/_menu.php'; ?>
+
+        <div id="triangle-bottomleft"></div>
+        <div id="triangle-bottomright"></div>
 
     </header>
 
