@@ -87,7 +87,7 @@ class Controller
     public function logView()
     {
         $this->set('title', 'Connexion');
-        $this->render('./view/connexion.php');
+        $this->render(ROOT.DS.'view/connexion.php');
     }
 
     public function passForget($request = null)
@@ -135,7 +135,7 @@ class Controller
 
                             $to = $email;
                             $subject = "Récupération de mot de passe";
-                            $link = "http://localhost/projet-sardines/forget/" . $sending_code;
+                            $link = PUBLIC_URL."forget".DS. $sending_code;
                             $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
 
 
@@ -213,7 +213,7 @@ class Controller
                         $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
                         $pre->execute(array(':email' => $_SESSION['email']));
                         $_SESSION['email'] = "";
-                        header("location: ../connexion");
+                        header("location: ".PUBLIC_URL."connexion");
 
                     } else {
                         $error = "Vos deux mots de passe ne sont pas identiques";

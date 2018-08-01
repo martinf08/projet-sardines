@@ -1,9 +1,9 @@
 
 
  <?php if(isset($message)) echo $message;?>
-  <?php if(isset($code_recover)){?>
+  <?php if($code_recover){?>
 
-    <form  role="form" action="forget" autocomplete="off" class="" method="post">
+    <form  role="form" action="<?=PUBLIC_URL?>forget" autocomplete="off" class="" method="post">
         <div class="flex-center"><p>Vous pouvez réinitialiser votre mot de passe ici.</p></div>
         <div class="flex-center">
             <input class="input" id="newPasseword" name="newPasseword" placeholder="nouveau mot de passe" type="password">
@@ -17,7 +17,7 @@
     </form>
 
   <?php }else {?>
-    <form  role="form" action="forget" autocomplete="off" class="" method="post">
+    <form  role="form" action="<?=PUBLIC_URL?>" autocomplete="off" class="" method="post">
         <div class="flex-center">
           <input class="input"  id="email" name="email_recuperation" placeholder="adresse email" type="email">
         </div>

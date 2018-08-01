@@ -1,10 +1,16 @@
 <?php
 
+define('ROOT',dirname(__FILE__));
+define('DS', DIRECTORY_SEPARATOR);
+define('BASE_URL',dirname($_SERVER['SCRIPT_NAME']));
+define('PUBLIC_URL', BASE_URL.DS);
 
+
+
+require_once 'functions/functions.php';
 require_once 'class/Config.php';
 require_once 'controller/Controller.php';
 
-require_once 'functions/functions.php';
 require_once 'model/Model.php';
 require_once 'model/UserManager.php';
 require_once 'model/AssetManager.php';
