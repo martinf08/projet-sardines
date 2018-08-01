@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="css/cheatsheet.css">
-    <link rel="stylesheet" href="css/insert-test.css">
-    <link rel="stylesheet" href="css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
-    <link rel="stylesheet" href="css/insert-asset.css">
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/cheatsheet.css">
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-test.css">
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-asset.css">
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
-        <link rel="stylesheet" href="css/<?= $css ?>.css">
+        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $css ?>.css">
     <?php endif; ?>
 </head>
 <body>
@@ -53,6 +53,6 @@
 
     </div>
     
-    <script src="js/menu_toggle.js"></script>
+    <script src="<?= PUBLIC_URL ?>js/menu_toggle.js"></script>
 </body>
 </html>
