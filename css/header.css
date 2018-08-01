@@ -116,6 +116,7 @@ nav a {
     position: absolute;
     bottom: 35px;
     right: 25px;
+    z-index: 2;
 }
 
 #triangle-bottomleft {
