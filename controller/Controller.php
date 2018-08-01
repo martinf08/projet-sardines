@@ -228,7 +228,7 @@ class Controller
             
         $this->set('title','forget');
         $this->set('errors',$error);
-        $this->set('code_recover',$code_recover);
+        $this->set('code_recover',true);
         $this->render('./view/forgotpassword.php');
     }
 
