@@ -2,8 +2,7 @@
     $prefix = $prefix ?? ''; # corrige les liens pour la page profil (prefix = '../' si on se trouve dans profil ou forget)
 ?>
 
-<nav style="background:#ccc;">
-
+<nav>
     <ul>
         <li><a href="<?= $prefix ?>index">Accueil</a></li>
 
@@ -25,10 +24,13 @@
 
         <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] == true): ?>
             <li><a href="<?= $prefix ?>profil/<?= $_SESSION['user']->getIdentifier(); ?>">Voir mes informations</a></li>
-            <li><a href="<?= $prefix ?>exit">Me déconnecter</a></li>
         <?php endif; ?>
 
-        <li><a href="<?= $prefix ?>#">F.A.Q. (c'est quoi ?)</a></li>
+        <li><a href="<?= $prefix ?>#">F.A.Q.</a></li>
         <li><a href="<?= $prefix ?>#">Mentions légales</a></li>
+
+        <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] == true): ?>
+            <li><a id="logout-link" href="<?= $prefix ?>exit">Me déconnecter</a></li>
+        <?php endif; ?>
     </ul>
 </nav>
