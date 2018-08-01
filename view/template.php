@@ -5,35 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="css/cheatsheet.css">
-    <link rel="stylesheet" href="css/insert-test.css">
-    <link rel="stylesheet" href="css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
-    <link rel="stylesheet" href="css/cheatsheet.css">
-    <link rel="stylesheet" href="css/insert-asset.css">
-    <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/cheatsheet.css">
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-test.css">
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-asset.css">
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
-        <link rel="stylesheet" href="css/<?= $css ?>.css">
+        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $css ?>.css">
     <?php endif; ?>
 </head>
 <body>
-    <?php
-    # à nettoyer quand plus besoin
-    #debug($_SESSION);
-    ?>
 
-    <header>
-        <!-- Header -->
+    <div id="menu">
+
         <div id="close"><!-- fermeture du menu -->
             <div class="cross"></div>
         </div>
 
-        <div id="display-user" style="background: #eee;"><!-- ici l'affiche des infos de l'user connecté -->
+        <div id="display-user"><!-- ici l'affiche des infos de l'user connecté -->
             <?php if(isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
-                <div id="avatar">ici sa photo</div>
-                <p id="pseudo"><?php echo $_SESSION['user']->getNickname(); ?></p>
+                <p id="pseudo" class="bold"><?php echo $_SESSION['user']->getNickname(); ?></p>
                 <p id="mail"><?php echo $_SESSION['user']->getEmail(); ?></p>
-                <p id="user-id">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>
-                <p id="sardines-balance">J'ai <span>
+                <p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>
+                <p id="sardines-balance">J'ai <span class="bold">
                     <?php echo $_SESSION['user']->getBalance(); ?>
                 </span> sardines</p>
             <?php endif; ?>
@@ -41,7 +34,10 @@
 
         <?php include_once 'inc/_menu.php'; ?>
 
-    </header>
+        <div id="triangle-bottomleft"></div>
+        <div id="triangle-bottomright"></div>
+
+    </div>
 
     <div id="container">
 
@@ -55,12 +51,8 @@
 
         <?= $content ?>
 
-        <footer>
-            <!-- Footer -->
-        </footer>
-
     </div>
     
-    <script src="js/menu_toggle.js"></script>
+    <script src="<?= PUBLIC_URL ?>js/menu_toggle.js"></script>
 </body>
 </html>

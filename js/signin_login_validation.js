@@ -11,7 +11,7 @@ let okMail = okPass = okConfirm = false;
 submit.setAttribute("disabled", "");
 
 // is email
-mail.addEventListener('keyup', function(e) {
+mail.addEventListener('input', function(e) {
     let mailValue = this.value;
     if (mailReg.test(mailValue)) {
         mail.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
@@ -23,9 +23,27 @@ mail.addEventListener('keyup', function(e) {
         enable();
     }
 });
+/*
+['input','blur'].forEach( evt => function() {
+
+    mail.addEventListener(evt, function(e) {
+        let mailValue = this.value;
+        if (mailReg.test(mailValue)) {
+            mail.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
+            okMail = true;
+            enable();
+        } else {
+            mail.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
+            okMail = false;
+            enable();
+        }
+    });
+
+});
+*/
 
 // is 6 characters
-pass.addEventListener('keyup', function(e) {
+pass.addEventListener('input', function(e) {
     let passValue = this.value;
 
     if (passValue.length >= 6) {
@@ -49,7 +67,7 @@ pass.addEventListener('blur', function(e) {
 
 // is pass == confirm (uniquement pour la page inscription)
 if (confirm != null) {
-    confirm.addEventListener('keyup', function(e) {
+    confirm.addEventListener('input', function(e) {
         let confirmValue = this.value;
         if (confirmValue == pass.value) {
             confirm.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
