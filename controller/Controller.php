@@ -76,7 +76,7 @@ class Controller
                 }
             }
         } else {
-            header('Location: index');
+            header('Location:'.PUBLIC_URL);
         }
     }
 
@@ -257,7 +257,7 @@ class Controller
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
             }
         } else {
-            header('Location: index');
+            header('Location:'.PUBLIC_URL);
         }
     }
 
@@ -266,7 +266,7 @@ class Controller
         $_SESSION['user'] = "";
         $_SESSION['islog'] = 0;
 
-        header('Location: index');
+        header('Location:'.PUBLIC_URL);
         $this->set('title', 'index');
         $this->render('./view/index.php');
     }
@@ -302,7 +302,7 @@ class Controller
                 throw new Exception('Il reste des champs à remplir.');
             }
         } else {
-            header('Location: index');
+            header('Location:'.PUBLIC_URL);
         }
     }
 
@@ -339,10 +339,10 @@ class Controller
                     throw new Exception('Problème sur la récupération des tables.');
                 }
             } else {
-                header('Location: index');
+                header('Location:'.PUBLIC_URL);
             }
         } else {
-            header('Location: index');
+            header('Location:'.PUBLIC_URL);
         }
     }
 
@@ -379,13 +379,13 @@ class Controller
                         throw new Exception('Erreur monumentale.');
                     }
                 } else {
-                    header('Location: index');
+                    header('Location:'.PUBLIC_URL);
                 }
             } else {
-                header('Location: index');
+                header('Location:'.PUBLIC_URL);
             }
         } else {
-            header('Location: index');
+            header('Location:'.PUBLIC_URL);
         }
 
 
