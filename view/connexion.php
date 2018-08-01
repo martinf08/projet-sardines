@@ -30,14 +30,17 @@
     <br/> <!-- Optionnel -->
 
 </form>
-<div id="inscrire-social" class="flex-center">
+
+<p>Pas de compte ? <a href="inscription">Je m'inscris.</a></p>
+
+<!--<div id="inscrire-social" class="flex-center">
     <p>S'inscrire avec :</p>
 </div>
 <div class="socials-icon">
     <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
     <div class="cirle-social"><i class="fab fa-twitter"></i></div>
     <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
-</div>
+</div>-->
 
 <script src="js/signin_login_validation.js"></script>
 </main>
