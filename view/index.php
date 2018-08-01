@@ -15,24 +15,47 @@
     ici le contenu de <?= $title ?>
     <div class="slider">
         <div class="slider-item" id="slider-1">
-
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                </p>
+            </div>
         </div>
         <div class="slider-item" id="slider-2">
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                </p>
+            </div>
         </div>
         <div class="slider-item" id="slider-3">
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                </p>
+            </div>
         </div>
         <div class="slider-item" id="slider-4">
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                </p>
+            </div>
         </div>
         <div class="slider-item" id="slider-5">
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                </p>
+            </div>
         </div>
         <div class="slider-item" id="slider-6">
+            <div>
+                <h2>
+                   DONNE !
+                </h2>
+            </div>
         </div>
-        <div class="pointer" id="pointer-1"></div>
-        <div class="pointer" id="pointer-2"></div>
-        <div class="pointer" id="pointer-3"></div>
-        <div class="pointer" id="pointer-4"></div>
-        <div class="pointer" id="pointer-5"></div>
-        <div class="pointer" id="pointer-6"></div>
     </div>
     <div class="slider-navigation">
         <div class="slider-navigation-item"></div>

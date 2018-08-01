@@ -1,7 +1,11 @@
+body {
+    overflow-x: hidden;
+}
 .slider {
     height: 100vh;
-    overflow: hidden;
     display: flex;
+    transition: transform 2s;
+
 }
 
 .slider-item {
@@ -10,10 +14,10 @@
 
 @keyframes slideRight {
     0% {
-        transform: translateX(0%);
+        transform: translateX(0vw);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-500vw);
 
     }
 }
@@ -33,35 +37,30 @@
     background: url("../images/slider/camp.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    transform: translateX(100%);
 }
 
 #slider-3 {
     background: url("../images/slider/dance.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    transform: translateX(200%);
 }
 
 #slider-4 {
     background: url("../images/slider/forest.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    transform: translateX(300%);
 }
 
 #slider-5 {
     background: url("../images/slider/show.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    transform: translateX(400%);
 }
 
 #slider-6 {
     background: url("../images/slider/tent_2.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    transform: translateX(500%);
 }
 .slider-navigation {
     position: absolute;
@@ -118,4 +117,22 @@ i {
 }
 #right-arrow:hover, #left-arrow:hover {
     cursor: pointer;
+}
+.slider-item div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.slider-item div p {
+    margin: 20px;
+    width: 80%;
+    text-align: justify;
+    color: white;
+}
+.slider-item div h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white
 }
