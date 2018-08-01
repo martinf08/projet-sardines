@@ -266,9 +266,6 @@ class Controller
         $_SESSION['islog'] = 0;
 
         header('Location: '.PUBLIC_URL);
-
-        $this->set('title', 'index');
-        $this->render('./view/index.php');
     }
 
     #------------------------------
