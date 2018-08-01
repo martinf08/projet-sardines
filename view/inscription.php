@@ -12,7 +12,7 @@
     <br/> <!-- Optionnel -->
 
 
-    <div class="flex-center">
+    <div class="flex-center form-input">
         <i class="fas fa-envelope"></i>
     <input class="input" type="email" id="email" name="email" placeholder="e-mail" required>
 
@@ -20,7 +20,7 @@
 
     <br/> <!-- Optionnel -->
     
-    <div class="flex-center">
+    <div class="flex-center form-input">
         <i class="fas fa-lock"></i>
         <input class="input" type="password" id="password" name="password" minlength="6" placeholder="mot de passe" required>
         <div class="tooltip">entre au minimum 6 caractères</div>
@@ -28,7 +28,7 @@
 
     <br/> <!-- Optionnel -->
 
-    <div class="flex-center">
+    <div class="flex-center form-input">
         <i class="fas fa-lock"></i>
         <input class="input" type="password" id="confirmPassword" name="confirmPassword" minlength="6" placeholder="Confirmer votre mot de passe" required>
     </div>
