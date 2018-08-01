@@ -1,4 +1,5 @@
 <!-- Main -->
+<main>
 <!-- AVATAR -->
 <div class="flex-center">
     <!--<img src="./images/ressources/user.png" alt="user" class="img-connexion">-->
@@ -14,7 +15,8 @@
 
 
         <div class="flex-center form-input">
-            <input type="password" class="input tooltip" id="password" name="password" placeholder=".......">
+            <input type="password" class="input" id="password" name="password" placeholder=".......">
+            <div class="tooltip">entre au minimum 6 caractères</div>
         </div>
 
 
