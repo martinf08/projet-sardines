@@ -109,7 +109,7 @@ class Controller
                     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                         //check if the email exit
                         $user = $model->UserChecker($email);
-                        debug($user);
+                  
                         if ($user) {
 
                             $code = "";
@@ -136,7 +136,7 @@ class Controller
                             $to = $email;
                             $subject = "Récupération de mot de passe";
                             $link = "http://localhost/projet-sardines/forget/" . $sending_code;
-                            $message = '<a href="' . $link . '">ici</a>';
+                            $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
 
 
                             // Always set content-type when sending HTML email
@@ -150,9 +150,7 @@ class Controller
                             if (mail($to, $subject, $message, $headers)) {
                                 echo "méssage envoyé";
                             } else {
-                                echo "méssage non nenvoyé";
-                                echo $message;
-                                die();
+                               $this->set('message',$message);
                             }
                             //header(location );
                         } else {
@@ -185,11 +183,11 @@ class Controller
                     $_SESSION['email'] = $reponse['email'];
                     $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
                     $pre->execute(array($email));
-                    $code_recover = true;
                 } else {
-                    $code_recover = false;
                     $error = "Modification de mot de passe impossible";
                 }
+                $code_recover = true;
+
             } catch (Exception $e) {
                 debug($e);
             }
@@ -231,7 +229,7 @@ class Controller
             
         $this->set('title','forget');
         $this->set('errors',$error);
-        $this->set('code_recover',true);
+        $this->set('code_recover',$code_recover);
         $this->render('./view/forgotpassword.php');
     }
 

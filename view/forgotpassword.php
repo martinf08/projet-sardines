@@ -1,7 +1,7 @@
 
 
-
-  <?php if($code_recover){?>
+ <?php if(isset($message)) echo $message;?>
+  <?php if(isset($code_recover)){?>
 
     <form  role="form" action="forget" autocomplete="off" class="" method="post">
         <div class="flex-center"><p>Vous pouvez réinitialiser votre mot de passe ici.</p></div>

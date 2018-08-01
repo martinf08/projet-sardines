@@ -23,14 +23,9 @@
     <br>
 
         <div id="mdp-oublie" class="flex-center"><a href="forget">mot de passe oublié ?</a></div>
-
-    <div id="mdp-oublie" class="form-input"><a href="forget">mot de passe oublié ?</a></div>
-
         <div class="flex-center">
             <input class="btn-full-signup" type="submit" value="Se connecter">
         </div>
-
-    <div class="flex-center"><input type="submit" value="Se connecter"></div>
 
     <br/> <!-- Optionnel -->
 
