@@ -110,7 +110,7 @@ class Controller
                         $user = $model->UserChecker($email);
                   
                         if ($user) {
-
+  
                             $code = "";
                             $sending_code = "";
                             for ($i = 0; $i < 8; $i++) {
@@ -135,7 +135,7 @@ class Controller
                             $subject = "Récupération de mot de passe";
                             $link = PUBLIC_URL."forget".DS. $sending_code;
                             $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
-
+                         
 
                             // Always set content-type when sending HTML email
                             $headers = "MIME-Version: 1.0" . "\r\n";
@@ -148,6 +148,7 @@ class Controller
                             if (mail($to, $subject, $message, $headers)) {
                                 echo "méssage envoyé";
                             } else {
+                              
                                $this->set('message',$message);
                             }
                             //header(location );
@@ -192,6 +193,7 @@ class Controller
 
         }
 
+         
 
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
@@ -228,8 +230,7 @@ class Controller
         $this->set('title','forget');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
-        $this->render('view/forgotpassword.php');
-        die();
+        $this->render('view'.DS.'forgotpassword.php');
     }
 
     public function logIn()
@@ -265,6 +266,7 @@ class Controller
         $_SESSION['islog'] = 0;
 
         header('Location: '.PUBLIC_URL);
+
         $this->set('title', 'index');
         $this->render('./view/index.php');
     }
@@ -386,7 +388,6 @@ class Controller
             header('Location: '.PUBLIC_URL);
         }
 
-
     }
 
     public function successInsertAsset()
@@ -425,6 +426,7 @@ class Controller
             require($view);
             $content = ob_get_clean();
             require_once ROOT.DS.'view'.DS.'template.php';
+        
         } else {
             throw new Exception("La vue demandée n'existe pas");
         }
