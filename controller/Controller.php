@@ -89,6 +89,7 @@ class Controller
         $this->set('css', 'tooltip');
         $this->set('connexion_css', 'connexion');
         
+
         $this->render(ROOT.DS.'view/connexion.php');
     }
 
@@ -137,7 +138,6 @@ class Controller
                             $subject = "Récupération de mot de passe";
                             $link = PUBLIC_URL."forget".DS. $sending_code;
                             $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
-                         
 
                             // Always set content-type when sending HTML email
                             $headers = "MIME-Version: 1.0" . "\r\n";
@@ -150,7 +150,6 @@ class Controller
                             if (mail($to, $subject, $message, $headers)) {
                                 echo "méssage envoyé";
                             } else {
-                              
                                $this->set('message',$message);
                             }
                             //header(location );
@@ -232,9 +231,9 @@ class Controller
         $this->set('title','forget');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
+
         $this->render('view'.DS.'forgotpassword.php');
     }
-
     public function logIn()
     {
         if (isset($_POST['email'])) { # est-ce que l'user est passé par le formulaire de logView ? sinon redirection

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-asset.css">
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/slider.css">
+
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $css ?>.css">
     <?php endif; ?>

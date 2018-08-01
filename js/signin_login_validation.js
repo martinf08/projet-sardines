@@ -23,6 +23,24 @@ mail.addEventListener('input', function(e) {
         enable();
     }
 });
+/*
+['input','blur'].forEach( evt => function() {
+
+    mail.addEventListener(evt, function(e) {
+        let mailValue = this.value;
+        if (mailReg.test(mailValue)) {
+            mail.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
+            okMail = true;
+            enable();
+        } else {
+            mail.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
+            okMail = false;
+            enable();
+        }
+    });
+
+});
+*/
 
 // is 6 characters
 pass.addEventListener('input', function(e) {
