@@ -11,7 +11,7 @@ let okMail = okPass = okConfirm = false;
 submit.setAttribute("disabled", "");
 
 // is email
-mail.addEventListener('blur', function(e) { // le seul moyen de valider sur chrome si on utilise l'autocomplete
+mail.addEventListener('input', function(e) {
     let mailValue = this.value;
     if (mailReg.test(mailValue)) {
         mail.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
