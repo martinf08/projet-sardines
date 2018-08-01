@@ -11,7 +11,7 @@ body {
     font-family:'SourceSansProSemibold';
 }
 
-header {
+#menu {
     position: absolute;
     z-index: 1;
     width: 300px;
@@ -20,7 +20,7 @@ header {
     transition: left 0.4s; 
 }
 
-header.show {
+#menu.show {
     left: 0;
     transition: left 0.4s;
 }
@@ -116,4 +116,23 @@ nav a {
     position: absolute;
     bottom: 35px;
     right: 25px;
+}
+
+#triangle-bottomleft {
+	width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+	border-bottom: 140px solid rgba(12,209,143,0.2);
+	border-right: 260px solid transparent;
+}
+
+#triangle-bottomright {
+	width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+	border-bottom: 245px solid rgba(12,209,143,0.1);
+	border-left: 300px solid transparent;
 }
