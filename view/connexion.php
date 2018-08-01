@@ -1,47 +1,49 @@
-
 <!-- Main -->
-    <!-- AVATAR -->
-    <div class="flex-center">
-        <!--<img src="./images/ressources/user.png" alt="user" class="img-connexion">-->
+<!-- AVATAR -->
+<div class="flex-center">
+    <!--<img src="./images/ressources/user.png" alt="user" class="img-connexion">-->
+</div>
+
+
+<br/> <!-- Optionnel -->
+
+<form method="POST" action="log" enctype="multipart/form-data">
+    <div class="form-input">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
+    </div>
+    <br/> <!-- Optionnel -->
+
+
+    <div class="form-input">
+        <i class="fas fa-lock"></i>
+        <input type="password" class="tooltip" id="password" name="password" placeholder=".......">
     </div>
 
+    <br>
 
     <br/> <!-- Optionnel -->
 
-    <form method="POST" action="log" enctype="multipart/form-data"> 
-        <div class="form-input">
-            <i class="fas fa-envelope"></i>
-            <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
-        </div>
-        <br/> <!-- Optionnel -->
+    <div id="mdp-oublie" class="form-input"><a href="forget">mot de passe oublié ?</a></div>
 
+    <br/> <!-- Optionnel -->
 
-        <div class="form-input">
-            <i class="fas fa-lock"></i>
-            <input type="password" class="tooltip" id="password" name="password" placeholder=".......">
-        </div>
+    <div class="flex-center"><input type="submit" value="Se connecter"></div>
 
-        <br>
-    
-        <br/> <!-- Optionnel -->
+    <br/> <!-- Optionnel -->
 
-        <div id="mdp-oublie" class="form-input"><a href="forget">mot de passe oublié ?</a></div>
+</form>
 
-        <br/> <!-- Optionnel -->
+<p>Pas de compte ? <a href="inscription">Je m'inscris.</a></p>
 
-        <div class="flex-center"><input type="submit" value="Se connecter"></div>
+<!--<div id="inscrire-social" class="flex-center">
+    <p>S'inscrire avec :</p>
+</div>
+<div class="socials-icon">
+    <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
+    <div class="cirle-social"><i class="fab fa-twitter"></i></div>
+    <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
+</div>-->
 
-        <br/> <!-- Optionnel -->
-
-    </form>
-    <div id="inscrire-social" class="flex-center">
-        <p>S'inscrire avec :</p>
-    </div>
-    <div class="socials-icon">
-        <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
-        <div class="cirle-social"><i class="fab fa-twitter"></i></div>
-        <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
-    </div>
-
-    <script src="js/signin__login_validation.js"></script>
+<script src="js/signin_login_validation.js"></script>
 </main>

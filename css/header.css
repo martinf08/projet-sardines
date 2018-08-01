@@ -1,0 +1,138 @@
+/*****************
+     GENERAL
+*****************/
+
+body {
+    display: flex;
+    font-family:'SourceSansProRegular';
+}
+
+.bold {
+    font-family:'SourceSansProSemibold';
+}
+
+#menu {
+    position: absolute;
+    z-index: 1;
+    width: 300px;
+    height: 100vh;
+    left: -300px;
+    transition: left 0.4s; 
+}
+
+#menu.show {
+    left: 0;
+    transition: left 0.4s;
+}
+
+#display-user {
+    min-height: 260px;
+    background: #bbb;
+}
+
+#open {
+    cursor: pointer;
+}
+
+#open .bar {
+    width: 20px;
+    height: 4px;
+    background-color: #444;
+    margin: 4px 0;
+}
+
+#close {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    transform: rotateZ(45deg);
+    cursor: pointer;
+}
+
+#close .cross {
+    position: relative;
+    width: 4px;
+    height: 30px;
+    background-color: #0cd18f;
+}
+
+#close .cross:after {
+    background: #0cd18f;
+    content: "";
+    height: 4px;
+    left: -13px;
+    position: absolute;
+    top: 14px;
+    width: 30px;
+}
+
+/* il manque le box-shadow à appliquer */
+
+/*****************
+     USER INFOS
+*****************/
+
+#display-user {
+    background: url('../images/pics/show.jpg');
+    background-size: cover;
+    color: #0cd18f;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+#pseudo, #user-id {
+    font-size: 1.2rem;
+}
+
+#user-id {
+    margin-top: 20px;
+}
+
+/* il manque le box-shadow à appliquer */
+
+/*************
+     NAV
+*************/
+
+nav {
+    background: #FEFEFE;
+    padding: 15px;
+}
+
+nav li {
+    margin: 20px 0;
+}
+
+nav a {
+    text-decoration: none;
+    color: #407A5E;
+    font-size: 1.2rem;
+}
+
+#logout-link {
+    position: absolute;
+    bottom: 35px;
+    right: 25px;
+}
+
+#triangle-bottomleft {
+	width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+	border-bottom: 140px solid rgba(12,209,143,0.2);
+	border-right: 260px solid transparent;
+}
+
+#triangle-bottomright {
+	width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+	border-bottom: 245px solid rgba(12,209,143,0.1);
+	border-left: 300px solid transparent;
+}
