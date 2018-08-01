@@ -1,0 +1,138 @@
+body {
+    overflow-x: hidden;
+}
+.slider {
+    height: 100vh;
+    display: flex;
+    transition: transform 2s;
+
+}
+
+.slider-item {
+    width: 100vw;
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(0vw);
+    }
+    100% {
+        transform: translateX(-500vw);
+
+    }
+}
+.slideRight {
+    animation: slideRight 2s;
+    animation-fill-mode: forwards;
+}
+
+#slider-1 {
+    background: url("../images/slider/big_camp.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+#slider-2 {
+    background: url("../images/slider/camp.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#slider-3 {
+    background: url("../images/slider/dance.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#slider-4 {
+    background: url("../images/slider/forest.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#slider-5 {
+    background: url("../images/slider/show.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#slider-6 {
+    background: url("../images/slider/tent_2.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.slider-navigation {
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+}
+.slider-navigation-item {
+    height: 12px;
+    width: 12px;
+    background-color: #0cd18f;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+/* Arrow */
+
+i {
+    border: solid #0cd18f;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 3px;
+    height: 2px;
+    width: 2px;
+}
+
+#left-arrow {
+    position: absolute;
+    top: 50%;
+    left: 8%;
+}
+
+#right-arrow {
+    position: absolute;
+    top: 50%;
+    right: 8%;
+}
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.slider-navigation-item:hover {
+    cursor: pointer;
+    background-color: white;
+}
+#right-arrow:hover, #left-arrow:hover {
+    cursor: pointer;
+}
+.slider-item div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.slider-item div p {
+    margin: 20px;
+    width: 80%;
+    text-align: justify;
+    color: white;
+}
+.slider-item div h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white
+}
