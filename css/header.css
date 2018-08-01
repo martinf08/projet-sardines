@@ -1,0 +1,59 @@
+body {
+    display: flex;
+}
+
+header {
+    position: absolute;
+    z-index: 1;
+    width: 300px;
+    height: 100vh;
+    background: #888;
+    left: -300px;
+    transition: left 0.4s; 
+}
+
+header.show {
+    left: 0;
+    transition: left 0.4s;
+}
+
+#display-user {
+    min-height: 260px;
+    background: #bbb;
+}
+
+#open {
+    cursor: pointer;
+}
+
+#open .bar {
+    width: 20px;
+    height: 4px;
+    background-color: #444;
+    margin: 4px 0;
+}
+
+#close {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    transform: rotateZ(45deg);
+    cursor: pointer;
+}
+
+#close .cross {
+    position: relative;
+    width: 4px;
+    height: 30px;
+    background-color: #444;
+}
+
+#close .cross:after {
+    background: #444;
+    content: "";
+    height: 4px;
+    left: -13px;
+    position: absolute;
+    top: 14px;
+    width: 30px;
+}
