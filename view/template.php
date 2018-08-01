@@ -15,7 +15,7 @@
 </head>
 <body>
 
-    <header>
+    <div id="menu">
 
         <div id="close"><!-- fermeture du menu -->
             <div class="cross"></div>
@@ -37,7 +37,7 @@
         <div id="triangle-bottomleft"></div>
         <div id="triangle-bottomright"></div>
 
-    </header>
+    </div>
 
     <div id="container">
 
