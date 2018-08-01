@@ -87,6 +87,8 @@ class Controller
     {
         $this->set('title', 'Connexion');
         $this->set('css', 'tooltip');
+        $this->set('connexion_css', 'connexion');
+        
         $this->render(ROOT.DS.'view/connexion.php');
     }
 
@@ -277,6 +279,7 @@ class Controller
 
         $this->set('title', 'inscription');
         $this->set('css', 'tooltip');
+        $this->set('inscription_css', 'inscription');
         $this->render('./view/inscription.php');
     }
 
