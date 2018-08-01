@@ -38,5 +38,5 @@
     <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
 </div>-->
 
-<script src="js/signin_login_validation.js"></script>
+<script src="<?=PUBLIC_URL?>js/signin_login_validation.js"></script>
 </main>
