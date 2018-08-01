@@ -93,7 +93,6 @@ class Controller
 
     public function passForget($request = null)
     {
-
         $error = "";
         $code_recover = false;
         $model = new UserManager();
@@ -122,8 +121,8 @@ class Controller
                             $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
                             $pre->execute(array(':email' => $email));
                             $reponse = $pre->fetch(PDO::FETCH_ASSOC);
-
-                            if ($reponse) {
+                         
+                            if ($reponse['id'] > 0) {
                                 $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET code = :code WHERE email =:email");
                                 $pre->execute(array(':code' => $code, ':email' => $email));
                             } else {
@@ -231,6 +230,7 @@ class Controller
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
         $this->render('view/forgotpassword.php');
+        die();
     }
 
     public function logIn()
