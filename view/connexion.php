@@ -7,28 +7,25 @@
 
 <br/> <!-- Optionnel -->
 
-<form method="POST" action="log" enctype="multipart/form-data">
-    <div class="form-input">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="email" name="email" placeholder="johndoe@mail.com">
-    </div>
-    <br/> <!-- Optionnel -->
+    <form method="POST" action="log" enctype="multipart/form-data"> 
+        <div class="flex-center">
+            <i class="fas fa-envelope"></i>
+            <input class ="input" type="email" id="email" name="email" placeholder="johndoe@mail.com">
+        </div>
+        <br/> <!-- Optionnel -->
 
 
-    <div class="form-input">
-        <i class="fas fa-lock"></i>
-        <input type="password" class="tooltip" id="password" name="password" placeholder=".......">
-    </div>
+        <div class="flex-center">
+            <i class=""></i>
+            <input type="password" class="input" id="password" name="password" placeholder=".......">
+        </div>
 
     <br>
 
-    <br/> <!-- Optionnel -->
-
-    <div id="mdp-oublie" class="form-input"><a href="forget">mot de passe oublié ?</a></div>
-
-    <br/> <!-- Optionnel -->
-
-    <div class="flex-center"><input type="submit" value="Se connecter"></div>
+        <div id="mdp-oublie" class="flex-center"><a href="forget">mot de passe oublié ?</a></div>
+        <div class="flex-center">
+            <input class="btn-full-signup" type="submit" value="Se connecter">
+        </div>
 
     <br/> <!-- Optionnel -->
 

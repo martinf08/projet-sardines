@@ -3,40 +3,42 @@
 <!-- Main -->
 <!-- avatar -->
 <form method="POST" action="insertUser"> 
-    <div id="centre-avatar">
-        <div class="user-img" ><label for="user-img" id="user-icon"><img src="./images/ressources/user.png" alt="user" class="img-inscription"></label></div>
+    <!--<div class="flex-center" id="centre-avatar">
+        <div class="user-img" ><label for="user-img" id="user-icon"><img src="../images/normal.jpg" class="img-inscription"></label></div>
         <input type="file" name="avatar" accept="image/*" id="avatar"/>
-    </div>
+    </div>-->
 
 
     <br/> <!-- Optionnel -->
 
 
-    <div class="form-input">
+    <div class="flex-center">
         <i class="fas fa-envelope"></i>
-    <input type="email" id="email" name="email" placeholder="johndoe@mail.com" required>
+    <input class="input" type="email" id="email" name="email" placeholder="e-mail" required>
 
     </div>
 
     <br/> <!-- Optionnel -->
     
-    <div class="form-input">
+    <div class="flex-center">
         <i class="fas fa-lock"></i>
-        <input type="password" id="password" name="password" minlength="6" placeholder="......." required>
+        <input class="input" type="password" id="password" name="password" minlength="6" placeholder="mot de passe" required>
         <div class="tooltip">entre au minimum 6 caractères</div>
     </div>
 
     <br/> <!-- Optionnel -->
 
-    <div class="form-input">
+    <div class="flex-center">
         <i class="fas fa-lock"></i>
-        <input type="password" id="confirmPassword" name="confirmPassword" minlength="6" placeholder="Confirm password" required>
+        <input class="input" type="password" id="confirmPassword" name="confirmPassword" minlength="6" placeholder="Confirmer votre mot de passe" required>
     </div>
 
     <br/> <!-- Optionnel -->
 
-
-    <input type="submit" name="submit-signin" value="S'inscrire">
+    <div class="flex-center">
+        <input class="btn-full-signup" type="submit" name="submit-signin" value="S'inscrire">
+    </div>
+    
 
     <br/> <!-- Optionnel -->
 
