@@ -7,16 +7,13 @@
     ?>
 </h1>
 
-<?php $title = 'Les Sardines'; ?>
-
-<?php ob_start(); ?>
 <main>
 
-    ici le contenu de <?= $title ?>
     <div class="slider">
+
         <div class="slider-item" id="slider-1">
             <div class="slider-info-top">
-
+                <div><img src="images/pictos/arrow_back.svg" alt=""></div>
             </div>
             <div class="slider-info-bottom">
                 <p>
@@ -96,8 +93,5 @@
     <i class="arrow left" id="left-arrow"></i>
     <script src="js/slider.js"></script>
 </main>
-<?php $content = ob_get_clean(); ?>
-
-<?php require_once 'view/template.php'; ?>
 
 

@@ -57,13 +57,13 @@
     </div>
 
     <div id="container">
-
+        <?php if(isset($_SESSION['user']) AND !empty($_SESSION['user'])) { ?>
         <div id="open"> <!-- le burger pour ouvrir le menu -->
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-
+        <?php } ?>
         <h1><?= $title ?></h1>
 
         <?= $content ?>

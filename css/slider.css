@@ -131,11 +131,17 @@ i {
 .slider-info-top {
     height: 73vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
 
 }
-
+.slider-info-top div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 50px;
+}
 .slider-info-bottom {
     height: 23vh;
     display: flex;
