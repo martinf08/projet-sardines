@@ -6,9 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/cheatsheet.css">
-    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-test.css">
-    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-asset.css">
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/slider.css">
 
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
