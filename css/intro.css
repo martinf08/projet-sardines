@@ -1,0 +1,62 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,tr,td,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,article,aside,audio,canvas,datalist,details,figcaption,figure,footer,header,hgroup,mark,meter,nav,output,progress,section,subline,summary,time,video{margin:0;padding:0;border:0;outline:0;font-size:100%}ol,ul{list-style:none}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}img,article,aside,audio,canvas,datalist,details,figcaption,figure,footer,header,hgroup,mark,meter,nav,output,progress,section,subline,summary,time,video{display:block}
+
+
+@font-face{
+    font-family:'SourceSansProRegular';
+    src: url('../fonts/sourcesansproregular/SourceSansProRegular.otf') format('truetype'),
+         url('f../onts/sourcesansproregular/SourceSansProRegular.woff') format('woff'),
+         url('../fonts/sourcesansproregular/SourceSansProRegular.woff2') format('woff2'),
+         url('../fonts/sourcesansproregular/SourceSansProRegular.ttf') format('truetype');
+
+}
+
+@font-face{
+    font-family:'SourceSansProSemibold';
+    src: url('../fonts/sourcesansprosemibold/SourceSansProSemibold.otf') format('truetype'),
+         url('../fonts/sourcesansprosemibold/SourceSansProSemibold.woff') format('woff'),
+         url('../fonts/sourcesansprosemibold/SourceSansProSemibold.woff2') format('woff2'),
+         url('../fonts/sourcesansprosemibold/SourceSansProSemibold.ttf') format('truetype');
+
+}
+
+@font-face{
+    font-family:'SourceSansProLight';
+    src: url('../fonts/sourcesansprolight/SourceSansProLight.otf') format('truetype'),
+         url('../fonts/sourcesansprolight/SourceSansProLight.woff') format('woff'),
+         url('../fonts/sourcesansprolight/SourceSansProLight.woff2') format('woff2'),
+         url('../fonts/sourcesansprolight/SourceSansProLight.ttf') format('truetype');
+
+}
+
+
+.intro-1{
+    font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
+    size: 10px;
+    color: #1C1C1C;
+}
+.btn-outlined-2{
+    width: 146px;
+    height: 35px;
+    border-radius: 17px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    color: #009688;
+    font-size: 18px;
+  }  
+
+
+
+.btn-outlined-2 a{
+    text-decoration: none;
+    background: inherit;
+    border: none;
+    width: inherit;
+    height: inherit;
+    margin: auto;
+    font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
+    line-height: 0.15;
+    letter-spacing: 0.06em;
+    color: white;
+    font-size: 18px;
+}
