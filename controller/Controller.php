@@ -399,7 +399,9 @@ class Controller
     #--------------
     public function notFound()
     {
-        require_once 'view/notfound.php';
+        $this->set('css', 'erreurs');
+        $this->set('title', 'Tu t\'es perdu');
+        $this->render('view/notfound.php');
     }
 
     #--------------
@@ -407,8 +409,10 @@ class Controller
     #--------------
     public function error()
     {
-        $errorMessage = $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.';
-        require_once 'view/erreur.php';
+        $this->set('css', 'erreurs');
+        $this->set('title', 'Il y a eu un problème');
+        $this->set('errorMessage', $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.');
+        $this->render('view/erreur.php');
     }
 
     /** E2
