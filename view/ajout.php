@@ -2,9 +2,9 @@
 
 # CONTRÔLE DE L'ACCÈS
 if (!isset($_SESSION['user'])) {
-    header('Location: index');
+    header('Location: '.PUBLIC_URL);
 } elseif ($_SESSION['user']->getStaff() == false) {
-    header('Location: index');
+    header('Location: '.PUBLIC_URL);
 }
 
 $title = 'Ajouter un matériel';
@@ -15,7 +15,7 @@ $title = 'Ajouter un matériel';
 
 <main>
     <div id="basket-bar"></div>
-    <?php if (isset($result)) {
+    <?php if (isset($result)) { # À NETTOYER ???
         print_r($result);
     } ?>
     <!-- Main -->
@@ -90,7 +90,7 @@ $title = 'Ajouter un matériel';
 
             <br/> <!-- Récuperer la valeur de la récompense -->
             <div class="flex-center">
-                <p>Recompense de <b><span id="recompense"> ? </span></b> sardines</p>
+                <p>Récompense de <b><span id="recompense"> ? </span></b> sardines</p>
             </div>
 
             <br/>
