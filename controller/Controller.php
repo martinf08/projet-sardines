@@ -228,6 +228,9 @@ class Controller
             } else {
                 $error = "Veuiller remplir tous les champs";
             }
+            if($error === "Veuiller remplir tous les champs"){
+                $code_recover = true;
+            }
         }
             
         $this->set('title','forget');

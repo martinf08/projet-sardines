@@ -5,10 +5,10 @@
                     <form  role="form" action="<?=PUBLIC_URL?>forget" autocomplete="off" class="" method="post">
                 <div class="flex-center"><p>Vous pouvez réinitialiser votre mot de passe ici.</p></div>
                 <div class="flex-center">
-                    <input class="input" id="newPasseword" name="newPasseword" placeholder="nouveau mot de passe" type="password">
+                    <input class="input" id="newPasseword" name="newPasseword" minlength="6" placeholder="nouveau mot de passe" type="password">
                 </div>
                 <div class="flex-center">
-                    <input class="input"  id="confirmNewpasseword" name="confirmNewpasseword" placeholder="confirmer votre nouveau mot de passe"  type="password">
+                    <input class="input"  id="confirmNewpasseword" name="confirmNewpasseword" minlength="6" placeholder="confirmer votre nouveau mot de passe"  type="password">
                 </div>
                 <div class="flex-center">
                     <input class="btn-full-signup"  name="submitNewpassword" value="Enoyer" type="submit">
@@ -31,4 +31,5 @@
     </div>
     <div id="triangle-bottomleft"></div>
     <div id="triangle-bottomright"></div>  
+      <script src="<?=PUBLIC_URL?>js/signin_login_validation.js"></script>
 </main>
