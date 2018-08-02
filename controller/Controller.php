@@ -102,7 +102,7 @@ class Controller
         $model = new UserManager();
         $email = "";
 
-
+        $this->set('title','Mot de passe oublié');
         if (!isset($_POST['email_recuperation'])) {
 
         } else {
@@ -189,6 +189,7 @@ class Controller
                     $error = "Modification de mot de passe impossible";
                 }
                 $code_recover = true;
+                $this->set('title','Réinitialisation du mot de passe');
 
             } catch (Exception $e) {
                 debug($e);
@@ -228,9 +229,12 @@ class Controller
             } else {
                 $error = "Veuiller remplir tous les champs";
             }
+            if($error === "Veuiller remplir tous les champs"){
+                $code_recover = true;
+            }
         }
             
-        $this->set('title','forget');
+      
         $this->set('forgot_css','forgotpassword');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
