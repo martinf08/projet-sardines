@@ -28,4 +28,6 @@
     </form>
   <?php }?>
   <div class="flex-center"><?php if(isset($errors)){echo'<br><span style="color:red">'.$errors.'</span>';}else{echo'<br/>';}?></div>
-  </main>
+ <div id="triangle-bottomleft"></div>
+ <div id="triangle-bottomright"></div>  
+</main>

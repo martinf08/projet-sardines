@@ -1,6 +1,6 @@
 <main>
     <div class="inscript-content">
-        <div id="titre"><h1>INSCRIPTION</h1></div>
+     
         <form method="POST" action="insertUser"> 
             <div class="avatar">
                
@@ -54,6 +54,7 @@
             </div>
             <div class="flex-center" ><input class="btn-full-signup" type="submit" name="submit-signin" value="S'inscrire"></div>
         </form>
+        <div id="titre"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici.</a></p></div>
     </div>
       <div id="triangle-bottomleft"></div>
       <div id="triangle-bottomright"></div>
