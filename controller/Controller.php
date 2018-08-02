@@ -250,7 +250,8 @@ class Controller
                     $_SESSION['islog'] = true;
 
                     $this->set('title', 'Les Sardines');
-                    $this->render('./view/donner.php');
+                    $this->set('css', 'donner');
+                    $this->render('view/donner.php');
                 } else {
                     $_SESSION['islog'] = false;
 
