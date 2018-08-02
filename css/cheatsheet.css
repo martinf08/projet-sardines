@@ -7,7 +7,7 @@ html{
 @font-face{
     font-family:'SourceSansProRegular';
     src: url('../fonts/sourcesansproregular/SourceSansProRegular.otf') format('truetype'),
-         url('f../onts/sourcesansproregular/SourceSansProRegular.woff') format('woff'),
+         url('../fonts/sourcesansproregular/SourceSansProRegular.woff') format('woff'),
          url('../fonts/sourcesansproregular/SourceSansProRegular.woff2') format('woff2'),
          url('../fonts/sourcesansproregular/SourceSansProRegular.ttf') format('truetype');
 
