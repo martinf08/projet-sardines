@@ -372,9 +372,7 @@ class Controller
                                 } else {
                                     $asset = new Asset($post);
                                     $assetManager->insertAsset($asset);
-                                    session_start();
                                     $_SESSION['lastAsset'] = $asset;
-
                                     header('location:success');
                                 }
                             }
@@ -399,7 +397,9 @@ class Controller
 
     public function successInsertAsset()
     {
-        require_once('./view/success.php');
+        $this->set('title', 'Succès de la transaction');
+        $this->set('css', 'standard');
+        $this->render('view/success.php');
     }
 
     #--------------
@@ -407,7 +407,7 @@ class Controller
     #--------------
     public function notFound()
     {
-        $this->set('css', 'erreurs');
+        $this->set('css', 'standard');
         $this->set('title', 'Tu t\'es perdu');
         $this->render('view/notfound.php');
     }
@@ -417,7 +417,7 @@ class Controller
     #--------------
     public function error()
     {
-        $this->set('css', 'erreurs');
+        $this->set('css', 'standard');
         $this->set('title', 'Il y a eu un problème');
         $this->set('errorMessage', $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.');
         $this->render('view/erreur.php');
