@@ -14,9 +14,7 @@ main{
 #container{
     width: 100%;
 }
-#titre{
-    text-align: center;
-}
+
 svg{
     width: 60%;
     height:60%;
