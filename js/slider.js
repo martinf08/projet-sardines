@@ -79,7 +79,6 @@
                 return false;
         }
         dots[dot].style.backgroundColor = 'white';
-        console.log(dots[dot]);
     }
 
     function defaultDots() {
