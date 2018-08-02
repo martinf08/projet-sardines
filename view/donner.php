@@ -82,9 +82,13 @@
             </g>
         </g>
         </svg>
-        <a href="">Je donne !</a>
+        <a href="" class="btn-full-2">Je donne !</a>
     </div>
 
-    <div class="card"></div>
+    <div class="card">
+        <!-- svg -->
+        <p id="prochainement" class="bold">Prochainement</p>
+        <p>Réutilise tes sardines pour louer le nécessaire de confort à la prochaine édition du Cabaret Vert</p>
+    </div>
 
 </main>
