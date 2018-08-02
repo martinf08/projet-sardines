@@ -3,7 +3,7 @@
      
         <form method="POST" action="insertUser"> 
             <div class="avatar">
-               
+
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="-426 129 512 512" style="enable-background:new -426 129 512 512;" xml:space="preserve">
                 <style type="text/css">
@@ -52,7 +52,7 @@
             <div class="flex-center form-input" >
                 <input class="input" type="password" id="confirmPassword" name="confirmPassword" minlength="6" placeholder="Confirmer votre mot de passe" required>
             </div>
-            <div class="flex-center" ><input class="btn-full-signup" type="submit" name="submit-signin" value="S'inscrire"></div>
+            <div class="flex-center" ><input class="btn-full-2" type="submit" name="submit-signin" value="S'inscrire"></div>
         </form>
         <div id="titre"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici.</a></p></div>
     </div>

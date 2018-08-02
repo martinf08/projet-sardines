@@ -11,7 +11,7 @@
                     <input class="input"  id="confirmNewpasseword" name="confirmNewpasseword" minlength="6" placeholder="confirmer votre nouveau mot de passe"  type="password">
                 </div>
                 <div class="flex-center">
-                    <input class="btn-full-signup"  name="submitNewpassword" value="Enoyer" type="submit">
+                    <input class="btn-full-2"  name="submitNewpassword" value="Envoyer" type="submit">
                 </div>
             </form>
 
@@ -23,7 +23,7 @@
                 </div>
                 
                 <div class ="flex-center">
-                <input class="btn-full-signup"  name="recover_submit"  value="Enoyer" type="submit">
+                <input class="btn-full-2"  name="recover_submit"  value="Envoyer" type="submit">
                 </div>
             </form>
         <?php }?>
@@ -31,5 +31,5 @@
     </div>
     <div id="triangle-bottomleft"></div>
     <div id="triangle-bottomright"></div>  
-      <script src="<?=PUBLIC_URL?>js/signin_login_validation.js"></script>
+    <script src="<?=PUBLIC_URL?>js/signin_login_validation.js"></script>
 </main>
