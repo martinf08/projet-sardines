@@ -1,5 +1,4 @@
-
-
+<main>
  <?php if(isset($message)) echo $message;?>
   <?php if($code_recover){?>
 
@@ -29,3 +28,4 @@
     </form>
   <?php }?>
   <div class="flex-center"><?php if(isset($errors)){echo'<br><span style="color:red">'.$errors.'</span>';}else{echo'<br/>';}?></div>
+  </main>

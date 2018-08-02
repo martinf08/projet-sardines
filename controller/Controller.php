@@ -229,6 +229,7 @@ class Controller
         }
             
         $this->set('title','forget');
+        $this->set('forgot_css','forgotpassword');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
 
