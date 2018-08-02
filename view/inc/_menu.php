@@ -4,7 +4,7 @@
 
 <nav>
     <ul>
-        <li><a href="<?= PUBLIC_URL ?>index">Accueil</a></li>
+        <li><a href="<?= PUBLIC_URL ?>">Accueil</a></li>
 
         <?php if (!isset($_SESSION['islog'])): ?>
             <li><a href="<?= PUBLIC_URL ?>inscription">S'inscrire</a></li>
