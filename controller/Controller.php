@@ -417,13 +417,8 @@ class Controller
     #  ERREUR 404
     #--------------
     public function notFound()
-<<<<<<< HEAD
-    {        
-        $this->set('css', 'erreurs');
-=======
     {
         $this->set('css', 'standard');
->>>>>>> fef1e88b03254db6210ba35f10d8b37a4ba1437a
         $this->set('title', 'Tu t\'es perdu');
         $this->render('view/notfound.php');
     }
