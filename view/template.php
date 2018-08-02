@@ -22,8 +22,8 @@
         <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $inscription_css ?>.css">
     <?php endif; ?>
 
-    <?php if (isset($forget_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
-        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $forget_css ?>.css">
+    <?php if (isset($forgot_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
+        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $forgot_css ?>.css">
     <?php endif; ?>
 
 

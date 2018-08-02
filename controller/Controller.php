@@ -24,7 +24,9 @@ class Controller
     public function dropGear()
 
     {
-        require_once './view/donner.php';
+        $this->set('title', 'Les Sardines');
+        $this->set('css', 'donner');
+        $this->render(ROOT.DS.'view/donner.php');
     }
 
     #-----------
@@ -100,7 +102,7 @@ class Controller
         $model = new UserManager();
         $email = "";
 
-
+        $this->set('title','Mot de passe oublié');
         if (!isset($_POST['email_recuperation'])) {
 
         } else {
@@ -187,6 +189,7 @@ class Controller
                     $error = "Modification de mot de passe impossible";
                 }
                 $code_recover = true;
+                $this->set('title','Réinitialisation du mot de passe');
 
             } catch (Exception $e) {
                 debug($e);
@@ -226,9 +229,13 @@ class Controller
             } else {
                 $error = "Veuiller remplir tous les champs";
             }
+            if($error === "Veuiller remplir tous les champs"){
+                $code_recover = true;
+            }
         }
             
-        $this->set('title','forget');
+      
+        $this->set('forgot_css','forgotpassword');
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
 
@@ -247,7 +254,8 @@ class Controller
                     $_SESSION['islog'] = true;
 
                     $this->set('title', 'Les Sardines');
-                    $this->render('./view/donner.php');
+                    $this->set('css', 'donner');
+                    $this->render('view/donner.php');
                 } else {
                     $_SESSION['islog'] = false;
 
@@ -399,7 +407,9 @@ class Controller
     #--------------
     public function notFound()
     {
-        require_once 'view/notfound.php';
+        $this->set('css', 'erreurs');
+        $this->set('title', 'Tu t\'es perdu');
+        $this->render('view/notfound.php');
     }
 
     #--------------
@@ -407,8 +417,10 @@ class Controller
     #--------------
     public function error()
     {
-        $errorMessage = $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.';
-        require_once 'view/erreur.php';
+        $this->set('css', 'erreurs');
+        $this->set('title', 'Il y a eu un problème');
+        $this->set('errorMessage', $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.');
+        $this->render('view/erreur.php');
     }
 
     /** E2
