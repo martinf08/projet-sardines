@@ -304,10 +304,8 @@ class Controller
                 $reponse = $userManager->insertUser($user);
 
                 if ( is_bool($reponse)) {
-                    header("Location: connexion");
-                    $this->set('title', 'Connexion');
-                    $this->render('./view/connexion.php');
-                    header("HTTP/1.0 200");
+                    header("Location: donner");
+                
                 } else {
 
                     $this->set('title', 'inscription');
