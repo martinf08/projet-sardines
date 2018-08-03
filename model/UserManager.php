@@ -124,6 +124,21 @@ class UserManager extends Model
         return false;
     }
 
+    public function getIdByIdentifier(User $user)
+    {
+        $identifierUser = $user->getIdentifier();
+        if ($identifierUser != null) {
+            $req = $this->dbConnect()->prepare('SELECT id_user FROM user WHERE identifier = :id');
+            $req->bindParam(':id', $identifierUser);
+            $req->execute();
+            $result = $req->fetch()['id_user'];
+            if ($result) {
+                return $result;
+            }
+        }
+        return false;
+    }
+
     public function getEmailUser(User $user)
     {
         $emailUser = $user->getEmail();
