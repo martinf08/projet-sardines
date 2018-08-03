@@ -16,7 +16,10 @@ class Controller
     public function index()
 
     {
-        require_once './view/index.php';
+        $this->set('title', 'Les Sardines');
+        $this->set('css', 'slider');
+
+        $this->render(ROOT.DS.'view/index.php');
     }
 
     #----------
