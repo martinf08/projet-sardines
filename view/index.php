@@ -12,8 +12,11 @@
     <div class="slider">
 
         <div class="slider-item" id="slider-1">
+            <div class="logo">
+                <img src="images/pictos/logo_text_3.svg" alt="">
+            </div>
             <div class="slider-info-top">
-                <div><img src="images/pictos/arrow_back.svg" alt=""></div>
+                <div class="rond"></div> <!-- logo -->
             </div>
             <div class="slider-info-bottom">
                 <p>

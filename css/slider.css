@@ -1,14 +1,11 @@
 body {
     overflow-x: hidden;
+    height: 100vh;
 
 }
 
-.slider {
-
-    height: 100vh;
-    display: flex;
-    transition: transform 2s;
-
+h1:first-child {
+    display: none;
 }
 
 @keyframes slideRight {
@@ -21,74 +18,31 @@ body {
     }
 }
 
-.slideRight {
-    animation: slideRight 2s;
-    animation-fill-mode: forwards;
-}
-
-.slider-navigation {
-    position: absolute;
-    bottom: -30px;
-    left: 0;
-    display: flex;
-    justify-content: space-evenly;
-    width: 100vw;
-}
-
-.slider-navigation-item {
-    height: 12px;
-    width: 12px;
-    background-color: #0cd18f;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-}
-.slider-item div {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+.slider {
     height: 100vh;
-}
-
-.slider-item div h2 {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white
+    transition: transform 2s;
+
 }
 
 .slider-item {
     width: 100vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
-.slider-info-top {
-    height: 73vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-.slider-info-top div {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 50px;
-}
 .slider-info-bottom {
-    height: 23vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .slider-info-bottom > p {
     font-size: 12px;
     text-align: left;
     margin: 0 16vw 0 16vw;
 }
+
 .slider-info-bottom .page-info {
     margin-bottom: 3.9%;
     color: #2489B4;
@@ -100,6 +54,29 @@ body {
     margin-bottom: 4.8vh;
 }
 
-h1:first-child {
-    display: none;
+.logo {
+    display: flex;
+justify-content: center;
+
+}
+
+.logo img {
+    margin-top: 5.1vh;
+    height: 7.6vh;
+    width: 55.4vw;
+
+}
+
+.slider-info-top {
+    height: 64.5vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rond {
+    height: 32.5vh;
+    width: 57.8vw;
+    border-radius: 50%;
+    background-color: #0cd18f;
 }
