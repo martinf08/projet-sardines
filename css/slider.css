@@ -42,7 +42,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 17vh;
 }
 
@@ -56,6 +56,12 @@ h1 {
     color: #2489B4;
     text-align: center;
     font-size: 14px;
+}
+.slider-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 8vh;
 }
 
 .logo {

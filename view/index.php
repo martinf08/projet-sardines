@@ -25,9 +25,13 @@
                     Salut Voyageur ! Chaque année, vous êtes environ 15 000 campeurs à être accueillis dans la joie et
                     la bonne humeur au Cabaret Vert.
                 </p>
-                <p class="page-info">1/6</p>
+                <div class="slider-bottom">
+                    <p class="page-info">1/6</p>
+                    <button class="btn-outlined-2">Suivant</button>
+                </div>
+
             </div>
-            <button class="btn-outlined-2">Suivant</button>
+
         </div>
 
         <div class="slider-item">
@@ -61,7 +65,9 @@
                 </p>
                 <p class="page-info">3/6</p>
             </div>
-            <button class="btn-outlined-2">Suivant</button>
+            <div>
+                <button class="btn-outlined-2">Suivant</button>
+            </div>
         </div>
 
         <div class="slider-item">
