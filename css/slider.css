@@ -24,7 +24,7 @@ h1 {
     display: flex;
 }
 
-.slider-info-top, .slider-info-bottom, .page-info {
+.slider-info-top, .slider-info-bottom > p, .page-info {
     transition: transform 2s;
 
 }
@@ -60,7 +60,7 @@ h1 {
 .slider-bottom {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     height: 8vh;
 }
 

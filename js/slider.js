@@ -1,9 +1,10 @@
 (function () {
     let button = document.querySelector('button');
     let sliderInfoT = document.querySelectorAll('.slider-info-top');
-    let sliderInfoB = document.querySelectorAll('.slider-info-bottom');
+    let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
+    let pageInfo = document.querySelectorAll('.page-info');
     let arrowBack = document.querySelector('.arrow-back');
-
+    console.log(sliderInfoB);
     let range = 0;
     if (range == 0) {
         arrowBack.style.height = '0';
@@ -17,9 +18,12 @@
             }
             sliderInfoT[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
             sliderInfoB[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
+            pageInfo[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
 
             sliderInfoT[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
             sliderInfoB[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
+            pageInfo[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
+
 
             if (range == -500) {
                 button.textContent = "Commencer";
@@ -38,9 +42,11 @@
             range = range + 100;
             sliderInfoT[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
             sliderInfoB[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
+            pageInfo[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
 
             sliderInfoT[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
             sliderInfoB[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
+            pageInfo[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
         }
     });
 
