@@ -8,6 +8,7 @@ class Controller
      *        destinées à  la vue
      */
     private $vars = array();
+    private $rendered = false;
 
     #---------
     #  INDEX
@@ -220,6 +221,7 @@ class Controller
                         $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
                         $pre->execute(array(':email' => $_SESSION['email']));
                         $_SESSION['email'] = "";
+                        
                         header("location: ".PUBLIC_URL."connexion");
 
                     } else {
@@ -261,7 +263,6 @@ class Controller
                     $this->render('view/donner.php');
                 } else {
                     $_SESSION['islog'] = false;
-
                     throw new Exception('Identifiant ou mot de passe incorrect.');
                 }
             } else {
@@ -301,17 +302,27 @@ class Controller
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
 
-                if ($reponse) {
+                if ( is_bool($reponse)) {
                     header("Location: connexion");
                     $this->set('title', 'Connexion');
                     $this->render('./view/connexion.php');
+                    header("HTTP/1.0 200");
                 } else {
-                    throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+
+                    $this->set('title', 'inscription');
+                    $this->set('css', 'tooltip');
+                    $this->set('inscription_css', 'inscription');
+                    //$this->set('Info', 'Cet email existe déjà');
+                    $this->render('./view/inscription.php');
+                    throw new Exception($reponse);
                 }
             } else {
+                header("HTTP/1.0 400");
                 throw new Exception('Il reste des champs à remplir.');
             }
+
         } else {
+            header("HTTP/1.0 403"); 
             header('Location: '.PUBLIC_URL);
         }
     }
@@ -375,9 +386,7 @@ class Controller
                                 } else {
                                     $asset = new Asset($post);
                                     $assetManager->insertAsset($asset);
-                                    session_start();
                                     $_SESSION['lastAsset'] = $asset;
-
                                     header('location:success');
                                 }
                             }
@@ -402,7 +411,9 @@ class Controller
 
     public function successInsertAsset()
     {
-        require_once('./view/success.php');
+        $this->set('title', 'Succès de la transaction');
+        $this->set('css', 'standard');
+        $this->render('view/success.php');
     }
 
     #--------------
@@ -410,7 +421,7 @@ class Controller
     #--------------
     public function notFound()
     {
-        $this->set('css', 'erreurs');
+        $this->set('css', 'standard');
         $this->set('title', 'Tu t\'es perdu');
         $this->render('view/notfound.php');
     }
@@ -420,7 +431,7 @@ class Controller
     #--------------
     public function error()
     {
-        $this->set('css', 'erreurs');
+        $this->set('css', 'standard');
         $this->set('title', 'Il y a eu un problème');
         $this->set('errorMessage', $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.');
         $this->render('view/erreur.php');
@@ -440,9 +451,10 @@ class Controller
             require($view);
             $content = ob_get_clean();
             require_once ROOT.DS.'view'.DS.'template.php';
-        
+            $this->rendered = true;
         } else {
-            throw new Exception("La vue demandée n'existe pas");
+            
+            //throw new Exception();
         }
     }
 
@@ -461,5 +473,14 @@ class Controller
             $this->vars[$key] = $value;
         }
         return $this;
+    }
+
+     /**
+     * Permet de gérer mes erreurs
+     */
+    function erreur($coderror,$errorMessage){
+        header("HTTP/1.0 ".$coderror); 
+        $this->set('errorMessage',$errorMessage);
+        $this->render('./view/erreur.php');
     }
 }

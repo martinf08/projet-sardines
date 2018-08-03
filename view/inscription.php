@@ -46,6 +46,7 @@
                 </svg>
 
             </div>
+            <!--<div class="flex-center"><? if(isset($Info)){echo $Info;}?></div>-->
             <div class="flex-center form-input" ><input class="input" type="email" id="email" name="email" placeholder="e-mail" required></div>
             <div class="flex-center form-input" ><input class="input" type="password" id="password" name="password" minlength="6" placeholder="mot de passe" required>
                 <div class="tooltip">entre au minimum 6 caractères</div></div>
