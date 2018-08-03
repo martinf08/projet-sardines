@@ -17,7 +17,7 @@ class Controller
 
     {
         $this->set('title', 'Les Sardines');
-        $this->set('css', 'slider');
+        $this->set('css', array('slider'));
 
         $this->render(ROOT.DS.'view/index.php');
     }
