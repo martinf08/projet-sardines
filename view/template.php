@@ -7,14 +7,15 @@
     <title><?= $title ?></title>
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/cheatsheet.css">
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/insert-asset.css">
-    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
+    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css">
+    <!-- contient simplement les classes pour position et effet tiroir -->
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/slider.css">
 
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $css ?>.css">
     <?php endif; ?>
 
-     <?php if (isset($connexion_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
+    <?php if (isset($connexion_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $connexion_css ?>.css">
     <?php endif; ?>
 
@@ -27,49 +28,49 @@
     <?php endif; ?>
 
 
-   
-
 </head>
 <body>
 
-    <div id="menu">
+<div id="menu">
 
-        <div id="close"><!-- fermeture du menu -->
-            <div class="cross"></div>
-        </div>
-
-        <div id="display-user"><!-- ici l'affiche des infos de l'user connecté -->
-            <?php if(isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
-                <p id="pseudo" class="bold"><?php echo $_SESSION['user']->getNickname(); ?></p>
-                <p id="mail"><?php echo $_SESSION['user']->getEmail(); ?></p>
-                <p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>
-                <p id="sardines-balance">J'ai <span class="bold">
-                    <?php echo $_SESSION['user']->getBalance(); ?>
-                </span> sardines</p>
-            <?php endif; ?>
-        </div>
-
-        <?php include_once 'inc/_menu.php'; ?>
-
-        <div id="triangle-bottomleft"></div>
-        <div id="triangle-bottomright"></div>
-
+    <div id="close"><!-- fermeture du menu -->
+        <div class="cross"></div>
     </div>
 
-    <div id="container">
-        <?php if(isset($_SESSION['user']) AND !empty($_SESSION['user'])) { ?>
+    <div id="display-user"><!-- ici l'affiche des infos de l'user connecté -->
+        <?php if (isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
+            <p id="pseudo" class="bold"><?php echo $_SESSION['user']->getNickname(); ?></p>
+            <p id="mail"><?php echo $_SESSION['user']->getEmail(); ?></p>
+            <p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>
+            <p id="sardines-balance">J'ai <span class="bold">
+                    <?php echo $_SESSION['user']->getBalance(); ?>
+                </span> sardines</p>
+        <?php endif; ?>
+    </div>
+
+    <?php include_once 'inc/_menu.php'; ?>
+
+    <div id="triangle-bottomleft"></div>
+    <div id="triangle-bottomright"></div>
+
+</div>
+
+<div id="container">
+    <?php if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { ?>
         <div id="open"> <!-- le burger pour ouvrir le menu -->
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
-        <?php } ?>
-        <h1><?= $title ?></h1>
+    <?php } ?>
+    <h1><?php if (isset($title)) {
+            echo $title;
+        } ?></h1>
 
-        <?= $content ?>
+    <?= $content ?>
 
-    </div>
-    
-    <script src="<?= PUBLIC_URL ?>js/menu_toggle.js"></script>
+</div>
+
+<script src="<?= PUBLIC_URL ?>js/menu_toggle.js"></script>
 </body>
 </html>
