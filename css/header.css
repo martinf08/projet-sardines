@@ -15,7 +15,7 @@ body {
     position: absolute;
     z-index: 1;
     width: 300px;
-    min-height: 100vh;
+    height: 100vh;
     left: -300px;
     transition: left 0.4s;
     background: #fff;
@@ -116,7 +116,6 @@ nav a {
     bottom: 35px;
     right: 25px;
     z-index: 2;
-    margin-top: 60px;
 }
 
 #triangle-bottomleft {

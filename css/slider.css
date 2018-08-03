@@ -1,15 +1,18 @@
 body {
     overflow-x: hidden;
+
 }
+
+main {
+
+}
+
 .slider {
+
     height: 100vh;
     display: flex;
     transition: transform 2s;
 
-}
-
-.slider-item {
-    width: 100vw;
 }
 
 @keyframes slideRight {
@@ -21,16 +24,13 @@ body {
 
     }
 }
+
 .slideRight {
     animation: slideRight 2s;
     animation-fill-mode: forwards;
 }
 
 #slider-1 {
-    background: url("../images/slider/big_camp.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-
 }
 
 #slider-2 {
@@ -62,6 +62,7 @@ body {
     background-size: cover;
     background-position: center;
 }
+
 .slider-navigation {
     position: absolute;
     bottom: -30px;
@@ -70,6 +71,7 @@ body {
     justify-content: space-evenly;
     width: 100vw;
 }
+
 .slider-navigation-item {
     height: 12px;
     width: 12px;
@@ -92,18 +94,8 @@ i {
 
 #left-arrow {
     position: absolute;
-    top: 50%;
-    left: 8%;
-}
-
-#right-arrow {
-    position: absolute;
-    top: 50%;
-    right: 8%;
-}
-.right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
+    top: 40%;
+    left: 2%;
 }
 
 .left {
@@ -111,28 +103,63 @@ i {
     -webkit-transform: rotate(135deg);
 }
 
-.slider-navigation-item:hover {
-    cursor: pointer;
-    background-color: white;
-}
-#right-arrow:hover, #left-arrow:hover {
+#left-arrow:hover {
     cursor: pointer;
 }
+
 .slider-item div {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     height: 100vh;
 }
-.slider-item div p {
-    margin: 20px;
-    width: 80%;
-    text-align: justify;
-    color: white;
-}
+
 .slider-item div h2 {
     display: flex;
     justify-content: center;
     align-items: center;
     color: white
+}
+
+.slider-item {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-info-top {
+    height: 73vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.slider-info-top div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 50px;
+}
+.slider-info-bottom {
+    height: 23vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.slider-info-bottom > p {
+    font-size: 12px;
+    text-align: left;
+    margin: 0 16vw 0 16vw;
+}
+.slider-info-bottom .page-info {
+    margin-bottom: 3.9%;
+    color: #2489B4;
+    text-align: center;
+    font-size: 14px;
+}
+
+.slider-info-bottom > button {
+    margin-bottom: 4.8vh;
 }

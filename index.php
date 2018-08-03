@@ -26,8 +26,8 @@ try
     $router = new Router;
 
     $router->setRoute('', 'index');
-    //$router->setRoute('index', 'index');
-    //$router->setRoute('index.php', 'index');
+    $router->setRoute('index', 'index');
+    $router->setRoute('index.php', 'index');
     $router->setRoute('insertUser', 'insertUser');
     $router->setRoute('ajout', 'newAsset');
     $router->setRoute('insertAsset', 'insertAsset');
@@ -48,5 +48,5 @@ try
 catch(Exception $e)
 {
   $_SESSION['error_msg'] = $e->getMessage();
-  header('Location: erreur');
+  //header('Location: erreur');
 }

@@ -24,13 +24,13 @@ class UserManager extends Model
             $errors[] = "email non valide";
         }
 
-        if (empty($errors)) {
-
+        if (empty($errors)) 
+        {
             $email = htmlentities($user->getEmail());
 
             // user check
             if ($this->UserChecker($user->getEmail())) {
-                echo "This email already exists";
+                return "Cet email existe déjà";
             } else {
                 // password check
                 if ($user->getPassword() === $user->getConfirmPassword()) {
@@ -38,7 +38,7 @@ class UserManager extends Model
                     $reponse = $this->identifierChecker($this->identiferGenerator());
 
                     if ($reponse) {
-                        echo "identifier déjà utilisé";
+                        return "Identifier déjà utilisé";
                     } else {
 
                         $data = array(
@@ -52,7 +52,7 @@ class UserManager extends Model
                     }
 
                 } else {
-                    echo "mot de passe non identique";
+                    return "mot de passe non identique";
                 }
             }
         }

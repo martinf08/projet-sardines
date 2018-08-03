@@ -10,7 +10,7 @@
 
 <div id="avatar-field">
     <?php if(!empty($user->getAvatar())): ?>
-        <div id="avatar" style="background-image: url('<?= PUBLIC_URL ?>/css/img/<?= $user->getAvatar(); ?>');"></div><!-- chemin de stockage images par encore défini -->
+        <div id="avatar" style="background-image: url('../css/img/<?= $user->getAvatar(); ?>');"></div><!-- chemin de stockage images par encore défini -->
     <?php else: ?>
         mettre un avatar par défaut ici dans le html (cas d'un user n'ayant pas encore enregistré d'avatar)
     <?php endif; ?>
@@ -25,7 +25,7 @@
     <?= $user->getBalance(); ?> 
 </span></p>
 
-<form action="<?= PUBLIC_URL ?>accountUpdate" method="post">
+<form action="../accountUpdate" method="post">
     <!-- chaque champ est désactivé pas défaut pour ne montrer que la valeur actuelle -->
     <!-- il faudra cliquer sur le petit crayon qui ciblera son input voisin pour permettre de le réécrire -->
     <p>Email : <span><?= $user->getEmail(); ?></span>
