@@ -1,6 +1,8 @@
 <!-- Main -->
 <main>
+    <div class="titre">
 
+    </div>
     <div class="connexion-content">
         <div class="avatar">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -141,9 +143,10 @@
 
         </div>
 
+        <div><h3><?php if(isset($errorMessage)){echo $errorMessage;}?></h3></div>
         <form method="POST" action="log" enctype="multipart/form-data"> 
             <div class="flex-center form-input">
-                <input class ="input" type="email" id="email" name="email" placeholder="johndoe@mail.com">
+                <input class ="input" type="email" id="email" name="email" placeholder="johndoe@mail.com" value ="<?php if(isset($email)){echo $email;}?>">
             </div>
             <div class="flex-center form-input">
                 <input type="password" class="input" id="password" name="password" placeholder=".......">
@@ -152,7 +155,7 @@
 
             <div id="mdp-oublie" class="flex-center"><a href="forget">mot de passe oublié ?</a></div>
             <div class="flex-center">
-                <input class="btn-full-1" type="submit" value="Se connecter">
+                <div class="btn-outlined"> <input class="btn-outlined-txt" type="submit" value="Se connecter"></div>
             </div>
     </form>
         <div><p>Pas de compte ? <a href="inscription">Je m'inscris.</a></p></div>

@@ -11,23 +11,9 @@
     <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/slider.css">
 
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
-        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $css ?>.css">
-    <?php endif; ?>
-
-     <?php if (isset($connexion_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
-        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $connexion_css ?>.css">
-    <?php endif; ?>
-
-    <?php if (isset($inscription_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
-        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $inscription_css ?>.css">
-    <?php endif; ?>
-
-    <?php if (isset($forgot_css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
-        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $forgot_css ?>.css">
-    <?php endif; ?>
-
-
-   
+        <?php foreach ($css as $value){?>
+        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $value ?>.css">
+    <?php } endif; ?>
 
 </head>
 <body>
@@ -65,11 +51,12 @@
         </div>
         <?php } ?>
         <h1><?= $title ?></h1>
-
+      
         <?= $content ?>
 
     </div>
     
     <script src="<?= PUBLIC_URL ?>js/menu_toggle.js"></script>
+     <script src="<?=PUBLIC_URL?>js/signin_login_validation.js"></script>
 </body>
 </html>

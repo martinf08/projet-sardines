@@ -53,7 +53,9 @@
             <div class="flex-center form-input" >
                 <input class="input" type="password" id="confirmPassword" name="confirmPassword" minlength="6" placeholder="Confirmer votre mot de passe" required>
             </div>
-            <div class="flex-center" ><input class="btn-full-2" type="submit" name="submit-signin" value="S'inscrire"></div>
+            <div class="flex-center" > 
+            <div class="btn-outlined"> <input class="btn-outlined-txt" type="submit" value="S'inscrire"></div>
+            </div>
         </form>
         <div id="titre"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici.</a></p></div>
     </div>

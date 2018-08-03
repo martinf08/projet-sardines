@@ -29,7 +29,7 @@ class Controller
 
     {
         $this->set('title', 'Les Sardines');
-        $this->set('css', 'donner');
+        $this->set('css', array('donner'));
         $this->render(ROOT.DS.'view/donner.php');
     }
 
@@ -92,10 +92,9 @@ class Controller
     public function logView()
     {
         $this->set('title', 'Connexion');
-        $this->set('css', 'tooltip');
-        $this->set('connexion_css', 'connexion');
-        
-
+     
+        $css = array('tooltip','connexion');
+        $this->set('css', $css);
         $this->render(ROOT.DS.'view/connexion.php');
     }
 
@@ -240,10 +239,10 @@ class Controller
         }
             
       
-        $this->set('forgot_css','forgotpassword');
+      
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
-
+        $this->set('css', array('forgotpassword','tooltip'));
         $this->render('view'.DS.'forgotpassword.php');
     }
     public function logIn()
@@ -259,11 +258,16 @@ class Controller
                     $_SESSION['islog'] = true;
 
                     $this->set('title', 'Les Sardines');
-                    $this->set('css', 'donner');
+                    $this->set('css', array('donner'));
                     $this->render('view/donner.php');
                 } else {
                     $_SESSION['islog'] = false;
-                    throw new Exception('Identifiant ou mot de passe incorrect.');
+                    $this->set('title', 'Connexion');
+                    $css = array('tooltip','connexion');
+                    $this->set('css',$css);
+                    $this->set('email',$_POST['email']);
+                    $this->set('errorMessage', 'Identifiant ou mot de passe incorrect.');
+                    $this->render('./view/connexion.php');
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
@@ -289,8 +293,8 @@ class Controller
         session_destroy();
 
         $this->set('title', 'inscription');
-        $this->set('css', 'tooltip');
-        $this->set('inscription_css', 'inscription');
+        $css = array('tooltip','inscription');
+        $this->set('css', $css);
         $this->render('./view/inscription.php');
     }
 
@@ -303,16 +307,14 @@ class Controller
                 $reponse = $userManager->insertUser($user);
 
                 if ( is_bool($reponse)) {
-                    header("Location: connexion");
-                    $this->set('title', 'Connexion');
-                    $this->render('./view/connexion.php');
-                    header("HTTP/1.0 200");
+                    header("Location: donner");
+                
                 } else {
 
                     $this->set('title', 'inscription');
-                    $this->set('css', 'tooltip');
-                    $this->set('inscription_css', 'inscription');
+                    $css = array('tooltip','inscription');
                     //$this->set('Info', 'Cet email existe déjà');
+                    $this->set('css', $css);
                     $this->render('./view/inscription.php');
                     throw new Exception($reponse);
                 }
@@ -412,7 +414,8 @@ class Controller
     public function successInsertAsset()
     {
         $this->set('title', 'Succès de la transaction');
-        $this->set('css', 'standard');
+        $css = array('standard');
+        $this->set('css', $css);
         $this->render('view/success.php');
     }
 
@@ -421,8 +424,10 @@ class Controller
     #--------------
     public function notFound()
     {
-        $this->set('css', 'standard');
+   
+        $this->set('css', array('standard'));
         $this->set('title', 'Tu t\'es perdu');
+        
         $this->render('view/notfound.php');
     }
 
@@ -431,7 +436,7 @@ class Controller
     #--------------
     public function error()
     {
-        $this->set('css', 'standard');
+        $this->set('css', array('standard'));
         $this->set('title', 'Il y a eu un problème');
         $this->set('errorMessage', $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.');
         $this->render('view/erreur.php');
