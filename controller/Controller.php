@@ -419,6 +419,19 @@ class Controller
         $this->render('view/success.php');
     }
 
+
+    #--------------
+    #  WELCOME PAGE
+    #--------------
+
+    public function welcome()
+    {
+        $this->set('title', 'Bienvenue');
+        $css = array('welcome');
+        $this->set('css', $css);
+        $this->render('view/welcome.php');
+    }
+
     #--------------
     #  ERREUR 404
     #--------------

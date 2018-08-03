@@ -41,6 +41,7 @@ try
     $router->setRoute('donner', 'dropGear');
     $router->setRoute('forget', 'passForget');
     $router->setRoute('accountUpdate', 'accountUpdate');
+    $router->setRoute('bienvenue', 'welcome');
     $router->setRoute('erreur', 'error');
 
     $router->execute();
