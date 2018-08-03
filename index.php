@@ -48,5 +48,5 @@ try
 catch(Exception $e)
 {
   $_SESSION['error_msg'] = $e->getMessage();
-  header('Location: erreur');
+  //header('Location: erreur');
 }

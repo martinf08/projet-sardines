@@ -8,6 +8,7 @@ class Controller
      *        destinées à  la vue
      */
     private $vars = array();
+    private $rendered = false;
 
     #---------
     #  INDEX
@@ -24,7 +25,9 @@ class Controller
     public function dropGear()
 
     {
-        require_once './view/donner.php';
+        $this->set('title', 'Les Sardines');
+        $this->set('css', array('donner'));
+        $this->render(ROOT.DS.'view/donner.php');
     }
 
     #-----------
@@ -86,10 +89,9 @@ class Controller
     public function logView()
     {
         $this->set('title', 'Connexion');
-        $this->set('css', 'tooltip');
-        $this->set('connexion_css', 'connexion');
-        
-
+     
+        $css = array('tooltip','connexion');
+        $this->set('css', $css);
         $this->render(ROOT.DS.'view/connexion.php');
     }
 
@@ -100,7 +102,7 @@ class Controller
         $model = new UserManager();
         $email = "";
 
-
+        $this->set('title','Mot de passe oublié');
         if (!isset($_POST['email_recuperation'])) {
 
         } else {
@@ -187,6 +189,7 @@ class Controller
                     $error = "Modification de mot de passe impossible";
                 }
                 $code_recover = true;
+                $this->set('title','Réinitialisation du mot de passe');
 
             } catch (Exception $e) {
                 debug($e);
@@ -214,6 +217,7 @@ class Controller
                         $pre = $model->dbConnect()->prepare("DELETE FROM recovery_password WHERE email = :email");
                         $pre->execute(array(':email' => $_SESSION['email']));
                         $_SESSION['email'] = "";
+                        
                         header("location: ".PUBLIC_URL."connexion");
 
                     } else {
@@ -226,12 +230,16 @@ class Controller
             } else {
                 $error = "Veuiller remplir tous les champs";
             }
+            if($error === "Veuiller remplir tous les champs"){
+                $code_recover = true;
+            }
         }
             
-        $this->set('title','forget');
+      
+      
         $this->set('errors',$error);
         $this->set('code_recover',$code_recover);
-
+        $this->set('css', array('forgotpassword','tooltip'));
         $this->render('view'.DS.'forgotpassword.php');
     }
     public function logIn()
@@ -247,11 +255,16 @@ class Controller
                     $_SESSION['islog'] = true;
 
                     $this->set('title', 'Les Sardines');
-                    $this->render('./view/donner.php');
+                    $this->set('css', array('donner'));
+                    $this->render('view/donner.php');
                 } else {
                     $_SESSION['islog'] = false;
-
-                    throw new Exception('Identifiant ou mot de passe incorrect.');
+                    $this->set('title', 'Connexion');
+                    $css = array('tooltip','connexion');
+                    $this->set('css',$css);
+                    $this->set('email',$_POST['email']);
+                    $this->set('errorMessage', 'Identifiant ou mot de passe incorrect.');
+                    $this->render('./view/connexion.php');
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
@@ -277,8 +290,8 @@ class Controller
         session_destroy();
 
         $this->set('title', 'inscription');
-        $this->set('css', 'tooltip');
-        $this->set('inscription_css', 'inscription');
+        $css = array('tooltip','inscription');
+        $this->set('css', $css);
         $this->render('./view/inscription.php');
     }
 
@@ -290,17 +303,25 @@ class Controller
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
 
-                if ($reponse) {
-                    header("Location: connexion");
-                    $this->set('title', 'Connexion');
-                    $this->render('./view/connexion.php');
+                if ( is_bool($reponse)) {
+                    header("Location: donner");
+                
                 } else {
-                    throw new Exception('Impossible d\'ajouter l\'utilisateur !');
+
+                    $this->set('title', 'inscription');
+                    $css = array('tooltip','inscription');
+                    //$this->set('Info', 'Cet email existe déjà');
+                    $this->set('css', $css);
+                    $this->render('./view/inscription.php');
+                    throw new Exception($reponse);
                 }
             } else {
+                header("HTTP/1.0 400");
                 throw new Exception('Il reste des champs à remplir.');
             }
+
         } else {
+            header("HTTP/1.0 403"); 
             header('Location: '.PUBLIC_URL);
         }
     }
@@ -364,9 +385,7 @@ class Controller
                                 } else {
                                     $asset = new Asset($post);
                                     $assetManager->insertAsset($asset);
-                                    session_start();
                                     $_SESSION['lastAsset'] = $asset;
-
                                     header('location:success');
                                 }
                             }
@@ -391,7 +410,10 @@ class Controller
 
     public function successInsertAsset()
     {
-        require_once('./view/success.php');
+        $this->set('title', 'Succès de la transaction');
+        $css = array('standard');
+        $this->set('css', $css);
+        $this->render('view/success.php');
     }
 
     #--------------
@@ -399,7 +421,11 @@ class Controller
     #--------------
     public function notFound()
     {
-        require_once 'view/notfound.php';
+   
+        $this->set('css', array('standard'));
+        $this->set('title', 'Tu t\'es perdu');
+        
+        $this->render('view/notfound.php');
     }
 
     #--------------
@@ -407,8 +433,10 @@ class Controller
     #--------------
     public function error()
     {
-        $errorMessage = $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.';
-        require_once 'view/erreur.php';
+        $this->set('css', array('standard'));
+        $this->set('title', 'Il y a eu un problème');
+        $this->set('errorMessage', $_SESSION['error_msg'] ?? 'Il y a eu un problème, on sait pas trop.');
+        $this->render('view/erreur.php');
     }
 
     /** E2
@@ -425,9 +453,10 @@ class Controller
             require($view);
             $content = ob_get_clean();
             require_once ROOT.DS.'view'.DS.'template.php';
-        
+            $this->rendered = true;
         } else {
-            throw new Exception("La vue demandée n'existe pas");
+            
+            //throw new Exception();
         }
     }
 
@@ -446,5 +475,14 @@ class Controller
             $this->vars[$key] = $value;
         }
         return $this;
+    }
+
+     /**
+     * Permet de gérer mes erreurs
+     */
+    function erreur($coderror,$errorMessage){
+        header("HTTP/1.0 ".$coderror); 
+        $this->set('errorMessage',$errorMessage);
+        $this->render('./view/erreur.php');
     }
 }
