@@ -43,3 +43,34 @@ function debug($var) {
 	print_r($var);
 	echo '<pre>';		
 }
+
+
+function getMenu(){
+       $html = '<div id="menu">';
+        $html .='<div id="close"><!-- fermeture du menu -->';
+        $html .='<div class="cross"></div>';
+        $html .="</div>";
+        $html .='<div id="display-user">';
+        $html .='<?php if(isset($_SESSION["user"]) AND !empty($_SESSION["user"])): ?>';
+        $html .='<p id="pseudo" class="bold"><?php echo $_SESSION["user"]->getNickname(); ?></p>';
+        $html .='<p id="mail"><?php echo $_SESSION["user"]->getEmail(); ?></p>';
+        $html .='<p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION["user"]->getIdentifier()); ?></p>';
+        $html .="<p id='sardines-balance'>J'ai <span class='bold'>";
+        $html .='<?php echo $_SESSION["user"]->getBalance(); ?>';
+        $html .="</span> sardines</p>";
+        $html .="<?php endif; ?>";
+        $html .="</div>";
+        $html .="<?php include_once 'inc/_menu.php';?>";
+        $html .='<div id="triangle-bottomlef"></div>';
+        $html .='<div id="triangle-bottomright"></div>';
+        $html .="</div>";
+        return $html;
+}
+function getBermenu(){
+        $html ='<div id="open"> <!-- le burger pour ouvrir le menu -->';
+        $html .='<div class="bar"></div>';
+        $html .='<div class="bar"></div>';
+        $html .='<div class="bar"></div>';
+        $html .="</div>";
+        return $html;
+}
