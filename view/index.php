@@ -90,7 +90,6 @@
 
         </div>
     </div>
-    <i class="arrow left" id="left-arrow"></i>
     <script src="js/slider.js"></script>
 </main>
 

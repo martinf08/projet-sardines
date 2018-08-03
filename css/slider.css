@@ -3,10 +3,6 @@ body {
 
 }
 
-main {
-
-}
-
 .slider {
 
     height: 100vh;
@@ -30,39 +26,6 @@ main {
     animation-fill-mode: forwards;
 }
 
-#slider-1 {
-}
-
-#slider-2 {
-    background: url("../images/slider/camp.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#slider-3 {
-    background: url("../images/slider/dance.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#slider-4 {
-    background: url("../images/slider/forest.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#slider-5 {
-    background: url("../images/slider/show.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#slider-6 {
-    background: url("../images/slider/tent_2.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
 .slider-navigation {
     position: absolute;
     bottom: -30px;
@@ -80,33 +43,6 @@ main {
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
 }
-
-/* Arrow */
-
-i {
-    border: solid #0cd18f;
-    border-width: 0 5px 5px 0;
-    display: inline-block;
-    padding: 3px;
-    height: 2px;
-    width: 2px;
-}
-
-#left-arrow {
-    position: absolute;
-    top: 40%;
-    left: 2%;
-}
-
-.left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-}
-
-#left-arrow:hover {
-    cursor: pointer;
-}
-
 .slider-item div {
     display: flex;
     justify-content: flex-end;
@@ -162,4 +98,8 @@ i {
 
 .slider-info-bottom > button {
     margin-bottom: 4.8vh;
+}
+
+h1:first-child {
+    display: none;
 }
