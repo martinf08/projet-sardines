@@ -2,12 +2,19 @@
     let button = document.querySelector('button');
     let sliderInfoT = document.querySelectorAll('.slider-info-top');
     let sliderInfoB = document.querySelectorAll('.slider-info-bottom');
+    let arrowBack = document.querySelector('.arrow-back');
 
     let range = 0;
+    if (range == 0) {
+        arrowBack.style.height = '0';
+    }
 
     button.addEventListener('click', function () {
         if (range - 100 >= -500) {
             range = range - 100;
+            if (range < 0) {
+                arrowBack.style.height = '15px';
+            }
             sliderInfoT[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
             sliderInfoB[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
 
@@ -18,6 +25,22 @@
                 button.textContent = "Commencer";
                 //Redirection Page Accueil
             }
+        }
+    });
+
+    arrowBack.addEventListener('click', function () {
+
+        if (range + 100 <= 0) {
+            console.log(range);
+            if (range == -100) {
+                arrowBack.style.height = '0';
+            }
+            range = range + 100;
+            sliderInfoT[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
+            sliderInfoB[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
+
+            sliderInfoT[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
+            sliderInfoB[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
         }
     });
 
@@ -49,11 +72,4 @@
             return index;
         }
     }
-
-    /*leftArrow.addEventListener('click', function () {
-        if (range + 100 <= 0) {
-            range = range + 100;
-            slider.style.transform = 'translateX(' + range + 'vw)';
-        }
-    });*/
 })();

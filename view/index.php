@@ -15,6 +15,7 @@
             <div class="logo">
                 <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
                 <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
+                <div></div>
             </div>
             <div class="slider-info-top">
                 <div class="rond"></div> <!-- logo -->
