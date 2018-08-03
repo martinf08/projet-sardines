@@ -21,22 +21,22 @@ position: fixed;
     left: -9999px;
 }
 button[name="tente"] {
-    background: url('../images/pictos/tente.jpg') no-repeat;
+    background: url('../images/pictos/tent.svg') no-repeat;
     background-size: contain;
     background-position: center;
 }
 button[name="sacDeCouchage"] {
-    background: url('../images/pictos/sac-couchage.jpg') no-repeat;
+    background: url('../images/pictos/sleeping_bag.svg') no-repeat;
     background-size: contain;
     background-position: center;
 }
 button[name="chaise"] {
-    background: url('../images/pictos/chaise.jpg') no-repeat;
+    background: url('../images/pictos/chair.svg') no-repeat;
     background-size: contain;
     background-position: center;
 }
 button[name="matelas"] {
-    background: url('../images/pictos/matelas-gonflable.jpg') no-repeat;
+    background: url('../images/pictos/mattress.svg') no-repeat;
     background-size: contain;
     background-position: center;
 }
