@@ -49,16 +49,16 @@ function getMenu(){
         $html .='<div class="cross"></div>';
         $html .="</div>";
         $html .='<div id="display-user">';
-        $html .='<?php if(isset($_SESSION["user"]) AND !empty($_SESSION["user"])): ?>';
-        $html .='<p id="pseudo" class="bold"><?php echo $_SESSION["user"]->getNickname(); ?></p>';
-        $html .='<p id="mail"><?php echo $_SESSION["user"]->getEmail(); ?></p>';
-        $html .='<p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION["user"]->getIdentifier()); ?></p>';
-        $html .="<p id='sardines-balance'>J'ai <span class='bold'>";
-        $html .='<?php echo $_SESSION["user"]->getBalance(); ?>';
-        $html .="</span> sardines</p>";
-        $html .="<?php endif; ?>";
+        if(isset($_SESSION['user']) AND !empty($_SESSION['user'])){
+                $html .='<p id="pseudo" class="bold">'.$_SESSION["user"]->getNickname().'<p>';
+                $html .='<p id="mail">'.$_SESSION["user"]->getEmail().'</p>';
+                $html .='<p id="user-id" class="bold">ID : '.strtoupper($_SESSION["user"]->getIdentifier()).'</p>';
+                $html .="<p id='sardines-balance'>J'ai <span class='bold'>".$_SESSION["user"]->getBalance();
+                $html .="</span> sardines</p>";
+        }
+
         $html .="</div>";
-        $html .="<?php include_once 'inc/_menu.php';?>";
+        include_once './view/inc/_menu.php';
         $html .='<div id="triangle-bottomlef"></div>';
         $html .='<div id="triangle-bottomright"></div>';
         $html .="</div>";

@@ -19,14 +19,38 @@
 </head>
 <body>
 
-     <?php 
-        echo getMenu();
-    ?>
+    <div id="menu">
+
+        <div id="close"><!-- fermeture du menu -->
+            <div class="cross"></div>
+        </div>
+
+        <div id="display-user"><!-- ici l'affiche des infos de l'user connecté -->
+            <?php if(isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
+                <p id="pseudo" class="bold"><?php echo $_SESSION['user']->getNickname(); ?></p>
+                <p id="mail"><?php echo $_SESSION['user']->getEmail(); ?></p>
+                <p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>
+                <p id="sardines-balance">J'ai <span class="bold">
+                    <?php echo $_SESSION['user']->getBalance(); ?>
+                </span> sardines</p>
+            <?php endif; ?>
+        </div>
+
+        <?php include_once 'inc/_menu.php'; ?>
+
+        <div id="triangle-bottomleft"></div>
+        <div id="triangle-bottomright"></div>
+
+    </div>
 
     <div id="container">
-    <?php 
-        echo getBermenu();
-    ?>
+
+        <div id="open"> <!-- le burger pour ouvrir le menu -->
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
         <h1><?= $title ?></h1>
       
         <?= $content ?>
