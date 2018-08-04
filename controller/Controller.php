@@ -388,7 +388,6 @@ class Controller
                                     header('location:success');
                                 }
                             }
-
                         } else {
                             throw new Exception('Certains champs (ou tous) sont vides.');
                         }
@@ -409,10 +408,17 @@ class Controller
 
     public function successInsertAsset()
     {
-        $this->set('title', 'Succès de la transaction');
-        $css = array('standard');
-        $this->set('css', $css);
-        $this->render('view/success.php');
+        if (isset($_SESSION['lastAsset']) && !empty($_SESSION['lastAsset'])) {
+            $this->set('title', 'Succès de la transaction');
+            $css = array('standard');
+            $this->set('css', $css);
+            //$this->render('./view/success.php');
+            require_once './view/success.php';
+            unset($_SESSION['lastAsset']);
+        }
+        else {
+            header('Location: ' . PUBLIC_URL);
+        }
     }
 
 
