@@ -503,4 +503,9 @@ class Controller
         $this->set('errorMessage', $errorMessage);
         $this->render('./view/erreur.php');
     }
+
+    /* MAIL TEST */
+    function mailtest() {
+        $this->render('./view/mailtest.php');
+    }
 }

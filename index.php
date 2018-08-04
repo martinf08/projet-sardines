@@ -41,6 +41,7 @@ try
     $router->setRoute('accountUpdate', 'accountUpdate');
     $router->setRoute('bienvenue', 'welcome');
     $router->setRoute('erreur', 'error');
+    $router->setRoute('mailtest', 'mailtest');
 
     $router->execute();
 }
