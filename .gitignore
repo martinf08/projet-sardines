@@ -2,3 +2,4 @@ Config.php
 .idea
 .vscode
 .vendor
+composer.lock
