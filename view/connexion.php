@@ -155,7 +155,7 @@
 
             <div id="mdp-oublie" class="flex-center"><a href="forget">mot de passe oublié ?</a></div>
             <div class="flex-center">
-                <div class="btn-outlined"> <input class="btn-outlined-txt" type="submit" value="Se connecter"></div>
+                <input class="btn-full-2" name="submit-connect" type="submit" value="Se connecter">
             </div>
     </form>
         <div><p>Pas de compte ? <a href="inscription">Je m'inscris.</a></p></div>
