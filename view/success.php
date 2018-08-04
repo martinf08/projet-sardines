@@ -9,7 +9,6 @@
 $title = 'Succès de la transaction';
 ?>
 
-<?php ob_start(); ?>
 <main>
 
 Félicitation, <?= $_SESSION['lastAsset']->getUserEmail(); ?>,
@@ -18,5 +17,3 @@ de qualité <?= $_SESSION['lastAsset']->getNameIdQuality(); ?>.
 Vous remportez ainsi <?= $_SESSION['lastAsset']->getValue(); ?> Sardines.<br/>
     Le  tag  est : <b><?= $_SESSION['lastAsset']->getTag(); ?></b>
 </main>
-<?php $content = ob_get_clean(); ?>
-<?php require_once 'view/template.php'; ?>
