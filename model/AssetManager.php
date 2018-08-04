@@ -13,7 +13,6 @@ class AssetManager extends Model
 
     public function insertAsset(Asset $asset)
     {
-        if (isset($_POST['add-asset']) && !empty($_POST['add-asset'])) {
             unset($_SESSION['lastAsset']);
             do {
                 $asset->setRandomTag();
@@ -77,9 +76,6 @@ class AssetManager extends Model
             } else {
                 throw new Exception('Une erreur est survenue');
             }
-        } else {
-            throw new Exception('Une erreur est survenue');
-        }
     }
 
     public function checkIdentifier($identifier)
