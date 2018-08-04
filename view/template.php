@@ -58,6 +58,6 @@
     </div>
     
     <script src="<?= PUBLIC_URL ?>js/menu_toggle.js"></script>
-     <script src="<?=PUBLIC_URL?>js/signin_login_validation.js"></script>
+
 </body>
 </html>

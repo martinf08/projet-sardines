@@ -173,8 +173,6 @@ class Controller
             }
 
         }
-
-
         if (isset($request)) {
 
             try {
@@ -200,8 +198,6 @@ class Controller
             }
 
         }
-
-
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
 

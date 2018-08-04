@@ -95,7 +95,7 @@ $title = 'Ajouter un matériel';
 
             <br/>
             <div class="flex-center">
-                <input class="btn-full-login" type="submit" id="submit" value="valider">
+                <input class="btn-full-login" name="add-asset" type="submit" id="submit" value="valider">
             </div>
 
         </div>

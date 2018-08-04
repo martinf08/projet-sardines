@@ -5,8 +5,6 @@ define('DS', DIRECTORY_SEPARATOR);
 define('BASE_URL',dirname($_SERVER['SCRIPT_NAME']));
 define('PUBLIC_URL', BASE_URL.DS);
 
-
-
 require_once 'functions/functions.php';
 require_once 'class/Config.php';
 require_once 'controller/Controller.php';

@@ -13,65 +13,69 @@ class AssetManager extends Model
 
     public function insertAsset(Asset $asset)
     {
-        unset($_SESSION['lastAsset']);
-        do {
-            $asset->setRandomTag();
-        } while ($this->checkRandomTag($asset) == false);
+        if (isset($_POST['add-asset']) && !empty($_POST['add-asset'])) {
+            unset($_SESSION['lastAsset']);
+            do {
+                $asset->setRandomTag();
+            } while ($this->checkRandomTag($asset) == false);
 
-        if ($this->getValueWithQandT($asset) || $this->getValueWithQandT($asset) == "") { //Recovery the value
-            $value = $asset->getValue();
-            $asset->setIdStaff($_SESSION['user']->getId_user()); //id staff
-            $description = $asset->getDescription(); //:description
-            $tag = $asset->getTag(); //:tag
-            $idType = $asset->getIdType(); //:id_type
-            $idQuality = $asset->getIdQuality(); //:id_quality
-            $idStaff = $asset->getIdStaff(); //:id_staff
-            #SEARCH ID USER WITH IDENTIFIER
-            $identifier = htmlspecialchars($_POST['iduser']);
-            $reqUser = $this->dbConnect()->prepare('SELECT id_user FROM `user` WHERE identifier = :id');
-            $reqUser->bindParam(':id', $identifier);
-            $reqUser->execute();
-            $responseUser = (int)$reqUser->fetch()['id_user'];
-            if ($responseUser) {
-                $asset->setIdUser($responseUser);
-            } else {
-                throw new Exception('L\'utilisateur n\'as pas été trouvé');
-            }
-            $idUser = $asset->getIdUser();
-            if (is_int($idUser) && is_int($idType) && is_int($idQuality)) {
-                if ($this->checkIdentifier($_POST['iduser'])) {
-                    $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
-                    $req->bindParam(':value', $value);
-                    $req->bindParam(':description', $description);
-                    $req->bindParam(':tag', $tag);
-                    $req->bindParam(':id_user', $idUser);
-                    $req->bindParam(':id_type', $idType);
-                    $req->bindParam(':id_quality', $idQuality);
-                    $req->bindParam(':id_staff', $idStaff);
-                    $result = $req->execute();
-                    if ($result) {
-                        $tag = $asset->getTag();
-                        $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
-                        $req2->bindParam(':tag', $tag);
-                        $req2->execute();
-                        $asset->setId((int)$req2->fetch()['id_asset']);
-                        $this->setIdTypeByName($asset); //Recovery name of type
-                        $this->setIdQualityByName($asset); //Recovery name of quality
-                        $this->setIdUserbyEmail($asset); //Recovery email of user id
-                        $this->setEntryDateById($asset); ////Recovery and set Entry_date in object
-                        $_SESSION['lastAsset'] = $asset;
+            if ($this->getValueWithQandT($asset) || $this->getValueWithQandT($asset) == "") { //Recovery the value
+                $value = $asset->getValue();
+                $asset->setIdStaff($_SESSION['user']->getId_user()); //id staff
+                $description = $asset->getDescription(); //:description
+                $tag         = $asset->getTag(); //:tag
+                $idType      = $asset->getIdType(); //:id_type
+                $idQuality   = $asset->getIdQuality(); //:id_quality
+                $idStaff     = $asset->getIdStaff(); //:id_staff
+                #SEARCH ID USER WITH IDENTIFIER
+                $identifier = htmlspecialchars($_POST['iduser']);
+                $reqUser    = $this->dbConnect()->prepare('SELECT id_user FROM `user` WHERE identifier = :id');
+                $reqUser->bindParam(':id', $identifier);
+                $reqUser->execute();
+                $responseUser = (int)$reqUser->fetch()['id_user'];
+                if ($responseUser) {
+                    $asset->setIdUser($responseUser);
+                } else {
+                    throw new Exception('L\'utilisateur n\'as pas été trouvé');
+                }
+                $idUser = $asset->getIdUser();
+                if (is_int($idUser) && is_int($idType) && is_int($idQuality)) {
+                    if ($this->checkIdentifier($_POST['iduser'])) {
+                        $req = $this->dbConnect()->prepare('INSERT INTO `asset`(`value`,`description`, `entry_date`, `tag`, `id_user`, `id_type`, `id_quality`, `id_staff`) VALUES (:value, :description, NOW() , :tag, :id_user, :id_type, :id_quality, :id_staff)');
+                        $req->bindParam(':value', $value);
+                        $req->bindParam(':description', $description);
+                        $req->bindParam(':tag', $tag);
+                        $req->bindParam(':id_user', $idUser);
+                        $req->bindParam(':id_type', $idType);
+                        $req->bindParam(':id_quality', $idQuality);
+                        $req->bindParam(':id_staff', $idStaff);
+                        $result = $req->execute();
+                        if ($result) {
+                            $tag  = $asset->getTag();
+                            $req2 = $this->dbConnect()->prepare('SELECT id_asset FROM asset WHERE tag = :tag');
+                            $req2->bindParam(':tag', $tag);
+                            $req2->execute();
+                            $asset->setId((int)$req2->fetch()['id_asset']);
+                            $this->setIdTypeByName($asset); //Recovery name of type
+                            $this->setIdQualityByName($asset); //Recovery name of quality
+                            $this->setIdUserbyEmail($asset); //Recovery email of user id
+                            $this->setEntryDateById($asset); ////Recovery and set Entry_date in object
+                            $_SESSION['lastAsset'] = $asset;
 
-                        # CREDIT THE USER
-                        $reqPay = $this->dbConnect()->prepare('UPDATE `user` SET `balance` = `balance` + :value WHERE `id_user` = :id_user');
-                        $reqPay->bindParam(':value', $value);
-                        $reqPay->bindParam(':id_user', $idUser);
-                        $reqPay->execute();
+                            # CREDIT THE USER
+                            $reqPay = $this->dbConnect()->prepare('UPDATE `user` SET `balance` = `balance` + :value WHERE `id_user` = :id_user');
+                            $reqPay->bindParam(':value', $value);
+                            $reqPay->bindParam(':id_user', $idUser);
+                            $reqPay->execute();
+                        }
+                    } else {
+                        throw new Exception('L\'utilisateur n\'existe pas');
                     }
                 } else {
-                    throw new Exception('L\'utilisateur n\'existe pas');
+                    throw new Exception('Une donnée est incorrect');
                 }
             } else {
-                throw new Exception('Une donnée est incorrect');
+                throw new Exception('Une erreur est survenue');
             }
         } else {
             throw new Exception('Une erreur est survenue');
