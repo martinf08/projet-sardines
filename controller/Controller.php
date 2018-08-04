@@ -245,25 +245,26 @@ class Controller
     {
         if (isset($_POST['email'])) { # est-ce que l'user est passé par le formulaire de logView ? sinon redirection
             if ($_POST['email'] != "" || $_POST['password'] != "") {
+                if(isset($_POST['submit-connect'])){
+                    $userManager = new UserManager();
+                    $user        = new User($_POST);
+                    $reponse     = $userManager->logIn($user);
 
-                $userManager = new UserManager();
-                $user        = new User($_POST);
-                $reponse     = $userManager->logIn($user);
+                    if ($reponse) {
+                        $_SESSION['islog'] = true;
 
-                if ($reponse) {
-                    $_SESSION['islog'] = true;
-
-                    $this->set('title', 'Les Sardines');
-                    $this->set('css', array('donner'));
-                    $this->render('view/donner.php');
-                } else {
-                    $_SESSION['islog'] = false;
-                    $this->set('title', 'Connexion');
-                    $css = array('tooltip', 'connexion');
-                    $this->set('css', $css);
-                    $this->set('email', $_POST['email']);
-                    $this->set('errorMessage', 'Identifiant ou mot de passe incorrect.');
-                    $this->render('./view/connexion.php');
+                        $this->set('title', 'Les Sardines');
+                        $this->set('css', array('donner'));
+                        $this->render('view/donner.php');
+                    } else {
+                        $_SESSION['islog'] = false;
+                        $this->set('title', 'Connexion');
+                        $css = array('tooltip', 'connexion');
+                        $this->set('css', $css);
+                        $this->set('email', $_POST['email']);
+                        $this->set('errorMessage', 'Identifiant ou mot de passe incorrect.');
+                        $this->render('./view/connexion.php');
+                    }
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
@@ -303,8 +304,7 @@ class Controller
                 $reponse     = $userManager->insertUser($user);
 
                 if (is_bool($reponse)) {
-                    header("Location: donner");
-
+                    header("Location: ".PUBLIC_URL."donner");
                 } else {
 
                     $this->set('title', 'inscription');
@@ -321,7 +321,7 @@ class Controller
 
         } else {
             header("HTTP/1.0 403");
-            header('Location: ' . PUBLIC_URL);
+            header('Location: ' .PUBLIC_URL);
         }
     }
 
