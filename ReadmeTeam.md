@@ -1,4 +1,13 @@
- SMTP LOCAL :
+COMPOSER :
+
+pointer vers le projet sardine
+
+php composer.phar install
+
+(Dépendance actuelle : phpmailer)
+
+
+SMTP LOCAL :
 
 Installer node.js
 
@@ -14,11 +23,4 @@ http://127.0.0.1:1080
 (voir la view mailtest)
 
 
-COMPOSER :
-
-pointer vers le projet sardine
-
-php composer.phar install
-
-(Dépendance actuelle : phpmailer)
 
