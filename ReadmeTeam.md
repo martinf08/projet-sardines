@@ -20,5 +20,5 @@ pointer vers le projet sardine
 
 php composer.phar install
 
-(Dépendance actuel : phpmailer)
+(Dépendance actuelle : phpmailer)
 
