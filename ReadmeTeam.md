@@ -20,7 +20,7 @@ maildev (pour le lancer)
 Interface graphique
 http://127.0.0.1:1080
 
-(voir la view mailtest)
+(voir user manager)
 
 
 
