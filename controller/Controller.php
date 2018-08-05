@@ -1,5 +1,8 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 class Controller
 {
     /**
@@ -9,6 +12,7 @@ class Controller
      */
     private $vars = array();
     private $rendered = false;
+
 
     #---------
     #  INDEX
@@ -505,7 +509,92 @@ class Controller
     }
 
     /* MAIL TEST */
-    function mailtest() {
-        $this->render('./view/mailtest.php');
+    function sendEmailValidation()
+    {
+        //Load Composer's autoloader
+        require 'vendor/autoload.php';
+
+        $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+        try {
+            //Server settings
+            $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+            $mail->isSMTP();                                      // Set mailer to use SMTP
+            $mail->Host     = '127.0.0.1';                         // Specify main and backup SMTP servers
+            $mail->SMTPAuth = false;                               // Enable SMTP authentication
+            //$mail->Username = 'user@example.com';                // SMTP username
+            //$mail->Password = 'secret';                          // SMTP password
+            //$mail->SMTPSecure = 'tls';                           // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 1025;                                    // TCP port to connect to
+
+            $userManager = new UserManager();
+            $email       = 'test@test.fr'; //Fake
+            $code        = md5(uniqid(rand(), true));
+            $req         = $userManager->dbConnect()->prepare('UPDATE `user` SET account_status= :code WHERE email= :email');
+            $req->bindParam(':code', $code);
+            $req->bindParam(':email', $email);
+            $subject = '';
+            $message = '';
+            if ($req->execute()) {
+                $subject      = 'Validation compte, Les Sardines';
+                $message      = '<html>';
+                $message      .= '<head><title>Titre du message</title></head>';
+                $message      .= '<body>';
+                $message      .= '<p>Bonjour !<br>Pour valder votre email <a href="http://localhost/projet-sardines/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+                $message      .= '<body>';
+                $message      .= '</html>';
+                $headers      = 'MIME-Version: 1.0' . "\r\n";
+                $headers      .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+
+                //Recipients
+                $mail->setFrom('les-sardines@hackardennes.com', 'Mailer');
+                $mail->addAddress($email);               // Name is optional
+                //$mail->addReplyTo('info@example.com', 'Information');
+
+                // Set email format to HTML
+                $mail->isHTML(true);
+
+                //Content
+                $mail->Subject = $subject;
+                $mail->Body    = $message;
+                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+                #CHEAT ANTI BUG LOCAL
+                $mail->smtpConnect([
+                    'ssl' => [
+                        'verify_peer'       => false,
+                        'verify_peer_name'  => false,
+                        'allow_self_signed' => true
+                    ]
+                ]);
+                ##########################
+
+                $mail->send();
+                $mail->smtpClose();
+                echo 'Message has been sent';
+            }
+        } catch (Exception $e) {
+            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+        }
+    }
+
+    function getEmailValidation($code)
+    {
+        if (isset($code) && !empty($code)) {
+            $usermanager = new UserManager();
+            $code        = htmlspecialchars($code);
+            $req         = $usermanager->dbConnect()->prepare('SELECT account_status FROM `user` WHERE account_status = :code');
+            $req->bindParam(':code', $code);
+            $req->execute();
+            if ($req->fetch()['account_status'] != false && $req->fetch()['account_status'] != '1') {
+                $reqActivation = $usermanager->dbConnect()->prepare("UPDATE `user` SET account_status= '1' WHERE account_status = :code");
+                $reqActivation->bindParam(':code', $code);
+                $reqActivation->execute();
+                echo 'Compte activé';
+            } else if ($req->fetch()['account_status'] == '1') {
+                echo 'Compte déjà activé';
+            } else {
+                echo 'erreur';
+            }
+        }
     }
 }
