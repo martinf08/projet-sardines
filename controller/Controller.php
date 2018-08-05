@@ -532,18 +532,14 @@ class Controller
             $req         = $userManager->dbConnect()->prepare('UPDATE `user` SET account_status= :code WHERE email= :email');
             $req->bindParam(':code', $code);
             $req->bindParam(':email', $email);
-            $subject = '';
-            $message = '';
             if ($req->execute()) {
-                $subject      = 'Validation compte, Les Sardines';
-                $message      = '<html>';
-                $message      .= '<head><title>Titre du message</title></head>';
-                $message      .= '<body>';
-                $message      .= '<p>Bonjour !<br>Pour valder votre email <a href="http://localhost/projet-sardines/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
-                $message      .= '<body>';
-                $message      .= '</html>';
-                $headers      = 'MIME-Version: 1.0' . "\r\n";
-                $headers      .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
+                $subject = 'Validation compte, Les Sardines';
+                $message = '<html>';
+                $message .= '<head><title>Titre du message</title></head>';
+                $message .= '<body>';
+                $message .= '<p>Bonjour !<br>Pour valder votre email <a href="http://localhost/projet-sardines/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+                $message .= '<body>';
+                $message .= '</html>';
 
                 //Recipients
                 $mail->setFrom('les-sardines@hackardennes.com', 'Mailer');
