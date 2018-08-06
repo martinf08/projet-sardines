@@ -1,3 +1,4 @@
+
 <main>
     <div class="inscript-content">
      
@@ -46,14 +47,16 @@
                 </svg>
 
             </div>
-            <!--<div class="flex-center"><? if(isset($Info)){echo $Info;}?></div>-->
-            <div class="flex-center form-input" ><input class="input" type="email" id="email" name="email" placeholder="e-mail" required></div>
-            <div class="flex-center form-input" ><input class="input" type="password" id="password" name="password" minlength="6" placeholder="mot de passe" required>
-                <div class="tooltip">entre au minimum 6 caractères</div></div>
-            <div class="flex-center form-input" >
+            <div class="flexCenter"><? if(isset($Info)){echo $Info;}?></div>
+            <div class="flexCenter form-input"><input class="input" type="email" id="email" name="email" placeholder="e-mail" required></div>
+            <div class="flexCenter form-input">
+                <input class="input" type="password" id="password" name="password" minlength="6" placeholder="mot de passe" required>
+                <div class="tooltip">entre au minimum 6 caractères</div>
+            </div>
+            <div class="flexCenter form-input" >
                 <input class="input" type="password" id="confirmPassword" name="confirmPassword" minlength="6" placeholder="Confirmer votre mot de passe" required>
             </div>
-            <div class="flex-center" > 
+            <div class="flexCenter" > 
             <input class="btn-full-2" type="submit" value="S'inscrire">
             </div>
         </form>

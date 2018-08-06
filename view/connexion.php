@@ -145,7 +145,7 @@
 
         <div><h3><?php if(isset($errorMessage)){echo $errorMessage;}?></h3></div>
         <form method="POST" action="log" enctype="multipart/form-data"> 
-            <div class="flex-center form-input">
+            <div class="flexCenter form-input">
                 <input class ="input" type="email" id="email" name="email" placeholder="johndoe@mail.com" value ="<?php if(isset($email)){echo $email;}?>">
             </div>
             <div class="flex-center form-input">
