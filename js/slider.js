@@ -4,7 +4,6 @@
     let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
     let pageInfo = document.querySelectorAll('.page-info');
     let arrowBack = document.querySelector('.arrow-back');
-    console.log(sliderInfoB);
     let range = 0;
     if (range == 0) {
         arrowBack.style.height = '0';
@@ -37,7 +36,6 @@ nextSlide();
     arrowBack.addEventListener('click', function () {
 
         if (range + 100 <= 0) {
-            console.log(range);
             if (range == -100) {
                 arrowBack.style.height = '0';
             }
