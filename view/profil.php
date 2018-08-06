@@ -1,6 +1,3 @@
-<?php $title = 'Mon compte'; ?>
-
-<?php ob_start(); ?>
 <main>
 
 <?= $title ?>
@@ -25,7 +22,7 @@
     <?= $user->getBalance(); ?> 
 </span></p>
 
-<form action="../accountUpdate" method="post">
+<form action="<?= PUBLIC_URL ?>accountUpdate" method="post">
     <!-- chaque champ est désactivé pas défaut pour ne montrer que la valeur actuelle -->
     <!-- il faudra cliquer sur le petit crayon qui ciblera son input voisin pour permettre de le réécrire -->
     <p>Email : <span><?= $user->getEmail(); ?></span>
@@ -55,6 +52,3 @@
 <?php endif; ?>
 
 </main>
-<?php $content = ob_get_clean(); ?>
-
-<?php require_once 'view/template.php'; ?>

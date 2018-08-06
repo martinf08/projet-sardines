@@ -54,7 +54,10 @@ class Controller
                 $userManager = new UserManager();
                 if (strtolower($userManager->getIdByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getId_user())) {
                     $user = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
-                    require_once './view/profil.php';
+
+                    $this->set('title', 'Mon compte');
+                    $this->set('user', $user);
+                    $this->render(ROOT . DS . 'view/profil.php');
                 }
             } else {
                 header('Location: ' . PUBLIC_URL);
