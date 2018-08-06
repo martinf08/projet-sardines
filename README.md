@@ -1,5 +1,9 @@
 # projet-sardines
-**Application née de la collaboration entre l'association HackArdennes et la fabrique de développeurs Simplon Charleville !**
+
+Application inspirée du projet gagnant du hackathon #HackCV17, organisé en immersion sur le Festival Cabaret Vert en 2017 par l'association HackArdennes.
+HackArdennes accompagne en 2018 une équipe de la fabrique de développeurs Simplon Charleville dans la refonte de cette appli.
+Son lancement sera présenté lors du Festival Cabaret Vert 2018.
+
 *@HackArdennes*
 *@Simplon08*
 
