@@ -353,6 +353,8 @@ class Controller
 
                 if (isset($types) && isset($qualities)) {
 
+                    $css = array('insert-asset');
+                    $this->set('css', $css);
                     require_once('./view/ajout.php');
 
                 } else {
