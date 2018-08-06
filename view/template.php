@@ -42,11 +42,11 @@
 
     <div id="container">
 
-        <div id="open"> <!-- le burger pour ouvrir le menu -->
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
+<!--        <div id="open"> <!-- le burger pour ouvrir le menu -->
+<!--            <div class="bar"></div>-->
+<!--            <div class="bar"></div>-->
+<!--            <div class="bar"></div>-->
+<!--        </div>-->
 
         <h1><?= $title ?></h1>
       
