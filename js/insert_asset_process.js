@@ -6,6 +6,8 @@
     let types = document.querySelectorAll('input[name="idtype"]');
     let qualities = document.querySelectorAll('input[name="idquality"]');
     let details = document.getElementById('details');
+    let header = document.querySelector('.header');
+    let steps = document.querySelectorAll('.step');
 
     let errorDiv = document.getElementById('error-id');
     let divEmail = document.createElement('div');
@@ -19,9 +21,9 @@
     let type;
     let quality;
 
-    nav.appendChild(divEmail);
+    /*nav.appendChild(divEmail);
     nav.appendChild(divType);
-    nav.appendChild(divQuality);
+    nav.appendChild(divQuality);*/
 
     //Cancel default button
     for (let i = 0; i < typeButtons.length; i++) {
@@ -75,7 +77,7 @@
                                 type = i + 1;
                                 getValue();
                                 setTimeout(function () {
-                                    smoothScroll(1.9, 60);
+                                    smoothScroll(2, 60);
                                     divType.innerHTML = '<p>Type : ' + event.target.name + '</p>';
                                 }, 2000);
                             });
@@ -107,17 +109,43 @@
         }
     });
     //Basket-bar
-    let navTopPosition = nav.offsetTop;
+    let navTopPosition = header.offsetTop;
+    let currentMarginTop = parseInt(window.getComputedStyle(steps[0]).marginTop, 10);
+    let imgLogo = document.querySelector('.logo img');
+    let imgcurrentMarginTop = parseInt(window.getComputedStyle(imgLogo).marginTop, 10);
+    let firstSelect = document.getElementById('first-new-asset');
+    let firstSelectcurrentMarginTop = parseInt(window.getComputedStyle(firstSelect).marginTop, 10);
     document.addEventListener('scroll', function () {
         let scrollPage = window.pageYOffset;
 
         if (scrollPage > navTopPosition) {
-            nav.classList.add('fixed');
-            nav.classList.remove('not-fixed');
+            header.classList.add('fixed');
+            header.classList.remove('not-fixed');
+            header.style.paddingTop = '5.54vh';
+            let imgLogo2 = document.querySelector('.logo img');
+            for (let i = 0; i < steps.length; i++) {
+                if (i == 0) {
+                    let headerHeight = header.offsetHeight;
+                    steps[i].style.marginTop = currentMarginTop + headerHeight +'px';
+                    if (imgLogo2 != null) {
+                        document.querySelector('.logo').replaceChild(firstSelect, imgLogo);
+                        firstSelect.style.marginTop = imgcurrentMarginTop + 'px';
+                    }
+
+
+                }
+            }
         }
         else if (scrollPage <= navTopPosition) {
-            nav.classList.add('not-fixed');
-            nav.classList.remove('fixed');
+            //Reset
+            header.classList.add('not-fixed');
+            header.classList.remove('fixed');
+            steps[0].style.marginTop = currentMarginTop +'px';
+            document.querySelector('.logo').replaceChild(imgLogo, firstSelect);
+            imgLogo.style.marginTop = imgcurrentMarginTop + 'px';
+            firstSelect.style.marginTop = firstSelectcurrentMarginTop + 'px';
+            document.querySelector('.header').appendChild(firstSelect);
+
         }
     });
 
@@ -146,7 +174,7 @@
     function smoothScroll(nb_viewport, speed_millisecond) {
         let scrollPage = window.pageYOffset;
         let target = window.innerHeight;
-        let range = target * nb_viewport + nav.clientHeight;
+        let range = target * nb_viewport;
         let speed = range / speed_millisecond;
         let i = scrollPage;
         setInterval(function () {

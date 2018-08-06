@@ -14,36 +14,39 @@ $title = 'Ajouter un matériel';
 <?php ob_start(); ?>
 
 <main>
-<!--    <div id="basket-bar"></div>-->
+    <!--    <div id="basket-bar"></div>-->
 
     <!-- Main -->
     <div class="view">
-
-        <div class="logo">
-
-            <div id="open"> <!-- le burger pour ouvrir le menu -->
-
+        <div class="header">
+            <div class="logo">
+                <div id="open"> <!-- le burger pour ouvrir le menu -->
+                </div>
+                <img src="images/pictos/logo_text_3.svg" alt="Les Sardines">
+                <div></div>
             </div>
-            <img src="images/pictos/logo_text_3.svg" alt="Les Sardines">
-            <div></div>
+            <div class="blue uper bold" id="first-new-asset">
+                nouvelle saisie
+            </div>
         </div>
-        <div class="blue uper bold" id="first-new-asset">
-            nouvelle saisie
-        </div>
+
         <form action="insertAsset" method="post">
 
-            <h1 class="flex-center">nouvelle saisie</h1>
 
-            <p class="flex-center step">Etape 1 : Saisir l'ID du festivalier ou le code générique</p>
+            <p id="step1" class="flex-center step">Etape 1 : Saisir l'ID du festivalier ou le code générique</p>
 
             <div class="flex-center">
                 <input type="text" class="input" name="iduser" id="iduser" placeholder="identifiant">
             </div>
 
-            <div class="flex-center" id="error-id"></div>
+            <div id="responseUser">
+                <img id="logoResponse" class="logoResponse" src="images/pictos/valid.svg">
+                <p class="flex-center" id="error-id">test</p>
+            </div>
+
     </div>
     <div class="view">
-        <h4 class="flex-center">Etape 2 : Choisir le type de matériel</h4>
+        <p id="step2" class="flex-center step">Etape 2 : Choisir le type de matériel</p>
         <!-- LES RADIOS TYPE -->
         <?php
         $i = 1
@@ -59,11 +62,15 @@ $title = 'Ajouter un matériel';
             }, $cssID);
             $cssID = lcfirst(implode('', $cssID));
             ?>
-            <input type="radio"
-                   id="<?php echo $cssID ?>"
-                   name="idtype"
-                   value="<?php echo $type['id_type'] ?>">
-            <button class="btn-white" name="<?php echo $cssID ?>"></button>
+            <div class="item-button">
+                <input type="radio"
+                       id="<?php echo $cssID ?>"
+                       name="idtype"
+                       value="<?php echo $type['id_type'] ?>">
+                <button class="btn-white" name="<?php echo $cssID ?>"></button>
+                <p><?= $type['name']; ?></p>
+            </div>
+
             <?php
             if ($i % 2 == 0) {
                 echo '</div>';
@@ -74,7 +81,7 @@ $title = 'Ajouter un matériel';
     </div>
 
     <div class="view">
-        <h4 class="flex-center">Etape 3 : Précisez l'état du matériel</h4>
+        <p class="flex-center step">Etape 3 : Précisez l'état du matériel</p>
         <br> <!-- LES RADIOS QUALITE -->
         <div class="flex-center">
             <?php foreach ($qualities as $quality):
