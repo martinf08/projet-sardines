@@ -374,31 +374,35 @@ class Controller
 
     public function insertAsset()
     {
-        if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
-            if ($_SESSION['user']->getStaff()) {
-                if (isset($_POST) && !empty($_POST)) {
-                    $post         = $_POST;
-                    $assetManager = new AssetManager();
-                    if (isset($post)) {
+        if (isset($_POST['submit-asset'])) {
+            if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
+                if ($_SESSION['user']->getStaff()) {
+                    if (isset($_POST) && !empty($_POST)) {
+                        $post         = $_POST;
+                        $assetManager = new AssetManager();
+                        if (isset($post)) {
 
-                        if (!empty($post['idtype']) && !empty($post['idquality'])) {
-                            if (empty($post['iduser'])) {
-                                throw  new Exception('Le champ du bénéficiaire est vide');
-                            } else {
-                                if (strtolower($post['iduser']) == strtolower($_SESSION['user']->getIdentifier())) {
-                                    throw new Exception('Un membre de l\'équipe ne doit pas se créditer lui-même !');
+                            if (!empty($post['idtype']) && !empty($post['idquality'])) {
+                                if (empty($post['iduser'])) {
+                                    throw  new Exception('Le champ du bénéficiaire est vide');
                                 } else {
-                                    $asset = new Asset($post);
-                                    $assetManager->insertAsset($asset);
-                                    $_SESSION['lastAsset'] = $asset;
-                                    header('location:success');
+                                    if (strtolower($post['iduser']) == strtolower($_SESSION['user']->getIdentifier())) {
+                                        throw new Exception('Un membre de l\'équipe ne doit pas se créditer lui-même !');
+                                    } else {
+                                        $asset = new Asset($post);
+                                        $assetManager->insertAsset($asset);
+                                        $_SESSION['lastAsset'] = $asset;
+                                        header('location:success');
+                                    }
                                 }
+                            } else {
+                                throw new Exception('Certains champs (ou tous) sont vides.');
                             }
                         } else {
-                            throw new Exception('Certains champs (ou tous) sont vides.');
+                            throw new Exception('Erreur monumentale.');
                         }
                     } else {
-                        throw new Exception('Erreur monumentale.');
+                        header('Location: ' . PUBLIC_URL);
                     }
                 } else {
                     header('Location: ' . PUBLIC_URL);
