@@ -15,7 +15,7 @@
     let divQuality = document.createElement('div');
 
     let typeButtons = views[1].querySelectorAll('button.btn-white');
-    let qualityButtons = views[2].querySelectorAll('button.btn-white');
+    let qualityButtons = views[2].querySelectorAll('button.btn-white2');
 
     let sardinesDisplay = document.querySelector("#recompense");
     let type;

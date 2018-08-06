@@ -29,22 +29,22 @@ position: fixed;
 }
 button[name="tente"] {
     background: url('../images/pictos/tent.svg') no-repeat;
-    background-size: contain;
+    background-size: 66px, 34px;
     background-position: center;
 }
 button[name="sacDeCouchage"] {
     background: url('../images/pictos/sleeping_bag.svg') no-repeat;
-    background-size: contain;
+    background-size: 30px, 58px;
     background-position: center;
 }
 button[name="chaise"] {
     background: url('../images/pictos/chair.svg') no-repeat;
-    background-size: contain;
+    background-size: 41px, 57px;
     background-position: center;
 }
 button[name="matelas"] {
     background: url('../images/pictos/mattress.svg') no-repeat;
-    background-size: contain;
+    background-size: 35px, 57px;
     background-position: center;
 }
 button[name="mauvaise"] {
@@ -167,4 +167,29 @@ h1:first-child {
 }
 .item-button button {
     margin-bottom: 15px;
+}
+.label-type {
+    margin-bottom: 3.59vh;
+}
+button[name="chaise"],
+button[name="tente"],
+button[name="chaise"] + p,
+button[name="tente"] + p {
+    margin-right: 3.06vw ;
+    text-align: center;
+}
+button[name="mauvaise"],
+button[name="bonne"],
+button[name="mauvaise"] + p,
+button[name="bonne"] + p {
+    margin-right: 3.06vw ;
+    text-align: center;
+}
+.item-button2 p {
+    margin-top: 2.39vh;
+    margin-bottom: 4.49vh;
+}
+textarea {
+    padding-left: 16px;
+    padding-top: 12px;
 }

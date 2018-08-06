@@ -12,7 +12,6 @@ $title = 'Ajouter un matériel';
 ?>
 
 <?php ob_start(); ?>
-
 <main>
     <!--    <div id="basket-bar"></div>-->
 
@@ -68,7 +67,7 @@ $title = 'Ajouter un matériel';
                        name="idtype"
                        value="<?php echo $type['id_type'] ?>">
                 <button class="btn-white" name="<?php echo $cssID ?>"></button>
-                <p><?= $type['name']; ?></p>
+                <p class="label-type"><?= $type['name']; ?></p>
             </div>
 
             <?php
@@ -87,19 +86,22 @@ $title = 'Ajouter un matériel';
             <?php foreach ($qualities as $quality):
                 # en l'état actuel, pas de formatage du label nécessaire pour les qualités
                 ?>
+                <div class="item-button2">
+                    <input type="radio"
+                           id="<?php echo $quality['label'] ?>"
+                           name="idquality"
+                           value="<?php echo $quality['id_quality'] ?>">
+                    <button class="btn-white2" name="<?php echo $quality['label'] ?>"></button>
+                    <p><?php echo $quality['label'] ?></p>
+                </div>
 
-                <input type="radio"
-                       id="<?php echo $quality['label'] ?>"
-                       name="idquality"
-                       value="<?php echo $quality['id_quality'] ?>">
-                <button class="btn-white" name="<?php echo $quality['label'] ?>"></button>
 
             <?php endforeach; ?>
         </div>
         <br/> <!-- détails sur l'état du matos -->
         <div class="flex-center">
             <textarea class="flex-center" name="description" id="details" cols="30" rows="10"
-                      placeholder="Infos supplémentaires (Optionnel)"></textarea>
+                      placeholder="Commentaire..."></textarea>
 
         </div>
 
