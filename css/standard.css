@@ -44,26 +44,15 @@ body {
 #close {
     position: absolute;
     top: 25px;
-    right: 40px;
-    transform: rotateZ(45deg);
+    right: 25px;
     cursor: pointer;
+    height: 32px;
+    width: 32px;
 }
 
-#close .cross {
-    position: relative;
-    width: 4px;
-    height: 30px;
-    background-color: #0cd18f;
-}
-
-#close .cross:after {
-    background: #0cd18f;
-    content: "";
-    height: 4px;
-    left: -13px;
-    position: absolute;
-    top: 14px;
-    width: 30px;
+#close svg {
+    width: 28px;
+    display: inline-block;
 }
 
 /* il manque le box-shadow à appliquer */
