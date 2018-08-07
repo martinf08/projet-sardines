@@ -353,9 +353,9 @@ class Controller
 
                 if (isset($types) && isset($qualities)) {
 
-                    $css = array('insert-asset');
-                    $this->set('css', $css);
-                    require_once('view/ajout.php');
+                    $this->set('css', array('insert-asset'));
+                    $this->set('title', 'Ajouter un matériel');
+                    $this->render('view/ajout.php');
 
                 } else {
                     throw new Exception('Problème sur la récupération des tables.');
