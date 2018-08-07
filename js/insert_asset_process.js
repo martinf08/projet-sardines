@@ -21,6 +21,14 @@
     let type;
     let quality;
 
+    let _listenType;
+    let _listenQuality;
+
+    let h1 = document.querySelector('h1');
+    h1.style.display = 'none';
+
+    let asValidate = 0;
+
     //Cancel default button
     for (let i = 0; i < typeButtons.length; i++) {
         typeButtons[i].addEventListener('click', function (event) {
@@ -49,7 +57,6 @@
         removePushedTypeClass();
         removePushedQualityClass();
 
-
         details.value = "";
 
         //Identifier
@@ -65,6 +72,7 @@
                     response.innerHTML = xhttp.responseText;
                     if (xhttp.responseText != '<p>Cet utilisateur n\'existe pas</p>') {
                         if (xhttp.response.search('validé') == -1) {
+                            asValidate = 1;
                             pictoUser.src = "images/pictos/valid.svg";
                             pictoUser.style.display = 'block';
                             setTimeout(function () {
@@ -73,7 +81,7 @@
                             }, 2000);
                             //Types
                             for (let i = 0; i < typeButtons.length; i++) {
-                                typeButtons[i].addEventListener('click', function (event) {
+                                typeButtons[i].addEventListener('click', function _listenType(event) {
                                     removePushedTypeClass();
                                     typeButtons[i].classList.add('btn-white-clicked');
                                     typeButtons[i].classList.remove('btn-white');
@@ -90,7 +98,7 @@
                             }
                             //Qualities
                             for (let i = 0; i < qualityButtons.length; i++) {
-                                qualityButtons[i].addEventListener('click', function (event) {
+                                qualityButtons[i].addEventListener('click', function _listenType(event) {
                                     removePushedQualityClass();
                                     qualityButtons[i].classList.add('btn-white-clicked2');
                                     qualityButtons[i].classList.remove('btn-white2');
@@ -99,6 +107,7 @@
                                     radioTarget.checked = true;
                                     quality = i + 1;
                                     getValue();
+                                    //createResponseHeaderQuality(event.target.name);
                                     divQuality.innerHTML = '<p>Qualité : ' + event.target.name + '</p>';
                                 });
 
@@ -108,15 +117,17 @@
                         else {
                             pictoUser.src = "images/pictos/warning.svg";
                             pictoUser.style.display = 'block';
-                            return false;
                         }
 
                     }
                     else if (xhttp.responseText == '<p>Cet utilisateur n\'existe pas</p>') {
-                        console.log('test');
                         pictoUser.src = "images/pictos/invalid.svg";
                         pictoUser.style.display = 'block';
-                        return false;
+                        if (asValidate == 1 || textUser.value.length == 4) {
+                            //if the user has find a good result and second result is false;
+                            window.location.reload(true);
+                        }
+
                     }
 
                 }
@@ -305,5 +316,8 @@
             header.appendChild(divResponseHeader);
         }
     }
+
+
+
 
 })();
