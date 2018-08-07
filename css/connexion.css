@@ -41,7 +41,7 @@ input{
     font-size: 100%;
     text-align: center;
 }
-#submit-signin{
+#submit-connect{
     margin-top: 6.9%;
 
 }
@@ -49,8 +49,8 @@ a,p{
       font-size: 14px;
 }
 .Header{
-     display: flex;
-     margin-bottom: 7,2%;
+    display: flex;
+    margin-bottom: 7,2%;
     margin-top:4.8%;
     width: 100%;
 }
