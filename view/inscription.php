@@ -8,6 +8,7 @@
           <div id="vide"></div>
       </div>
      
+
         <form method="POST" action="insertUser" autocomplete="off"> 
             <div class="avatar">
 
