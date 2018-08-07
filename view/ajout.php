@@ -1,17 +1,4 @@
-<?php
 
-# CONTRÔLE DE L'ACCÈS
-if (!isset($_SESSION['user'])) {
-    header('Location: index');
-} elseif ($_SESSION['user']->getStaff() == false) {
-    header('Location: index');
-}
-
-$title = 'Ajouter un matériel';
-
-?>
-
-<?php ob_start(); ?>
 <main>
     <!--    <div id="basket-bar"></div>-->
 
@@ -125,8 +112,3 @@ $title = 'Ajouter un matériel';
 </main>
 
 <script src="js/insert_asset_process.js"></script>
-
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require_once 'view/template.php'; ?>
