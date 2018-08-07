@@ -11,18 +11,20 @@ let okMail = okPass = okConfirm = false;
 submit.setAttribute("disabled", "");
 
 // is email
-mail.addEventListener('input', function(e) {
-    let mailValue = this.value;
-    if (mailReg.test(mailValue)) {
-        mail.style.color = '#009688';
-        okMail = true;
-        enable();
-    } else {
-        mail.style.color = '#A30004';
-        okMail = false;
-        enable();
-    }
-});
+if (mail != null) {
+    mail.addEventListener('input', function(e) {
+        let mailValue = this.value;
+        if (mailReg.test(mailValue)) {
+            mail.style.color = '#009688';
+            okMail = true;
+            enable();
+        } else {
+            mail.style.color = '#A30004';
+            okMail = false;
+            enable();
+        }
+    });
+}
 
 // is 6 characters
 if (pass != null) {
@@ -72,6 +74,15 @@ function enable() {
     if (pass == null) {
         // si on se trouve sur la page de connexion, on confirme seulement deux champs
         if (okMail === true) {
+            submit.removeAttribute("disabled");
+            return true;
+        } else {
+            submit.setAttribute("disabled", "");
+            return false;
+        }
+    } else if (mail == null) {
+        // si on se trouve sur la page d'oubli de mot de passe
+        if (okConfirm === true && okPass === true) {
             submit.removeAttribute("disabled");
             return true;
         } else {

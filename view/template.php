@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= $title ?></title>
-    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/cheatsheet.css">
-    <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
+    <link rel="stylesheet" href="<?= Config::$root ?>css/cheatsheet.css">
+    <link rel="stylesheet" href="<?= Config::$root ?>css/header.css"><!-- contient simplement les classes pour position et effet tiroir -->
 
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <?php foreach ($css as $value){?>
-        <link rel="stylesheet" href="<?= PUBLIC_URL ?>css/<?= $value ?>.css">
+        <link rel="stylesheet" href="<?= Config::$root ?>css/<?= $value ?>.css">
     <?php } endif; ?>
 
 </head>
@@ -54,7 +54,7 @@
 
     </div>
     
-    <script src="<?= PUBLIC_URL ?>js/menu_toggle.js"></script>
+    <script src="<?= Config::$root ?>js/menu_toggle.js"></script>
 
 </body>
 </html>

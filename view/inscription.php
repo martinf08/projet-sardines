@@ -64,5 +64,5 @@
     </div>
       <div id="triangle-bottomleft"></div>
       <div id="triangle-bottomright"></div>
-      <script src="<?=PUBLIC_URL?>js/signin_login_validation.js"></script>
+      <script src="<?= Config::$root ?>js/signin_login_validation.js"></script>
 </main>
