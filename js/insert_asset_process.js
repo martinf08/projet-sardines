@@ -2,12 +2,12 @@
 
     let textUser = document.getElementById('iduser');
     let views = document.querySelectorAll('.view');
-    let nav = document.getElementById('basket-bar');
     let types = document.querySelectorAll('input[name="idtype"]');
     let qualities = document.querySelectorAll('input[name="idquality"]');
     let details = document.getElementById('details');
     let header = document.querySelector('.header');
     let steps = document.querySelectorAll('.step');
+    let pictoUser = document.getElementById('logoResponse');
 
     let errorDiv = document.getElementById('error-id');
     let divEmail = document.createElement('div');
@@ -20,10 +20,6 @@
     let sardinesDisplay = document.querySelector("#recompense");
     let type;
     let quality;
-
-    /*nav.appendChild(divEmail);
-    nav.appendChild(divType);
-    nav.appendChild(divQuality);*/
 
     //Cancel default button
     for (let i = 0; i < typeButtons.length; i++) {
@@ -55,47 +51,61 @@
         //Identifier
         let response = document.getElementById('error-id');
         textUser.setAttribute('maxlength', 4);
+        pictoUser.style.display = 'none';
+
         if (textUser.value != null && textUser.value.length == 4) {
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
+                    pictoUser.src = "images/pictos/valid.svg";
                     response.innerHTML = xhttp.responseText;
                     if (xhttp.responseText != '<p>Cet utilisateur n\'existe pas</p>') {
-                        setTimeout(function () {
-                            smoothScroll(1, 60);
-                            divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
-                        }, 2000);
-                        //Types
-                        for (let i = 0; i < typeButtons.length; i++) {
-                            typeButtons[i].addEventListener('click', function (event) {
-                                removePushedTypeClass();
-                                typeButtons[i].classList.add('btn-white-clicked');
-                                typeButtons[i].classList.remove('btn-white');
-                                let nameId = typeButtons[i].name;
-                                let radioTarget = document.getElementById(nameId);
-                                radioTarget.checked = true;
-                                type = i + 1;
-                                getValue();
-                                setTimeout(function () {
-                                    smoothScroll(2, 60);
-                                    divType.innerHTML = '<p>Type : ' + event.target.name + '</p>';
-                                }, 2000);
-                            });
+                        if (xhttp.response.search('validé') == -1) {
+                            pictoUser.src = "images/pictos/valid.svg";
+                            pictoUser.style.display = 'block';
+                            setTimeout(function () {
+                                smoothScroll(1, 60);
+                                divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
+                            }, 2000);
+                            //Types
+                            for (let i = 0; i < typeButtons.length; i++) {
+                                typeButtons[i].addEventListener('click', function (event) {
+                                    removePushedTypeClass();
+                                    typeButtons[i].classList.add('btn-white-clicked');
+                                    typeButtons[i].classList.remove('btn-white');
+                                    let nameId = typeButtons[i].name;
+                                    let radioTarget = document.getElementById(nameId);
+                                    radioTarget.checked = true;
+                                    type = i + 1;
+                                    getValue();
+                                    setTimeout(function () {
+                                        smoothScroll(2, 60);
+                                        divType.innerHTML = '<p>Type : ' + event.target.name + '</p>';
+                                    }, 2000);
+                                });
+                            }
+                            //Qualities
+                            for (let i = 0; i < qualityButtons.length; i++) {
+                                qualityButtons[i].addEventListener('click', function (event) {
+                                    removePushedQualityClass();
+                                    qualityButtons[i].classList.add('btn-white-clicked');
+                                    qualityButtons[i].classList.remove('btn-white');
+                                    let nameId = qualityButtons[i].name;
+                                    let radioTarget = document.getElementById(nameId);
+                                    radioTarget.checked = true;
+                                    quality = i + 1;
+                                    getValue();
+                                    divQuality.innerHTML = '<p>Qualité : ' + event.target.name + '</p>';
+                                });
+
+                            }
+
                         }
-                        //Qualities
-                        for (let i = 0; i < qualityButtons.length; i++) {
-                            qualityButtons[i].addEventListener('click', function (event) {
-                                removePushedQualityClass();
-                                qualityButtons[i].classList.add('btn-white-clicked');
-                                qualityButtons[i].classList.remove('btn-white');
-                                let nameId = qualityButtons[i].name;
-                                let radioTarget = document.getElementById(nameId);
-                                radioTarget.checked = true;
-                                quality = i + 1;
-                                getValue();
-                                divQuality.innerHTML = '<p>Qualité : ' + event.target.name + '</p>';
-                            });
+                        else {
+                            pictoUser.src = "images/pictos/warning.svg";
+                            pictoUser.style.display = 'block';
                         }
+
                     }
                 }
             };
@@ -105,6 +115,8 @@
             xhttp.send("userid=" + textUser.value);
         }
         else if (textUser.value.length <= 4 || textUser.value.length >= 4) {
+            pictoUser.src = "images/pictos/invalid.svg";
+            pictoUser.style.display = 'block';
             response.innerText = 'Cet utilisateur n\'existe pas';
         }
     });
@@ -131,7 +143,6 @@
                         document.querySelector('.logo').replaceChild(firstSelect, imgLogo);
                         firstSelect.style.marginTop = imgcurrentMarginTop + 'px';
                     }
-
 
                 }
             }

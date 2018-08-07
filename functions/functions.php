@@ -23,7 +23,17 @@ function getUserId($db, $id)
         $sql->execute();
        $reponse = $sql->fetch()['email'];
         if ($reponse != NULL) {
-            return '<p>Email : '. $reponse .'</p>';
+            $req2 = $db->prepare('SELECT account_status FROM `user` WHERE identifier = :id ');
+            $req2->bindParam(':id', $id);
+            $req2->execute();
+            $reponse2 = $req2->fetch()['account_status'];
+            if ($reponse2 == 0 || $reponse2 != 1) {
+                return '<p>Email : '. $reponse .',<br/> attention compte non validé</p>';
+            }
+            elseif ($reponse2 == 1) {
+                return '<p>Email : '. $reponse .', compte activé</p>';
+            }
+
         }
         return '<p>Cet utilisateur n\'existe pas</p>';
     }

@@ -1,5 +1,7 @@
 main {
     width: 100vw;
+    background-color: #fefefe;
+    color: #1c1c1c;
 }
 .view {
     height: 100vh;
@@ -49,17 +51,17 @@ button[name="matelas"] {
 }
 button[name="mauvaise"] {
     background: url('../images/pictos/mauvais.svg') no-repeat;
-    background-size: contain;
+    background-size: 38px, 38px;
     background-position: center;
 }
 button[name="bonne"] {
     background: url('../images/pictos/bon.svg') no-repeat;
-    background-size: contain;
+    background-size: 38px, 38px;
     background-position: center;
 }
 button[name="excellente"] {
     background: url('../images/pictos/excellent.svg') no-repeat;
-    background-size: contain;
+    background-size: 38px, 38px;
     background-position: center;
 }
 
@@ -169,20 +171,20 @@ h1:first-child {
     margin-bottom: 15px;
 }
 .label-type {
-    margin-bottom: 3.59vh;
+    margin-bottom: 45px;
 }
 button[name="chaise"],
 button[name="tente"],
 button[name="chaise"] + p,
 button[name="tente"] + p {
-    margin-right: 3.06vw ;
+    margin-right: 48px ;
     text-align: center;
 }
 button[name="mauvaise"],
 button[name="bonne"],
 button[name="mauvaise"] + p,
 button[name="bonne"] + p {
-    margin-right: 3.06vw ;
+    margin-right: 43px ;
     text-align: center;
 }
 .item-button2 p {
@@ -192,4 +194,12 @@ button[name="bonne"] + p {
 textarea {
     padding-left: 16px;
     padding-top: 12px;
+    resize: none;
+}
+#submit-ajout {
+   display: flex;
+    justify-content: center;
+}
+button {
+    border:none;
 }

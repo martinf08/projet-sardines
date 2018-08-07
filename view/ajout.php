@@ -39,8 +39,8 @@ $title = 'Ajouter un matériel';
             </div>
 
             <div id="responseUser">
-                <img id="logoResponse" class="logoResponse" src="images/pictos/valid.svg">
-                <p class="flex-center" id="error-id">test</p>
+                <img id="logoResponse" class="logoResponse">
+                <p class="flex-center" id="error-id"></p>
             </div>
 
     </div>
@@ -111,9 +111,12 @@ $title = 'Ajouter un matériel';
         </div>
 
         <br/>
-        <div class="flex-center">
-            <input class="btn-full-login" name="add-asset" type="submit" id="submit" value="valider">
+        <div id="submit-ajout">
+            <div class="flex-center btn-outlined">
+                <input class="btn-outlined-txt"  name="add-asset" type="submit" id="submit" value="Valider">
+            </div>
         </div>
+
 
     </div>
     </form>
