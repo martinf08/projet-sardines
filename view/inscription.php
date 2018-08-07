@@ -1,7 +1,7 @@
 
 <main>
     <div class="inscript-content">
-     
+      <div class="titre">INSCRIPTION</div>
         <form method="POST" action="insertUser"> 
             <div class="avatar">
 
@@ -47,7 +47,7 @@
                 </svg>
 
             </div>
-            <div class="flexCenter"><? if(isset($Info)){echo $Info;}?></div>
+            <div class="flexCenter"><?php if(isset($Info)){echo $Info;}?></div>
             <div class="flexCenter form-input"><input class="input" type="email" id="email" name="email" placeholder="e-mail" required></div>
             <div class="flexCenter form-input">
                 <input class="input" type="password" id="password" name="password" minlength="6" placeholder="mot de passe" required>
@@ -60,7 +60,7 @@
             <input class="btn-full-2" name="submit-signin" type="submit" value="S'inscrire">
             </div>
         </form>
-        <div id="titre"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici.</a></p></div>
+        <div id="alert"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici.</a></p></div>
     </div>
       <div id="triangle-bottomleft"></div>
       <div id="triangle-bottomright"></div>

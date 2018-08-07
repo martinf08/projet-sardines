@@ -3,31 +3,38 @@ main{
     align-content: center;
 
 }
-.inscript-content{
-    width: 50%;
+.connexion-content{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 70%;
     margin: 0 auto; 
 }
 .avatar{
-    width: 100%;
-    height: 100%;
     text-align: center;
     margin: 0 auto; 
+    top:7,2%;
+    margin-bottom: 6%;
 }
 #container{
     width: 100%;
     margin: 0 auto; 
 }
-#titre{
-    text-align: center;
-}
+
 svg{
-    max-width: 110px;
-    max-height:110x;
+    max-width: 100px;
+    max-height:100px;
     margin: 15px 15px;
 }
-form{
-    display: flex;
-    flex-direction: column;
+.titre{
+    text-align: center;
+}
+input{
+    display: inline-block;
+    margin-bottom: 2.9%;
+}
+#alert{
+    text-align: center;
 }
 .flexCenter{
     margin: 0 auto;
@@ -35,4 +42,5 @@ form{
     border: 0;
     outline: 0;
     font-size: 100%;
+    text-align: center;
 }
