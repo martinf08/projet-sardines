@@ -69,6 +69,47 @@ body {
 /* il manque le box-shadow à appliquer */
 
 /*****************
+     WARNING
+*****************/
+
+#warning {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    background: rgb(161, 5, 8);
+    color: #fefefe;
+    text-align: center;
+    padding: 5px;
+    width: 70%;
+    margin: auto;
+    animation: flash 3s ease-out;
+}
+
+@keyframes flash {
+    0% {
+        top: 0%;
+        opacity: 0;
+    }
+
+    40% {
+        top: 8%;
+        opacity: 1;
+    }
+
+    85% {
+        top: 8%;
+        opacity: 1;
+    }
+
+    100% {
+        top: 8%;
+        opacity: 0;
+    }
+}
+
+/*****************
      USER INFOS
 *****************/
 
