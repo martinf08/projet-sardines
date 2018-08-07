@@ -4,11 +4,12 @@
         <?php if($code_recover){?>
                     <form  role="form" action="<?= Config::$root ?>forget" autocomplete="off" class="" method="post">
                 <div class="flex-center"><p>Vous pouvez réinitialiser votre mot de passe ici.</p></div>
-                <div class="flex-center">
-                    <input class="input" id="newPasseword" name="newPasseword" minlength="6" placeholder="nouveau mot de passe" type="password">
+                <div class="flex-center form-input">
+                    <input class="input" id="password" name="newPasseword" minlength="6" placeholder="nouveau mot de passe" type="password">
+                    <div class="tooltip">entre au minimum 6 caractères</div>
                 </div>
                 <div class="flex-center">
-                    <input class="input"  id="confirmNewpasseword" name="confirmNewpasseword" minlength="6" placeholder="confirmer votre nouveau mot de passe"  type="password">
+                    <input class="input"  id="confirmPassword" name="confirmNewpasseword" minlength="6" placeholder="confirmer votre nouveau mot de passe"  type="password">
                 </div>
                 <div class="flex-center">
                     <input class="btn-full-2"  name="submitNewpassword" value="Envoyer" type="submit">
