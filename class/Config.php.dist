@@ -9,4 +9,5 @@ class Config
                             'password'=> 'le mdp' ); 
     
     public static $ghost = 'email@mail.com';
+    public static $root = '/';
 }

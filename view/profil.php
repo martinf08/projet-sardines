@@ -1,6 +1,3 @@
-<?php $title = 'Mon compte'; ?>
-
-<?php ob_start(); ?>
 <main>
 
 <?= $title ?>
@@ -8,14 +5,14 @@
 <!-- je mets les champs brut sans me soucier du layout, il suffira de les copier/coller où il faut -->
 <!-- je suppose que les valeurs seront récupérées dans l'objet user et pas dans la session -->
 
-<div id="avatar-field">
-    <?php if(!empty($user->getAvatar())): ?>
-        <div id="avatar" style="background-image: url('../css/img/<?= $user->getAvatar(); ?>');"></div><!-- chemin de stockage images par encore défini -->
-    <?php else: ?>
-        mettre un avatar par défaut ici dans le html (cas d'un user n'ayant pas encore enregistré d'avatar)
-    <?php endif; ?>
-    <input type="file" name="" id=""><!-- input pour changer d'image -->
-</div>
+<!--<div id="avatar-field">-->
+    <?php #if(!empty($user->getAvatar())): ?>
+        <!--<div id="avatar" style="background-image: url('../css/img/<?php #echo $user->getAvatar(); ?>');"></div>-->
+    <?php #else: ?>
+        <!--mettre un avatar par défaut ici dans le html (cas d'un user n'ayant pas encore enregistré d'avatar)-->
+    <?php #endif; ?>
+    <!--<input type="file" name="" id="">
+</div>-->
 
 <p>Mon identifiant unique : <span id="identifier">
     <?= $user->getIdentifier(); ?>
@@ -25,7 +22,7 @@
     <?= $user->getBalance(); ?> 
 </span></p>
 
-<form action="../accountUpdate" method="post">
+<form action="<?= Config::$root ?>accountUpdate" method="post">
     <!-- chaque champ est désactivé pas défaut pour ne montrer que la valeur actuelle -->
     <!-- il faudra cliquer sur le petit crayon qui ciblera son input voisin pour permettre de le réécrire -->
     <p>Email : <span><?= $user->getEmail(); ?></span>
@@ -55,6 +52,3 @@
 <?php endif; ?>
 
 </main>
-<?php $content = ob_get_clean(); ?>
-
-<?php require_once 'view/template.php'; ?>

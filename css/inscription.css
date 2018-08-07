@@ -3,22 +3,44 @@ main{
     align-content: center;
 
 }
-.inscript-content{
+.connexion-content{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
     width: 70%;
     margin: 0 auto; 
 }
 .avatar{
     text-align: center;
     margin: 0 auto; 
+    top:7,2%;
+    margin-bottom: 6%;
 }
 #container{
     width: 100%;
+    margin: 0 auto; 
 }
-#titre{
+
+svg{
+    max-width: 100px;
+    max-height:100px;
+    margin: 15px 15px;
+}
+.titre{
     text-align: center;
 }
-svg{
-    width: 50%;
-    height:50%;
-    margin: 15px 15px;
+input{
+    display: inline-block;
+    margin-bottom: 2.9%;
+}
+#alert{
+    text-align: center;
+}
+.flexCenter{
+    margin: 0 auto;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    text-align: center;
 }

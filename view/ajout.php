@@ -2,9 +2,9 @@
 
 # CONTRÔLE DE L'ACCÈS
 if (!isset($_SESSION['user'])) {
-    header('Location: index');
+    header('Location: '. Config::$root);
 } elseif ($_SESSION['user']->getStaff() == false) {
-    header('Location: index');
+    header('Location: '. Config::$root);
 }
 
 $title = 'Ajouter un matériel';
@@ -15,7 +15,7 @@ $title = 'Ajouter un matériel';
 
 <main>
     <div id="basket-bar"></div>
-    <?php if (isset($result)) {
+    <?php if (isset($result)) { # À NETTOYER ???
         print_r($result);
     } ?>
     <!-- Main -->
@@ -95,7 +95,7 @@ $title = 'Ajouter un matériel';
 
             <br/>
             <div class="flex-center">
-                <input class="btn-full-login" type="submit" id="submit" value="valider">
+                <input class="btn-full-login" name="submit-asset" type="submit" id="submit" value="valider">
             </div>
 
         </div>

@@ -5,8 +5,6 @@ define('DS', DIRECTORY_SEPARATOR);
 define('BASE_URL',dirname($_SERVER['SCRIPT_NAME']));
 define('PUBLIC_URL', BASE_URL.DS);
 
-
-
 require_once 'functions/functions.php';
 require_once 'class/Config.php';
 require_once 'controller/Controller.php';
@@ -41,12 +39,15 @@ try
     $router->setRoute('donner', 'dropGear');
     $router->setRoute('forget', 'passForget');
     $router->setRoute('accountUpdate', 'accountUpdate');
+    $router->setRoute('bienvenue', 'welcome');
     $router->setRoute('erreur', 'error');
+    $router->setRoute('emailValidation', 'sendEmailValidation');
+    $router->setRoute('emailActivation', 'getEmailValidation');
 
     $router->execute();
 }
 catch(Exception $e)
 {
   $_SESSION['error_msg'] = $e->getMessage();
-  //header('Location: erreur');
+  header('Location: erreur');
 }

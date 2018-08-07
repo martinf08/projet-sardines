@@ -4,6 +4,7 @@
 
     </div>
     <div class="connexion-content">
+        <div class="titre">CONNEXION</div>
         <div class="avatar">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="-426 129 512 512" style="enable-background:new -426 129 512 512;" xml:space="preserve">
@@ -143,22 +144,23 @@
 
         </div>
 
-        <div><h3><?php if(isset($errorMessage)){echo $errorMessage;}?></h3></div>
+         <div id="alert"><h3><?php if(isset($errorMessage)){echo $errorMessage;}?></h3></div>
         <form method="POST" action="log" enctype="multipart/form-data"> 
-            <div class="flex-center form-input">
+       
+            <div class="flexCenter form-input">
                 <input class ="input" type="email" id="email" name="email" placeholder="johndoe@mail.com" value ="<?php if(isset($email)){echo $email;}?>">
             </div>
-            <div class="flex-center form-input">
+            <div class="form-input flexCenter">
                 <input type="password" class="input" id="password" name="password" placeholder=".......">
                 <div class="tooltip">entre au minimum 6 caractères</div>
             </div>
 
-            <div id="mdp-oublie" class="flex-center"><a href="forget">mot de passe oublié ?</a></div>
-            <div class="flex-center">
-                <div class="btn-outlined"> <input class="btn-outlined-txt" type="submit" value="Se connecter"></div>
+            <div id="mdp-oublie" class="flex-center flexCenter"><a href="forget">mot de passe oublié ?</a></div>
+            <div class="flexCenter">
+                <input class="btn-full-2" name="submit-connect" type="submit" value="Se connecter">
             </div>
     </form>
-        <div><p>Pas de compte ? <a href="inscription">Je m'inscris.</a></p></div>
+        <div id="alert"><p>Pas de compte ? <a href="inscription">Je m'inscris.</a></p></div>
     <!--<div id="inscrire-social" class="flex-center">
         <p>S'inscrire avec :</p>
     </div>
@@ -170,5 +172,5 @@
     </div>
     <div id="triangle-bottomleft"></div>
     <div id="triangle-bottomright"></div>
-    <script src="<?=PUBLIC_URL?>js/signin_login_validation.js"></script>
+    <script src="<?= Config::$root ?>js/signin_login_validation.js"></script>
 </main>

@@ -1,15 +1,13 @@
 body {
     overflow-x: hidden;
 }
-.slider {
-    height: 100vh;
-    display: flex;
-    transition: transform 2s;
 
+h1 {
+    display: none;
 }
 
-.slider-item {
-    width: 100vw;
+#menu, #open {
+    display: none;
 }
 
 @keyframes slideRight {
@@ -21,118 +19,112 @@ body {
 
     }
 }
-.slideRight {
-    animation: slideRight 2s;
-    animation-fill-mode: forwards;
-}
 
-#slider-1 {
-    background: url("../images/slider/big_camp.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-
-}
-
-#slider-2 {
-    background: url("../images/slider/camp.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#slider-3 {
-    background: url("../images/slider/dance.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#slider-4 {
-    background: url("../images/slider/forest.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#slider-5 {
-    background: url("../images/slider/show.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-
-#slider-6 {
-    background: url("../images/slider/tent_2.jpg") no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-.slider-navigation {
-    position: absolute;
-    bottom: -30px;
-    left: 0;
+.slider {
     display: flex;
-    justify-content: space-evenly;
+}
+
+.slider-info-top, .slider-info-bottom > p, .page-info {
+    transition: transform 2s;
+
+}
+
+.slider-item {
     width: 100vw;
-}
-.slider-navigation-item {
-    height: 12px;
-    width: 12px;
-    background-color: #0cd18f;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-}
-
-/* Arrow */
-
-i {
-    border: solid #0cd18f;
-    border-width: 0 5px 5px 0;
-    display: inline-block;
-    padding: 3px;
-    height: 2px;
-    width: 2px;
-}
-
-#left-arrow {
-    position: absolute;
-    top: 50%;
-    left: 8%;
-}
-
-#right-arrow {
-    position: absolute;
-    top: 50%;
-    right: 8%;
-}
-.right {
-    transform: rotate(-45deg);
-    -webkit-transform: rotate(-45deg);
-}
-
-.left {
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-}
-
-.slider-navigation-item:hover {
-    cursor: pointer;
-    background-color: white;
-}
-#right-arrow:hover, #left-arrow:hover {
-    cursor: pointer;
-}
-.slider-item div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
-.slider-item div p {
-    margin: 20px;
-    width: 80%;
-    text-align: justify;
-    color: white;
+
+.slider-info-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
-.slider-item div h2 {
+
+.slider-info-bottom > p {
+    font-size: 12px;
+    text-align: left;
+    width: 47.6%;
+}
+
+.slider-info-bottom .page-info {
+    color: #2489B4;
+    text-align: center;
+    font-size: 14px;
+}
+
+.slider-bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.logo {
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img:first-child {
+    width: 28px;
+    height: 15px;
+    cursor: pointer;
+    margin-left: 15px;
+
+}
+
+.logo img:nth-child(2) {
+    height: auto;
+    width: 41vw;
+    max-width: 154px;
+}
+
+.logo div {
+    width: 28px;
+    margin-right: 15px;
+}
+
+.slider-info-top {
+    height: 64.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white
 }
+
+.rond {
+    height: 32.5vh;
+    width: 32.5vh;
+    border-radius: 50%;
+    background-color: #0cd18f;
+}
+
+/* Placement */
+
+/* 34px */
+.logo {
+    margin-top: 5.09vh;
+}
+/* D = 216px */
+.rond {
+    height: 32.5vh;
+    width: 32.5vh;
+    max-height: 216px;
+    max-width: 216px;
+}
+/*39px 28px*/
+.page-info {
+    margin-top: 5.84vh;
+    margin-bottom: 4.19vh;
+}
+/* 32px */
+.slider-info-bottom {
+    margin-bottom: 4.79vh;
+}
+
+

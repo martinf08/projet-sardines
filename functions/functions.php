@@ -2,11 +2,11 @@
 
 function getValueAjax($db, $type, $quality)
 {
-    $sql = $db->prepare('SELECT price_catalog.value 
+    $sql = $db->prepare("SELECT price_catalog.value 
                                   FROM price_catalog 
                                   INNER JOIN quality ON price_catalog.id_quality = quality.id_quality 
                                   INNER JOIN type on price_catalog.id_type = type.id_type 
-                                  WHERE quality.id_quality = :id_quality AND type.id_type = :id_type ');
+                                  WHERE quality.id_quality = :id_quality AND type.id_type = :id_type ");
     $sql->bindParam(':id_quality', $quality);
     $sql->bindParam(':id_type', $type);
     $sql->execute();
@@ -44,24 +44,24 @@ function debug($var) {
 	echo '<pre>';		
 }
 
-
 function getMenu(){
        $html = '<div id="menu">';
         $html .='<div id="close"><!-- fermeture du menu -->';
         $html .='<div class="cross"></div>';
         $html .="</div>";
         $html .='<div id="display-user">';
-        $html .='<?php if(isset($_SESSION["user"]) AND !empty($_SESSION["user"])): ?>';
-        $html .='<p id="pseudo" class="bold"><?php echo $_SESSION["user"]->getNickname(); ?></p>';
-        $html .='<p id="mail"><?php echo $_SESSION["user"]->getEmail(); ?></p>';
-        $html .='<p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION["user"]->getIdentifier()); ?></p>';
-        $html .="<p id='sardines-balance'>J'ai <span class='bold'>";
-        $html .='<?php echo $_SESSION["user"]->getBalance(); ?>';
-        $html .="</span> sardines</p>";
-        $html .="<?php endif; ?>";
+
+        if(isset($_SESSION['user']) AND !empty($_SESSION['user'])){
+                $html .='<p id="pseudo" class="bold">'.$_SESSION["user"]->getNickname().'<p>';
+                $html .='<p id="mail">'.$_SESSION["user"]->getEmail().'</p>';
+                $html .='<p id="user-id" class="bold">ID : '.strtoupper($_SESSION["user"]->getIdentifier()).'</p>';
+                $html .="<p id='sardines-balance'>J'ai <span class='bold'>".$_SESSION["user"]->getBalance();
+                $html .="</span> sardines</p>";
+        }
+
         $html .="</div>";
-        $html .="<?php include_once 'inc/_menu.php';?>";
-        $html .='<div id="triangle-bottomlef"></div>';
+        include_once './view/inc/_menu.php';
+        $html .='<div id="triangle-bottomleft"></div>';
         $html .='<div id="triangle-bottomright"></div>';
         $html .="</div>";
         return $html;

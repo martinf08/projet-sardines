@@ -11,18 +11,20 @@ let okMail = okPass = okConfirm = false;
 submit.setAttribute("disabled", "");
 
 // is email
-mail.addEventListener('input', function(e) {
-    let mailValue = this.value;
-    if (mailReg.test(mailValue)) {
-        //mail.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
-        okMail = true;
-        enable();
-    } else {
-        //mail.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
-        okMail = false;
-        enable();
-    }
-});
+if (mail != null) {
+    mail.addEventListener('input', function(e) {
+        let mailValue = this.value;
+        if (mailReg.test(mailValue)) {
+            mail.style.color = '#009688';
+            okMail = true;
+            enable();
+        } else {
+            mail.style.color = '#A30004';
+            okMail = false;
+            enable();
+        }
+    });
+}
 
 // is 6 characters
 if (pass != null) {
@@ -30,14 +32,14 @@ if (pass != null) {
         let passValue = this.value;
     
         if (passValue.length >= 6) {
-            //pass.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
+            pass.style.color = '#009688';
             // cacher le tooltip
             tooltip.classList.remove('show');
             okPass = true;
             enable();
         } else {
-            //pass.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
-            // lancer un tooltip puisqu'on a pas utilisé le placeholder pour énoncer la règle de 6 minimum (si ça change, on peut le supprimer)
+            pass.style.color = '#A30004';
+            // lancer un tooltip pour énoncer la règle de 6 minimum
             tooltip.classList.add('show');
             okPass = false;
             enable();
@@ -56,11 +58,11 @@ if (confirm != null) {
     confirm.addEventListener('input', function(e) {
         let confirmValue = this.value;
         if (confirmValue == pass.value) {
-            //confirm.style.background = '#7f5'; // à remplacer par le nécessaire pour appliquer les bons styles
+            confirm.style.color = '#009688';
             okConfirm = true;
             enable();
         } else {
-            //confirm.style.background = '#f77'; // à remplacer par le nécessaire pour appliquer les bons styles
+            confirm.style.color = '#A30004';
             okConfirm = false;
             enable();
         }
@@ -72,6 +74,15 @@ function enable() {
     if (pass == null) {
         // si on se trouve sur la page de connexion, on confirme seulement deux champs
         if (okMail === true) {
+            submit.removeAttribute("disabled");
+            return true;
+        } else {
+            submit.setAttribute("disabled", "");
+            return false;
+        }
+    } else if (mail == null) {
+        // si on se trouve sur la page d'oubli de mot de passe
+        if (okConfirm === true && okPass === true) {
             submit.removeAttribute("disabled");
             return true;
         } else {

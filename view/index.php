@@ -1,76 +1,134 @@
-<h1>
-    <?php
-    /*if(!empty($_SESSION['user'])){echo'Bonjour '.$_SESSION['user']->getEmail();
-        echo'<h3>Bienvenue dans votre nouvel espace Sardines</h3>';
-    }else{ echo"<h3>Page d'accueil</h3>";}*/
-    # vue incomplète si on applique seulement ce code donc je réécris la page comme elle était avant
-    ?>
-</h1>
-
-<?php $title = 'Les Sardines'; ?>
-
-<?php ob_start(); ?>
 <main>
 
-    ici le contenu de <?= $title ?>
     <div class="slider">
-        <div class="slider-item" id="slider-1">
-            <div>
+
+        <div class="slider-item">
+            <div class="logo">
+                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
+                <div></div>
+            </div>
+            <div class="slider-info-top">
+                <div class="rond"></div> <!-- logo -->
+            </div>
+            <div class="slider-info-bottom">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                    Salut Voyageur ! Chaque année, vous êtes environ 15 000 campeurs à être accueillis dans la joie et
+                    la bonne humeur au Cabaret Vert.
                 </p>
+                <div class="slider-bottom">
+                    <p class="page-info">1/6</p>
+                    <button class="btn-outlined-2">Suivant</button>
+                </div>
             </div>
         </div>
-        <div class="slider-item" id="slider-2">
-            <div>
+
+        <div class="slider-item">
+            <div class="logo">
+                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
+                <div></div>
+            </div>
+            <div class="slider-info-top">
+                <div class="rond"></div> <!-- logo -->
+            </div>
+            <div class="slider-info-bottom">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                    Malheureusement, à la fin du festival, beaucoup trop choisissent de repartir en laissant du matos à
+                    l’abandon.
                 </p>
+                <div class="slider-bottom">
+                    <p class="page-info">2/6</p>
+                    <button class="btn-outlined-2">Suivant</button>
+                </div>
             </div>
         </div>
-        <div class="slider-item" id="slider-3">
-            <div>
+
+        <div class="slider-item">
+            <div class="logo">
+                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
+                <div></div>
+            </div>
+            <div class="slider-info-top">
+                <div class="rond"></div> <!-- logo -->
+            </div>
+            <div class="slider-info-bottom">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                    Toi qui aspire à devenir un campeur éco-responsable, tu peux nous aider à éviter que le terrain du
+                    Cabaret Vert ne se transforme en une poubelle géante, grâce à l’application Les Sardines.
                 </p>
+                <div class="slider-bottom">
+                    <p class="page-info">3/6</p>
+                    <button class="btn-outlined-2">Suivant</button>
+                </div>
             </div>
         </div>
-        <div class="slider-item" id="slider-4">
-            <div>
+
+        <div class="slider-item">
+            <div class="logo">
+                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
+                <div></div>
+            </div>
+            <div class="slider-info-top">
+                <div class="rond"></div> <!-- logo -->
+            </div>
+            <div class="slider-info-bottom">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                    Si tu comptes repartir sans ta tente, ta chaise, ton matelas, ou ton sac de couchage, tu peux nous
+                    les apporter en échange de crédits appellés « les Sardines ».
                 </p>
+                <div class="slider-bottom">
+                    <p class="page-info">4/6</p>
+                    <button class="btn-outlined-2">Suivant</button>
+                </div>
             </div>
         </div>
-        <div class="slider-item" id="slider-5">
-            <div>
+
+        <div class="slider-item">
+            <div class="logo">
+                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
+                <div></div>
+            </div>
+            <div class="slider-info-top">
+                <div class="rond"></div> <!-- logo -->
+            </div>
+            <div class="slider-info-bottom">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus feugiat lectus a felis rutrum tincidunt. Nunc quis lectus a neque condimentum tempus id sed lectus. Curabitur consequat eleifend iaculis. Suspendisse quam purus, sollicitudin eu hendrerit sed, auctor quis orci. Nam facilisis massa purus, id luctus mi pretium sit amet. In pretium ornare faucibus. Maecenas mattis efficitur eros, id dignissim orci. ligula molestie venenatis nec ut magna. In tristique quam odio, vitae lobortis leo eleifend at.
+                    Tes Sardines seront utilisables pour obtenir du matos ou de quoi te rassasier lors des prochaines
+                    éditions du Cabaret Vert.
                 </p>
+                <div class="slider-bottom">
+                    <p class="page-info">5/6</p>
+                    <button class="btn-outlined-2">Suivant</button>
+                </div>
             </div>
         </div>
-        <div class="slider-item" id="slider-6">
-            <div>
-                <h2>
-                   DONNE !
-                </h2>
+
+        <div class="slider-item">
+            <div class="logo">
+                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
+                <div></div>
+            </div>
+            <div class="slider-info-top">
+                <div class="rond"></div> <!-- logo -->
+            </div>
+            <div class="slider-info-bottom">
+                <p>
+                    Pour éviter la pollution et le gaspillage inutile d’un matos encore tout à fait utilisable rien de
+                    plus simple : inscris toi et profites des avantages des Sardines !
+                </p>
+                <div class="slider-bottom">
+                    <p class="page-info">6/6</p>
+                    <button class="btn-outlined-2">Suivant</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="slider-navigation">
-        <div class="slider-navigation-item"></div>
-        <div class="slider-navigation-item"></div>
-        <div class="slider-navigation-item"></div>
-        <div class="slider-navigation-item"></div>
-        <div class="slider-navigation-item"></div>
-        <div class="slider-navigation-item"></div>
-    </div>
-    <i class="arrow left" id="left-arrow"></i>
-    <i class="arrow right" id="right-arrow"></i>
     <script src="js/slider.js"></script>
 </main>
-<?php $content = ob_get_clean(); ?>
-
-<?php require_once 'view/template.php'; ?>
 
 
