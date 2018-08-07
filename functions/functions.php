@@ -43,12 +43,14 @@ function debug($var) {
 	print_r($var);
 	echo '<pre>';		
 }
+
 function getMenu(){
        $html = '<div id="menu">';
         $html .='<div id="close"><!-- fermeture du menu -->';
         $html .='<div class="cross"></div>';
         $html .="</div>";
         $html .='<div id="display-user">';
+
         if(isset($_SESSION['user']) AND !empty($_SESSION['user'])){
                 $html .='<p id="pseudo" class="bold">'.$_SESSION["user"]->getNickname().'<p>';
                 $html .='<p id="mail">'.$_SESSION["user"]->getEmail().'</p>';
@@ -59,7 +61,7 @@ function getMenu(){
 
         $html .="</div>";
         include_once './view/inc/_menu.php';
-        $html .='<div id="triangle-bottomlef"></div>';
+        $html .='<div id="triangle-bottomleft"></div>';
         $html .='<div id="triangle-bottomright"></div>';
         $html .="</div>";
         return $html;
