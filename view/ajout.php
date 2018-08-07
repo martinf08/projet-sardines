@@ -27,6 +27,8 @@ $title = 'Ajouter un matériel';
             <div class="blue uper bold" id="first-new-asset">
                 nouvelle saisie
             </div>
+
+
         </div>
 
         <form action="insertAsset" method="post">

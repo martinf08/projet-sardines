@@ -72,7 +72,7 @@ button[name="excellente"] {
 
 .header {
     width: 100vw;
-    padding-top: 5.54vh;
+    padding-top: 4.49vh;
     background-color: #f3f9f3;
     -moz-box-shadow: 0px 2px 4px 0px #CEC9C9;
     -webkit-box-shadow: 0px 2px 4px 0px #CEC9C9;
@@ -202,4 +202,24 @@ textarea {
 }
 button {
     border:none;
+}
+
+.response-header {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    padding-top: 3.44vh;
+    padding-bottom: 2.39vh;
+    border-top: 1px solid #eaf1ea;
+}
+.response-header img {
+    margin-left:  8.26vw;
+    width: 32px;
+    height: 40px;
+    margin-right: 11vw;
+}
+.response-header div {
+    margin-right:  8.26vw;
+    width: 32px;
+    height: 40px;
 }
