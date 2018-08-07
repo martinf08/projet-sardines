@@ -48,7 +48,7 @@ input{
 
 }
 a,p{
-      font-size: 14px;
+      font-size: 12px;
 }
 .Header{
      display: flex;
@@ -83,4 +83,10 @@ a,p{
 #vide{
     margin-left: 15%;
     width: 5%    
+}
+#condition{
+    text-align: justify;
+    margin-left: 11%;
+    margin-right: 11%;
+    margin-bottom: 4%;
 }
