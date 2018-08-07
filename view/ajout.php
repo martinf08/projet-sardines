@@ -2,9 +2,9 @@
 
 # CONTRÔLE DE L'ACCÈS
 if (!isset($_SESSION['user'])) {
-    header('Location: '.PUBLIC_URL);
+    header('Location: '. Config::$root);
 } elseif ($_SESSION['user']->getStaff() == false) {
-    header('Location: '.PUBLIC_URL);
+    header('Location: '. Config::$root);
 }
 
 $title = 'Ajouter un matériel';

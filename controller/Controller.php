@@ -60,11 +60,11 @@ class Controller
                     $this->render(ROOT . DS . 'view/profil.php');
                 }
             } else {
-                header('Location: ' . PUBLIC_URL);
+                header('Location: ' . Config::$root);
             }
 
         } else {
-            header('Location: ' . PUBLIC_URL);
+            header('Location: ' . Config::$root);
         }
     }
 
@@ -86,7 +86,7 @@ class Controller
                 }
             }
         } else {
-            header('Location: ' . PUBLIC_URL);
+            header('Location: ' . Config::$root);
         }
     }
 
@@ -146,7 +146,7 @@ class Controller
 
                             $to      = $email;
                             $subject = "Récupération de mot de passe";
-                            $link    = PUBLIC_URL . "forget" . DS . $sending_code;
+                            $link    = Config::$root . "forget" . DS . $sending_code;
                             $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
 
                             // Always set content-type when sending HTML email
@@ -158,16 +158,13 @@ class Controller
 
 
                             if (mail($to, $subject, $message, $headers)) {
-                                echo "méssage envoyé";
+                                echo "message envoyé";
                             } else {
                                 $this->set('message', $message);
                             }
-                            //header(location );
                         } else {
                             $error = "Cette adresse email n'est pas enregistrée";
-
                         }
-
                     } else {
                         $error = "Adresse email non valide";
                     }
@@ -221,7 +218,7 @@ class Controller
                         $pre->execute(array(':email' => $_SESSION['email']));
                         $_SESSION['email'] = "";
 
-                        header("location: " . PUBLIC_URL . "connexion");
+                        header("location: " . Config::$root . "connexion");
 
                     } else {
                         $error = "Vos deux mots de passe ne sont pas identiques";
@@ -267,14 +264,14 @@ class Controller
                         $this->set('css', $css);
                         $this->set('email', $_POST['email']);
                         $this->set('errorMessage', 'Identifiant ou mot de passe incorrect.');
-                        $this->render('./view/connexion.php');
+                        $this->render('view/connexion.php');
                     }
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
             }
         } else {
-            header('Location: ' . PUBLIC_URL);
+            header('Location: ' . Config::$root);
         }
     }
 
@@ -283,7 +280,7 @@ class Controller
         $_SESSION['user']  = "";
         $_SESSION['islog'] = 0;
 
-        header('Location: ' . PUBLIC_URL);
+        header('Location: ' . Config::$root);
     }
 
     #------------------------------
@@ -296,7 +293,7 @@ class Controller
         $this->set('title', 'inscription');
         $css = array('tooltip', 'inscription');
         $this->set('css', $css);
-        $this->render('./view/inscription.php');
+        $this->render('view/inscription.php');
     }
 
     public function insertUser()
@@ -308,14 +305,14 @@ class Controller
                 $reponse     = $userManager->insertUser($user);
 
                 if (is_bool($reponse)) {
-                    header("Location: " . PUBLIC_URL . "donner");
+                    header("Location: " . Config::$root . "donner");
                 } else {
 
                     $this->set('title', 'inscription');
                     $css = array('tooltip', 'inscription');
                     //$this->set('Info', 'Cet email existe déjà');
                     $this->set('css', $css);
-                    $this->render('./view/inscription.php');
+                    $this->render('view/inscription.php');
                     throw new Exception($reponse);
                 }
             } else {
@@ -325,7 +322,7 @@ class Controller
 
         } else {
             header("HTTP/1.0 403");
-            header('Location: ' . PUBLIC_URL);
+            header('Location: ' . Config::$root);
         }
     }
 
@@ -358,16 +355,16 @@ class Controller
 
                     $css = array('insert-asset');
                     $this->set('css', $css);
-                    require_once('./view/ajout.php');
+                    require_once('view/ajout.php');
 
                 } else {
                     throw new Exception('Problème sur la récupération des tables.');
                 }
             } else {
-                header('Location: ' . PUBLIC_URL);
+                header('Location: ' . Config::$root);
             }
         } else {
-            header('Location: ' . PUBLIC_URL);
+            header('Location: ' . Config::$root);
         }
     }
 
@@ -402,16 +399,16 @@ class Controller
                             throw new Exception('Erreur monumentale.');
                         }
                     } else {
-                        header('Location: ' . PUBLIC_URL);
+                        header('Location: ' . Config::$root);
                     }
                 } else {
-                    header('Location: ' . PUBLIC_URL);
+                    header('Location: ' . Config::$root);
                 }
             } else {
-                header('Location: ' . PUBLIC_URL);
+                header('Location: ' . Config::$root);
             }
         } else {
-            header('Location: ' . PUBLIC_URL);
+            header('Location: ' . Config::$root);
         }
 
     }
@@ -422,10 +419,10 @@ class Controller
             $this->set('title', 'Succès de la transaction');
             $css = array('standard');
             $this->set('css', $css);
-            $this->render('./view/success.php');
+            $this->render('view/success.php');
             unset($_SESSION['lastAsset']);
         } else {
-            header('Location: ' . PUBLIC_URL);
+            header('Location: ' . Config::$root);
         }
     }
 
@@ -481,8 +478,7 @@ class Controller
             require_once ROOT . DS . 'view' . DS . 'template.php';
             $this->rendered = true;
         } else {
-
-            //throw new Exception();
+            throw new Exception('Problème d\'affichage de la page. Contactez le webmestre.');
         }
     }
 
@@ -511,7 +507,7 @@ class Controller
     {
         header("HTTP/1.0 " . $coderror);
         $this->set('errorMessage', $errorMessage);
-        $this->render('./view/erreur.php');
+        $this->render('view/erreur.php');
     }
 
     /* MAIL TEST */
