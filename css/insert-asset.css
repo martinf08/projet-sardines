@@ -11,6 +11,7 @@ main {
 
 p {
     font-size: 11px;
+
 }
 
 #basket-bar {
@@ -113,12 +114,13 @@ h1:first-child {
     max-width: 154px;
 }
 
-#open {
+#open2 {
     width: 17px;
     height: 14px;
     background: url('../images/pictos/burger_open.svg') no-repeat;
     background-size: cover;
     background-position: center;
+    cursor: pointer;
 }
 
 .logo div:first-child {
@@ -222,6 +224,7 @@ textarea {
     padding-left: 16px;
     padding-top: 12px;
     resize: none;
+    margin-bottom: 6.29vh;
 }
 
 #submit-ajout {
@@ -233,7 +236,7 @@ button {
     border: none;
 }
 
-.response-header {
+.response-types {
     display: flex;
     align-items: center;
     width: 100vw;
@@ -242,15 +245,55 @@ button {
     border-top: 1px solid #eaf1ea;
 }
 
-.response-header img {
+.response-types img {
     margin-left: 8.26vw;
     width: 32px;
     height: 40px;
     margin-right: 11vw;
 }
 
-.response-header div {
+.response-types div {
     margin-right: 8.26vw;
     width: 32px;
     height: 40px;
+}
+
+.response-types p {
+    color: #2489b4;
+}
+
+.response-qualities {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    padding-top: 3.44vh;
+    padding-bottom: 2.39vh;
+    border-top: 1px solid #eaf1ea;
+}
+
+.response-qualities img {
+    margin-left: 8.26vw;
+    width: 32px;
+    height: 40px;
+    margin-right: 11vw;
+}
+
+.response-qualities div {
+    margin-right: 8.26vw;
+    width: 32px;
+    height: 40px;
+}
+
+.response-qualities p {
+    color: #2489b4;
+}
+
+.recompense-sardines p {
+    margin-left: 8.26vw;
+    color: #2489b4;
+    font-weight: bold;
+    padding-top: 2.39vh;
+    padding-bottom: 3.29vh;
+    border-top: 1px solid #eaf1ea;
+
 }

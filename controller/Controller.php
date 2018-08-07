@@ -298,6 +298,7 @@ class Controller
 
     public function insertUser()
     {
+
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "") {
                 $userManager = new UserManager();
@@ -355,6 +356,8 @@ class Controller
 
                     $this->set('css', array('insert-asset'));
                     $this->set('title', 'Ajouter un matériel');
+                    $this->set('types', $types);
+                    $this->set('qualities', $qualities);
                     $this->render('view/ajout.php');
 
                 } else {
@@ -371,9 +374,13 @@ class Controller
 
     public function insertAsset()
     {
+
         if (isset($_POST['submit-asset'])) {
+
             if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
+
                 if ($_SESSION['user']->getStaff()) {
+
                     if (isset($_POST) && !empty($_POST)) {
                         $post         = $_POST;
                         $assetManager = new AssetManager();

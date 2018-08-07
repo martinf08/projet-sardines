@@ -1,4 +1,3 @@
-
 <main>
     <!--    <div id="basket-bar"></div>-->
 
@@ -6,7 +5,7 @@
     <div class="view">
         <div class="header">
             <div class="logo">
-                <div id="open"> <!-- le burger pour ouvrir le menu -->
+                <div id="open2"> <!-- le burger pour ouvrir le menu -->
                 </div>
                 <img src="images/pictos/logo_text_3.svg" alt="Les Sardines">
                 <div></div>
@@ -18,7 +17,7 @@
 
         </div>
 
-        <form action="insertAsset" method="post">
+        <form action="insertAsset" method="post" id="insert-asset">
 
 
             <p id="step1" class="flex-center step">Etape 1 : Saisir l'ID du festivalier ou le code générique</p>
@@ -84,7 +83,6 @@
                     <p><?php echo $quality['label'] ?></p>
                 </div>
 
-
             <?php endforeach; ?>
         </div>
         <br/> <!-- détails sur l'état du matos -->
@@ -93,16 +91,9 @@
                       placeholder="Commentaire..."></textarea>
 
         </div>
-
-        <br/> <!-- Récuperer la valeur de la récompense -->
-        <div class="flex-center">
-            <p>Recompense de <b><span id="recompense"> ? </span></b> sardines</p>
-        </div>
-
-        <br/>
         <div id="submit-ajout">
             <div class="flex-center btn-outlined">
-                <input class="btn-outlined-txt"  name="add-asset" type="submit" id="submit" value="Valider">
+                <input class="btn-outlined-txt" name="submit-asset" type="submit" id="submit-asset" value="Valider">
             </div>
         </div>
 

@@ -4,6 +4,7 @@
     let views = document.querySelectorAll('.view');
     let types = document.querySelectorAll('input[name="idtype"]');
     let qualities = document.querySelectorAll('input[name="idquality"]');
+
     let details = document.getElementById('details');
     let header = document.querySelector('.header');
     let steps = document.querySelectorAll('.step');
@@ -17,15 +18,14 @@
     let typeButtons = views[1].querySelectorAll('button.btn-white');
     let qualityButtons = views[2].querySelectorAll('button.btn-white2');
 
-    let sardinesDisplay = document.querySelector("#recompense");
+    let divSubmit = document.querySelector('.btn-outlined');
+    let btnSubmit = document.getElementById('submit-asset');
+
     let type;
     let quality;
 
-    let _listenType;
-    let _listenQuality;
-
-    let h1 = document.querySelector('h1');
-    h1.style.display = 'none';
+    let menu = document.getElementById('open');
+    menu.style.display = 'none';
 
     let asValidate = 0;
 
@@ -53,7 +53,6 @@
         for (let i = 0; i < qualities.length; i++) {
             qualities[i].checked = false;
         }
-
         removePushedTypeClass();
         removePushedQualityClass();
 
@@ -81,7 +80,7 @@
                             }, 2000);
                             //Types
                             for (let i = 0; i < typeButtons.length; i++) {
-                                typeButtons[i].addEventListener('click', function _listenType(event) {
+                                typeButtons[i].addEventListener('click', function (event) {
                                     removePushedTypeClass();
                                     typeButtons[i].classList.add('btn-white-clicked');
                                     typeButtons[i].classList.remove('btn-white');
@@ -98,7 +97,7 @@
                             }
                             //Qualities
                             for (let i = 0; i < qualityButtons.length; i++) {
-                                qualityButtons[i].addEventListener('click', function _listenType(event) {
+                                qualityButtons[i].addEventListener('click', function (event) {
                                     removePushedQualityClass();
                                     qualityButtons[i].classList.add('btn-white-clicked2');
                                     qualityButtons[i].classList.remove('btn-white2');
@@ -107,18 +106,14 @@
                                     radioTarget.checked = true;
                                     quality = i + 1;
                                     getValue();
-                                    //createResponseHeaderQuality(event.target.name);
-                                    divQuality.innerHTML = '<p>Qualité : ' + event.target.name + '</p>';
+                                    createResponseHeaderQualities(event.target.name);
                                 });
-
                             }
-
                         }
                         else {
                             pictoUser.src = "images/pictos/warning.svg";
                             pictoUser.style.display = 'block';
                         }
-
                     }
                     else if (xhttp.responseText == '<p>Cet utilisateur n\'existe pas</p>') {
                         pictoUser.src = "images/pictos/invalid.svg";
@@ -175,8 +170,23 @@
             header.classList.add('not-fixed');
             header.classList.remove('fixed');
             steps[0].style.marginTop = currentMarginTop + 'px';
-            if (imgLogo != null) {
-                document.querySelector('.logo').replaceChild(imgLogo, firstSelect);
+            //Dodge the dome exception
+            try {
+                open2.insertAdjacentElement('afterend', imgLogo);
+                let responseType = document.querySelector('.response-types');
+                let responseQualities = document.querySelector('.response-qualities');
+                if (responseType != null) {
+                    responseType.insertAdjacentElement('beforebegin', firstSelect);
+                }
+                else if (responseQualities != null) {
+                    responseQualities.querySelector('.logo').insertAdjacentElement('beforebegin', firstSelect);
+                }
+                else {
+                    document.querySelector('.logo').insertAdjacentElement('afterend', firstSelect);
+                }
+
+            }
+            catch (e) {
             }
             imgLogo.style.marginTop = imgcurrentMarginTop + 'px';
             firstSelect.style.marginTop = firstSelectcurrentMarginTop + 'px';
@@ -184,15 +194,8 @@
 
             let searchDiv = document.querySelector('.response-header');
             if (searchDiv != null) {
-
-                document.querySelector('.header').appendChild(firstSelect);
                 document.querySelector('.header').appendChild(searchDiv);
             }
-            else {
-                document.querySelector('.header').appendChild(firstSelect);
-            }
-
-
         }
     });
 
@@ -249,30 +252,46 @@
 
     function getValue() {
         if (type > 0 && quality > 0) {
+            divSubmit.addEventListener('click', function () {
+                btnSubmit.click();
+            });
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    sardinesDisplay.innerHTML = this.responseText;
+
+                    let searchDiv = document.querySelector('.recompense-sardines');
+                    let div;
+                    let p;
+                    if (searchDiv != null) {
+                        header.removeChild(searchDiv);
+                    }
+                    div = document.createElement('div');
+                    div.classList.add('recompense-sardines');
+
+                    p = document.createElement('p');
+                    p.innerHTML = 'Récompense de : ' + this.responseText + ' sardines';
+                    div.appendChild(p);
+                    header.appendChild(div);
                 }
             };
             xhttp.open("POST", "./traitements/valueqt.php", true); //True = async
             //encodage du formulaire
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("type=" + type + "&quality=" + quality);
+
         }
     }
 
     function createResponseHeaderType(name) {
 
-        let searchDiv = document.querySelector('.response-header');
-        console.log(searchDiv);
+        let searchDiv = document.querySelector('.response-types');
         let img;
         let p;
         let div;
         let divResponseHeader;
         if (searchDiv == null) {
             divResponseHeader = document.createElement('div');
-            divResponseHeader.classList.add('response-header');
+            divResponseHeader.classList.add('response-types');
 
             img = document.createElement('img');
             p = document.createElement('p');
@@ -288,25 +307,22 @@
         if (name == 'tente') {
             img.src = "images/pictos/tent.svg";
             img.alt = name;
-            p.innerHTML = 'Vous avez selectionné <br/>' + name;
+            p.innerHTML = 'Vous avez selectionné <br/>tente';
         }
-        else if (name == 'sac de couchage') {
+        else if (name == 'sacDeCouchage') {
             img.src = "images/pictos/sleeping_bag.svg";
             img.alt = name;
-            p.innerHTML = 'Vous avez selectionné <br/>' + name;
+            p.innerHTML = 'Vous avez selectionné <br/>sac de couchage';
         }
         else if (name == 'chaise') {
             img.src = "images/pictos/chair.svg";
             img.alt = name;
-            p.innerHTML = 'Vous avez selectionné <br/>' + name;
+            p.innerHTML = 'Vous avez selectionné <br/>chaise';
         }
         else if (name == 'matelas') {
             img.src = "images/pictos/mattress.svg";
             img.alt = name;
-            p.innerHTML = 'Vous avez selectionné <br/>' + name;
-        }
-        else {
-            return false;
+            p.innerHTML = 'Vous avez selectionné <br/>matelas';
         }
         if (searchDiv == null) {
             divResponseHeader.appendChild(img);
@@ -317,7 +333,47 @@
         }
     }
 
+    function createResponseHeaderQualities(name) {
+        let searchDiv = document.querySelector('.response-qualities');
+        let img;
+        let p;
+        let div;
+        let divResponseHeader;
+        if (searchDiv == null) {
+            divResponseHeader = document.createElement('div');
+            divResponseHeader.classList.add('response-qualities');
 
+            img = document.createElement('img');
+            p = document.createElement('p');
+            div = document.createElement('div');
+        }
+        else if (searchDiv) {
+            img = searchDiv.querySelector('img');
+            p = searchDiv.querySelector('p');
+            div = searchDiv.querySelector('div');
+        }
 
+        if (name == 'mauvaise') {
+            img.src = "images/pictos/mauvais.svg";
+            img.alt = name;
+            p.innerHTML = 'En mauvais état';
+        }
+        else if (name == 'bonne') {
+            img.src = "images/pictos/bon.svg";
+            img.alt = name;
+            p.innerHTML = 'En bon état';
+        }
+        else if (name == 'excellente') {
+            img.src = "images/pictos/excellent.svg";
+            img.alt = name;
+            p.innerHTML = 'En excellent état';
+        }
+        if (searchDiv == null) {
+            divResponseHeader.appendChild(img);
+            divResponseHeader.appendChild(p);
+            divResponseHeader.appendChild(div);
 
+            header.appendChild(divResponseHeader);
+        }
+    }
 })();
