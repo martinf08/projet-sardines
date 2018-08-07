@@ -11,7 +11,6 @@
 
         <form method="POST" action="insertUser" autocomplete="off"> 
             <div class="avatar">
-
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="-426 129 512 512" style="enable-background:new -426 129 512 512;" xml:space="preserve">
                 <style type="text/css">
@@ -53,7 +52,7 @@
                 </g>
                 </svg>
            </div>
-            <div class="avatar">
+         
             <div class="flexCenter"><?php if(isset($Info)){echo $Info;}?></div>
             <div class="flexCenter form-input"><input class="input" type="email" id="email" name="email" placeholder="e-mail" required></div>
             <div class="flexCenter form-input">
