@@ -3,35 +3,34 @@ main{
     align-content: center;
 
 }
-.connexion-content{
-    display: flex;
-    flex-direction: column;
+
+form{
+    margin-top: 7.2%;
     align-content: center;
-    width: 70%;
-    margin: 0 auto; 
-}
-.avatar{
-    text-align: center;
-    margin: 0 auto; 
-    top:7,2%;
-    margin-bottom: 6%;
+      
 }
 #container{
     width: 100%;
     margin: 0 auto; 
 }
 
-svg{
+.svg-avatar{
+   
+    margin-left: auto;
+    text-align: center;
+    margin-bottom: 6%;
+}
+.svg-avatar svg{
     max-width: 100px;
     max-height:100px;
     margin: 15px 15px;
 }
-.titre{
-    text-align: center;
-}
+
+
+
 input{
     display: inline-block;
-    margin-bottom: 2.9%;
+    margin-bottom: 3.9%;
 }
 #alert{
     text-align: center;
@@ -43,4 +42,45 @@ input{
     outline: 0;
     font-size: 100%;
     text-align: center;
+}
+#submit-signin{
+    margin-top: 6.9%;
+
+}
+a,p{
+      font-size: 14px;
+}
+.Header{
+     display: flex;
+     margin-bottom: 7,2%;
+    margin-top:4.8%;
+    width: 100%;
+}
+#titre{
+   
+ text-align: center;
+    text-transform: uppercase;
+    font-family:'SourceSansProSemibold', 'helvetica',sans-serif;
+    color: #2489B4;
+    letter-spacing:1px;
+    font-size: 20px;
+    width: 60%;
+  
+    flex: 4;
+    line-height: 30px;
+}
+#arrow{
+    width: 8%;
+    flex: 1;
+     line-height: 32.5px;
+     text-align: center;
+
+}
+#arrow svg{
+    margin-left: 15%;
+    width: 40%    
+}
+#vide{
+    margin-left: 15%;
+    width: 5%    
 }

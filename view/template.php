@@ -17,7 +17,7 @@
 <body>
 
     <div id="menu">
-
+        
         <div id="close"><!-- fermeture du menu -->
             <div class="cross"></div>
         </div>
@@ -47,14 +47,14 @@
             <div id="warning">ce compte n'est pas encore activé</div>
             <?php endif; ?> 
         <?php endif; ?>
-
+      
         <div id="open"> <!-- le burger pour ouvrir le menu -->
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
 
-        <h1><?= $title ?></h1>
+        <!--<h1><?= $title ?></h1>-->
       
         <?= $content ?>
 
