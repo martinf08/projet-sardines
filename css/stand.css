@@ -1,0 +1,46 @@
+#header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+    padding-bottom: 55px;
+}
+
+#open {
+    cursor: pointer;
+    height: 20px;
+    width: 25px;
+    margin-left: 30px;
+}
+
+#open svg rect {
+    fill: #0cd18f !important;
+}
+
+h1 {
+    height: 25px;
+    text-transform: uppercase;
+}
+
+#sardines {
+    height: 35px;
+    min-width: 35px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fefefe;
+    text-align: center;
+    margin-right: 30px;
+    margin-top: -4px;
+    font-size: 1.2rem;
+    padding-left: 4px;
+    padding-right: 6px;
+    padding-top: 10px;
+}
+
+#sardines svg {
+    height: 16px;
+    fill: #fefefe;
+    padding-top: 6px;
+    transform: rotateZ(-44deg);
+}
