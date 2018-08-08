@@ -5,15 +5,16 @@
  * Date: 20/07/18
  * Time: 16:34
  */
-
-$title = 'Succès de la transaction';
 ?>
 
 <main>
 
-Félicitation, <?= $_SESSION['lastAsset']->getUserEmail(); ?>,
-vous venez de donner un objet de type <?= $_SESSION['lastAsset']->getNameIdType(); ?>,
-de qualité <?= $_SESSION['lastAsset']->getNameIdQuality(); ?>.
-Vous remportez ainsi <?= $_SESSION['lastAsset']->getValue(); ?> Sardines.<br/>
-    Le  tag  est : <b><?= $_SESSION['lastAsset']->getTag(); ?></b>
+    <p class="success">Félicitation, <span class="bold"><?= $_SESSION['lastAsset']->getUserEmail(); ?></span>,
+    vous venez de donner un objet de type <span class="bold"><?= $_SESSION['lastAsset']->getNameIdType(); ?></span>,
+    de qualité <span class="bold"><?= $_SESSION['lastAsset']->getNameIdQuality(); ?></span>.</p>
+    <p class="success">Vous remportez ainsi <span class="bold"><?= $_SESSION['lastAsset']->getValue(); ?></span> Sardines.</p>
+    <p class="success">Le  tag  est : <span class="bold"><?= $_SESSION['lastAsset']->getTag(); ?></span></p>
+
+    <div id="triangle-bottomleft"></div>
+    <div id="triangle-bottomright"></div>
 </main>
