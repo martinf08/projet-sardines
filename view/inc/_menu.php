@@ -23,7 +23,7 @@
         <?php endif; ?>
 
         <li><a href="<?= Config::$root ?>#">F.A.Q.</a></li>
-        <li><a href="<?= Config::$root ?>#">Mentions légales</a></li>
+        <li><a href="<?= Config::$root ?>mentions-legales">Mentions légales</a></li>
 
         <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] == true): ?>
             <li><a id="logout-link" href="<?= Config::$root ?>exit">Me déconnecter</a></li>
