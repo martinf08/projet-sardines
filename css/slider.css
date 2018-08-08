@@ -127,4 +127,21 @@ h1 {
     margin-bottom: 4.79vh;
 }
 
+.active-btn {
+    width: 146px;
+    height: 35px;
+    border-radius: 17px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    color: #009688;
+    font-size: 18px;
+    background: -moz-linear-gradient(to right,  #0cd18f 0%, rgb(25, 170, 187) 100%);
+    background: -webkit-linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
+    background: linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
+    color: white;
+}
 
+button {
+    border: none;
+}
