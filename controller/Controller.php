@@ -424,7 +424,7 @@ class Controller
     {
         if (isset($_SESSION['lastAsset']) && !empty($_SESSION['lastAsset'])) {
             $this->set('title', 'Succès de la transaction');
-            $css = array('erreurs');
+            $css = array('standard');
             $this->set('css', $css);
             $this->render('view/success.php');
             unset($_SESSION['lastAsset']);
