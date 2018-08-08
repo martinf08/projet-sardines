@@ -24,8 +24,7 @@
     let type;
     let quality;
 
-    let menu = document.getElementById('open');
-    menu.style.display = 'none';
+
 
     let asValidate = 0;
 

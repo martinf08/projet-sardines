@@ -1,5 +1,14 @@
 <main>
+<?php
+if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
+    if (isset($_COOKIE['cookie']) AND !empty($_COOKIE['cookie'])) {
 
+    }
+    else {
+       //setcookie('cookie', 1, time() + 30*24*3600, null, null, false, true);
+    }
+}
+?>
     <div class="slider">
 
         <div class="slider-item">
