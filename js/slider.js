@@ -5,6 +5,7 @@
     let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
     let pageInfo = document.querySelectorAll('.page-info');
     let arrowBack = document.querySelector('.arrow-back');
+    let cookieBtn = document.getElementById('accept-cookie');
     let range = 0;
     if (range == 0) {
         arrowBack.style.height = '0';
@@ -96,6 +97,19 @@
         }
     }
 
+    if (cookieBtn != null) {
+        cookieBtn.addEventListener('click', function () {
+            setCookie();
+            document.querySelector('.cookie').style.display = 'none';
+        });
+    }
+
+    function setCookie() {
+        let date = new Date();
+        date.setTime(date.getTime() + (86400 * 30));
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = 'cookie=1;' + expires + ';path=/';
+    }
 
     function indexSlider() {
         if (range != null) {

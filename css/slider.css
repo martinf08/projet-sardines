@@ -145,3 +145,35 @@ h1 {
 button {
     border: none;
 }
+/* #07638A */
+.cookie {
+    display: flex;
+    flex-direction: column;
+    background: #2489B4;
+    position: absolute;
+    bottom: 50%;
+    left: 0;
+    width: 100vw;
+    z-index: 999;
+}
+.cookie p {
+    color: #fefefe;
+    margin: 14px;
+    font-size: 0.875rem;
+}
+.cookie a {
+    color: #fefefe;
+    font-size: 0.875rem;
+}
+.cookie button {
+    align-self: flex-end;
+    background-color: #2489B4;
+    color: #fefefe;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
+}
+.cookie button:hover {
+    background-color:  #07638A ;
+}

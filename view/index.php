@@ -1,11 +1,15 @@
 <main>
 <?php
 if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
-    if (isset($_COOKIE['cookie']) AND !empty($_COOKIE['cookie'])) {
 
-    }
-    else {
-       //setcookie('cookie', 1, time() + 30*24*3600, null, null, false, true);
+    if (!isset($_COOKIE['cookie']) AND empty($_COOKIE['cookie'])) {
+        ?>
+        <div class="cookie">
+            <p>En continuant la navigation sur les Sardines vous acceptez notre <a href="mentions-legales">politique de cookies</a></p>
+            <button id="accept-cookie">accepter</button>
+
+        </div>
+    <?php
     }
 }
 ?>
