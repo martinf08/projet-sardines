@@ -7,7 +7,6 @@
     <title><?= $title ?></title>
     <link rel="stylesheet" href="<?= Config::$root ?>css/cheatsheet.css">
     <link rel="stylesheet" href="<?= Config::$root ?>css/menu.css"><!-- contient simplement les classes pour position et effet tiroir -->
-    <link rel="stylesheet" href="<?= Config::$root ?>css/header.css"><!-- pour la partie avec burger/flèche et titre -->
 
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <?php foreach ($css as $value){?>
