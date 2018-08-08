@@ -111,6 +111,20 @@ body {
     margin-top: 20px;
 }
 
+#sardines-pic {
+    position: relative;
+    margin-left: 1px;
+}
+
+#sardines-pic svg {
+    position: absolute;
+    bottom: 3px;
+    fill: #0cd18f;
+    height: 12px;
+    width: 12px;
+    transform: rotateZ(-44deg);
+}
+
 /* il manque le box-shadow à appliquer */
 
 /*************
