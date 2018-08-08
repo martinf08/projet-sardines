@@ -264,6 +264,9 @@ class Controller
 
                     if ($reponse) {
                         $_SESSION['islog'] = true;
+                        if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
+                            setcookie('cookie', '1', time() + (86400 * 30));
+                        }
 
                         header('Location: donner');
                     } else {
@@ -315,6 +318,9 @@ class Controller
                 $reponse     = $userManager->insertUser($user);
 
                 if (is_bool($reponse)) {
+                    if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
+                        setcookie('cookie', '1', time() + (86400 * 30));
+                    }
                     header("Location: " . Config::$root . "donner");
                 } else {
 
