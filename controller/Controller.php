@@ -314,7 +314,7 @@ class Controller
                     //$this->set('Info', 'Cet email existe déjà');
                     $this->set('css', $css);
                     $this->render('view/inscription.php');
-                    throw new Exception($reponse);
+                    throw new Exception($reponse); # s'il y a un throw, le set/render ci-dessus ne sert à rien
                 }
             } else {
                 header("HTTP/1.0 400");
