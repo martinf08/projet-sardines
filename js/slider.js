@@ -1,4 +1,5 @@
 (function () {
+    let slider = document.querySelector('.slider');
     let button = document.querySelector('button');
     let sliderInfoT = document.querySelectorAll('.slider-info-top');
     let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
@@ -8,8 +9,53 @@
     if (range == 0) {
         arrowBack.style.height = '0';
     }
-    button.addEventListener('click', function () {
-        console.log(range);
+    let touchXStart;
+    let touchXEnd;
+    let btnNext;
+    let arrowBrb;
+
+    slider.addEventListener('touchstart', function touchStart(e) {
+        touchXStart = e.touches[0].clientX;
+        if (e.target.nodeName == "BUTTON") {
+            btnNext = e.target.nodeName;
+            e.target.classList.remove('btn-outlined-2');
+            e.target.classList.add('active-btn');
+
+        }
+        else if (e.target.className == 'arrow-back') {
+            arrowBrb = e.target.className;
+        }
+
+    });
+
+    slider.addEventListener('touchmove', function touchMove(e) {
+        touchXEnd = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchend', function touchEnd(e) {
+        if (btnNext == "BUTTON") {
+            swipeLeftToRight();
+            btnNext = '';
+            e.target.classList.add('btn-outlined-2');
+            e.target.classList.remove('active-btn');
+
+
+        }
+        else if (arrowBrb == 'arrow-back') {
+            swipeRightToLeft();
+            arrowBrb = '';
+        }
+
+        else if (touchXStart > touchXEnd) {
+            swipeLeftToRight();
+        }
+        else if (touchXStart < touchXEnd) {
+            swipeRightToLeft();
+        }
+    });
+
+
+    function swipeLeftToRight() {
         if (range - 100 >= -500) {
             range = range - 100;
             if (range < 0) {
@@ -29,8 +75,9 @@
                 //Redirection Page Accueil
             }
         }
-    });
-    arrowBack.addEventListener('click', function () {
+    }
+
+    function swipeRightToLeft() {
         if (range + 100 <= 0) {
             if (range == -100) {
                 arrowBack.style.height = '0';
@@ -47,7 +94,9 @@
                 button.textContent = "Suivant";
             }
         }
-    });
+    }
+
+
     function indexSlider() {
         if (range != null) {
             let index = 0;
@@ -76,4 +125,5 @@
             return index;
         }
     }
+
 })();
