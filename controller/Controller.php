@@ -265,9 +265,7 @@ class Controller
                     if ($reponse) {
                         $_SESSION['islog'] = true;
 
-                        $this->set('title', 'Les Sardines');
-                        $this->set('css', array('donner'));
-                        $this->render('view/donner.php');
+                        header('Location: donner');
                     } else {
                         $_SESSION['islog'] = false;
                         $this->set('title', 'Connexion');
