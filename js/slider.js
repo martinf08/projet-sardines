@@ -1,4 +1,5 @@
 (function () {
+    let slider = document.querySelector('.slider');
     let button = document.querySelector('button');
     let sliderInfoT = document.querySelectorAll('.slider-info-top');
     let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
@@ -8,33 +9,75 @@
     if (range == 0) {
         arrowBack.style.height = '0';
     }
-nextSlide();
-    function nextSlide() {
-        button.addEventListener('click', function () {
-            if (range - 100 >= -500) {
-                range = range - 100;
-                if (range < 0) {
-                    arrowBack.style.height = '15px';
-                }
-                sliderInfoT[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
-                sliderInfoB[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
-                pageInfo[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
+    let touchXStart;
+    let touchXEnd;
+    let btnNext;
+    let arrowBrb;
 
-                sliderInfoT[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
-                sliderInfoB[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
-                pageInfo[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
+    slider.addEventListener('touchstart', function touchStart(e) {
+        touchXStart = e.touches[0].clientX;
+        if (e.target.nodeName == "BUTTON") {
+            btnNext = e.target.nodeName;
+            e.target.classList.remove('btn-outlined-2');
+            e.target.classList.add('active-btn');
+
+        }
+        else if (e.target.className == 'arrow-back') {
+            arrowBrb = e.target.className;
+        }
+
+    });
+
+    slider.addEventListener('touchmove', function touchMove(e) {
+        touchXEnd = e.touches[0].clientX;
+    });
+
+    slider.addEventListener('touchend', function touchEnd(e) {
+        if (btnNext == "BUTTON") {
+            swipeLeftToRight();
+            btnNext = '';
+            e.target.classList.add('btn-outlined-2');
+            e.target.classList.remove('active-btn');
 
 
-                if (range == -500) {
-                    button.textContent = "Commencer";
-                    button.removeEventListener();
-                    //Redirection Page Accueil
-                }
+        }
+        else if (arrowBrb == 'arrow-back') {
+            swipeRightToLeft();
+            arrowBrb = '';
+        }
+
+        else if (touchXStart > touchXEnd) {
+            swipeLeftToRight();
+        }
+        else if (touchXStart < touchXEnd) {
+            swipeRightToLeft();
+        }
+    });
+
+
+    function swipeLeftToRight() {
+        if (range - 100 >= -500) {
+            range = range - 100;
+            if (range < 0) {
+                arrowBack.style.height = '15px';
             }
-        });
-    }
-    arrowBack.addEventListener('click', function () {
+            sliderInfoT[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
+            sliderInfoB[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
+            pageInfo[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
 
+            sliderInfoT[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
+            sliderInfoB[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
+            pageInfo[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
+
+
+            if (range == -500) {
+                button.textContent = "Commencer";
+                //Redirection Page Accueil
+            }
+        }
+    }
+
+    function swipeRightToLeft() {
         if (range + 100 <= 0) {
             if (range == -100) {
                 arrowBack.style.height = '0';
@@ -49,11 +92,10 @@ nextSlide();
             pageInfo[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
             if (range == -400) {
                 button.textContent = "Suivant";
-                nextSlide();
-
             }
         }
-    });
+    }
+
 
     function indexSlider() {
         if (range != null) {
@@ -83,4 +125,5 @@ nextSlide();
             return index;
         }
     }
+
 })();

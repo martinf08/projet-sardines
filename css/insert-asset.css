@@ -1,5 +1,16 @@
+main {
+    width: 100vw;
+    background-color: #fefefe;
+    color: #1c1c1c;
+}
+
 .view {
     height: 100vh;
+
+}
+
+p {
+    font-size: 11px;
 
 }
 
@@ -8,56 +19,281 @@
     height: 15%;
     width: 100%;
 }
+
 .fixed {
-position: fixed;
+    position: fixed;
     top: 0;
 }
+
 .not-fixed {
     position: relative;
 }
+
 [type="radio"]:checked,
 [type="radio"]:not(:checked) {
     position: absolute;
     left: -9999px;
 }
+
 button[name="tente"] {
     background: url('../images/pictos/tent.svg') no-repeat;
-    background-size: contain;
+    background-size: 66px, 34px;
     background-position: center;
 }
+
 button[name="sacDeCouchage"] {
     background: url('../images/pictos/sleeping_bag.svg') no-repeat;
-    background-size: contain;
+    background-size: 30px, 58px;
     background-position: center;
 }
+
 button[name="chaise"] {
     background: url('../images/pictos/chair.svg') no-repeat;
-    background-size: contain;
+    background-size: 41px, 57px;
     background-position: center;
 }
+
 button[name="matelas"] {
     background: url('../images/pictos/mattress.svg') no-repeat;
-    background-size: contain;
+    background-size: 35px, 57px;
     background-position: center;
 }
+
 button[name="mauvaise"] {
     background: url('../images/pictos/mauvais.svg') no-repeat;
-    background-size: contain;
+    background-size: 38px, 38px;
     background-position: center;
 }
+
 button[name="bonne"] {
     background: url('../images/pictos/bon.svg') no-repeat;
-    background-size: contain;
+    background-size: 38px, 38px;
     background-position: center;
 }
+
 button[name="excellente"] {
     background: url('../images/pictos/excellent.svg') no-repeat;
-    background-size: contain;
+    background-size: 38px, 38px;
     background-position: center;
 }
 
 .flex-center {
     display: flex;
     justify-content: center;
+}
+
+.header {
+    width: 100vw;
+    padding-top: 4.49vh;
+    background-color: #f3f9f3;
+    -moz-box-shadow: 0px 2px 4px 0px #CEC9C9;
+    -webkit-box-shadow: 0px 2px 4px 0px #CEC9C9;
+    -o-box-shadow: 0px 2px 4px 0px #CEC9C9;
+    box-shadow: 0px 2px 4px 0px #CEC9C9;
+}
+
+h1:first-child {
+    display: none;
+}
+
+.logo {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.logo img:first-child {
+    cursor: pointer;
+    margin-left: 15px;
+
+}
+
+.logo img:nth-child(2) {
+    height: auto;
+    width: 41vw;
+    max-width: 154px;
+}
+
+#open2 {
+    width: 17px;
+    height: 14px;
+    background: url('../images/pictos/burger_open.svg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+.logo div:first-child {
+    margin-left: 8.26vw;
+}
+
+.logo div:last-child {
+    width: 17px;
+    height: 14px;
+    margin-right: 8.26vw;
+}
+
+.blue {
+    color: #2489b4;
+}
+
+.uper {
+    text-transform: uppercase;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#first-new-asset {
+    display: flex;
+    justify-content: center;
+    margin-top: 7.79vh;
+    padding-bottom: 4.34vh;
+}
+
+.step {
+    margin-top: 7.19vh;
+}
+
+#step2 {
+    margin-bottom: 8.24vh;
+}
+
+#iduser {
+    margin-top: 15.59vh;
+}
+
+#responseUser {
+    margin-top: 10.19vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#responseUser #logoResponse {
+    margin-right: 7px;
+}
+
+#responseUser p {
+    margin-left: 7px;
+}
+
+.logoResponse {
+    width: 7.49vh;
+    height: 6.59vh;
+}
+
+.item-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-button button {
     margin-bottom: 15px;
+}
+
+.label-type {
+    margin-bottom: 45px;
+}
+
+button[name="chaise"],
+button[name="tente"],
+button[name="chaise"] + p,
+button[name="tente"] + p {
+    margin-right: 48px;
+    text-align: center;
+}
+
+button[name="mauvaise"],
+button[name="bonne"],
+button[name="mauvaise"] + p,
+button[name="bonne"] + p {
+    margin-right: 43px;
+    text-align: center;
+}
+
+.item-button2 p {
+    margin-top: 2.39vh;
+    margin-bottom: 4.49vh;
+}
+
+textarea {
+    padding-left: 16px;
+    padding-top: 12px;
+    resize: none;
+    margin-bottom: 6.29vh;
+}
+
+#submit-ajout {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    border: none;
+}
+
+.response-types {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    padding-top: 3.44vh;
+    padding-bottom: 2.39vh;
+    border-top: 1px solid #eaf1ea;
+}
+
+.response-types img {
+    margin-left: 8.26vw;
+    width: 32px;
+    height: 40px;
+    margin-right: 11vw;
+}
+
+.response-types div {
+    margin-right: 8.26vw;
+    width: 32px;
+    height: 40px;
+}
+
+.response-types p {
+    color: #2489b4;
+}
+
+.response-qualities {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    padding-top: 3.44vh;
+    padding-bottom: 2.39vh;
+    border-top: 1px solid #eaf1ea;
+}
+
+.response-qualities img {
+    margin-left: 8.26vw;
+    width: 32px;
+    height: 40px;
+    margin-right: 11vw;
+}
+
+.response-qualities div {
+    margin-right: 8.26vw;
+    width: 32px;
+    height: 40px;
+}
+
+.response-qualities p {
+    color: #2489b4;
+}
+
+.recompense-sardines p {
+    margin-left: 8.26vw;
+    color: #2489b4;
+    font-weight: bold;
+    padding-top: 2.39vh;
+    padding-bottom: 3.29vh;
+    border-top: 1px solid #eaf1ea;
+
 }

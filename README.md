@@ -1,12 +1,15 @@
 # projet-sardines
 
-Application inspirée du projet gagnant du hackathon #HackCV17, organisé en immersion sur le Festival Cabaret Vert en 2017 par l'association HackArdennes.
-HackArdennes accompagne en 2018 une équipe de la fabrique de développeurs Simplon Charleville dans la refonte de cette appli.
-Son lancement sera présenté lors du Festival Cabaret Vert 2018.
-
 *@HackArdennes*
 *@Simplon08*
 
+## Sur l'application
+
+En 2017, l'association HackArdennes organisait le premier hackathon en immersion dans un festival, le Cabaret Vert, sur le thème du développement durable. L'équipe Les Sardines, remportait alors ce concours avec une application faisant la promesse de favoriser la remise à disposition de matériel de camping plutôt que l'abandonner ou même le détruire.
+
+En 2018, une toute nouvelle école Simplon s'implantait dans les locaux du pôle formation de la CCI de Charleville-Mézières. Il n'en fallait pas moins pour que HackArdennes propose à ces nouveaux développeurs en devenir de développer concrètement cette application afin qu'elle soit testable en situation normale pour la prochaine édition du Cabaret Vert en 2018.
+
+## Fonctionnement
 
 La présente application sera exploitée au festival du Cabaret Vert de Charleville-Mézières pour inciter les festivaliers-campeurs à échanger leur matériel de camping contre un token intitulé 'sardine' plutôt que de laisser ce matériel à l'abandon à la fin du festival.
 

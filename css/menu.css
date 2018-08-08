@@ -30,43 +30,63 @@ body {
     min-height: 260px;
 }
 
-#open {
-    cursor: pointer;
-}
-
-#open .bar {
-    width: 20px;
-    height: 4px;
-    background-color: #444;
-    margin: 4px 0;
-}
-
 #close {
     position: absolute;
     top: 25px;
-    right: 40px;
-    transform: rotateZ(45deg);
+    right: 25px;
     cursor: pointer;
+    height: 32px;
+    width: 32px;
 }
 
-#close .cross {
-    position: relative;
-    width: 4px;
-    height: 30px;
-    background-color: #0cd18f;
-}
-
-#close .cross:after {
-    background: #0cd18f;
-    content: "";
-    height: 4px;
-    left: -13px;
-    position: absolute;
-    top: 14px;
-    width: 30px;
+#close svg {
+    width: 28px;
+    display: inline-block;
 }
 
 /* il manque le box-shadow à appliquer */
+
+/*****************
+     WARNING
+*****************/
+
+#warning {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    background: rgb(161, 5, 8);
+    color: #fefefe;
+    text-align: center;
+    padding: 5px;
+    width: 70%;
+    margin: auto;
+    animation: flash 3s ease-out;
+    z-index: 5;
+}
+
+@keyframes flash {
+    0% {
+        top: 0%;
+        opacity: 0;
+    }
+
+    40% {
+        top: 8%;
+        opacity: 1;
+    }
+
+    85% {
+        top: 8%;
+        opacity: 1;
+    }
+
+    100% {
+        top: 8%;
+        opacity: 0;
+    }
+}
 
 /*****************
      USER INFOS
@@ -89,6 +109,20 @@ body {
 
 #user-id {
     margin-top: 20px;
+}
+
+#sardines-pic {
+    position: relative;
+    margin-left: 1px;
+}
+
+#sardines-pic svg {
+    position: absolute;
+    bottom: 3px;
+    fill: #0cd18f;
+    height: 12px;
+    width: 12px;
+    transform: rotateZ(-44deg);
 }
 
 /* il manque le box-shadow à appliquer */

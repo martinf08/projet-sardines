@@ -43,6 +43,17 @@ class Controller
         require_once './view/sardines.php';
     }
 
+    #-------------------
+    #  MENTIONS LÉGALES
+    #-------------------
+    public function mentions()
+
+    {
+        $this->set('title', 'Mentions légales');
+        $this->set('css', array('standard'));
+        $this->render('view/mentions.php');
+    }
+
     #----------
     #  PROFIL
     #----------
@@ -298,6 +309,7 @@ class Controller
 
     public function insertUser()
     {
+
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "") {
                 $userManager = new UserManager();
@@ -313,7 +325,7 @@ class Controller
                     //$this->set('Info', 'Cet email existe déjà');
                     $this->set('css', $css);
                     $this->render('view/inscription.php');
-                    throw new Exception($reponse);
+                    throw new Exception($reponse); # s'il y a un throw, le set/render ci-dessus ne sert à rien
                 }
             } else {
                 header("HTTP/1.0 400");
@@ -353,9 +365,11 @@ class Controller
 
                 if (isset($types) && isset($qualities)) {
 
-                    $css = array('insert-asset');
-                    $this->set('css', $css);
-                    require_once('view/ajout.php');
+                    $this->set('css', array('insert-asset'));
+                    $this->set('title', 'Ajouter un matériel');
+                    $this->set('types', $types);
+                    $this->set('qualities', $qualities);
+                    $this->render('view/ajout.php');
 
                 } else {
                     throw new Exception('Problème sur la récupération des tables.');
@@ -371,9 +385,13 @@ class Controller
 
     public function insertAsset()
     {
+
         if (isset($_POST['submit-asset'])) {
+
             if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôler que la méthode est accédée uniquement par un staff ou admin
+
                 if ($_SESSION['user']->getStaff()) {
+
                     if (isset($_POST) && !empty($_POST)) {
                         $post         = $_POST;
                         $assetManager = new AssetManager();
