@@ -17,6 +17,49 @@ main {
     position: relative;
 }
 
+/****************************
+    LE HEADER DE DONNER
+****************************/
+
+#header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 30px;
+    padding-bottom: 55px;
+}
+
+#open {
+    cursor: pointer;
+    height: 20px;
+    width: 25px;
+    margin-left: 30px;
+}
+
+#open svg rect {
+    fill: #0cd18f !important;
+}
+
+h1 {
+    height: 25px;
+}
+
+#sardines {
+    height: 32px;
+    width: 36px;
+    border-radius: 50%;
+    background: #0cd18f;
+    color: #fefefe;
+    text-align: center;
+    margin-right: 30px;
+    margin-top: -4px;
+    line-height: 1.8rem;
+}
+
+/****************************
+    LE CONTENU DE DONNER
+****************************/
+
 #give {
     width: 100%;
     display: flex;
