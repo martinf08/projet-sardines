@@ -45,15 +45,26 @@ h1 {
 }
 
 #sardines {
-    height: 32px;
-    width: 36px;
+    height: 35px;
+    min-width: 35px;
+    display: flex;
+    justify-content: center;
     border-radius: 50%;
-    background: #0cd18f;
     color: #fefefe;
     text-align: center;
     margin-right: 30px;
     margin-top: -4px;
-    line-height: 1.8rem;
+    font-size: 1.2rem;
+    padding-left: 4px;
+    padding-right: 6px;
+    padding-top: 10px;
+}
+
+#sardines svg {
+    height: 16px;
+    fill: #fefefe;
+    padding-top: 6px;
+    transform: rotateZ(-44deg);
 }
 
 /****************************
