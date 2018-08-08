@@ -43,6 +43,17 @@ class Controller
         require_once './view/sardines.php';
     }
 
+    #-------------------
+    #  MENTIONS LÉGALES
+    #-------------------
+    public function mentions()
+
+    {
+        $this->set('title', 'Mentions légales');
+        $this->set('css', array('standard'));
+        $this->render('view/mentions.php');
+    }
+
     #----------
     #  PROFIL
     #----------
