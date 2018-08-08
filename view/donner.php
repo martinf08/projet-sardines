@@ -115,7 +115,7 @@
             </g>
         </g>
         </svg>
-        <a href="" class="btn-full-2">Je donne !</a>
+        <a href="stand" class="btn-full-2">Je donne !</a>
     </div>
 
     <div class="card">
