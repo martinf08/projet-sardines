@@ -46,9 +46,10 @@ h1 {
 
 #sardines {
     height: 35px;
+    min-width: 35px;
     display: flex;
+    justify-content: center;
     border-radius: 50%;
-    background: #0cd18f;
     color: #fefefe;
     text-align: center;
     margin-right: 30px;
