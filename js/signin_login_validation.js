@@ -1,6 +1,7 @@
 const mail = document.querySelector('#email');
 const pass = document.querySelector('#password');
 const confirm = document.querySelector('#confirmPassword');
+const disc = document.querySelector('#disclaimer');
 const submit = document.querySelector('input[type="submit"]');
 const tooltip = document.querySelectorAll('.tooltip')[0];
 
@@ -69,11 +70,18 @@ if (confirm != null) {
     });
 }
 
+// is conditions générales acceptées
+if (disc != null) {
+    disc.addEventListener('input', function(e) {
+            enable();
+    });
+}
+
 // is all ok
 function enable() {
     if (pass == null) {
-        // si on se trouve sur la page de connexion, on confirme seulement deux champs
-        if (okMail === true) {
+        // pour la page oubli de mot de passe
+        if (okMail) {
             submit.removeAttribute("disabled");
             return true;
         } else {
@@ -81,8 +89,8 @@ function enable() {
             return false;
         }
     } else if (mail == null) {
-        // si on se trouve sur la page d'oubli de mot de passe
-        if (okConfirm === true && okPass === true) {
+        // si on se trouve sur la page nouveau mot de passe
+        if (okConfirm && okPass) {
             submit.removeAttribute("disabled");
             return true;
         } else {
@@ -90,8 +98,8 @@ function enable() {
             return false;
         }
     } else if (confirm == null) {
-        // si on se trouve sur la page d'oubli de mot de passe
-        if (okMail === true && okPass === true) {
+        // si on se trouve sur la page de connexion
+        if (okMail && okPass) {
             submit.removeAttribute("disabled");
             return true;
         } else {
@@ -99,7 +107,8 @@ function enable() {
             return false;
         }
     } else {
-        if (okMail === true && okPass === true && okConfirm === true) {
+        // sinon on est sur la page d'inscription
+        if (okMail && okPass && okConfirm && disc.checked) {
             submit.removeAttribute("disabled");
             return true;
         } else {
