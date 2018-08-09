@@ -15,6 +15,7 @@
 		private $balance;
 		private $account_creation_date;
 		private $confirmPassword;
+		private $terms;
 
 		public function __construct($userdatas)
 		{
@@ -307,5 +308,26 @@
 				$this->confirmPassword = md5($confirmPassword);
 				return $this;
 			}	
+		}
+
+		/**
+         * Get the value of terms
+         */ 
+        public function getTerms()
+        {
+                return $this->terms;
+		}
+		
+        /**
+         * Set the value of terms
+         *
+         * @return  self
+         */ 
+        public function setTerms($terms)
+        {
+			if (isset($terms) AND !empty($terms)) {
+				$this->terms = $terms;
+                return $this;
+			}
 		}
    }
