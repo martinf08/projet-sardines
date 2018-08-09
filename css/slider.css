@@ -9,7 +9,9 @@ h1 {
 #menu, #open {
     display: none;
 }
-
+main {
+    background-color: #fefefe;
+}
 @keyframes slideRight {
     0% {
         transform: translateX(0vw);
@@ -137,12 +139,11 @@ h1 {
     text-decoration: none;
     position: relative;
     overflow: hidden;
-    color: #009688;
     font-size: 18px;
     background: -moz-linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
     background: -webkit-linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
     background: linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
-    color: white;
+    color: #fefefe;
 }
 
 button {

@@ -45,36 +45,36 @@
 
         slider.addEventListener('touchend', function touchEnd(e) {
             if (btnNext == "BUTTON") {
-                swipeLeftToRight();
+                nextSlider();
                 btnNext = '';
                 e.target.classList.add('btn-outlined-2');
                 e.target.classList.remove('active-btn');
             }
             else if (arrowBrb == 'arrow-back') {
-                swipeRightToLeft();
+                prevSlider();
                 arrowBrb = '';
             }
 
             else if (touchXStart > touchXEnd) {
-                swipeLeftToRight();
+                nextSlider();
             }
             else if (touchXStart < touchXEnd) {
-                swipeRightToLeft();
+                prevSlider();
             }
         });
 
     }
     else {
         button.addEventListener('click', function () {
-            return swipeLeftToRight();
+            nextSlider();
         });
         arrowBack.addEventListener('click', function () {
-            return swipeRightToLeft();
+            prevSlider();
         });
     }
 
 
-    function swipeLeftToRight() {
+    function nextSlider() {
         if (range - 100 >= -500) {
             range = range - 100;
             if (range < 0) {
@@ -96,7 +96,7 @@
         }
     }
 
-    function swipeRightToLeft() {
+    function prevSlider() {
         if (range + 100 <= 0) {
             if (range == -100) {
                 arrowBack.style.height = '0';
@@ -122,9 +122,23 @@
         });
     }
 
+    if (getCookie('cookie') == 1) {
+        let i = 0;
+        while (i < 6) {
+            nextSlider();
+            i++;
+        }
+    }
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+
     function setCookie() {
         let date = new Date();
-        date.setTime(date.getTime() + (30*24*60*60*1000));
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
         let expires = "expires=" + date.toUTCString();
         document.cookie = 'cookie=1;' + expires + ';path=/';
     }
