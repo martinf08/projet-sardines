@@ -1,6 +1,6 @@
 (function () {
     let slider = document.querySelector('.slider');
-    let button = document.querySelector('button');
+    let button = document.getElementById('primary-btn-slider');
     let sliderInfoT = document.querySelectorAll('.slider-info-top');
     let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
     let pageInfo = document.querySelectorAll('.page-info');
@@ -124,7 +124,7 @@
 
     function setCookie() {
         let date = new Date();
-        date.setTime(date.getTime() + (86400 * 30));
+        date.setTime(date.getTime() + (30*24*60*60*1000));
         let expires = "expires=" + date.toUTCString();
         document.cookie = 'cookie=1;' + expires + ';path=/';
     }

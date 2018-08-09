@@ -31,7 +31,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                 </p>
                 <div class="slider-bottom">
                     <p class="page-info">1/6</p>
-                    <button class="btn-outlined-2">Suivant</button>
+                    <button id="primary-btn-slider" class="btn-outlined-2">Suivant</button>
                 </div>
             </div>
         </div>

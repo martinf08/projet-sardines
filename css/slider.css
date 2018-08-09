@@ -110,6 +110,7 @@ h1 {
 .logo {
     margin-top: 5.09vh;
 }
+
 /* D = 216px */
 .rond {
     height: 32.5vh;
@@ -117,11 +118,13 @@ h1 {
     max-height: 216px;
     max-width: 216px;
 }
+
 /*39px 28px*/
 .page-info {
     margin-top: 5.84vh;
     margin-bottom: 4.19vh;
 }
+
 /* 32px */
 .slider-info-bottom {
     margin-bottom: 4.79vh;
@@ -136,7 +139,7 @@ h1 {
     overflow: hidden;
     color: #009688;
     font-size: 18px;
-    background: -moz-linear-gradient(to right,  #0cd18f 0%, rgb(25, 170, 187) 100%);
+    background: -moz-linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
     background: -webkit-linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
     background: linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
     color: white;
@@ -145,6 +148,7 @@ h1 {
 button {
     border: none;
 }
+
 /* #07638A */
 .cookie {
     display: flex;
@@ -156,15 +160,18 @@ button {
     width: 100vw;
     z-index: 999;
 }
+
 .cookie p {
     color: #fefefe;
     margin: 14px;
     font-size: 0.875rem;
 }
+
 .cookie a {
     color: #fefefe;
     font-size: 0.875rem;
 }
+
 .cookie button {
     align-self: flex-end;
     background-color: #2489B4;
@@ -174,6 +181,14 @@ button {
     padding: 5px;
     margin: 5px;
 }
+
 .cookie button:hover {
-    background-color:  #07638A ;
+    background-color: #07638A;
+}
+
+@media only screen
+and (min-width: 944px) {
+    .slider-info-bottom > p {
+        text-align: center;
+    }
 }
