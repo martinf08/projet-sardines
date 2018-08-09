@@ -10,7 +10,7 @@
      
 
         <form method="POST" action="insertUser" autocomplete="off"> 
-            <div class="avatar">
+            <div class="avatar topFadeIn">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="-426 129 512 512" style="enable-background:new -426 129 512 512;" xml:space="preserve">
                 <style type="text/css">
