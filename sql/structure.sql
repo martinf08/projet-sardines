@@ -95,6 +95,7 @@ CREATE TABLE `user` (
   `account_creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `password` varchar(32) NOT NULL,
+  `terms` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'acceptations des conditions',
   `account_status` varchar(32) DEFAULT 0 NOT NULL,
   `balance` int(11) NOT NULL DEFAULT 0,
   `admin` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'user est admin ou non',

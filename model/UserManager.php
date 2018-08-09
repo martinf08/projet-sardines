@@ -47,6 +47,7 @@ class UserManager extends Model
                         $data = array(
                             'email'      => $user->getEmail(),
                             'password'   => $user->getPassword(),
+                            'terms'   => $user->getTerms(),
                             'identifier' => $this->identiferGenerator()
                         );
                         $this->saveData($data);
@@ -55,7 +56,7 @@ class UserManager extends Model
                     }
 
                 } else {
-                    return "mot de passe non identique";
+                    return "Mots de passe non identiques";
                 }
             }
         }

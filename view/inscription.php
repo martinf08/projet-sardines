@@ -66,9 +66,13 @@
             <div class="flexCenter" > 
             <input class="btn-full-2" name="submit-signin" id="submit-signin"type="submit" value="S'inscrire">
             </div>
-            <div class="flexCenter"  id="condition"> <p>En créant un compte, vous acceptez les Conditions générales d'utilisation des sardines. Veuillez consulter notre Notice Protection de vos Informations Personnelles, notre Notice Cookies. </p></div>
+            <div class="flexCenter"  id="condition">
+                <!-- version plus courte -->
+                <p><input type="checkbox" name="terms" id="terms" value="1"> J'accepte les conditions générales d'utilisation.</p>
+                <!--<p>En créant un compte, vous acceptez les Conditions générales d'utilisation des sardines. Veuillez consulter notre Notice Protection de vos Informations Personnelles, notre Notice Cookies.</p>-->
+            </div>
         </form>
-        <div id="alert"> <p>Vous avez déjà un compte<a href="connexion"> connectez vous ici.</a></p></div>
+        <div id="alert"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici</a>.</p></div>
     </div>
       <div id="triangle-bottomleft"></div>
       <div id="triangle-bottomright"></div>
