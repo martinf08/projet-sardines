@@ -68,8 +68,6 @@
             <div id="warning">ce compte n'est pas encore activé</div>
             <?php endif; ?> 
         <?php endif; ?>
-
-        <!--<h1><?= $title ?></h1>-->
       
         <?= $content ?>
 

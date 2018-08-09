@@ -323,7 +323,7 @@ class Controller
     {
 
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
-            if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "") {
+            if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "" && $_POST['terms'] == "1") {
                 $userManager = new UserManager();
                 $user        = new User($_POST);
                 $reponse     = $userManager->insertUser($user);

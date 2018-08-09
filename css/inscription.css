@@ -48,7 +48,7 @@ input{
 
 }
 a,p{
-      font-size: 12px;
+      font-size: 0.9rem;
 }
 .Header{
      display: flex;
@@ -89,4 +89,8 @@ a,p{
     margin-left: 11%;
     margin-right: 11%;
     margin-bottom: 4%;
+}
+
+input[type="checkbox"] {
+    margin: 0;
 }
