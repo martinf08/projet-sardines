@@ -34,6 +34,17 @@ class Controller
         $this->render(ROOT . DS . 'view/donner.php');
     }
 
+    #--------
+    #  STAND
+    #--------
+    public function instructionsView()
+
+    {
+        $this->set('title', 'Donner');
+        $this->set('css', array('stand'));
+        $this->render('view/stand.php');
+    }
+
     #-----------
     #  SARDINES
     #-----------

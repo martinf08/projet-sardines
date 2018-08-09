@@ -16,9 +16,10 @@ body {
     z-index: 1;
     width: 300px;
     height: 100vh;
-    left: -300px;
+    left: -304px;
     transition: left 0.4s;
     background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0, 0.3);
 }
 
 #menu.show {
@@ -43,8 +44,6 @@ body {
     width: 28px;
     display: inline-block;
 }
-
-/* il manque le box-shadow à appliquer */
 
 /*****************
      WARNING
@@ -101,6 +100,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     padding: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0, 0.3);
 }
 
 #pseudo, #user-id {
@@ -124,8 +124,6 @@ body {
     width: 12px;
     transform: rotateZ(-44deg);
 }
-
-/* il manque le box-shadow à appliquer */
 
 /*************
      NAV
