@@ -27,7 +27,7 @@ main {
 }
 
 .slider-info-top, .slider-info-bottom > p, .page-info {
-    transition: transform 2s;
+    transition: transform 500ms;
 
 }
 
