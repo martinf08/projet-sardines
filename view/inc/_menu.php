@@ -1,6 +1,6 @@
 <nav>
     <ul>
-        <li><a href="<?= Config::$root ?>">Accueil</a></li>
+        <li><a href="<?= Config::$root ?>donner">Accueil</a></li>
 
         <?php if (!isset($_SESSION['islog'])): ?>
             <li><a href="<?= Config::$root ?>inscription">S'inscrire</a></li>

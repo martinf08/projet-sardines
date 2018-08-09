@@ -67,6 +67,9 @@
     else {
         button.addEventListener('click', function () {
             nextSlider();
+            if (range == -500) {
+                window.location='welcome';
+            }
         });
         arrowBack.addEventListener('click', function () {
             prevSlider();
@@ -91,7 +94,6 @@
 
             if (range == -500) {
                 button.textContent = "Commencer";
-                //Redirection Page Accueil
             }
         }
     }
