@@ -57,14 +57,14 @@
                 prevSlider();
                 arrowBrb = '';
             }
-
+                //Swipe 50px mini
             else if (touchXStart > touchXEnd) {
-                if (touchXStart - touchXEnd >= 120) {
+                if (touchXStart - touchXEnd >= 50) {
                     nextSlider();
                 }
             }
             else if (touchXStart < touchXEnd) {
-                if (touchXStart + touchXEnd >= 120) {
+                if (touchXStart + touchXEnd >= 50) {
                     prevSlider();
                 }
             }
