@@ -1,7 +1,7 @@
 const mail = document.querySelector('#email');
 const pass = document.querySelector('#password');
 const confirm = document.querySelector('#confirmPassword');
-const disc = document.querySelector('#disclaimer');
+const disc = document.querySelector('#terms');
 const submit = document.querySelector('input[type="submit"]');
 const tooltip = document.querySelectorAll('.tooltip')[0];
 
