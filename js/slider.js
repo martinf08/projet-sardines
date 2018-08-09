@@ -15,45 +15,63 @@
     let btnNext;
     let arrowBrb;
 
-    slider.addEventListener('touchstart', function touchStart(e) {
-        touchXStart = e.touches[0].clientX;
-        if (e.target.nodeName == "BUTTON") {
-            btnNext = e.target.nodeName;
-            e.target.classList.remove('btn-outlined-2');
-            e.target.classList.add('active-btn');
-
+    let is_touch_device = function () {
+        try {
+            document.createEvent("TouchEvent");
+            return true;
+        } catch (e) {
+            return false;
         }
-        else if (e.target.className == 'arrow-back') {
-            arrowBrb = e.target.className;
-        }
+    };
 
-    });
+    if (is_touch_device() === true) {
 
-    slider.addEventListener('touchmove', function touchMove(e) {
-        touchXEnd = e.touches[0].clientX;
-    });
+        slider.addEventListener('touchstart', function touchStart(e) {
+            touchXStart = e.touches[0].clientX;
+            if (e.target.nodeName == "BUTTON") {
+                btnNext = e.target.nodeName;
+                e.target.classList.remove('btn-outlined-2');
+                e.target.classList.add('active-btn');
+            }
+            else if (e.target.className == 'arrow-back') {
+                arrowBrb = e.target.className;
+            }
 
-    slider.addEventListener('touchend', function touchEnd(e) {
-        if (btnNext == "BUTTON") {
-            swipeLeftToRight();
-            btnNext = '';
-            e.target.classList.add('btn-outlined-2');
-            e.target.classList.remove('active-btn');
+        });
 
+        slider.addEventListener('touchmove', function touchMove(e) {
+            touchXEnd = e.touches[0].clientX;
+        });
 
-        }
-        else if (arrowBrb == 'arrow-back') {
-            swipeRightToLeft();
-            arrowBrb = '';
-        }
+        slider.addEventListener('touchend', function touchEnd(e) {
+            if (btnNext == "BUTTON") {
+                swipeLeftToRight();
+                btnNext = '';
+                e.target.classList.add('btn-outlined-2');
+                e.target.classList.remove('active-btn');
+            }
+            else if (arrowBrb == 'arrow-back') {
+                swipeRightToLeft();
+                arrowBrb = '';
+            }
 
-        else if (touchXStart > touchXEnd) {
-            swipeLeftToRight();
-        }
-        else if (touchXStart < touchXEnd) {
-            swipeRightToLeft();
-        }
-    });
+            else if (touchXStart > touchXEnd) {
+                swipeLeftToRight();
+            }
+            else if (touchXStart < touchXEnd) {
+                swipeRightToLeft();
+            }
+        });
+
+    }
+    else {
+        button.addEventListener('click', function () {
+            return swipeLeftToRight();
+        });
+        arrowBack.addEventListener('click', function () {
+            return swipeRightToLeft();
+        });
+    }
 
 
     function swipeLeftToRight() {
