@@ -34,6 +34,17 @@ class Controller
         $this->render(ROOT . DS . 'view/donner.php');
     }
 
+    #--------
+    #  STAND
+    #--------
+    public function instructionsView()
+
+    {
+        $this->set('title', 'Donner');
+        $this->set('css', array('stand'));
+        $this->render('view/stand.php');
+    }
+
     #-----------
     #  SARDINES
     #-----------
@@ -264,10 +275,11 @@ class Controller
 
                     if ($reponse) {
                         $_SESSION['islog'] = true;
+                        if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
+                            setcookie('cookie', '1', time() + (86400 * 30));
+                        }
 
-                        $this->set('title', 'Les Sardines');
-                        $this->set('css', array('donner'));
-                        $this->render('view/donner.php');
+                        header('Location: donner');
                     } else {
                         $_SESSION['islog'] = false;
                         $this->set('title', 'Connexion');
@@ -317,6 +329,9 @@ class Controller
                 $reponse     = $userManager->insertUser($user);
 
                 if (is_bool($reponse)) {
+                    if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
+                        setcookie('cookie', '1', time() + (86400 * 30));
+                    }
                     header("Location: " . Config::$root . "donner");
                 } else {
 

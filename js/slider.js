@@ -1,10 +1,11 @@
 (function () {
     let slider = document.querySelector('.slider');
-    let button = document.querySelector('button');
+    let button = document.getElementById('primary-btn-slider');
     let sliderInfoT = document.querySelectorAll('.slider-info-top');
     let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
     let pageInfo = document.querySelectorAll('.page-info');
     let arrowBack = document.querySelector('.arrow-back');
+    let cookieBtn = document.getElementById('accept-cookie');
     let range = 0;
     if (range == 0) {
         arrowBack.style.height = '0';
@@ -14,48 +15,69 @@
     let btnNext;
     let arrowBrb;
 
-    slider.addEventListener('touchstart', function touchStart(e) {
-        touchXStart = e.touches[0].clientX;
-        if (e.target.nodeName == "BUTTON") {
-            btnNext = e.target.nodeName;
-            e.target.classList.remove('btn-outlined-2');
-            e.target.classList.add('active-btn');
-
+    let is_touch_device = function () {
+        try {
+            document.createEvent("TouchEvent");
+            return true;
+        } catch (e) {
+            return false;
         }
-        else if (e.target.className == 'arrow-back') {
-            arrowBrb = e.target.className;
-        }
+    };
 
-    });
+    if (is_touch_device() === true) {
 
-    slider.addEventListener('touchmove', function touchMove(e) {
-        touchXEnd = e.touches[0].clientX;
-    });
+        slider.addEventListener('touchstart', function touchStart(e) {
+            touchXStart = e.touches[0].clientX;
+            if (e.target.nodeName == "BUTTON") {
+                btnNext = e.target.nodeName;
+                e.target.classList.remove('btn-outlined-2');
+                e.target.classList.add('active-btn');
+            }
+            else if (e.target.className == 'arrow-back') {
+                arrowBrb = e.target.className;
+            }
 
-    slider.addEventListener('touchend', function touchEnd(e) {
-        if (btnNext == "BUTTON") {
-            swipeLeftToRight();
-            btnNext = '';
-            e.target.classList.add('btn-outlined-2');
-            e.target.classList.remove('active-btn');
+        });
+
+        slider.addEventListener('touchmove', function touchMove(e) {
+            touchXEnd = e.touches[0].clientX;
+        });
+
+        slider.addEventListener('touchend', function touchEnd(e) {
+            if (btnNext == "BUTTON") {
+                nextSlider();
+                btnNext = '';
+                e.target.classList.add('btn-outlined-2');
+                e.target.classList.remove('active-btn');
+            }
+            else if (arrowBrb == 'arrow-back') {
+                prevSlider();
+                arrowBrb = '';
+            }
+
+            else if (touchXStart > touchXEnd) {
+                nextSlider();
+            }
+            else if (touchXStart < touchXEnd) {
+                prevSlider();
+            }
+        });
+
+    }
+    else {
+        button.addEventListener('click', function () {
+            nextSlider();
+            if (range == -500) {
+                window.location='welcome';
+            }
+        });
+        arrowBack.addEventListener('click', function () {
+            prevSlider();
+        });
+    }
 
 
-        }
-        else if (arrowBrb == 'arrow-back') {
-            swipeRightToLeft();
-            arrowBrb = '';
-        }
-
-        else if (touchXStart > touchXEnd) {
-            swipeLeftToRight();
-        }
-        else if (touchXStart < touchXEnd) {
-            swipeRightToLeft();
-        }
-    });
-
-
-    function swipeLeftToRight() {
+    function nextSlider() {
         if (range - 100 >= -500) {
             range = range - 100;
             if (range < 0) {
@@ -72,12 +94,11 @@
 
             if (range == -500) {
                 button.textContent = "Commencer";
-                //Redirection Page Accueil
             }
         }
     }
 
-    function swipeRightToLeft() {
+    function prevSlider() {
         if (range + 100 <= 0) {
             if (range == -100) {
                 arrowBack.style.height = '0';
@@ -96,6 +117,33 @@
         }
     }
 
+    if (cookieBtn != null) {
+        cookieBtn.addEventListener('click', function () {
+            setCookie();
+            document.querySelector('.cookie').style.display = 'none';
+        });
+    }
+
+    if (getCookie('cookie') == 1) {
+        let i = 0;
+        while (i < 6) {
+            nextSlider();
+            i++;
+        }
+    }
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
+
+    function setCookie() {
+        let date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));
+        let expires = "expires=" + date.toUTCString();
+        document.cookie = 'cookie=1;' + expires + ';path=/';
+    }
 
     function indexSlider() {
         if (range != null) {

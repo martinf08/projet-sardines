@@ -1,0 +1,72 @@
+main{
+    background-image: url(../images/pics/tent_1.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #464646;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw
+}
+
+.logo-welcome{
+    width: 125px;
+    margin-top: 8vh;
+}
+
+.mini-title{
+    font-family: 'SourceSansProSemibold', 'Helvetica', sans-serif;
+    color: #fefefe;
+    font-size: 1rem;
+    margin-top: 10vh;
+}
+
+.picto-welcome {
+    width: 143px;
+    height: 21vh;
+    margin-top: 6vh;
+}
+
+.btn-full-1{
+    margin-top: 10vh;
+    margin-bottom: 2vh;
+}
+
+.btn-full-1 , .btn-full-2 {
+    text-align: center;
+    text-decoration:none;
+}
+
+.btn-full-txt{
+    font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+    color: #fefefe;
+    font-size: 18px;
+    text-decoration: none;   
+  }
+
+#copyright{
+    font-family: 'SourceSansProLight', 'Helvetica', sans-serif;
+    color: #368D6F;
+    font-size: 0.75rem;
+    margin-top: 7vh;
+}
+
+@media only screen 
+  and (min-device-height: 667px){
+      #copyright{
+          margin-top: 12vh;
+      }
+  }
+
+@media only screen 
+  and (min-device-height: 800px){
+      #copyright{
+          margin-top: 16vh;
+      }
+  }
+

@@ -37,32 +37,32 @@ html{
 /************** BUTTONS **************/
 
 .btn-full-1{
+  width: 218px;
+  height: 35px;
   border: 1px solid #4FB8C4;
   text-decoration: none;
   -webkit-border-radius: 17px; 
   -moz-border-radius: 17px;
   border-radius: 17px;
-  width: 218px;
-  height: 35px;
   background: #0cd18f;  
-  background: -moz-linear-gradient(to right,  #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
-  background: -webkit-linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%); 
-  background: linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+  background: -moz-linear-gradient(to right,  #0cd18f 0%, rgba(25, 170, 187, 1) 100%);
+  background: -webkit-linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 1) 100%); 
+  background: linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 1) 100%);
   
 }
 
 .btn-full-2{
+  width: 218px;
+  height: 35px;
   border: 1px solid #4FB8C4;
   text-decoration: none;
   -webkit-border-radius: 17px; 
   -moz-border-radius: 17px;
   border-radius: 17px;
-  width: 218px;
-  height: 35px;
   background: #0cd18f;  
-  background: -moz-linear-gradient(to left,  #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
-  background: -webkit-linear-gradient(to left, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%); 
-  background: linear-gradient(to left, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+  background: -moz-linear-gradient(to left,  #0cd18f 0%, rgba(25, 170, 187, 1) 100%);
+  background: -webkit-linear-gradient(to left, #0cd18f 0%, rgba(25, 170, 187, 1) 100%); 
+  background: linear-gradient(to left, #0cd18f 0%, rgba(25, 170, 187, 1) 100%);
 }
 
 .btn-full-donation{
@@ -74,9 +74,9 @@ html{
   width: 159px;
   height: 35px;
   background: #0cd18f;  
-  background: -moz-linear-gradient(to right,  #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
-  background: -webkit-linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%); 
-  background: linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 0.8) 100%);
+  background: -moz-linear-gradient(to right,  #0cd18f 0%, rgba(25, 170, 187, 1) 100%);
+  background: -webkit-linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 1) 100%); 
+  background: linear-gradient(to right, #0cd18f 0%, rgba(25, 170, 187, 1) 100%);
 }
 
 .btn-full-1, .btn-full-2, .btn-full-donation, .btn-outlined{
@@ -89,7 +89,7 @@ html{
 
 .btn-full-1:active, .btn-full-2:active, .btn-full-donation:active{
   background: #009688;
-  border: none;
+  border: 1px solid #009688;
 }
 
 .btn-outlined{
@@ -253,79 +253,3 @@ input[type=email] {
   border:none;
   background: rgba(25, 170, 187, 0.1);  
 }
-
-
-
-
-/*/////////////////////////////  Media Queries //////////////////////////*/
-
-/*     MOST USED HERE:       */
-
-
-/* ----------- Galaxy S6 ----------- */
-
-/* Portrait and Landscape */
-
-@media screen 
-  and (device-width: 360px) 
-  and (device-height: 640px) {
-
-}
-
-
-/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
-
-
-
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-
-}
-
-/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
-
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
-
-
-
-
-/* OTHERS ORDERED BY SIZE small - big  */
-
-/* ----------- iPhone 6+, 7+ and 8+ ----------- */
-
-
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-
-}
-
-/* ----------- iPhone X ----------- */
-
-
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-
-}
-
-/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
-
-
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
