@@ -1,6 +1,6 @@
 <main>
 
-    <div id="header">
+    <div id="header" class="slideFromTop">
         <div id="open">
             <svg width="100%" height="100%" viewBox="0 0 13 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect x="-0.001" y="0.002" width="12.769" height="1.513" style="fill:#009688;"/><rect x="0" y="3.738" width="12.77" height="1.513" style="fill:#009688;"/><rect x="0.006" y="7.416" width="8.988" height="1.513" style="fill:#009688;"/></svg>
         </div>

@@ -59,3 +59,17 @@
         transform: translateY(0px);
     }
 }
+
+.slideFromTop {
+    animation: slideFromTop 500ms;
+}
+
+@keyframes slideFromTop {
+    from {
+        transform: translateY(-80px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+}
