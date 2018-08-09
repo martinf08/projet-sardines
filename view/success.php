@@ -8,17 +8,17 @@
 ?>
 
 <main>
-
+    <!-- je commente parce que j'ai les mauvais styles de chargés donc je ne peux pas vérifier si ça rend bien
     <div id="header" class="slideFromTop">
         <div id="open">
             <svg width="100%" height="100%" viewBox="0 0 13 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect x="-0.001" y="0.002" width="12.769" height="1.513" style="fill:#009688;"/><rect x="0" y="3.738" width="12.77" height="1.513" style="fill:#009688;"/><rect x="0.006" y="7.416" width="8.988" height="1.513" style="fill:#009688;"/></svg>
         </div>
 
-        <h1><?= $title ?></h1>
+        <h1><?= $title ?></h1>-->
 
         <!-- nombre sardines -->
-        <?php if (isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
-            <div id="sardines" style="background: #0cd18f;box-shadow: 0 2px 4px 0 rgba(0,0,0, 0.3);"><span class="bold"><?= $_SESSION['user']->getBalance() ?></span> <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <?php #if (isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
+            <!--<div id="sardines" style="background: #0cd18f;box-shadow: 0 2px 4px 0 rgba(0,0,0, 0.3);"><span class="bold"><?php #echo $_SESSION['user']->getBalance() ?></span> <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 369.209 369.209" style="enable-background:new 0 0 369.209 369.209;" xml:space="preserve">
     <g>
         <g>
@@ -37,13 +37,13 @@
                 c10.306-9.885,26.574-9.885,36.88,0C331.087,53.649,332.192,70.125,322.711,80.969z"/>
         </g>
     </g>
-    </svg></div>
-        <?php else: ?>
-            <div id="sardines"></div>
-        <?php endif; ?>
+    </svg></div>-->
+        <?php #else: ?>
+            <!--<div id="sardines"></div>-->
+        <?php #endif; ?>
         <!-- /nombre sardines -->
 
-    </div><!-- /header -->
+    <!--</div>--><!-- /header -->
 
     <p class="success">Félicitation, <span class="bold"><?= $_SESSION['lastAsset']->getUserEmail(); ?></span>,
     vous venez de donner un objet de type <span class="bold"><?= $_SESSION['lastAsset']->getNameIdType(); ?></span>,
