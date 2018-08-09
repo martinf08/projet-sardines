@@ -37,6 +37,7 @@ try
     $router->setRoute('profil', 'account');
     $router->setRoute('sardines', 'sardines');
     $router->setRoute('donner', 'dropGear');
+    $router->setRoute('stand', 'instructionsView');
     $router->setRoute('forget', 'passForget');
     $router->setRoute('accountUpdate', 'accountUpdate');
     $router->setRoute('bienvenue', 'welcome');
