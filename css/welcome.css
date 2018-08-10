@@ -70,3 +70,13 @@ main{
       }
   }
 
+@media only screen 
+    and (min-device-height: 420px){
+            .logo-welcome{
+                width: 85px;
+        }
+            .picto-welcome{
+                width: 90px;
+            }
+    }
+
