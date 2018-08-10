@@ -1,7 +1,10 @@
 <nav>
     <ul>
         <li><a href="<?= Config::$root ?>donner">Accueil</a></li>
-        <li><a href="<?= Config::$root ?>connexion">Se connecter</a></li>
+        
+        <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] == false): ?>
+            <li><a href="<?= Config::$root ?>connexion">Se connecter</a></li>
+        <?php endif; ?>
 
         <?php 
             if (!empty($_SESSION['user'])):
