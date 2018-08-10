@@ -45,6 +45,9 @@
 
         slider.addEventListener('touchend', function touchEnd(e) {
             if (btnNext == "BUTTON") {
+                if (range == -500) {
+                    window.location='welcome';
+                }
                 nextSlider();
                 btnNext = '';
                 e.target.classList.add('btn-outlined-2');
@@ -54,18 +57,26 @@
                 prevSlider();
                 arrowBrb = '';
             }
-
+                //Swipe 50px mini
             else if (touchXStart > touchXEnd) {
-                nextSlider();
+                if (touchXStart - touchXEnd >= 50) {
+                    nextSlider();
+                }
             }
             else if (touchXStart < touchXEnd) {
-                prevSlider();
+                if (touchXStart + touchXEnd >= 50) {
+                    prevSlider();
+                }
             }
         });
 
     }
     else {
         button.addEventListener('click', function () {
+
+            if (range == -500) {
+                window.location='welcome';
+            }
             nextSlider();
         });
         arrowBack.addEventListener('click', function () {
@@ -88,10 +99,8 @@
             sliderInfoB[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
             pageInfo[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
 
-
             if (range == -500) {
                 button.textContent = "Commencer";
-                //Redirection Page Accueil
             }
         }
     }
@@ -123,11 +132,7 @@
     }
 
     if (getCookie('cookie') == 1) {
-        let i = 0;
-        while (i < 6) {
-            nextSlider();
-            i++;
-        }
+        window.location='welcome';
     }
 
     function getCookie(name) {

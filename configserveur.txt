@@ -1,0 +1,21 @@
+Lignes ajoutées dans /etc/apache2/apache2.conf :
+
+<Directory /home/sardine/public_html/>
+    Options FollowSymLinks MultiViews
+    AllowOverride All
+    Require all granted
+</Directory>
+
+Lignes ajoutées dans /etc/apache2/sites-available/preprod.les-sardines.hackardennes.com.conf (qui est une copie de 000-default.conf) :
+
+ServerName preprod.les-sardines.hackardennes.com
+ServerAlias www.preprod.les-blablabla...
+DocumentRoot /home/sardine/public_html
+
+<Directory /home/sardine/public_html>
+    Options +FollowSymLinks
+    AllowOverride all
+    Require all granted
+</Directory>
+
+Et les logs renommés en error.preprod.sardines.log, access.preprod.sardines.log.
