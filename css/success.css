@@ -1,0 +1,90 @@
+/*****************************************************
+    STYLES PAGES STANDARDS (erreurs, success...)
+*****************************************************/
+
+main {
+    width: 100vw;
+    color: #097550;
+}
+
+main p {  
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+p.success {
+    padding: 0 15px 0 15px;
+    text-align: left;
+    margin: 8px 0;
+}
+
+main a {
+    text-decoration: none;
+}
+
+a svg {
+    width: 40px;
+}
+
+#triangle-bottomleft {
+	width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+	border-bottom: 140px solid rgba(12,209,143,0.2);
+    border-right: 260px solid transparent;
+    z-index:-1;
+}
+
+#triangle-bottomright {
+	width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+	border-bottom: 245px solid rgba(12,209,143,0.1);
+    border-left: 300px solid transparent;
+    z-index:-1;
+}
+
+/************
+    HEADER
+************/
+
+#header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+#open {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin-left: -30px;
+}
+
+#open svg rect {
+    fill: #097550 !important;
+}
+
+h1 {
+    height: 25px;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    color: #097550;
+    margin-left: 15px;
+}
+
+#arrow {
+    width: 28px;
+    margin: 15px 0 24px 35px;
+    overflow: hidden;
+}
+
+#arrow svg {
+    width: 32px;
+    fill: #097550;
+}

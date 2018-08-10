@@ -48,23 +48,36 @@ main {
 }
 
 .slider-info-bottom > p {
-    font-size: 12px;
+    font-size: 14px;
     text-align: left;
     width: 70vw;
+    color: #1c1c1c;
 }
 
-.slider-info-bottom .page-info {
+.slider-info-bottom {
     color: #2489B4;
     text-align: center;
     font-size: 14px;
 }
 
 .slider-bottom {
+    width: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 4vh;
+    margin-bottom: 6.89vh;
+}
+
+.slider-bottom img {
+    width: 28px;
+    cursor: pointer;
 
 }
+.arrow-next {
+    transform: rotate(180deg);
+}
+
 
 .logo {
     width: 100vw;
@@ -73,13 +86,6 @@ main {
     align-items: center;
 }
 
-.logo img:first-child {
-    width: 28px;
-    height: 15px;
-    cursor: pointer;
-    margin-left: 8.53vw;
-
-}
 
 .logo img:nth-child(2) {
     height: auto;
@@ -123,27 +129,7 @@ main {
 
 /*39px 28px*/
 .page-info {
-    margin-top: 5.84vh;
-    margin-bottom: 4.19vh;
-}
-
-/* 32px */
-.slider-info-bottom {
-    margin-bottom: 4.79vh;
-}
-
-.active-btn {
-    width: 146px;
-    height: 35px;
-    border-radius: 17px;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
     font-size: 18px;
-    background: -moz-linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
-    background: -webkit-linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
-    background: linear-gradient(to right, #0cd18f 0%, rgb(25, 170, 187) 100%);
-    color: #fefefe;
 }
 
 button {

@@ -3,7 +3,7 @@
     <div class="inscript-content">
       <div class="Header slideFromTop">
           
-          <div id="arrow"><svg width="100%" height="100%" viewBox="0 0 28 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect x="0.877" y="4.291" width="27" height="1.471" style="fill:#009688;"/><path d="M4.937,0l-4.911,4.853l1.068,1.08l4.91,-4.853l-1.067,-1.08Z" style="fill:#009688;"/><path d="M1.16,3.924l4.817,5.701l-1.16,0.98l-4.817,-5.701l1.16,-0.98Z" style="fill:#009688;"/></svg></div>
+          <div id="arrow"><a href="welcome"><svg width="100%" height="100%" viewBox="0 0 28 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect x="0.877" y="4.291" width="27" height="1.471" style="fill:#009688;"/><path d="M4.937,0l-4.911,4.853l1.068,1.08l4.91,-4.853l-1.067,-1.08Z" style="fill:#009688;"/><path d="M1.16,3.924l4.817,5.701l-1.16,0.98l-4.817,-5.701l1.16,-0.98Z" style="fill:#009688;"/></svg></a></div>
           <div id="titre">INSCRIPTION</div>
           <div id="vide"></div>
       </div>
@@ -63,13 +63,15 @@
                 <input class="input" type="password" id="confirmPassword" name="confirmPassword" minlength="6" placeholder="Confirmer votre mot de passe" required>
             </div>
             
-            <div class="flexCenter" > 
-            <input class="btn-full-2" name="submit-signin" id="submit-signin"type="submit" value="S'inscrire">
-            </div>
             <div class="flexCenter"  id="condition">
                 <!-- version plus courte -->
                 <p><input type="checkbox" name="terms" id="terms" value="1"> J'accepte les conditions générales d'utilisation.</p>
                 <!--<p>En créant un compte, vous acceptez les Conditions générales d'utilisation des sardines. Veuillez consulter notre Notice Protection de vos Informations Personnelles, notre Notice Cookies.</p>-->
+            </div>
+
+            <div class="flexCenter">
+                <div id="proxy"></div>
+                <input class="btn-full-2" name="submit-signin" id="submit-signin"type="submit" value="S'inscrire">
             </div>
         </form>
         <div id="alert"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici</a>.</p></div>

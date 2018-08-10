@@ -20,7 +20,7 @@ class Controller
         $this->set('title', 'Les Sardines');
         $this->set('css', array('slider'));
 
-        $this->render(ROOT . DS . 'view/index.php');
+        $this->render('view/index.php');
     }
 
     #----------
@@ -31,7 +31,7 @@ class Controller
     {
         $this->set('title', 'Les Sardines');
         $this->set('css', array('donner'));
-        $this->render(ROOT . DS . 'view/donner.php');
+        $this->render('view/donner.php');
     }
 
     #--------
@@ -79,14 +79,14 @@ class Controller
 
                     $this->set('title', 'Mon compte');
                     $this->set('user', $user);
-                    $this->render(ROOT . DS . 'view/profil.php');
+                    $this->render('view/profil.php');
                 }
             } else {
-                header('Location: ' . Config::$root);
+                header('Location: ' . Config::$root . 'donner');
             }
 
         } else {
-            header('Location: ' . Config::$root);
+            header('Location: ' . Config::$root . 'donner');
         }
     }
 
@@ -108,7 +108,7 @@ class Controller
                 }
             }
         } else {
-            header('Location: ' . Config::$root);
+            header('Location: ' . Config::$root . 'donner');
         }
     }
 
@@ -122,7 +122,7 @@ class Controller
 
         $css = array('tooltip', 'connexion');
         $this->set('css', $css);
-        $this->render(ROOT . DS . 'view/connexion.php');
+        $this->render('view/connexion.php');
     }
 
     public function passForget($request = null)
@@ -165,7 +165,6 @@ class Controller
                                 $pre->execute(array($code, $email));
                             }
 
-
                             $to      = $email;
                             $subject = "Récupération de mot de passe";
                             $link    = Config::$root . "forget" . DS . $sending_code;
@@ -176,7 +175,7 @@ class Controller
                             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                             $headers .= "content-Transfer-Encoding: 8bit";
                             // More headers
-                            $headers .= 'From:"eudes"eudes<@ici08.fr>' . "\r\n";
+                            $headers .= 'From:"sardines"<adress@sardine.fr>' . "\r\n";
 
 
                             if (mail($to, $subject, $message, $headers)) {
@@ -196,10 +195,10 @@ class Controller
             }
 
         }
+       //password change procedure
         if (isset($request)) {
 
             try {
-
                 $code = md5(htmlspecialchars($request));
                 $pre  = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code', $code);
@@ -221,6 +220,8 @@ class Controller
             }
 
         }
+       
+
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
 
@@ -256,12 +257,12 @@ class Controller
                 $code_recover = true;
             }
         }
-
+         //----------------------------End of password change procedure---------------------------
 
         $this->set('errors', $error);
         $this->set('code_recover', $code_recover);
         $this->set('css', array('forgotpassword', 'tooltip'));
-        $this->render('view' . DS . 'forgotpassword.php');
+        $this->render('view/forgotpassword.php');
     }
 
     public function logIn()
@@ -357,7 +358,7 @@ class Controller
     {
         $userManager = new UserManager();
         $userManager->email_validation();
-        require_once './view/validation.php';
+        require_once 'view/validation.php';
 
         if ($userManager->email_validation()) {
             echo 'Compte validé';
@@ -390,10 +391,10 @@ class Controller
                     throw new Exception('Problème sur la récupération des tables.');
                 }
             } else {
-                header('Location: ' . Config::$root);
+                header('Location: ' . Config::$root . 'donner');
             }
         } else {
-            header('Location: ' . Config::$root);
+            header('Location: ' . Config::$root . 'donner');
         }
     }
 
@@ -429,7 +430,7 @@ class Controller
                                 throw new Exception('Certains champs (ou tous) sont vides.');
                             }
                         } else {
-                            throw new Exception('Erreur monumentale.');
+                            throw new Exception('Aucun formulaire envoyé.');
                         }
                     } else {
                         header('Location: ' . Config::$root);
@@ -450,12 +451,12 @@ class Controller
     {
         if (isset($_SESSION['lastAsset']) && !empty($_SESSION['lastAsset'])) {
             $this->set('title', 'Succès de la transaction');
-            $css = array('standard');
+            $css = array('success');
             $this->set('css', $css);
             $this->render('view/success.php');
             unset($_SESSION['lastAsset']);
         } else {
-            header('Location: ' . Config::$root);
+            header('Location: ' . Config::$root . 'donner');
         }
     }
 

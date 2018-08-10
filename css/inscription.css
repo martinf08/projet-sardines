@@ -94,3 +94,21 @@ a,p{
 input[type="checkbox"] {
     margin: 0;
 }
+
+#submit-signin {
+    margin: 0;
+}
+
+.flexCenter:last-child { /* reprend les marges de l'input à sa place */
+    position: relative;
+    margin-top: 6.9%;
+    margin-bottom: 3.9%;
+}
+
+#proxy {
+    position: absolute;
+    height: 35px;
+    width: 218px;
+    left: 50%;
+    transform: translateX(-50%);
+}
