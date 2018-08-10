@@ -2,6 +2,7 @@ const mail = document.querySelector('#email');
 const pass = document.querySelector('#password');
 const confirm = document.querySelector('#confirmPassword');
 const disc = document.querySelector('#terms');
+const proxy = document.querySelector('#proxy');
 const submit = document.querySelector('input[type="submit"]');
 const tooltip = document.querySelectorAll('.tooltip')[0];
 
@@ -76,6 +77,17 @@ if (disc != null) {
             enable();
     });
 }
+
+proxy.addEventListener('click', function(e) {
+    if (submit.hasAttribute('disabled')) {
+        submit.classList.add('wizz');
+        window.setTimeout(function() {
+            submit.classList.remove('wizz');
+        }, 300);
+    } else {
+        submit.click();
+    }
+})
 
 // is all ok
 function enable() {
