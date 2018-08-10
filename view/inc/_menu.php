@@ -2,7 +2,7 @@
     <ul>
         <li><a href="<?= Config::$root ?>donner">Accueil</a></li>
         
-        <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] == false): ?>
+        <?php if (!isset($_SESSION['islog']) OR $_SESSION['islog'] == false): ?>
             <li><a href="<?= Config::$root ?>connexion">Se connecter</a></li>
         <?php endif; ?>
 
