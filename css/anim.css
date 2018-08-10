@@ -100,3 +100,10 @@
         transform: translateX(0px);
     }
 }
+
+/* spécifiquement pour la carte de la page stand */
+.bottomFadeOut {
+    opacity: 0;
+    transform: translate(-50%, 20px) !important;
+    transition: transform 1s, opacity 1s;
+}
