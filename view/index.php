@@ -17,7 +17,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
 
         <div class="slider-item">
             <div class="logo">
-                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+               <div></div>
                 <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
                 <div></div>
             </div>
@@ -30,15 +30,17 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                     la bonne humeur au Cabaret Vert.
                 </p>
                 <div class="slider-bottom">
+                    <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
                     <p class="page-info">1/6</p>
-                    <button id="primary-btn-slider" class="btn-outlined-2">Suivant</button>
+                    <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
+
                 </div>
             </div>
         </div>
 
         <div class="slider-item">
             <div class="logo">
-                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <div></div>
                 <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
                 <div></div>
             </div>
@@ -51,15 +53,16 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                     l’abandon.
                 </p>
                 <div class="slider-bottom">
+                    <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
                     <p class="page-info">2/6</p>
-                    <button class="btn-outlined-2">Suivant</button>
+                    <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
                 </div>
             </div>
         </div>
 
         <div class="slider-item">
             <div class="logo">
-                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <div></div>
                 <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
                 <div></div>
             </div>
@@ -72,15 +75,16 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                     Cabaret Vert ne se transforme en une poubelle géante, grâce à l’application Les Sardines.
                 </p>
                 <div class="slider-bottom">
+                    <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
                     <p class="page-info">3/6</p>
-                    <button class="btn-outlined-2">Suivant</button>
+                    <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
                 </div>
             </div>
         </div>
 
         <div class="slider-item">
             <div class="logo">
-                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <div></div>
                 <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
                 <div></div>
             </div>
@@ -93,15 +97,16 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                     les apporter en échange de crédits appellés « les Sardines ».
                 </p>
                 <div class="slider-bottom">
+                    <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
                     <p class="page-info">4/6</p>
-                    <button class="btn-outlined-2">Suivant</button>
+                    <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
                 </div>
             </div>
         </div>
 
         <div class="slider-item">
             <div class="logo">
-                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <div></div>
                 <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
                 <div></div>
             </div>
@@ -114,15 +119,16 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                     éditions du Cabaret Vert.
                 </p>
                 <div class="slider-bottom">
+                    <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
                     <p class="page-info">5/6</p>
-                    <button class="btn-outlined-2">Suivant</button>
+                    <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
                 </div>
             </div>
         </div>
 
         <div class="slider-item">
             <div class="logo">
-                <img src="images/pictos/arrow_back.svg" alt="arrow back" class="arrow-back">
+                <div></div>
                 <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
                 <div></div>
             </div>
@@ -135,8 +141,9 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                     plus simple : inscris toi et profites des avantages des Sardines !
                 </p>
                 <div class="slider-bottom">
+                    <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
                     <p class="page-info">6/6</p>
-                    <button class="btn-outlined-2">Suivant</button>
+                    <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
                 </div>
             </div>
         </div>

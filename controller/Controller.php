@@ -165,7 +165,6 @@ class Controller
                                 $pre->execute(array($code, $email));
                             }
 
-
                             $to      = $email;
                             $subject = "Récupération de mot de passe";
                             $link    = Config::$root . "forget" . DS . $sending_code;
@@ -176,7 +175,7 @@ class Controller
                             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                             $headers .= "content-Transfer-Encoding: 8bit";
                             // More headers
-                            $headers .= 'From:"eudes"eudes<@ici08.fr>' . "\r\n";
+                            $headers .= 'From:"sardines"<adress@sardine.fr>' . "\r\n";
 
 
                             if (mail($to, $subject, $message, $headers)) {
@@ -196,10 +195,10 @@ class Controller
             }
 
         }
+       //password change procedure
         if (isset($request)) {
 
             try {
-
                 $code = md5(htmlspecialchars($request));
                 $pre  = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code', $code);
@@ -221,6 +220,8 @@ class Controller
             }
 
         }
+       
+
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
 
@@ -256,7 +257,7 @@ class Controller
                 $code_recover = true;
             }
         }
-
+         //----------------------------End of password change procedure---------------------------
 
         $this->set('errors', $error);
         $this->set('code_recover', $code_recover);

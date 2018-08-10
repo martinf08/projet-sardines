@@ -1,9 +1,9 @@
 (function () {
     let slider = document.querySelector('.slider');
-    let button = document.getElementById('primary-btn-slider');
     let sliderInfoT = document.querySelectorAll('.slider-info-top');
     let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
     let pageInfo = document.querySelectorAll('.page-info');
+    let arrowNext = document.querySelector('.arrow-next');
     let arrowBack = document.querySelector('.arrow-back');
     let cookieBtn = document.getElementById('accept-cookie');
     let range = 0;
@@ -12,7 +12,7 @@
     }
     let touchXStart;
     let touchXEnd;
-    let btnNext;
+    let arrowNxt;
     let arrowBrb;
 
     let is_touch_device = function () {
@@ -28,10 +28,9 @@
 
         slider.addEventListener('touchstart', function touchStart(e) {
             touchXStart = e.touches[0].clientX;
-            if (e.target.nodeName == "BUTTON") {
-                btnNext = e.target.nodeName;
-                e.target.classList.remove('btn-outlined-2');
-                e.target.classList.add('active-btn');
+            if (e.target.className == "arrow-next") {
+                arrowNxt = e.target.className;
+
             }
             else if (e.target.className == 'arrow-back') {
                 arrowBrb = e.target.className;
@@ -44,14 +43,13 @@
         });
 
         slider.addEventListener('touchend', function touchEnd(e) {
-            if (btnNext == "BUTTON") {
+            if (arrowNxt == 'arrow-next') {
                 if (range == -500) {
                     window.location='welcome';
                 }
                 nextSlider();
-                btnNext = '';
-                e.target.classList.add('btn-outlined-2');
-                e.target.classList.remove('active-btn');
+                arrowNxt = '';
+
             }
             else if (arrowBrb == 'arrow-back') {
                 prevSlider();
@@ -72,7 +70,7 @@
 
     }
     else {
-        button.addEventListener('click', function () {
+        arrowNext.addEventListener('click', function () {
 
             if (range == -500) {
                 window.location='welcome';
@@ -98,10 +96,6 @@
             sliderInfoT[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
             sliderInfoB[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
             pageInfo[indexSlider() - 1].style.transform = 'translateX(' + range + 'vw)';
-
-            if (range == -500) {
-                button.textContent = "Commencer";
-            }
         }
     }
 
@@ -118,9 +112,6 @@
             sliderInfoT[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
             sliderInfoB[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
             pageInfo[indexSlider() + 1].style.transform = 'translateX(' + range + 'vw)';
-            if (range == -400) {
-                button.textContent = "Suivant";
-            }
         }
     }
 
