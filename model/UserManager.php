@@ -21,7 +21,8 @@ class UserManager extends Model
     public function insertUser(User $user)
     {
 
-        session_destroy();
+        //session_destroy();
+        $_SESSION['user'] = "";
         $errors = array();
         //email check
         if (filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL === false)) {
@@ -51,7 +52,8 @@ class UserManager extends Model
                             'identifier' => $this->identiferGenerator()
                         );
                         $this->saveData($data);
-
+                        $this->logIn($user);
+                        $_SESSION['islog'] = true;
                         return true;
                     }
 
@@ -178,19 +180,17 @@ class UserManager extends Model
 
     public function sendEmailValidation()
     {
-        require 'vendor/autoload.php';
-
         try {
             $code = md5(uniqid(rand(), true));
             $email = new \SendGrid\Mail\Mail();
             $email->setFrom("les-sardines@hackhardennes.com");
             $email->setSubject("Validation compte, Les Sardines");
-            $email->addTo("martin.fontana08@gmail.com");
-            $mail = 'test@test.fr';
+            $email->addTo($_SESSION['user']->getEmail());
+            $mail = $_SESSION['user']->getEmail();
             $message = '<html>';
             $message .= '<head><title>Titre du message</title></head>';
             $message .= '<body>';
-            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="http://localhost/projet-sardines/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="'.Config::$server_address.'/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
             $message .= '<body>';
             $message .= '</html>';
             $email->addContent("text/html", $message);
@@ -200,13 +200,13 @@ class UserManager extends Model
             $req->bindParam(':email', $mail);
             if ($req->execute()) {
                 $response = $sendgrid->send($email);
-                print $response->statusCode() . "\n";
+               /* print $response->statusCode() . "\n";
                 print_r($response->headers());
-                print $response->body() . "\n";
+                print $response->body() . "\n";*/
             }
         } catch (Exception $e) {
-
-            echo 'Caught exception: ' . $e->getMessage() . "\n";
+            echo 'Une erreur est survenue';
+            //echo 'Caught exception: ' . $e->getMessage() . "\n";
         }
     }
 
