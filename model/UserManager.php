@@ -21,7 +21,8 @@ class UserManager extends Model
     public function insertUser(User $user)
     {
 
-        session_destroy();
+        //session_destroy();
+        $_SESSION['user'] = "";
         $errors = array();
         //email check
         if (filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL === false)) {
@@ -51,7 +52,8 @@ class UserManager extends Model
                             'identifier' => $this->identiferGenerator()
                         );
                         $this->saveData($data);
-
+                        $this->logIn($user);
+                        $_SESSION['islog'] = true;
                         return true;
                     }
 
