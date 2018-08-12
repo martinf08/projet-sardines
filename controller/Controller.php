@@ -549,7 +549,7 @@ class Controller
     {
 
         if (isset($_SESSION['user']) && !empty($_SESSION)) {
-            if ($_SESSION['justSign'] == true) {
+            if (isset($_SESSION['justSign']) && $_SESSION['justSign'] == true) {
 
                 unset($_SESSION['justSign']);
 
