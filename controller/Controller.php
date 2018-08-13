@@ -101,7 +101,7 @@ class Controller
                         if (preg_match($regex, $_POST['pseudo_account'])) {
                             $_SESSION['user']->setNickname($_POST['pseudo_account']);
                             $userManager->updatePseudo($_SESSION['user']);
-                            header('Location: profil/' . $_SESSION['user']->getIdentifier());
+                            header('Location: profil');
                         }
                     }
                 }
