@@ -1,0 +1,40 @@
+main {
+    height: 100vh;
+    background-image: none;
+    background-color: #fefefe;
+
+}
+.logo {
+    padding-top: 5.09vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.logo img:nth-child(2) {
+    height: auto;
+    width: 41vw;
+    max-width: 154px;
+}
+
+.logo div {
+    width: 28px;
+    margin-right: 8.53vw;
+}
+.message-validation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   height: 100%;
+}
+.message-validation div {
+    margin-top: 10vh;
+}
+
+.message-validation p {
+    width: 70vw;
+    font-size: 14px;
+}

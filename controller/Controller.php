@@ -84,7 +84,6 @@ class Controller
             } else {
                 header('Location: ' . Config::$root . 'donner');
             }
-
         } else {
             header('Location: ' . Config::$root . 'donner');
         }
@@ -118,8 +117,10 @@ class Controller
 
     public function logView()
     {
-        $this->set('title', 'Connexion');
+        if (isset($_SESSION['islog']) AND $_SESSION['islog'])
+            header('Location: profil');
 
+        $this->set('title', 'Connexion');
         $css = array('tooltip', 'connexion');
         $this->set('css', $css);
         $this->render('view/connexion.php');
@@ -127,10 +128,10 @@ class Controller
 
     public function passForget($request = null)
     {
-        $error        = "";
+        $error = "";
         $code_recover = false;
-        $model        = new UserManager();
-        $email        = "";
+        $model = new UserManager();
+        $email = "";
 
         $this->set('title', 'Mot de passe oublié');
         if (!isset($_POST['email_recuperation'])) {
@@ -146,13 +147,13 @@ class Controller
 
                         if ($user) {
 
-                            $code         = "";
+                            $code = "";
                             $sending_code = "";
                             for ($i = 0; $i < 8; $i++) {
                                 $sending_code .= mt_rand(0, 9);
                             }
                             $code .= md5($sending_code);
-                            $pre  = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
+                            $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
                             $pre->execute(array(':email' => $email));
                             $reponse = $pre->fetch(PDO::FETCH_ASSOC);
 
@@ -165,9 +166,9 @@ class Controller
                                 $pre->execute(array($code, $email));
                             }
 
-                            $to      = $email;
+                            $to = $email;
                             $subject = "Récupération de mot de passe";
-                            $link    = Config::$root . "forget" . DS . $sending_code;
+                            $link = Config::$root . "forget" . DS . $sending_code;
                             $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
 
                             // Always set content-type when sending HTML email
@@ -195,19 +196,19 @@ class Controller
             }
 
         }
-       //password change procedure
+        //password change procedure
         if (isset($request)) {
 
             try {
                 $code = md5(htmlspecialchars($request));
-                $pre  = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
+                $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code', $code);
                 $pre->execute();
                 $reponse = $pre->fetch(PDO::FETCH_ASSOC);
 
                 if ($reponse) {
                     $_SESSION['email'] = $reponse['email'];
-                    $pre               = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
+                    $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
                     $pre->execute(array($email));
                 } else {
                     $error = "Modification de mot de passe impossible";
@@ -220,12 +221,12 @@ class Controller
             }
 
         }
-       
+
 
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
 
-                $newPasseword        = htmlspecialchars($_POST['newPasseword']);
+                $newPasseword = htmlspecialchars($_POST['newPasseword']);
                 $confirmNewpasseword = htmlspecialchars($_POST['confirmNewpasseword']);
 
                 if (!empty($newPasseword) AND !empty($confirmNewpasseword)) {
@@ -257,7 +258,7 @@ class Controller
                 $code_recover = true;
             }
         }
-         //----------------------------End of password change procedure---------------------------
+        //----------------------------End of password change procedure---------------------------
 
         $this->set('errors', $error);
         $this->set('code_recover', $code_recover);
@@ -271,8 +272,8 @@ class Controller
             if ($_POST['email'] != "" || $_POST['password'] != "") {
                 if (isset($_POST['submit-connect'])) {
                     $userManager = new UserManager();
-                    $user        = new User($_POST);
-                    $reponse     = $userManager->logIn($user);
+                    $user = new User($_POST);
+                    $reponse = $userManager->logIn($user);
 
                     if ($reponse) {
                         $_SESSION['islog'] = true;
@@ -301,7 +302,7 @@ class Controller
 
     public function logOut()
     {
-        $_SESSION['user']  = "";
+        $_SESSION['user'] = "";
         $_SESSION['islog'] = 0;
 
         header('Location: ' . Config::$root);
@@ -322,18 +323,18 @@ class Controller
 
     public function insertUser()
     {
-
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "" && $_POST['terms'] == "1") {
                 $userManager = new UserManager();
-                $user        = new User($_POST);
-                $reponse     = $userManager->insertUser($user);
+                $user = new User($_POST);
+                $reponse = $userManager->insertUser($user);
 
                 if (is_bool($reponse)) {
                     if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                         setcookie('cookie', '1', time() + (86400 * 30));
                     }
-                    header("Location: " . Config::$root . "donner");
+                    $_SESSION['justSign'] = true;
+                    header("Location: " . Config::$root . "emailValidation");
                 } else {
 
                     $this->set('title', 'inscription');
@@ -376,7 +377,7 @@ class Controller
             if ($_SESSION['user']->getStaff()) {
                 $assetManager = new AssetManager();
                 # passer ici les valeurs des champs des radios pour la vue
-                $types     = $assetManager->getAll('type');
+                $types = $assetManager->getAll('type');
                 $qualities = $assetManager->getAll('quality');
 
                 if (isset($types) && isset($qualities)) {
@@ -409,7 +410,7 @@ class Controller
                 if ($_SESSION['user']->getStaff()) {
 
                     if (isset($_POST) && !empty($_POST)) {
-                        $post         = $_POST;
+                        $post = $_POST;
                         $assetManager = new AssetManager();
                         if (isset($post)) {
 
@@ -547,11 +548,28 @@ class Controller
     /* MAIL TEST */
     function sendEmailValidation()
     {
-        //Load Composer's autoloader
-        require 'vendor/autoload.php';
 
-        $userManager = new UserManager();
-        $userManager->sendEmailValidation();
+        if (isset($_SESSION['user']) && !empty($_SESSION)) {
+            if ($_SESSION['justSign'] == true) {
+
+                unset($_SESSION['justSign']);
+
+                //Load Composer's autoloader
+                require 'vendor/autoload.php';
+
+                $userManager = new UserManager();
+                $userManager->sendEmailValidation();
+                $this->set('title', 'Activation');
+                $css = array('welcome', 'validation');
+                $this->set('css', $css);
+                $this->render('view/validation.php');
+            }
+            else {
+                throw new Exception('Erreur');
+            }
+        } else {
+            throw new Exception('Erreur');
+        }
     }
 
     function getEmailValidation($code)

@@ -78,16 +78,18 @@ if (disc != null) {
     });
 }
 
-proxy.addEventListener('click', function(e) {
-    if (submit.hasAttribute('disabled')) {
-        submit.classList.add('wizz');
-        window.setTimeout(function() {
-            submit.classList.remove('wizz');
-        }, 300);
-    } else {
-        submit.click();
-    }
-})
+if (proxy != null) {
+    proxy.addEventListener('click', function(e) {
+        if (submit.hasAttribute('disabled')) {
+            submit.classList.add('wizz');
+            window.setTimeout(function() {
+                submit.classList.remove('wizz');
+            }, 300);
+        } else {
+            submit.click();
+        }
+    })
+}
 
 // is all ok
 function enable() {
