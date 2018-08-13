@@ -40,7 +40,7 @@
     </div>
 
     <div id="carte">
-        <p>Rendez-vous sur le stand "Les Sardines" en suivant les indications du plan. Nos bénévoles examineront le matériel. N'oublie rien, tout équipement, peu importe son état, aura de la valeur.</p>
+        <p>Rendez-vous à l'accueil du camping. Nos bénévoles examineront le matériel. N'oublie rien ; ta tente, ta chaise, ton matelas, ou ton sac de couchage, peu importe son état, aura de la valeur.</p>
         <div class="btn-outlined">
             <button class="btn-outlined-txt">J'ai compris</button>
         </div>
