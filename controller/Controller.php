@@ -84,7 +84,6 @@ class Controller
             } else {
                 header('Location: ' . Config::$root . 'donner');
             }
-
         } else {
             header('Location: ' . Config::$root . 'donner');
         }
@@ -118,8 +117,10 @@ class Controller
 
     public function logView()
     {
-        $this->set('title', 'Connexion');
+        if (isset($_SESSION['islog']) AND $_SESSION['islog'])
+            header('Location: profil');
 
+        $this->set('title', 'Connexion');
         $css = array('tooltip', 'connexion');
         $this->set('css', $css);
         $this->render('view/connexion.php');
