@@ -25,11 +25,19 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                 <div class="rond"></div> <!-- logo -->
             </div>
             <div class="slider-info-bottom">
-                <p>
-                    Salut Voyageur ! Chaque année, vous êtes environ 15 000 campeurs à être accueillis dans la joie et
-                    la bonne humeur au Cabaret Vert. Malheureusement, à la fin du festival, beaucoup trop choisissent de repartir en laissant du matos à
-                    l’abandon.
-                </p>
+                <div class="slider-txt">
+                    <h2>Le Cabaret Vert, un festival de plus en plus vert !</h2>
+                    <p>
+                        Le Cabaret Vert met en place depuis presque 15 ans, une organisation éco-responsable :
+                    </p>
+                    <ul>
+                        <li>Tri des déchets</li>
+                        <li>Centre de tri temporaire sur le site</li>
+                        <li>Charte de restauration durable</li>
+                        <li>Valorisation des producteurs locaux</li>
+                        <li>Information et sensibilisation sur les grands enjeux environnementaux</li>
+                    </ul>
+                </div>
                 <div class="slider-bottom">
                     <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
                     <p class="page-info">1/3</p>
@@ -49,15 +57,23 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                 <div class="rond"></div> <!-- logo -->
             </div>
             <div class="slider-info-bottom">
-                <p>
-                    Toi qui aspire à devenir un campeur éco-responsable, tu peux nous aider à éviter que le terrain du
-                    Cabaret Vert ne se transforme en une poubelle géante, grâce à l’application Les Sardines. i tu comptes repartir sans ta tente, ta chaise, ton matelas, ou ton sac de couchage, tu peux nous
-                    les apporter en échange de crédits appellés « les Sardines ».
-                </p>
+                <div class="slider-txt">
+                    <h2>Sur le camping, l’environnement c’est aussi l’affaire de tous !</h2>
+                    <p>
+                        Trier et recycler ses déchets présentent de nombreux avantages. :
+                    </p>
+                    <ul>
+                        <li>Préservation des ressources naturelles,</li>
+                        <li>Économie d’énergie,</li>
+                        <li>Charte de restauration durable</li>
+                        <li>amélioration de la propreté d’un site qui est utilisé le reste de l’année par la population.</li>
+                    </ul>
+                </div>
                 <div class="slider-bottom">
                     <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
                     <p class="page-info">2/3</p>
                     <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
+
                 </div>
             </div>
         </div>
@@ -73,17 +89,26 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                 <div class="rond"></div> <!-- logo -->
             </div>
             <div class="slider-info-bottom">
+            <div class="slider-txt">
+                <h2>L’application les sardines : donnez une seconde vie à votre matériel de camping.</h2>
                 <p>
-                    Tes Sardines seront utilisables pour obtenir du matos ou de quoi te rassasier lors des prochaines
-                    éditions du Cabaret Vert. Pour éviter la pollution et le gaspillage inutile d’un matos encore tout à fait utilisable rien de
-                    plus simple : inscris toi et profites des avantages des Sardines !
+                    Sur le camping, rien ne se perd, tout se transforme.
+                    Avec l’application les Sardines, votre matériel de camping (tentes, matelas, chaises) retrouve de nouvelles valeurs.
                 </p>
-                <div class="slider-bottom">
-                    <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
-                    <p class="page-info">3/3</p>
-                    <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
+                <p>
+                    Ne jetez plus, échanger votre matériel contre des Sardines !
+                </p>
+                <div class="align-btn">
+                    <button class="btn-outlined" id="start">C'est parti !</button>
                 </div>
             </div>
+            <div class="slider-bottom">
+                <img src="images/pictos/arrow_back.svg" alt="back" class="arrow-back">
+                <p class="page-info">3/3</p>
+                <img src="images/pictos/arrow_back.svg" alt="next" class="arrow-next">
+
+            </div>
+        </div>
         </div>
     </div>
     <script src="js/slider.js"></script>
