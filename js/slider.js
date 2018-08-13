@@ -44,7 +44,7 @@
 
         slider.addEventListener('touchend', function touchEnd(e) {
             if (arrowNxt == 'arrow-next') {
-                if (range == -500) {
+                if (range == -200) {
                     window.location='welcome';
                 }
                 nextSlider();
@@ -72,7 +72,7 @@
     else {
         arrowNext.addEventListener('click', function () {
 
-            if (range == -500) {
+            if (range == -200) {
                 window.location='welcome';
             }
             nextSlider();
@@ -84,7 +84,7 @@
 
 
     function nextSlider() {
-        if (range - 100 >= -500) {
+        if (range - 100 >= -200) {
             range = range - 100;
             if (range < 0) {
                 arrowBack.style.height = '15px';
@@ -127,8 +127,8 @@
     }
 
     function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
     }
 
@@ -151,15 +151,6 @@
                     break;
                 case -200:
                     index = 2;
-                    break;
-                case -300:
-                    index = 3;
-                    break;
-                case -400:
-                    index = 4;
-                    break;
-                case -500:
-                    index = 5;
                     break;
                 default:
                     return false;
