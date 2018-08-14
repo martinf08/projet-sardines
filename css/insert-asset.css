@@ -218,6 +218,7 @@ button[name="bonne"] + p {
 .item-button2 p {
     margin-top: 2.39vh;
     margin-bottom: 4.49vh;
+    text-align: center;
 }
 
 textarea {
@@ -296,4 +297,7 @@ button {
     padding-bottom: 3.29vh;
     border-top: 1px solid #eaf1ea;
 
+}
+.alert {
+    color: red;
 }
