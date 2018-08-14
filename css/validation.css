@@ -1,3 +1,6 @@
+#menu {
+    display: none;
+}
 main {
     height: 100vh;
     background-image: none;
@@ -37,4 +40,7 @@ main {
 .message-validation p {
     width: 70vw;
     font-size: 14px;
+}
+.center {
+    text-align: center;
 }

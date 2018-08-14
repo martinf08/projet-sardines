@@ -212,6 +212,7 @@ class UserManager extends Model
 
     public function getEmailValidation($code)
     {
+        echo 'test';
         if (isset($code) && !empty($code)) {
             $code = htmlspecialchars($code);
             $req = $this->dbConnect()->prepare('SELECT account_status FROM `user` WHERE account_status = :code');
@@ -221,13 +222,15 @@ class UserManager extends Model
                 $reqActivation = $this->dbConnect()->prepare("UPDATE `user` SET account_status= '1' WHERE account_status = :code");
                 $reqActivation->bindParam(':code', $code);
                 $reqActivation->execute();
-                echo 'Compte activé';
+                return 'Compte activé avec succès';
             } else if ($req->fetch()['account_status'] == '1') {
-                echo 'Compte déjà activé';
-            } else {
-                echo 'erreur';
+                throw new \Exception('Compte déjà activé') ;
             }
         }
+        else {
+            throw new \Exception('erreur') ;
+        }
+
     }
     /**------------fin de la classe ------------------ */
 }

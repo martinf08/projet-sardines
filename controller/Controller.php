@@ -559,7 +559,7 @@ class Controller
 
                 $userManager = new UserManager();
                 $userManager->sendEmailValidation();
-                $this->set('title', 'Activation');
+                $this->set('title', 'Validation');
                 $css = array('welcome', 'validation');
                 $this->set('css', $css);
                 $this->render('view/validation.php');
@@ -574,9 +574,23 @@ class Controller
 
     function getEmailValidation($code)
     {
+
         if (isset($code) && !empty($code)) {
             $userManager = new UserManager();
-            $userManager->getEmailValidation($code);
+            $response = $userManager->getEmailValidation($code);
+            if (isset($response) && !empty($response)) {
+                $this->set('title', 'Activation');
+                $css = array('welcome', 'validation');
+                $this->set('css', $css);
+                $this->set('response', $response);
+                $this->render('view/activation.php');
+            }
+            else {
+                throw new Exception('erreur');
+            }
+        }
+        else {
+            throw new Exception('erreur');
         }
     }
 }
