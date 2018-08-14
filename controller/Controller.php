@@ -451,9 +451,16 @@ class Controller
     public function successInsertAsset()
     {
         if (isset($_SESSION['lastAsset']) && !empty($_SESSION['lastAsset'])) {
+            # une requête est ajoutée ici pour récupérer des infos sur le bénéficiaire
+            # les obtenir à partir du $asset renvoyé dans le manager
+            # demanderait de modifier la structure de la table asset
+            $userManager = new UserManager();
+            $userInfos = $userManager->getUserInfos($_SESSION['lastAsset']->getIdUser());
+
             $this->set('title', 'Succès de la transaction');
             $css = array('success');
             $this->set('css', $css);
+            $this->set('userInfos', $userInfos);
             $this->render('view/success.php');
             unset($_SESSION['lastAsset']);
         } else {

@@ -17,6 +17,16 @@ class UserManager extends Model
         return $req->fetch();
     }
 
+    # utilisée pour la page success.php
+    public function getUserInfos($id) {
+        $sql = "SELECT nickname, identifier FROM `user` WHERE `id_user` = :id";
+        $req = $this->dbConnect()->prepare($sql);
+        $req->bindParam(':id', $id);
+        $req->execute();
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $req->fetch();
+    }
 
     public function insertUser(User $user)
     {
