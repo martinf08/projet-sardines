@@ -80,7 +80,20 @@
                            name="idquality"
                            value="<?php echo $quality['id_quality'] ?>">
                     <button class="btn-white2" name="<?php echo $quality['label'] ?>"></button>
-                    <p><?php echo $quality['label'] ?></p>
+                    <p><?php
+                        $label = $quality['label'];
+                        if ($label == 'mauvaise') {
+                            $label = 'mauvais';
+                        }
+                        else if ($label == 'bonne') {
+                            $label = 'bon';
+                        }
+                        else if ($label == 'excellente') {
+                            $label = 'excellent';
+                        }
+                        echo $label;
+
+                        ?></p>
                 </div>
 
             <?php endforeach; ?>
