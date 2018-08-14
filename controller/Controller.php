@@ -375,21 +375,25 @@ class Controller
     {
         if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôle du droit d'accès
             if ($_SESSION['user']->getStaff()) {
-                $assetManager = new AssetManager();
-                # passer ici les valeurs des champs des radios pour la vue
-                $types = $assetManager->getAll('type');
-                $qualities = $assetManager->getAll('quality');
+                if (isset($_SESSION['user']) && $_SESSION['user']->getAccount_status() == 1) {
+                    $assetManager = new AssetManager();
+                    # passer ici les valeurs des champs des radios pour la vue
+                    $types = $assetManager->getAll('type');
+                    $qualities = $assetManager->getAll('quality');
 
-                if (isset($types) && isset($qualities)) {
+                    if (isset($types) && isset($qualities)) {
 
-                    $this->set('css', array('insert-asset'));
-                    $this->set('title', 'Ajouter un matériel');
-                    $this->set('types', $types);
-                    $this->set('qualities', $qualities);
-                    $this->render('view/ajout.php');
+                        $this->set('css', array('insert-asset'));
+                        $this->set('title', 'Ajouter un matériel');
+                        $this->set('types', $types);
+                        $this->set('qualities', $qualities);
+                        $this->render('view/ajout.php');
 
+                    } else {
+                        throw new Exception('Problème sur la récupération des tables.');
+                    }
                 } else {
-                    throw new Exception('Problème sur la récupération des tables.');
+                    throw new Exception('Le compte doit être activé avant de pouvoir ajouter du matériel');
                 }
             } else {
                 header('Location: ' . Config::$root . 'donner');
@@ -563,8 +567,7 @@ class Controller
                 $css = array('welcome', 'validation');
                 $this->set('css', $css);
                 $this->render('view/validation.php');
-            }
-            else {
+            } else {
                 throw new Exception('Erreur');
             }
         } else {
@@ -584,12 +587,10 @@ class Controller
                 $this->set('css', $css);
                 $this->set('response', $response);
                 $this->render('view/activation.php');
-            }
-            else {
+            } else {
                 throw new Exception('erreur');
             }
-        }
-        else {
+        } else {
             throw new Exception('erreur');
         }
     }
