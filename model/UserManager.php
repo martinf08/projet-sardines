@@ -179,7 +179,7 @@ class UserManager extends Model
     {
         $nickname = $user->getNickname();
         $id = $user->getId_user();
-        if (isset($id) && !empty($id) && isset($nickname) && !empty($nickname)) {
+        if (isset($id) && !empty($id) && isset($nickname)) { # nickname peut être vide
             $req = $this->dbConnect()->prepare('UPDATE `user` SET nickname = :nickname WHERE id_user = :id');
             $req->bindParam(':nickname', $nickname);
             $req->bindParam(':id', $id);

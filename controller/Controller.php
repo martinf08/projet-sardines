@@ -95,14 +95,21 @@ class Controller
 
             $userManager = new UserManager();
             if (strtolower($userManager->getEmailUserByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
-                if (isset($_POST['pseudo_account']) && !empty($_POST['pseudo_account'])) {
+                if (isset($_POST['pseudo_account'])) {
                     if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                         $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{3,25}#";
-                        if (preg_match($regex, $_POST['pseudo_account'])) {
+                        if (preg_match($regex, $_POST['pseudo_account']) OR $_POST['pseudo_account'] === '') {
+                            # j'autorise temporairement le changement de pseudo en chaîne vide
+                            # puisqu'il est vide de base donc on doit avoir le droit d'effacer notre pseudo
+                            # forcer la création d'un pseudo par défaut à partir de l'email est une autre possibilité
                             $_SESSION['user']->setNickname($_POST['pseudo_account']);
                             $userManager->updatePseudo($_SESSION['user']);
                             header('Location: profil');
+                        } else {
+                            throw new Exception('La valeur que vous avez passé est invalide.');
                         }
+                    } else {
+                        throw new Exception('Vous ne pouvez pas modifier ce compte.');
                     }
                 }
             }
