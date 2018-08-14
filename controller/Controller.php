@@ -388,7 +388,6 @@ class Controller
                         $this->set('types', $types);
                         $this->set('qualities', $qualities);
                         $this->render('view/ajout.php');
-
                     } else {
                         throw new Exception('Problème sur la récupération des tables.');
                     }
