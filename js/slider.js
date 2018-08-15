@@ -1,11 +1,12 @@
 (function () {
     let slider = document.querySelector('.slider');
     let sliderInfoT = document.querySelectorAll('.slider-info-top');
-    let sliderInfoB = document.querySelectorAll('.slider-info-bottom > p');
+    let sliderInfoB = document.querySelectorAll('.slider-txt');
     let pageInfo = document.querySelectorAll('.page-info');
     let arrowNext = document.querySelector('.arrow-next');
     let arrowBack = document.querySelector('.arrow-back');
     let cookieBtn = document.getElementById('accept-cookie');
+    let btnStart = document.getElementById('start');
     let range = 0;
     if (range == 0) {
         arrowBack.style.height = '0';
@@ -14,6 +15,7 @@
     let touchXEnd;
     let arrowNxt;
     let arrowBrb;
+    let btnS;
 
     let is_touch_device = function () {
         try {
@@ -35,6 +37,11 @@
             else if (e.target.className == 'arrow-back') {
                 arrowBrb = e.target.className;
             }
+            else if (e.target.id == 'start') {
+                btnS = e.target.id;
+                e.target.style.backgroundColor = '#0cd18f';
+                e.target.style.color = "#fefefe";
+            }
 
         });
 
@@ -42,11 +49,8 @@
             touchXEnd = e.touches[0].clientX;
         });
 
-        slider.addEventListener('touchend', function touchEnd(e) {
+        slider.addEventListener('touchend', function touchEnd() {
             if (arrowNxt == 'arrow-next') {
-                if (range == -500) {
-                    window.location='welcome';
-                }
                 nextSlider();
                 arrowNxt = '';
 
@@ -55,7 +59,12 @@
                 prevSlider();
                 arrowBrb = '';
             }
-                //Swipe 50px mini
+            else if (btnS == 'start') {
+                btnStart.style.backgroundColor = '#fefefe';
+                btnStart.style.color = "#0cd18f";
+                window.location = 'welcome';
+            }
+            //Swipe 50px mini
             else if (touchXStart > touchXEnd) {
                 if (touchXStart - touchXEnd >= 50) {
                     nextSlider();
@@ -71,10 +80,6 @@
     }
     else {
         arrowNext.addEventListener('click', function () {
-
-            if (range == -500) {
-                window.location='welcome';
-            }
             nextSlider();
         });
         arrowBack.addEventListener('click', function () {
@@ -82,12 +87,19 @@
         });
     }
 
+    btnStart.addEventListener('click', function () {
+        window.location = 'welcome';
+    });
+
 
     function nextSlider() {
-        if (range - 100 >= -500) {
+        if (range - 100 >= -200) {
             range = range - 100;
             if (range < 0) {
                 arrowBack.style.height = '15px';
+            }
+            if (range <= -200) {
+                arrowNext.style.height = '0';
             }
             sliderInfoT[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
             sliderInfoB[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
@@ -103,6 +115,9 @@
         if (range + 100 <= 0) {
             if (range == -100) {
                 arrowBack.style.height = '0';
+            }
+            if (range => -200) {
+                arrowNext.style.height = '15px';
             }
             range = range + 100;
             sliderInfoT[indexSlider()].style.transform = 'translateX(' + range + 'vw)';
@@ -123,12 +138,12 @@
     }
 
     if (getCookie('cookie') == 1) {
-        window.location='welcome';
+        window.location = 'welcome';
     }
 
     function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
+        let value = "; " + document.cookie;
+        let parts = value.split("; " + name + "=");
         if (parts.length == 2) return parts.pop().split(";").shift();
     }
 
@@ -151,15 +166,6 @@
                     break;
                 case -200:
                     index = 2;
-                    break;
-                case -300:
-                    index = 3;
-                    break;
-                case -400:
-                    index = 4;
-                    break;
-                case -500:
-                    index = 5;
                     break;
                 default:
                     return false;

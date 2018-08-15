@@ -23,4 +23,6 @@ http://127.0.0.1:1080
 (voir user manager)
 
 
+Pré-requis api sendgrid
 
+sudo apt-get install php-curl

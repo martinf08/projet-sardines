@@ -84,7 +84,6 @@ class Controller
             } else {
                 header('Location: ' . Config::$root . 'donner');
             }
-
         } else {
             header('Location: ' . Config::$root . 'donner');
         }
@@ -96,14 +95,21 @@ class Controller
 
             $userManager = new UserManager();
             if (strtolower($userManager->getEmailUserByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
-                if (isset($_POST['pseudo_account']) && !empty($_POST['pseudo_account'])) {
+                if (isset($_POST['pseudo_account'])) {
                     if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                         $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{3,25}#";
-                        if (preg_match($regex, $_POST['pseudo_account'])) {
+                        if (preg_match($regex, $_POST['pseudo_account']) OR $_POST['pseudo_account'] === '') {
+                            # j'autorise temporairement le changement de pseudo en chaîne vide
+                            # puisqu'il est vide de base donc on doit avoir le droit d'effacer notre pseudo
+                            # forcer la création d'un pseudo par défaut à partir de l'email est une autre possibilité
                             $_SESSION['user']->setNickname($_POST['pseudo_account']);
                             $userManager->updatePseudo($_SESSION['user']);
-                            header('Location: profil/' . $_SESSION['user']->getIdentifier());
+                            header('Location: profil');
+                        } else {
+                            throw new Exception('La valeur que vous avez passé est invalide.');
                         }
+                    } else {
+                        throw new Exception('Vous ne pouvez pas modifier ce compte.');
                     }
                 }
             }
@@ -118,8 +124,10 @@ class Controller
 
     public function logView()
     {
-        $this->set('title', 'Connexion');
+        if (isset($_SESSION['islog']) AND $_SESSION['islog'])
+            header('Location: profil');
 
+        $this->set('title', 'Connexion');
         $css = array('tooltip', 'connexion');
         $this->set('css', $css);
         $this->render('view/connexion.php');
@@ -127,10 +135,10 @@ class Controller
 
     public function passForget($request = null)
     {
-        $error        = "";
+        $error = "";
         $code_recover = false;
-        $model        = new UserManager();
-        $email        = "";
+        $model = new UserManager();
+        $email = "";
 
         $this->set('title', 'Mot de passe oublié');
         if (!isset($_POST['email_recuperation'])) {
@@ -146,13 +154,13 @@ class Controller
 
                         if ($user) {
 
-                            $code         = "";
+                            $code = "";
                             $sending_code = "";
                             for ($i = 0; $i < 8; $i++) {
                                 $sending_code .= mt_rand(0, 9);
                             }
                             $code .= md5($sending_code);
-                            $pre  = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
+                            $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
                             $pre->execute(array(':email' => $email));
                             $reponse = $pre->fetch(PDO::FETCH_ASSOC);
 
@@ -165,9 +173,9 @@ class Controller
                                 $pre->execute(array($code, $email));
                             }
 
-                            $to      = $email;
+                            $to = $email;
                             $subject = "Récupération de mot de passe";
-                            $link    = Config::$root . "forget" . DS . $sending_code;
+                            $link = Config::$root . "forget" . DS . $sending_code;
                             $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
 
                             // Always set content-type when sending HTML email
@@ -195,19 +203,19 @@ class Controller
             }
 
         }
-       //password change procedure
+        //password change procedure
         if (isset($request)) {
 
             try {
                 $code = md5(htmlspecialchars($request));
-                $pre  = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
+                $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code', $code);
                 $pre->execute();
                 $reponse = $pre->fetch(PDO::FETCH_ASSOC);
 
                 if ($reponse) {
                     $_SESSION['email'] = $reponse['email'];
-                    $pre               = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
+                    $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
                     $pre->execute(array($email));
                 } else {
                     $error = "Modification de mot de passe impossible";
@@ -220,12 +228,12 @@ class Controller
             }
 
         }
-       
+
 
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
 
-                $newPasseword        = htmlspecialchars($_POST['newPasseword']);
+                $newPasseword = htmlspecialchars($_POST['newPasseword']);
                 $confirmNewpasseword = htmlspecialchars($_POST['confirmNewpasseword']);
 
                 if (!empty($newPasseword) AND !empty($confirmNewpasseword)) {
@@ -257,7 +265,7 @@ class Controller
                 $code_recover = true;
             }
         }
-         //----------------------------End of password change procedure---------------------------
+        //----------------------------End of password change procedure---------------------------
 
         $this->set('errors', $error);
         $this->set('code_recover', $code_recover);
@@ -271,8 +279,8 @@ class Controller
             if ($_POST['email'] != "" || $_POST['password'] != "") {
                 if (isset($_POST['submit-connect'])) {
                     $userManager = new UserManager();
-                    $user        = new User($_POST);
-                    $reponse     = $userManager->logIn($user);
+                    $user = new User($_POST);
+                    $reponse = $userManager->logIn($user);
 
                     if ($reponse) {
                         $_SESSION['islog'] = true;
@@ -301,7 +309,7 @@ class Controller
 
     public function logOut()
     {
-        $_SESSION['user']  = "";
+        $_SESSION['user'] = "";
         $_SESSION['islog'] = 0;
 
         header('Location: ' . Config::$root);
@@ -322,18 +330,18 @@ class Controller
 
     public function insertUser()
     {
-
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "" && $_POST['terms'] == "1") {
                 $userManager = new UserManager();
-                $user        = new User($_POST);
-                $reponse     = $userManager->insertUser($user);
+                $user = new User($_POST);
+                $reponse = $userManager->insertUser($user);
 
                 if (is_bool($reponse)) {
                     if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                         setcookie('cookie', '1', time() + (86400 * 30));
                     }
-                    header("Location: " . Config::$root . "donner");
+                    $_SESSION['justSign'] = true;
+                    header("Location: " . Config::$root . "emailValidation");
                 } else {
 
                     $this->set('title', 'inscription');
@@ -374,21 +382,24 @@ class Controller
     {
         if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôle du droit d'accès
             if ($_SESSION['user']->getStaff()) {
-                $assetManager = new AssetManager();
-                # passer ici les valeurs des champs des radios pour la vue
-                $types     = $assetManager->getAll('type');
-                $qualities = $assetManager->getAll('quality');
+                if (isset($_SESSION['user']) && $_SESSION['user']->getAccount_status() == 1) {
+                    $assetManager = new AssetManager();
+                    # passer ici les valeurs des champs des radios pour la vue
+                    $types = $assetManager->getAll('type');
+                    $qualities = $assetManager->getAll('quality');
 
-                if (isset($types) && isset($qualities)) {
+                    if (isset($types) && isset($qualities)) {
 
-                    $this->set('css', array('insert-asset'));
-                    $this->set('title', 'Ajouter un matériel');
-                    $this->set('types', $types);
-                    $this->set('qualities', $qualities);
-                    $this->render('view/ajout.php');
-
+                        $this->set('css', array('insert-asset'));
+                        $this->set('title', 'Ajouter un matériel');
+                        $this->set('types', $types);
+                        $this->set('qualities', $qualities);
+                        $this->render('view/ajout.php');
+                    } else {
+                        throw new Exception('Problème sur la récupération des tables.');
+                    }
                 } else {
-                    throw new Exception('Problème sur la récupération des tables.');
+                    throw new Exception('Le compte doit être activé avant de pouvoir ajouter du matériel');
                 }
             } else {
                 header('Location: ' . Config::$root . 'donner');
@@ -409,7 +420,7 @@ class Controller
                 if ($_SESSION['user']->getStaff()) {
 
                     if (isset($_POST) && !empty($_POST)) {
-                        $post         = $_POST;
+                        $post = $_POST;
                         $assetManager = new AssetManager();
                         if (isset($post)) {
 
@@ -450,9 +461,16 @@ class Controller
     public function successInsertAsset()
     {
         if (isset($_SESSION['lastAsset']) && !empty($_SESSION['lastAsset'])) {
+            # une requête est ajoutée ici pour récupérer des infos sur le bénéficiaire
+            # les obtenir à partir du $asset renvoyé dans le manager
+            # demanderait de modifier la structure de la table asset
+            $userManager = new UserManager();
+            $userInfos = $userManager->getUserInfos($_SESSION['lastAsset']->getIdUser());
+
             $this->set('title', 'Succès de la transaction');
             $css = array('success');
             $this->set('css', $css);
+            $this->set('userInfos', $userInfos);
             $this->render('view/success.php');
             unset($_SESSION['lastAsset']);
         } else {
@@ -547,18 +565,46 @@ class Controller
     /* MAIL TEST */
     function sendEmailValidation()
     {
-        //Load Composer's autoloader
-        require 'vendor/autoload.php';
 
-        $userManager = new UserManager();
-        $userManager->sendEmailValidation();
+        if (isset($_SESSION['user']) && !empty($_SESSION)) {
+            if ($_SESSION['justSign'] == true) {
+
+                unset($_SESSION['justSign']);
+
+                //Load Composer's autoloader
+                require 'vendor/autoload.php';
+
+                $userManager = new UserManager();
+                $userManager->sendEmailValidation();
+                $this->set('title', 'Validation');
+                $css = array('welcome', 'validation');
+                $this->set('css', $css);
+                $this->render('view/validation.php');
+            } else {
+                throw new Exception('Erreur');
+            }
+        } else {
+            throw new Exception('Erreur');
+        }
     }
 
     function getEmailValidation($code)
     {
+
         if (isset($code) && !empty($code)) {
             $userManager = new UserManager();
-            $userManager->getEmailValidation($code);
+            $response = $userManager->getEmailValidation($code);
+            if (isset($response) && !empty($response)) {
+                $this->set('title', 'Activation');
+                $css = array('welcome', 'validation');
+                $this->set('css', $css);
+                $this->set('response', $response);
+                $this->render('view/activation.php');
+            } else {
+                throw new Exception('erreur');
+            }
+        } else {
+            throw new Exception('erreur');
         }
     }
 }
