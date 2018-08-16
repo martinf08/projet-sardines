@@ -222,7 +222,6 @@ class UserManager extends Model
 
     public function getEmailValidation($code)
     {
-        echo 'test';
         if (isset($code) && !empty($code)) {
             $code = htmlspecialchars($code);
             $req = $this->dbConnect()->prepare('SELECT account_status FROM `user` WHERE account_status = :code');
