@@ -8,7 +8,7 @@
     <div class="message-validation">
         <p>
             Vous êtes maintenant inscrit sur notre site,
-            un courriel d'activation à été envoyé à <br/>
+            un courriel d'activation a été envoyé à <br/>
             l'adresse suivante : <b><?= $_SESSION['user']->getEmail();?></b>
         </p>
         <div class="btn-full-2">
