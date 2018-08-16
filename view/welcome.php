@@ -1,9 +1,9 @@
 <main>
 <div class ="logo-welcome">
-            <img src="images/pictos/logo1.svg">
+    <img src="images/pictos/logo1.svg">
 </div>
 
-        <span class="mini-title">Fais don de matos de camping inutile !</span>
+        <span class="mini-title">Fais don du matos de camping que tu n'utilises plus !</span>
 
         <div class="picto-welcome">
             <img src="images/pictos/tent_night.svg">
