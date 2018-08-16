@@ -20,6 +20,13 @@ Chaque asset sera évalué selon un type et une qualité (voir la structure de l
 
 ## Configuration
 
+### Installation
+
+Des fichiers d'intallations de dépendances sont présents.
+Exécuter la commande `php composer.phar install`
+
+Pour que fonctionne l'API Sendgrid, installer `sudo apt-get install php-curl` si ça n'est pas déjà fait.
+
 ### BDD 
 Importer le fichier structure.sql dans phpmyadmin puis le fichier fixtures.sql pour remplir les tables avec les valeurs prédéfinies.
 
@@ -27,6 +34,9 @@ Importer le fichier structure.sql dans phpmyadmin puis le fichier fixtures.sql p
 Pour configurer l'accès à la base de donnée, remplir le fichier class/Config.php.dist avec les bonnes valeurs et supprimer l'extension '.dist'.
 
 L'email assigné dans $ghost devra correspondre à un ghost-user inséré dans la base de donnée.
+
+### Service de courriel
+Une clé d'API Sendgrid est nécessaire pour l'envoi de courriel. Cette clé doit être écrite, ainsi que l'adresse du serveur, dans Config.php.
 
 ### Navigation
 On peut redéfinir le chemin de la racine du site dans la variable statique $root dans le fichier Config.php. De cette manière, la redirection sur l'index fonctionnera quel que soit le type d'hôte et de chemins utilisés.
