@@ -2,7 +2,7 @@
 
     <div class="logo">
         <div></div>
-        <img src="images/pictos/logo_text_1.svg" alt="Les Sardines">
+        <img src="./images/pictos/logo_text_1.svg" alt="Les Sardines">
         <div></div>
     </div>
     <div class="message-validation">
