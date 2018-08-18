@@ -84,7 +84,6 @@ class Controller
             } else {
                 header('Location: ' . Config::$root . 'donner');
             }
-
         } else {
             header('Location: ' . Config::$root . 'donner');
         }
@@ -96,14 +95,21 @@ class Controller
 
             $userManager = new UserManager();
             if (strtolower($userManager->getEmailUserByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
-                if (isset($_POST['pseudo_account']) && !empty($_POST['pseudo_account'])) {
+                if (isset($_POST['pseudo_account'])) {
                     if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                         $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{3,25}#";
-                        if (preg_match($regex, $_POST['pseudo_account'])) {
+                        if (preg_match($regex, $_POST['pseudo_account']) OR $_POST['pseudo_account'] === '') {
+                            # j'autorise temporairement le changement de pseudo en chaîne vide
+                            # puisqu'il est vide de base donc on doit avoir le droit d'effacer notre pseudo
+                            # forcer la création d'un pseudo par défaut à partir de l'email est une autre possibilité
                             $_SESSION['user']->setNickname($_POST['pseudo_account']);
                             $userManager->updatePseudo($_SESSION['user']);
-                            header('Location: profil/' . $_SESSION['user']->getIdentifier());
+                            header('Location: profil');
+                        } else {
+                            throw new Exception('La valeur que vous avez passé est invalide.');
                         }
+                    } else {
+                        throw new Exception('Vous ne pouvez pas modifier ce compte.');
                     }
                 }
             }
@@ -118,8 +124,10 @@ class Controller
 
     public function logView()
     {
-        $this->set('title', 'Connexion');
+        if (isset($_SESSION['islog']) AND $_SESSION['islog'])
+            header('Location: profil');
 
+        $this->set('title', 'Connexion');
         $css = array('tooltip', 'connexion');
         $this->set('css', $css);
         $this->render('view/connexion.php');
@@ -374,21 +382,24 @@ class Controller
     {
         if (isset($_SESSION['user']) AND !empty($_SESSION['user'])) { # contrôle du droit d'accès
             if ($_SESSION['user']->getStaff()) {
-                $assetManager = new AssetManager();
-                # passer ici les valeurs des champs des radios pour la vue
-                $types = $assetManager->getAll('type');
-                $qualities = $assetManager->getAll('quality');
+                if (isset($_SESSION['user']) && $_SESSION['user']->getAccount_status() == 1) {
+                    $assetManager = new AssetManager();
+                    # passer ici les valeurs des champs des radios pour la vue
+                    $types = $assetManager->getAll('type');
+                    $qualities = $assetManager->getAll('quality');
 
-                if (isset($types) && isset($qualities)) {
+                    if (isset($types) && isset($qualities)) {
 
-                    $this->set('css', array('insert-asset'));
-                    $this->set('title', 'Ajouter un matériel');
-                    $this->set('types', $types);
-                    $this->set('qualities', $qualities);
-                    $this->render('view/ajout.php');
-
+                        $this->set('css', array('insert-asset'));
+                        $this->set('title', 'Ajouter un matériel');
+                        $this->set('types', $types);
+                        $this->set('qualities', $qualities);
+                        $this->render('view/ajout.php');
+                    } else {
+                        throw new Exception('Problème sur la récupération des tables.');
+                    }
                 } else {
-                    throw new Exception('Problème sur la récupération des tables.');
+                    throw new Exception('Le compte doit être activé avant de pouvoir ajouter du matériel');
                 }
             } else {
                 header('Location: ' . Config::$root . 'donner');
@@ -450,9 +461,16 @@ class Controller
     public function successInsertAsset()
     {
         if (isset($_SESSION['lastAsset']) && !empty($_SESSION['lastAsset'])) {
+            # une requête est ajoutée ici pour récupérer des infos sur le bénéficiaire
+            # les obtenir à partir du $asset renvoyé dans le manager
+            # demanderait de modifier la structure de la table asset
+            $userManager = new UserManager();
+            $userInfos = $userManager->getUserInfos($_SESSION['lastAsset']->getIdUser());
+
             $this->set('title', 'Succès de la transaction');
             $css = array('success');
             $this->set('css', $css);
+            $this->set('userInfos', $userInfos);
             $this->render('view/success.php');
             unset($_SESSION['lastAsset']);
         } else {
@@ -558,12 +576,11 @@ class Controller
 
                 $userManager = new UserManager();
                 $userManager->sendEmailValidation();
-                $this->set('title', 'Activation');
+                $this->set('title', 'Validation');
                 $css = array('welcome', 'validation');
                 $this->set('css', $css);
                 $this->render('view/validation.php');
-            }
-            else {
+            } else {
                 throw new Exception('Erreur');
             }
         } else {
@@ -573,9 +590,24 @@ class Controller
 
     function getEmailValidation($code)
     {
+
         if (isset($code) && !empty($code)) {
             $userManager = new UserManager();
-            $userManager->getEmailValidation($code);
+            $response = $userManager->getEmailValidation($code);
+            if (isset($response) && !empty($response)) {
+                $this->set('title', 'Activation');
+                $css = array('welcome', 'validation');
+                $this->set('css', $css);
+                $this->set('response', $response);
+                if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+                    $_SESSION['user']->setAccount_status('1');
+                }
+                $this->render('view/activation.php');
+            } else {
+                throw new Exception('erreur');
+            }
+        } else {
+            throw new Exception('erreur');
         }
     }
 }

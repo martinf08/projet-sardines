@@ -17,6 +17,17 @@ class UserManager extends Model
         return $req->fetch();
     }
 
+    # utilisée pour la page success.php
+    public function getUserInfos($id)
+    {
+        $sql = "SELECT nickname, identifier FROM `user` WHERE `id_user` = :id";
+        $req = $this->dbConnect()->prepare($sql);
+        $req->bindParam(':id', $id);
+        $req->execute();
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $req->fetch();
+    }
 
     public function insertUser(User $user)
     {
@@ -169,7 +180,7 @@ class UserManager extends Model
     {
         $nickname = $user->getNickname();
         $id = $user->getId_user();
-        if (isset($id) && !empty($id) && isset($nickname) && !empty($nickname)) {
+        if (isset($id) && !empty($id) && isset($nickname)) { # nickname peut être vide
             $req = $this->dbConnect()->prepare('UPDATE `user` SET nickname = :nickname WHERE id_user = :id');
             $req->bindParam(':nickname', $nickname);
             $req->bindParam(':id', $id);
@@ -183,14 +194,16 @@ class UserManager extends Model
         try {
             $code = md5(uniqid(rand(), true));
             $email = new \SendGrid\Mail\Mail();
-            $email->setFrom("les-sardines@hackhardennes.com");
-            $email->setSubject("Validation compte, Les Sardines");
+            $email->setFrom("les-sardines@hackardennes.com");
+            $email->setSubject("Validation de compte, les Sardines");
             $email->addTo($_SESSION['user']->getEmail());
             $mail = $_SESSION['user']->getEmail();
             $message = '<html>';
-            $message .= '<head><title>Titre du message</title></head>';
+            $message .= '<head><title>Activation compte Sardine</title></head>';
             $message .= '<body>';
-            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="'.Config::$server_address.'/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<img src="'.Config::$server_address.'/images/pictos/logo_text_1.svg" alt="Les Sardines">';
+            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="' . Config::$server_address . '/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a href="' . Config::$server_address . '/emailActivation/' . $code . '">' . Config::$server_address . '/emailActivation/' . $code . '</a></p>';
             $message .= '<body>';
             $message .= '</html>';
             $email->addContent("text/html", $message);
@@ -200,9 +213,9 @@ class UserManager extends Model
             $req->bindParam(':email', $mail);
             if ($req->execute()) {
                 $response = $sendgrid->send($email);
-               /* print $response->statusCode() . "\n";
-                print_r($response->headers());
-                print $response->body() . "\n";*/
+                /* print $response->statusCode() . "\n";
+                 print_r($response->headers());
+                 print $response->body() . "\n";*/
             }
         } catch (Exception $e) {
             echo 'Une erreur est survenue';
@@ -221,13 +234,14 @@ class UserManager extends Model
                 $reqActivation = $this->dbConnect()->prepare("UPDATE `user` SET account_status= '1' WHERE account_status = :code");
                 $reqActivation->bindParam(':code', $code);
                 $reqActivation->execute();
-                echo 'Compte activé';
+                return 'Compte activé avec succès';
             } else if ($req->fetch()['account_status'] == '1') {
-                echo 'Compte déjà activé';
-            } else {
-                echo 'erreur';
+                throw new \Exception('Compte déjà activé');
             }
+        } else {
+            throw new \Exception('erreur');
         }
+
     }
     /**------------fin de la classe ------------------ */
 }

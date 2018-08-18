@@ -51,4 +51,6 @@
 </div>
 <?php endif; ?>
 
+<a href="donner">revenir à l'accueil</a>
+
 </main>

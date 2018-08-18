@@ -26,7 +26,7 @@ main {
     display: flex;
 }
 
-.slider-info-top, .slider-info-bottom > p, .page-info {
+.slider-info-top, .slider-txt, .page-info {
     transition: transform 500ms;
 
 }
@@ -45,20 +45,49 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-}
-
-.slider-info-bottom > p {
-    font-size: 14px;
-    text-align: left;
     width: 70vw;
-    color: #1c1c1c;
-}
-
-.slider-info-bottom {
-    color: #2489B4;
     text-align: center;
     font-size: 14px;
 }
+
+.slider-info-bottom div {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: left;
+}
+.slider-info-bottom h2 {
+    font-size: 16px;
+    text-align: center;
+}
+.slider-txt > p {
+    margin-top: 10px;
+}
+.align-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.slider-txt > button {
+    cursor: pointer;
+}
+.slider-info-bottom div ul, .slider-info-bottom div ul li {
+    text-align: left;
+    list-style-type: disc;
+}
+.slider-info-bottom div ul {
+    margin-top: 10px;
+}
+.slider-info-bottom div ul li {
+    margin-left: 5vw;
+    margin-top: 5px;
+}
+.slider-info-bottom div h2, .slider-info-bottom div ul {
+    color: #1c1c1c;
+}
+#start {
+    cursor: pointer;
+}
+
 
 .slider-bottom {
     width: 100%;
@@ -67,6 +96,10 @@ main {
     align-items: center;
     margin-top: 4vh;
     margin-bottom: 6.89vh;
+    color: #2489B4;
+}
+.page-info {
+    color: #2489B4;
 }
 
 .slider-bottom img {
@@ -106,8 +139,6 @@ main {
 }
 
 .rond {
-    height: 32.5vh;
-    width: 32.5vh;
     border-radius: 50%;
     background-color: #0cd18f;
 }
@@ -121,8 +152,8 @@ main {
 
 /* D = 216px */
 .rond {
-    height: 32.5vh;
-    width: 32.5vh;
+    height: 20vh; /*32.5vh origin */
+    width: 20vh;
     max-height: 216px;
     max-width: 216px;
 }

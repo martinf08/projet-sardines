@@ -19,3 +19,5 @@ DocumentRoot /home/sardine/public_html
 </Directory>
 
 Et les logs renommés en error.preprod.sardines.log, access.preprod.sardines.log.
+
+Il est nécessaire d'installer composer et sendgrid sur le serveur.

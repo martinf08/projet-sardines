@@ -28,7 +28,7 @@ function getUserId($db, $id)
             $req2->execute();
             $reponse2 = $req2->fetch()['account_status'];
             if ($reponse2 == 0 || $reponse2 != 1) {
-                return '<p>Email : '. $reponse .',<br/> attention compte non validé</p>';
+                return '<p>Email : '. $reponse .',<br/> attention compte non validé<br/><b class="alert">impossible de continuer l\'ajout de matériel</b></p>';
             }
             elseif ($reponse2 == 1) {
                 return '<p>Email : '. $reponse .', compte activé</p>';
