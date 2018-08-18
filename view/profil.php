@@ -22,7 +22,8 @@
     <?= $user->getBalance(); ?> 
 </span></p>
 
-<form action="<?= Config::$root ?>accountUpdate" method="post">
+<form action="<?= Config::$root ?>accountUpdate" method="post" enctype="multipart/form-data">
+    <input type="file" name="avatar" id="avatar">
     <!-- chaque champ est désactivé pas défaut pour ne montrer que la valeur actuelle -->
     <!-- il faudra cliquer sur le petit crayon qui ciblera son input voisin pour permettre de le réécrire -->
     <p>Email : <span><?= $user->getEmail(); ?></span>

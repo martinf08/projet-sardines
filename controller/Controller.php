@@ -108,7 +108,12 @@ class Controller
                         } else {
                             throw new Exception('La valeur que vous avez passé est invalide.');
                         }
-                    } else {
+                    }
+                    if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
+                        $userManager = new UserManager();
+                        $userManager->updateAvatar();
+                    }
+                    else {
                         throw new Exception('Vous ne pouvez pas modifier ce compte.');
                     }
                 }

@@ -243,5 +243,17 @@ class UserManager extends Model
         }
 
     }
+    public function updateAvatar() {
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
+                $dossier     = $_SERVER['DOCUMENT_ROOT'].Config::$root.'/images/avatar/';
+                $newFilmName = $_SESSION['user']->getIdentifier().'.jpg';
+                move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $newFilmName);
+            }
+        }
+        else {
+            throw new \Exception('Erreur');
+        }
+    }
     /**------------fin de la classe ------------------ */
 }
