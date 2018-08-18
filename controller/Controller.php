@@ -599,6 +599,9 @@ class Controller
                 $css = array('welcome', 'validation');
                 $this->set('css', $css);
                 $this->set('response', $response);
+                if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+                    $_SESSION['user']->setAccount_status('1');
+                }
                 $this->render('view/activation.php');
             } else {
                 throw new Exception('erreur');
