@@ -201,7 +201,7 @@ class UserManager extends Model
             $message = '<html>';
             $message .= '<head><title>Activation compte Sardine</title></head>';
             $message .= '<body>';
-            $message .= '<img src="'.Config::$server_address.'/images/pictos/logo_text_1.svg" alt="Les Sardines">';
+            $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines">';
             $message .= '<p>Bonjour !<br>Pour valder votre email <a href="' . Config::$server_address . '/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
             $message .= '<p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a href="' . Config::$server_address . '/emailActivation/' . $code . '">' . Config::$server_address . '/emailActivation/' . $code . '</a></p>';
             $message .= '<body>';
@@ -243,17 +243,27 @@ class UserManager extends Model
         }
 
     }
-    public function updateAvatar() {
+
+    public function updateAvatar()
+    {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
-                $dossier     = $_SERVER['DOCUMENT_ROOT'].Config::$root.'/images/avatar/';
-                $newFilmName = $_SESSION['user']->getIdentifier().'.jpg';
-                move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $newFilmName);
+                $name = $_FILES['avatar']['name'];
+                $fileExt = strtolower(end(explode('.', $name)));
+                $AllowExt = ['bmp', 'tiff', 'jpeg', 'gif', 'png', 'jpg'];
+                $testExt = false;
             }
-        }
-        else {
+            $dossier = $_SERVER['DOCUMENT_ROOT'] . Config::$root . '/images/avatar/';
+            $newFilmName = $_SESSION['user']->getIdentifier() . '.jpg';
+            move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $newFilmName);
+        } else {
             throw new \Exception('Erreur');
         }
     }
-    /**------------fin de la classe ------------------ */
+else
+{
+throw new \Exception('Erreur');
+}
+}
+/**------------fin de la classe ------------------ */
 }
