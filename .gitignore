@@ -4,3 +4,4 @@ Config.php
 .vendor
 vendor
 composer.lock
+images/avatar
