@@ -74,7 +74,7 @@ class Controller
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if ($_SESSION['user']->getIdentifier()) {
                 $userManager = new UserManager();
-                $avatar = $userManager->findAvatar($_SESSION['user']->getIdentifier());
+                $avatar = $userManager->findAvatar();
                 if (strtolower($userManager->getIdByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getId_user())) {
                     $user = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
                     $this->set('title', 'Mon compte');
