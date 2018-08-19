@@ -26,5 +26,3 @@ http://127.0.0.1:1080
 Pré-requis api sendgrid
 
 sudo apt-get install php-curl
-
-Créer un dossier avatar "images/avatar"

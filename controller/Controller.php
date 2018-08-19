@@ -91,11 +91,13 @@ class Controller
 
     public function accountUpdate()
     {
+        var_dump($_FILES);
         if (isset($_POST['submit-account'])) { # vérifie que le submit ayant le name convenu sur la vue profil existe
 
             $userManager = new UserManager();
             if (strtolower($userManager->getEmailUserByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                 if (isset($_POST['pseudo_account'])) {
+
                     if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                         $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{3,25}#";
                         if (preg_match($regex, $_POST['pseudo_account']) OR $_POST['pseudo_account'] === '') {
@@ -104,16 +106,23 @@ class Controller
                             # forcer la création d'un pseudo par défaut à partir de l'email est une autre possibilité
                             $_SESSION['user']->setNickname($_POST['pseudo_account']);
                             $userManager->updatePseudo($_SESSION['user']);
-                            header('Location: profil');
+                            if ($_FILES['avatar']['error'] == 4) {
+                                header('Location: profil');
+                            }
+
                         } else {
                             throw new Exception('La valeur que vous avez passé est invalide.');
                         }
+                        if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
+                            if(!is_dir('images/avatar')) {
+                                mkdir('images/avatar', 0777);
+                            }
+                            $userManager = new UserManager();
+                            $userManager->updateAvatar();
+                            header('Location: profil');
+                        }
                     }
-                    if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
-                        $userManager = new UserManager();
-                        $userManager->updateAvatar();
-                    }
-                    else {
+                     else {
                         throw new Exception('Vous ne pouvez pas modifier ce compte.');
                     }
                 }
@@ -140,10 +149,10 @@ class Controller
 
     public function passForget($request = null)
     {
-        $error = "";
+        $error        = "";
         $code_recover = false;
-        $model = new UserManager();
-        $email = "";
+        $model        = new UserManager();
+        $email        = "";
 
         $this->set('title', 'Mot de passe oublié');
         if (!isset($_POST['email_recuperation'])) {
@@ -159,13 +168,13 @@ class Controller
 
                         if ($user) {
 
-                            $code = "";
+                            $code         = "";
                             $sending_code = "";
                             for ($i = 0; $i < 8; $i++) {
                                 $sending_code .= mt_rand(0, 9);
                             }
                             $code .= md5($sending_code);
-                            $pre = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
+                            $pre  = $model->dbConnect()->prepare("SELECT id FROM recovery_password WHERE email = :email");
                             $pre->execute(array(':email' => $email));
                             $reponse = $pre->fetch(PDO::FETCH_ASSOC);
 
@@ -178,9 +187,9 @@ class Controller
                                 $pre->execute(array($code, $email));
                             }
 
-                            $to = $email;
+                            $to      = $email;
                             $subject = "Récupération de mot de passe";
-                            $link = Config::$root . "forget" . DS . $sending_code;
+                            $link    = Config::$root . "forget" . DS . $sending_code;
                             $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
 
                             // Always set content-type when sending HTML email
@@ -213,14 +222,14 @@ class Controller
 
             try {
                 $code = md5(htmlspecialchars($request));
-                $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
+                $pre  = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code', $code);
                 $pre->execute();
                 $reponse = $pre->fetch(PDO::FETCH_ASSOC);
 
                 if ($reponse) {
                     $_SESSION['email'] = $reponse['email'];
-                    $pre = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
+                    $pre               = $model->dbConnect()->prepare("UPDATE recovery_password SET confirm = 1  WHERE email = ?");
                     $pre->execute(array($email));
                 } else {
                     $error = "Modification de mot de passe impossible";
@@ -238,7 +247,7 @@ class Controller
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
 
-                $newPasseword = htmlspecialchars($_POST['newPasseword']);
+                $newPasseword        = htmlspecialchars($_POST['newPasseword']);
                 $confirmNewpasseword = htmlspecialchars($_POST['confirmNewpasseword']);
 
                 if (!empty($newPasseword) AND !empty($confirmNewpasseword)) {
@@ -284,8 +293,8 @@ class Controller
             if ($_POST['email'] != "" || $_POST['password'] != "") {
                 if (isset($_POST['submit-connect'])) {
                     $userManager = new UserManager();
-                    $user = new User($_POST);
-                    $reponse = $userManager->logIn($user);
+                    $user        = new User($_POST);
+                    $reponse     = $userManager->logIn($user);
 
                     if ($reponse) {
                         $_SESSION['islog'] = true;
@@ -314,7 +323,7 @@ class Controller
 
     public function logOut()
     {
-        $_SESSION['user'] = "";
+        $_SESSION['user']  = "";
         $_SESSION['islog'] = 0;
 
         header('Location: ' . Config::$root);
@@ -338,8 +347,8 @@ class Controller
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "" && $_POST['terms'] == "1") {
                 $userManager = new UserManager();
-                $user = new User($_POST);
-                $reponse = $userManager->insertUser($user);
+                $user        = new User($_POST);
+                $reponse     = $userManager->insertUser($user);
 
                 if (is_bool($reponse)) {
                     if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
@@ -390,7 +399,7 @@ class Controller
                 if (isset($_SESSION['user']) && $_SESSION['user']->getAccount_status() == 1) {
                     $assetManager = new AssetManager();
                     # passer ici les valeurs des champs des radios pour la vue
-                    $types = $assetManager->getAll('type');
+                    $types     = $assetManager->getAll('type');
                     $qualities = $assetManager->getAll('quality');
 
                     if (isset($types) && isset($qualities)) {
@@ -425,7 +434,7 @@ class Controller
                 if ($_SESSION['user']->getStaff()) {
 
                     if (isset($_POST) && !empty($_POST)) {
-                        $post = $_POST;
+                        $post         = $_POST;
                         $assetManager = new AssetManager();
                         if (isset($post)) {
 
@@ -470,7 +479,7 @@ class Controller
             # les obtenir à partir du $asset renvoyé dans le manager
             # demanderait de modifier la structure de la table asset
             $userManager = new UserManager();
-            $userInfos = $userManager->getUserInfos($_SESSION['lastAsset']->getIdUser());
+            $userInfos   = $userManager->getUserInfos($_SESSION['lastAsset']->getIdUser());
 
             $this->set('title', 'Succès de la transaction');
             $css = array('success');
@@ -598,7 +607,7 @@ class Controller
 
         if (isset($code) && !empty($code)) {
             $userManager = new UserManager();
-            $response = $userManager->getEmailValidation($code);
+            $response    = $userManager->getEmailValidation($code);
             if (isset($response) && !empty($response)) {
                 $this->set('title', 'Activation');
                 $css = array('welcome', 'validation');
