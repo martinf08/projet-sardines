@@ -26,6 +26,10 @@
             </div>
 
             <?php if(isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
+                <?php
+                $userManager = new UserManager();
+                $avatar = $userManager->findAvatar($_SESSION['user']->getIdentifier());
+                ?>
                 <p id="pseudo" class="bold"><?php echo $_SESSION['user']->getNickname(); ?></p>
                 <p id="mail"><?php echo $_SESSION['user']->getEmail(); ?></p>
                 <p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>

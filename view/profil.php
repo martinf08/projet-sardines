@@ -13,6 +13,11 @@
     <?php #endif; ?>
     <!--<input type="file" name="" id="">
 </div>-->
+    <?php
+    if (isset($avatar) && !empty($avatar)) {
+        echo '<img src="images/avatar/'. $avatar.'" alt="">';
+    }
+    ?>
 
 <p>Mon identifiant unique : <span id="identifier">
     <?= $user->getIdentifier(); ?>
