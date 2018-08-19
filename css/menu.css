@@ -128,3 +128,14 @@ nav a {
     border-left: 300px solid transparent;
     z-index:-1;
 }
+#avatar-img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    height: 110px;
+    width: 110px;
+}
+#avatar-box {
+    display: flex;
+    justify-content: center;
+}
