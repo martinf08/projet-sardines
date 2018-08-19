@@ -40,7 +40,27 @@ main {
 .message-validation p {
     width: 70vw;
     font-size: 14px;
+    color: #1c1c1c;
 }
 .center {
     text-align: center;
+}
+
+#triangle-bottomleft, #triangle-bottomright {
+	width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    z-index:-1;
+}
+
+#triangle-bottomleft {
+	border-bottom: 140px solid rgba(12,209,143,0.2);
+    border-right: 260px solid transparent;
+}
+
+#triangle-bottomright {
+    right: 0;
+	border-bottom: 245px solid rgba(12,209,143,0.1);
+    border-left: 300px solid transparent;
 }

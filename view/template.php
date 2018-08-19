@@ -62,17 +62,18 @@
     </div>
 
     <div id="container">
-
+        <?php
+        ?>
         <?php if (isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
-        <?php if (!$_SESSION['user']->getAccount_status()): ?>
+            <?php if (!$_SESSION['user']->getAccount_status()): ?>
             <div id="warning">ce compte n'est pas encore activé</div>
-            <?php endif; ?> 
+            <?php endif; ?>
         <?php endif; ?>
-      
+
         <?= $content ?>
 
     </div>
-    
+
     <script src="<?= Config::$root ?>js/menu_toggle.js"></script>
 
 </body>

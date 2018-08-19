@@ -108,7 +108,12 @@ class Controller
                         } else {
                             throw new Exception('La valeur que vous avez passé est invalide.');
                         }
-                    } else {
+                    }
+                    if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
+                        $userManager = new UserManager();
+                        $userManager->updateAvatar();
+                    }
+                    else {
                         throw new Exception('Vous ne pouvez pas modifier ce compte.');
                     }
                 }
@@ -567,7 +572,7 @@ class Controller
     {
 
         if (isset($_SESSION['user']) && !empty($_SESSION)) {
-            if ($_SESSION['justSign'] == true) {
+            if (isset($_SESSION['justSign']) && $_SESSION['justSign'] == true) {
 
                 unset($_SESSION['justSign']);
 
@@ -599,6 +604,9 @@ class Controller
                 $css = array('welcome', 'validation');
                 $this->set('css', $css);
                 $this->set('response', $response);
+                if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+                    $_SESSION['user']->setAccount_status('1');
+                }
                 $this->render('view/activation.php');
             } else {
                 throw new Exception('erreur');

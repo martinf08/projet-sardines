@@ -18,7 +18,8 @@ class UserManager extends Model
     }
 
     # utilisée pour la page success.php
-    public function getUserInfos($id) {
+    public function getUserInfos($id)
+    {
         $sql = "SELECT nickname, identifier FROM `user` WHERE `id_user` = :id";
         $req = $this->dbConnect()->prepare($sql);
         $req->bindParam(':id', $id);
@@ -193,14 +194,16 @@ class UserManager extends Model
         try {
             $code = md5(uniqid(rand(), true));
             $email = new \SendGrid\Mail\Mail();
-            $email->setFrom("les-sardines@hackhardennes.com");
-            $email->setSubject("Validation compte, Les Sardines");
+            $email->setFrom("les-sardines@hackardennes.com");
+            $email->setSubject("Validation de compte, les Sardines");
             $email->addTo($_SESSION['user']->getEmail());
             $mail = $_SESSION['user']->getEmail();
             $message = '<html>';
-            $message .= '<head><title>Titre du message</title></head>';
+            $message .= '<head><title>Activation compte Sardine</title></head>';
             $message .= '<body>';
-            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="'.Config::$server_address.'/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<img src="'.Config::$server_address.'/images/pictos/logo_text_1.svg" alt="Les Sardines">';
+            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="' . Config::$server_address . '/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a href="' . Config::$server_address . '/emailActivation/' . $code . '">' . Config::$server_address . '/emailActivation/' . $code . '</a></p>';
             $message .= '<body>';
             $message .= '</html>';
             $email->addContent("text/html", $message);
@@ -210,9 +213,9 @@ class UserManager extends Model
             $req->bindParam(':email', $mail);
             if ($req->execute()) {
                 $response = $sendgrid->send($email);
-               /* print $response->statusCode() . "\n";
-                print_r($response->headers());
-                print $response->body() . "\n";*/
+                /* print $response->statusCode() . "\n";
+                 print_r($response->headers());
+                 print $response->body() . "\n";*/
             }
         } catch (Exception $e) {
             echo 'Une erreur est survenue';
@@ -222,7 +225,6 @@ class UserManager extends Model
 
     public function getEmailValidation($code)
     {
-        echo 'test';
         if (isset($code) && !empty($code)) {
             $code = htmlspecialchars($code);
             $req = $this->dbConnect()->prepare('SELECT account_status FROM `user` WHERE account_status = :code');
@@ -234,13 +236,24 @@ class UserManager extends Model
                 $reqActivation->execute();
                 return 'Compte activé avec succès';
             } else if ($req->fetch()['account_status'] == '1') {
-                throw new \Exception('Compte déjà activé') ;
+                throw new \Exception('Compte déjà activé');
+            }
+        } else {
+            throw new \Exception('erreur');
+        }
+
+    }
+    public function updateAvatar() {
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
+                $dossier     = $_SERVER['DOCUMENT_ROOT'].Config::$root.'/images/avatar/';
+                $newFilmName = $_SESSION['user']->getIdentifier().'.jpg';
+                move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $newFilmName);
             }
         }
         else {
-            throw new \Exception('erreur') ;
+            throw new \Exception('Erreur');
         }
-
     }
     /**------------fin de la classe ------------------ */
 }
