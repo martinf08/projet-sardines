@@ -195,7 +195,7 @@ class UserManager extends Model
         try {
             $code  = md5(uniqid(rand(), true));
             $email = new \SendGrid\Mail\Mail();
-            $email->setFrom("les-sardines@hackardennes.com");
+            $email->setFrom("noreply@hackardennes.com");
             $email->setSubject("Validation de compte, les Sardines");
             $email->addTo($_SESSION['user']->getEmail());
             $mail    = $_SESSION['user']->getEmail();
@@ -241,12 +241,11 @@ class UserManager extends Model
                 throw new \Exception('Compte déjà activé');
             }
         } else {
-            throw new \Exception('erreur');
+            throw new \Exception('Une erreur s\'est produite lors de la vérification du code.');
         }
-
     }
-
-    public function updateAvatar()
+  
+    public function updateAvatar() 
     {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
