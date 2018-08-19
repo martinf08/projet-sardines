@@ -261,7 +261,10 @@ class UserManager extends Model
                     }
                 }
                 if ($testExt == true) {
-                    $newFilmName = $_SESSION['user']->getIdentifier() .'.'. $fileExt;
+                    if ($this->findAvatar()) {
+                        unlink('images/avatar/'.$this->findAvatar());
+                    }
+                    $newFilmName = $_SESSION['user']->getIdentifier() . '.' . $fileExt;
                     move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $newFilmName);
                 } else {
                     throw new \Exception('L\'extension du fichier n\'est pas autorisé');
@@ -272,6 +275,24 @@ class UserManager extends Model
         } else {
             throw new \Exception('Erreur');
         }
+    }
+
+    public function findAvatar()
+    {
+        if (is_dir('images/avatar')) {
+            $files = scandir('images/avatar');
+            foreach ($files as $file) {
+                if (!is_dir('images/avatar/' . $file)) {
+                    $cutFile  = explode('.', $file);
+                    $fileName = array_splice($cutFile, 0, count($cutFile) - 1);
+                    $fileName = implode('.', $fileName);
+                    if ($_SESSION['user']->getIdentifier() == $fileName) {
+                      return $file;
+                    }
+                }
+            }
+        }
+        return false;
     }
     /**------------fin de la classe ------------------ */
 }

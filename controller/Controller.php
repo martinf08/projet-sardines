@@ -74,11 +74,14 @@ class Controller
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if ($_SESSION['user']->getIdentifier()) {
                 $userManager = new UserManager();
+                $avatar = $userManager->findAvatar($_SESSION['user']->getIdentifier());
                 if (strtolower($userManager->getIdByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getId_user())) {
                     $user = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
-
                     $this->set('title', 'Mon compte');
                     $this->set('user', $user);
+                    if (isset($avatar) && !empty($avatar)) {
+                        $this->set('avatar', $avatar);
+                    }
                     $this->render('view/profil.php');
                 }
             } else {
@@ -91,7 +94,7 @@ class Controller
 
     public function accountUpdate()
     {
-        var_dump($_FILES);
+
         if (isset($_POST['submit-account'])) { # vérifie que le submit ayant le name convenu sur la vue profil existe
 
             $userManager = new UserManager();
