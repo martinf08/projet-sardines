@@ -64,7 +64,7 @@ main {
 }
 
 .slider-txt > p {
-    margin-bottom: 4.51vh;
+    margin-bottom: 4.04vh;
 }
 
 .align-btn {
@@ -98,7 +98,7 @@ main {
     color: #2489B4;
     font-size: 18px;
     text-align: left;
-    margin-bottom: 8.02vh;
+    margin-bottom: 7.94vh;
 }
 
 #start {
@@ -110,8 +110,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 11.70vh;
-    padding-bottom: 6.85vh;
+    padding-top: 4.5vh;
+    padding-bottom: 4.5vh;
     color: #2489B4;
 }
 
@@ -134,8 +134,8 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 5.01vh;
-    padding-bottom: 8.36vh;
+    padding-top: 2.99vh;
+    padding-bottom: 6.24vh;
 }
 
 .logo img:nth-child(2) {
@@ -172,7 +172,7 @@ main {
     width: 20vh;
     max-height: 216px;
     max-width: 216px;
-    margin-bottom: 6.02vh;
+    margin-bottom: 5.99vh;
 
 }
 
