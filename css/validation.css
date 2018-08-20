@@ -1,12 +1,8 @@
-#menu {
-    display: none;
-}
 main {
     height: 100vh;
-    background-image: none;
-    background-color: #fefefe;
-
+    background: #fefefe;
 }
+
 .logo {
     padding-top: 5.09vh;
     width: 100vw;
@@ -14,7 +10,6 @@ main {
     justify-content: space-between;
     align-items: center;
 }
-
 
 .logo img:nth-child(2) {
     height: auto;
@@ -26,6 +21,7 @@ main {
     width: 28px;
     margin-right: 8.53vw;
 }
+
 .message-validation {
     display: flex;
     flex-direction: column;
@@ -33,17 +29,15 @@ main {
     align-items: center;
    height: 100%;
 }
+
 .message-validation div {
-    margin-top: 10vh;
+    margin-top: 15vh;
 }
 
 .message-validation p {
     width: 70vw;
     font-size: 14px;
-    color: #1c1c1c;
-}
-.center {
-    text-align: center;
+    color: #097550;
 }
 
 #triangle-bottomleft, #triangle-bottomright {
