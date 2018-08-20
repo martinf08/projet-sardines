@@ -309,12 +309,13 @@ class UserManager extends Model
             $email->addContent("text/html", $message);
             $sendgrid = new \SendGrid(Config::$sendgrid_key);
             $response = $sendgrid->send($email);
+            return 'L\'email à été envoyé';
             /* print $response->statusCode() . "\n";
              print_r($response->headers());
              print $response->body() . "\n";*/
 
         } catch (Exception $e) {
-            echo 'Une erreur est survenue';
+            return 'Une erreur est survenue';
             //echo 'Caught exception: ' . $e->getMessage() . "\n";
         }
     }

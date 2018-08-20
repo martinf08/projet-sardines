@@ -191,7 +191,8 @@ class Controller
                             //$message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
                             //Load Composer's autoloader
                             require 'vendor/autoload.php';
-                            $model->sendForgetPass($email, $code);
+                            $message = $model->sendForgetPass($email, $code);
+                            $_SESSION['pass_message'] = $message;
 
 
                         } else {
@@ -242,7 +243,6 @@ class Controller
                     if ($newPasseword === $confirmNewpasseword) {
                         $newPasseword = md5($newPasseword);
                         //update
-
                         $pre = $model->dbConnect()->prepare("UPDATE user SET password= ? WHERE email = ?");
 
                         $pre->execute(array($newPasseword, $_SESSION['email']));

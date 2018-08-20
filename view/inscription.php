@@ -73,8 +73,9 @@
                 <div id="proxy"></div>
                 <input class="btn-full-2" name="submit-signin" id="submit-signin"type="submit" value="S'inscrire">
             </div>
+            <div id="alert"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici</a>.</p></div>
         </form>
-        <div id="alert"> <p>Vous avez déjà un compte <a href="connexion">connectez vous ici</a>.</p></div>
+
     </div>
       <div id="triangle-bottomleft"></div>
       <div id="triangle-bottomright"></div>
