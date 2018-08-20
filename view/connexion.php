@@ -181,15 +181,15 @@
 
         </div>
 
-        <div id="alert"><h3><?php if (isset($errorMessage)) {
-                    echo $errorMessage;
+        <div id="alert"><h3><?php if (isset($_SESSION['errorMessage'])) {
+                    echo $_SESSION['errorMessage'];
                 } ?></h3></div>
         <form method="POST" action="log" enctype="multipart/form-data" autocomplete="off">
 
             <div class="flexCenter form-input">
                 <input class="input" type="email" id="email" name="email" placeholder="johndoe@mail.com"
-                       value="<?php if (isset($email)) {
-                           echo $email;
+                       value="<?php if (isset($_POST['email'])) {
+                           echo $_POST['email'];
                        } ?>">
             </div>
             <div class="form-input flexCenter">

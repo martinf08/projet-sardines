@@ -293,18 +293,19 @@ class Controller
                         header('Location: donner');
                     } else {
                         $_SESSION['islog'] = false;
-                        $this->set('title', 'Connexion');
-                        $css = array('tooltip', 'connexion');
-                        $this->set('css', $css);
-                        $this->set('email', $_POST['email']);
-                        $this->set('errorMessage', 'Identifiant ou mot de passe incorrect.');
-                        $this->render('view/connexion.php');
+                        // $this->set('title', 'Connexion');
+                        // $css = array('tooltip', 'connexion');
+                        // $this->set('css', $css);
+                        // $this->set('email', $_POST['email']);
+                        $_SESSION['errorMessage'] = 'Identifiant ou mot de passe incorrect.'; 
+                        header('Location: ' . Config::$root . 'connexion');
                     }
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
             }
         } else {
+            http_response_code(403);
             header('Location: ' . Config::$root);
         }
     }
