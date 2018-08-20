@@ -1,0 +1,109 @@
+main {
+    height: 100vh;
+    width: 100vw;
+}
+.logo {
+    padding-top: 1.79vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+.logo h1 {
+    font-family: 'SourceSansProLight', 'Helvetica', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #009688;
+
+}
+.header-left {
+    margin-left: 8.26vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.header-left img:first-child {
+ text-align: center;
+    width: 17px;
+    height: 14px;
+    margin-bottom: 4.49vh;
+}
+
+.header-left img:last-child {
+    width: 28px;
+    height: 15px;
+}
+.header-right {
+    margin-right: 8.26vw;
+    width: 28px;
+    height: 15px;
+}
+.avatar-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4.19vh;
+}
+.avatar-box h3 {
+    font-family: 'SourceSansProLight', 'Helvetica', sans-serif;
+    color: #2489B4;
+    margin-bottom: 1vh;
+}
+.avatar-img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    height: 110px;
+    width: 110px;
+    margin-bottom: 1.5vh;
+}
+.center-box {
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+
+}
+.left-box {
+    border-right: 1px solid #e3e3e3;
+    color: #2489B4;
+    padding-right: 6.66vw;
+    text-align: right;
+    padding-left: 5.6vw;
+}
+.right-box {
+    padding-left: 5.6vw;
+}
+
+.left-box p:first-child, .right-box p:first-child {
+    margin-top: 5.09vh;
+    margin-bottom: 3.29vh;
+}
+.left-box p:nth-child(2), .right-box p:nth-child(2) {
+    margin-bottom: 5.99vh;
+}
+.right-box p:nth-child(2) {
+    font-size: 16px;
+}
+.left-box:nth-child(2), .right-box:nth-child(2) {
+    margin-bottom: 4.64vh;
+}
+
+.under-box {
+    display: flex;
+    flex-direction: column;
+   margin-left: 10.66vw;
+}
+.under-box input:last-child {
+    align-self: center;
+    margin-top: 1.5vh;
+}
+.under-box p:first-child {
+    margin-top: 2.84vh;
+}
+.under-box p {
+    font-size: 13px;
+    margin-bottom: 1vh;
+}

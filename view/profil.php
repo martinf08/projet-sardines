@@ -1,69 +1,64 @@
 <main>
 
 
+    <!-- je mets les champs brut sans me soucier du layout, il suffira de les copier/coller où il faut -->
+    <!-- je suppose que les valeurs seront récupérées dans l'objet user et pas dans la session -->
 
-<!-- je mets les champs brut sans me soucier du layout, il suffira de les copier/coller où il faut -->
-<!-- je suppose que les valeurs seront récupérées dans l'objet user et pas dans la session -->
-
-<!--<div id="avatar-field">-->
+    <!--<div id="avatar-field">-->
     <?php #if(!empty($user->getAvatar())): ?>
-        <!--<div id="avatar" style="background-image: url('../css/img/<?php #echo $user->getAvatar(); ?>');"></div>-->
+    <!--<div id="avatar" style="background-image: url('../css/img/<?php #echo $user->getAvatar(); ?>');"></div>-->
     <?php #else: ?>
-        <!--mettre un avatar par défaut ici dans le html (cas d'un user n'ayant pas encore enregistré d'avatar)-->
+    <!--mettre un avatar par défaut ici dans le html (cas d'un user n'ayant pas encore enregistré d'avatar)-->
     <?php #endif; ?>
     <!--<input type="file" name="" id="">
 </div>-->
-    <?php
-    if (isset($avatar) && !empty($avatar)) {
-        echo '<img src="images/avatar/'. $avatar.'" alt="">';
-    }
-    ?>
-    <div class="logo">
-        <div class="header-left">
-            <img src="images/pictos/burger_open.svg" alt="">
-            <img src="images/pictos/arrow_back.svg" alt="">
+    <form action="<?= Config::$root ?>accountUpdate" method="post" enctype="multipart/form-data">
+        <div class="logo">
+            <div class="header-left">
+                <img src="images/pictos/burger_open.svg" alt="">
+                <img src="images/pictos/arrow_back.svg" alt="">
+            </div>
+            <h1><?= $title ?></h1>
+            <div class="header-right"></div>
         </div>
-        <h1><?= $title ?></h1>
-        <div class="header-right"></div>
-    </div>
-<p>Mon identifiant unique : <span id="identifier">
-    <?= $user->getIdentifier(); ?>
-</span></p>
+        <div class="avatar-box">
+            <h3>Avatar</h3>
+            <?php
+            if (isset($avatar) && !empty($avatar)) {
+                echo '<img class="avatar-img" src="images/avatar/' . $avatar . '" alt="">';
+            }
+            ?>
+            <input type="file" name="avatar" id="avatar">
+        </div>
+        <div class="center-box">
+            <div class="left-box">
+                <p>BONJOUR</p>
+                <p><?= $user->getNickname(); ?></p>
+                <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo"/>
+            </div>
+            <div class="right-box">
+                <p>ID : <?= $user->getIdentifier(); ?></p>
+                <p>Solde Sardines : </p>
+                <p> <?= $user->getBalance(); ?> </p>
+            </div>
+        </div>
 
-<p>Mon solde : <span id="balance"> 
-    <?= $user->getBalance(); ?> 
-</span></p>
-
-<form action="<?= Config::$root ?>accountUpdate" method="post" enctype="multipart/form-data">
-    <input type="file" name="avatar" id="avatar">
-    <!-- chaque champ est désactivé pas défaut pour ne montrer que la valeur actuelle -->
-    <!-- il faudra cliquer sur le petit crayon qui ciblera son input voisin pour permettre de le réécrire -->
-    <p>Email : <span><?= $user->getEmail(); ?></span>
-    </p>
-    <p>Pseudo : <input type="text" name="pseudo_account" id="pseudo-account" value="<?= $user->getNickname(); ?>">
-
-    </p>
-    <input type="submit" name="submit-account" value="Enregistrer">
-</form>
-
-<div id="log">
-    <p>Date de création du compte : <span><?= $user->getAccount_creation_date(); ?></span></p>
-    <p>Dernière connexion : <span><?= $user->getLast_Login(); ?></span></p>
-</div>
-
-<?php 
-    if ($user->getStaff() OR $user->getAdmin()):
-?>
-<div id="access">
-    <?php if ($user->getStaff()): ?>
-        <p>Vous êtes membre interne des Sardines.</p>
-    <?php endif; ?>
-    <?php if ($user->getAdmin()): ?>
-        <p>Vous êtes administrateur.</p>
-    <?php endif; ?>
-</div>
-<?php endif; ?>
-
-<a href="donner">revenir à l'accueil</a>
+        <div class="under-box">
+            <p>Email : <?= $user->getEmail(); ?></p>
+            <p>Date de création du compte : <?= $user->getAccount_creation_date(); ?>
+            <p>Dernière connexion : <?= $user->getLast_Login(); ?></p>
+            <?php
+            if ($user->getStaff() OR $user->getAdmin()):
+                ?>
+                <?php if ($user->getStaff()): ?>
+                <p>Vous êtes membre interne des Sardines.</p>
+            <?php endif; ?>
+                <?php if ($user->getAdmin()): ?>
+                <p>Vous êtes administrateur.</p>
+            <?php endif; ?>
+            <?php endif; ?>
+            <input type="submit" name="submit-account" class="btn-full-donation" value="Valider">
+        </div>
+    </form>
 
 </main>
