@@ -11,9 +11,11 @@ if (open != null) {
     });
 }
 
-if (open2 != null) { // apparemment devenu inutile, tout est en id="open" si j'ai rien raté
+if (open2 != null) {
     open2.addEventListener('click', function() {
         menu.classList.add('show');
+        // stop propagation sinon le clic sur body sera déclenché !
+        event.stopPropagation();
     });
 }
 
