@@ -67,6 +67,18 @@
                     <input class="btn-full-2"  name="recover_submit"  value="Envoyer" type="submit">
                 </div>
             </form>
+
+
+
+            <?php
+            if (isset( $_SESSION['pass_message']) && !empty($_SESSION['pass_message'])) {
+                echo '<br/>';
+                echo '<div class="flex-center">';
+                echo  '<p class="pass-info">'.$_SESSION['pass_message'].'</p>';
+                unset($_SESSION['pass_message']);
+                echo '</div>';
+            }
+            ?>
         <?php }?>
         <div class="flex-center"><?php if(isset($errors)){echo'<br><span style="color:red">'.$errors.'</span>';}else{echo'<br/>';}?></div>
     </div>
