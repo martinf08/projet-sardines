@@ -1,6 +1,6 @@
 <main>
 
-<?= $title ?>
+
 
 <!-- je mets les champs brut sans me soucier du layout, il suffira de les copier/coller où il faut -->
 <!-- je suppose que les valeurs seront récupérées dans l'objet user et pas dans la session -->
@@ -18,7 +18,14 @@
         echo '<img src="images/avatar/'. $avatar.'" alt="">';
     }
     ?>
-
+    <div class="logo">
+        <div class="header-left">
+            <img src="images/pictos/burger_open.svg" alt="">
+            <img src="images/pictos/arrow_back.svg" alt="">
+        </div>
+        <h1><?= $title ?></h1>
+        <div class="header-right"></div>
+    </div>
 <p>Mon identifiant unique : <span id="identifier">
     <?= $user->getIdentifier(); ?>
 </span></p>

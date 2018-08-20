@@ -82,6 +82,8 @@ class Controller
                     if (isset($avatar) && !empty($avatar)) {
                         $this->set('avatar', $avatar);
                     }
+                    $css = array('profil');
+                    $this->set('css', $css);
                     $this->render('view/profil.php');
                 }
             } else {

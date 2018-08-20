@@ -9,9 +9,12 @@ h1 {
 #menu, #open {
     display: none;
 }
+
 main {
     background-color: #fefefe;
+    height: 100vh;
 }
+
 @keyframes slideRight {
     0% {
         transform: translateX(0vw);
@@ -45,59 +48,73 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 70vw;
+    width: 80vw;
     text-align: center;
     font-size: 14px;
 }
 
 .slider-info-bottom div {
-    margin-top: 10px;
     font-size: 14px;
     text-align: left;
 }
+
 .slider-info-bottom h2 {
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
 }
+
 .slider-txt > p {
-    margin-top: 10px;
+    margin-bottom: 4.51vh;
 }
+
 .align-btn {
     display: flex;
     justify-content: center;
     margin-top: 10px;
 }
+
 .slider-txt > button {
     cursor: pointer;
 }
+
 .slider-info-bottom div ul, .slider-info-bottom div ul li {
     text-align: left;
     list-style-type: disc;
 }
-.slider-info-bottom div ul {
-    margin-top: 10px;
-}
+
+
+
 .slider-info-bottom div ul li {
-    margin-left: 5vw;
-    margin-top: 5px;
+    padding-left: 18px;
+    line-height: 24px;
+    margin-left: 9vw;
 }
+
 .slider-info-bottom div h2, .slider-info-bottom div ul {
     color: #1c1c1c;
 }
+
+.slider-info-bottom div h2 {
+    color: #2489B4;
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 8.02vh;
+}
+
 #start {
     cursor: pointer;
 }
-
 
 .slider-bottom {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 4vh;
-    margin-bottom: 6.89vh;
+    padding-top: 11.70vh;
+    padding-bottom: 6.85vh;
     color: #2489B4;
 }
+
 .page-info {
     color: #2489B4;
 }
@@ -107,18 +124,19 @@ main {
     cursor: pointer;
 
 }
+
 .arrow-next {
     transform: rotate(180deg);
 }
-
 
 .logo {
     width: 100vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-top: 5.01vh;
+    padding-bottom: 8.36vh;
 }
-
 
 .logo img:nth-child(2) {
     height: auto;
@@ -141,14 +159,12 @@ main {
 .rond {
     border-radius: 50%;
     background-color: #0cd18f;
+
 }
 
 /* Placement */
 
 /* 34px */
-.logo {
-    margin-top: 5.09vh;
-}
 
 /* D = 216px */
 .rond {
@@ -156,6 +172,8 @@ main {
     width: 20vh;
     max-height: 216px;
     max-width: 216px;
+    margin-bottom: 6.02vh;
+
 }
 
 /*39px 28px*/

@@ -16,6 +16,7 @@ body {
     z-index: 1;
     width: 300px;
     height: 100vh;
+    min-height: 510px;
     left: -304px;
     transition: left 0.4s;
     background: #fff;
