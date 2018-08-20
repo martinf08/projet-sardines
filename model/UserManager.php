@@ -1,8 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 class UserManager extends Model
 {
 
@@ -34,7 +31,7 @@ class UserManager extends Model
 
         //session_destroy();
         $_SESSION['user'] = "";
-        $errors           = array();
+        $errors = array();
         //email check
         if (filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL === false)) {
             $errors[] = "email non valide";
@@ -57,9 +54,9 @@ class UserManager extends Model
                     } else {
 
                         $data = array(
-                            'email'      => $user->getEmail(),
-                            'password'   => $user->getPassword(),
-                            'terms'      => $user->getTerms(),
+                            'email' => $user->getEmail(),
+                            'password' => $user->getPassword(),
+                            'terms' => $user->getTerms(),
                             'identifier' => $this->identiferGenerator()
                         );
                         $this->saveData($data);
@@ -84,10 +81,10 @@ class UserManager extends Model
     public function identiferGenerator()
     {
 
-        $character_set_array   = array();
+        $character_set_array = array();
         $character_set_array[] = array('count' => 2, 'characters' => 'abcdefghijklmnopqrstuvwxyz');
         $character_set_array[] = array('count' => 2, 'characters' => '0123456789');
-        $temp_array            = array();
+        $temp_array = array();
 
         foreach ($character_set_array as $character_set) {
             for ($i = 0; $i < $character_set['count']; $i++) {
@@ -108,7 +105,7 @@ class UserManager extends Model
 
         if ($user->getPassword() != null && filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
             $conx = $this->userConnection(array(
-                'email'    => $user->getEmail(),
+                'email' => $user->getEmail(),
                 'password' => $user->getPassword()
             ));
             $user = new User($conx);
@@ -180,7 +177,7 @@ class UserManager extends Model
     public function updatePseudo(User $user)
     {
         $nickname = $user->getNickname();
-        $id       = $user->getId_user();
+        $id = $user->getId_user();
         if (isset($id) && !empty($id) && isset($nickname)) { # nickname peut être vide
             $req = $this->dbConnect()->prepare('UPDATE `user` SET nickname = :nickname WHERE id_user = :id');
             $req->bindParam(':nickname', $nickname);
@@ -193,12 +190,12 @@ class UserManager extends Model
     public function sendEmailValidation()
     {
         try {
-            $code  = md5(uniqid(rand(), true));
+            $code = md5(uniqid(rand(), true));
             $email = new \SendGrid\Mail\Mail();
             $email->setFrom("noreply@hackardennes.com");
             $email->setSubject("Validation de compte, les Sardines");
             $email->addTo($_SESSION['user']->getEmail());
-            $mail    = $_SESSION['user']->getEmail();
+            $mail = $_SESSION['user']->getEmail();
             $message = '<html>';
             $message .= '<head><title>Activation compte Sardine</title></head>';
             $message .= '<body>';
@@ -209,7 +206,7 @@ class UserManager extends Model
             $message .= '</html>';
             $email->addContent("text/html", $message);
             $sendgrid = new \SendGrid(Config::$sendgrid_key);
-            $req      = $this->dbConnect()->prepare('UPDATE `user` SET account_status= :code WHERE email= :email');
+            $req = $this->dbConnect()->prepare('UPDATE `user` SET account_status= :code WHERE email= :email');
             $req->bindParam(':code', $code);
             $req->bindParam(':email', $mail);
             if ($req->execute()) {
@@ -228,7 +225,7 @@ class UserManager extends Model
     {
         if (isset($code) && !empty($code)) {
             $code = htmlspecialchars($code);
-            $req  = $this->dbConnect()->prepare('SELECT account_status FROM `user` WHERE account_status = :code');
+            $req = $this->dbConnect()->prepare('SELECT account_status FROM `user` WHERE account_status = :code');
             $req->bindParam(':code', $code);
             $req->execute();
             if ($req->fetch()['account_status'] != false && $req->fetch()['account_status'] != '1') {
@@ -244,15 +241,15 @@ class UserManager extends Model
             throw new \Exception('Une erreur s\'est produite lors de la vérification du code.');
         }
     }
-  
-    public function updateAvatar() 
+
+    public function updateAvatar()
     {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
-                $name     = $_FILES['avatar']['name'];
-                $fileExt  = strtolower(end(explode('.', $name)));
+                $name = $_FILES['avatar']['name'];
+                $fileExt = strtolower(end(explode('.', $name)));
                 $allowExt = ['bmp', 'tiff', 'jpeg', 'gif', 'png', 'jpg'];
-                $testExt  = false;
+                $testExt = false;
 
                 $dossier = $_SERVER['DOCUMENT_ROOT'] . Config::$root . '/images/avatar/';
                 foreach ($allowExt as $element) {
@@ -262,7 +259,7 @@ class UserManager extends Model
                 }
                 if ($testExt == true) {
                     if ($this->findAvatar()) {
-                        unlink('images/avatar/'.$this->findAvatar());
+                        unlink('images/avatar/' . $this->findAvatar());
                     }
                     $newFilmName = $_SESSION['user']->getIdentifier() . '.' . $fileExt;
                     move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $newFilmName);
@@ -283,16 +280,44 @@ class UserManager extends Model
             $files = scandir('images/avatar');
             foreach ($files as $file) {
                 if (!is_dir('images/avatar/' . $file)) {
-                    $cutFile  = explode('.', $file);
+                    $cutFile = explode('.', $file);
                     $fileName = array_splice($cutFile, 0, count($cutFile) - 1);
                     $fileName = implode('.', $fileName);
                     if ($_SESSION['user']->getIdentifier() == $fileName) {
-                      return $file;
+                        return $file;
                     }
                 }
             }
         }
         return false;
     }
+
+    public function sendForgetPass($mail, $code)
+    {
+        try {
+            $email = new \SendGrid\Mail\Mail();
+            $email->setFrom("noreply@hackardennes.com");
+            $email->setSubject("Récupération du mot de passe, les Sardines");
+            $email->addTo($mail);
+            $message = '<html>';
+            $message .= '<head><title>Récupération mot de passe les Sardines</title></head>';
+            $message .= '<body>';
+            $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines">';
+            $message .= '<a href="' . Config::$server_address . '/forget/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<body>';
+            $message .= '</html>';
+            $email->addContent("text/html", $message);
+            $sendgrid = new \SendGrid(Config::$sendgrid_key);
+            $response = $sendgrid->send($email);
+            /* print $response->statusCode() . "\n";
+             print_r($response->headers());
+             print $response->body() . "\n";*/
+
+        } catch (Exception $e) {
+            echo 'Une erreur est survenue';
+            //echo 'Caught exception: ' . $e->getMessage() . "\n";
+        }
+    }
+
     /**------------fin de la classe ------------------ */
 }
