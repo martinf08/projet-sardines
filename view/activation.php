@@ -6,7 +6,7 @@
 
     <div class="message-validation">
         <p class="center">
-            <?php #$response; ?>
+            <?php $response; ?>
         </p>
         <div class="btn-full-2">
             <?php
