@@ -601,7 +601,7 @@ class Controller
             $response = $userManager->getEmailValidation($code);
             if (isset($response) && !empty($response)) {
                 $this->set('title', 'Activation');
-                $css = array('welcome', 'validation');
+                $css = array('validation');
                 $this->set('css', $css);
                 $this->set('response', $response);
                 if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
