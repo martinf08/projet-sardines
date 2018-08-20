@@ -523,7 +523,6 @@ class Controller
      */
     public function render($view)
     {
-
         if (file_exists($view)) {
             extract($this->vars);
             ob_start();
@@ -564,7 +563,9 @@ class Controller
         $this->render('view/erreur.php');
     }
 
-    /* MAIL TEST */
+    #---------------------------------
+    #  COURRIER (ENVOI ET VALIDATION)
+    #---------------------------------
     function sendEmailValidation()
     {
 
@@ -579,14 +580,16 @@ class Controller
                 $userManager = new UserManager();
                 $userManager->sendEmailValidation();
                 $this->set('title', 'Validation');
-                $css = array('welcome', 'validation');
+                $css = array('validation');
                 $this->set('css', $css);
                 $this->render('view/validation.php');
             } else {
-                throw new Exception('Erreur');
+                http_response_code(403);
+                header('Location: ' . Config::$root);
             }
         } else {
-            throw new Exception('Erreur');
+            http_response_code(403);
+            header('Location: ' . Config::$root);
         }
     }
 
