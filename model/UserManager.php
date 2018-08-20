@@ -202,8 +202,8 @@ class UserManager extends Model
             $message = '<html>';
             $message .= '<head><title>Activation compte Sardine</title></head>';
             $message .= '<body>';
-            $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines">';
-            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="' . Config::$server_address . '/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines" style="height:auto;width:200px;">';
+            $message .= '<p>Bonjour !<br>Pour valider votre email <a href="' . Config::$server_address . '/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
             $message .= '<p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a href="' . Config::$server_address . '/emailActivation/' . $code . '">' . Config::$server_address . '/emailActivation/' . $code . '</a></p>';
             $message .= '<body>';
             $message .= '</html>';
