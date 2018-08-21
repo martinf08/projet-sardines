@@ -64,9 +64,7 @@
             </div>
             
             <div class="flexCenter"  id="condition">
-                <!-- version plus courte -->
-                <p><input type="checkbox" name="terms" id="terms" value="1"> J'accepte les conditions générales d'utilisation.</p>
-                <!--<p>En créant un compte, vous acceptez les Conditions générales d'utilisation des sardines. Veuillez consulter notre Notice Protection de vos Informations Personnelles, notre Notice Cookies.</p>-->
+                <p><input type="checkbox" name="terms" id="terms" value="1"><label for="terms">J'accepte les <a href="conditions" target="_blank">conditions générales d'utilisation</a>.</label></p>
             </div>
 
             <div class="flexCenter">
