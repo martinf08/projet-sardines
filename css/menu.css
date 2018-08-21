@@ -113,24 +113,24 @@ nav a {
     z-index: 2;
 }
 
-#triangle-bottomleft {
+#menu #triangle-bottomleft {
 	width: 0;
     height: 0;
     position: absolute;
     bottom: 0;
 	border-bottom: 30vh solid rgba(129, 199, 132,0.2);
-    border-right: 90vw solid transparent;
+    border-right: 300px solid transparent;
     z-index:-1;
 }
 
-#triangle-bottomright {
+#menu #triangle-bottomright {
 	width: 0;
     height: 0;
     position: absolute;
     bottom: 0;
     right: 0;
 	border-bottom: 50vh solid rgba(12,209,143,0.1);
-    border-left: 98vw solid transparent;
+    border-left: 300px solid transparent;
     z-index:-1;
 }
 #avatar-img {
