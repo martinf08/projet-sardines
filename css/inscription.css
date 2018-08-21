@@ -33,10 +33,16 @@ input{
     display: inline-block;
     margin-bottom: 2vh;
 }
+
 #alert{
     text-align: center;
-    margin-top: 5vh;
 }
+
+#alert > p{
+
+    margin-bottom: 20px;
+}
+
 .flexCenter{
     margin: 0 auto;
     padding: 0;

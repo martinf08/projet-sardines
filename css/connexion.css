@@ -31,9 +31,14 @@ input{
     display: inline-block;
     margin-bottom: 2vh;
 }
+
 #alert{
     text-align: center;
-    margin-top: 5vh;
+}
+
+#alert > p{
+
+    margin-bottom: 20px;
 }
 
 .flexCenter{
@@ -74,8 +79,8 @@ a,p{
 #arrow{
     width: 8%;
     flex: 1;
-     line-height: 32.5px;
-     text-align: center;
+    line-height: 32.5px;
+    text-align: center;
 
 }
 #arrow svg{
@@ -87,7 +92,7 @@ a,p{
     width: 5%    
 }
 
-.mdp-oublie{
-    margin-bottom: 6vh;
-    margin-top: 6vh;
+#mdp-oublie{
+    margin-bottom: 50px;
+   
 }
