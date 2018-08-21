@@ -33,7 +33,7 @@ Importer le fichier structure.sql dans phpmyadmin puis le fichier fixtures.sql p
 ### Accès BDD
 Pour configurer l'accès à la base de donnée, remplir le fichier class/Config.php.dist avec les bonnes valeurs et supprimer l'extension '.dist'.
 
-L'email assigné dans $ghost devra correspondre à un ghost-user inséré dans la base de donnée.
+L'email assigné dans $ghost devra correspondre à un ghost-user inséré dans la base de donnée avec pour identifier 0000.
 
 ### Service de courriel
 Une clé d'API Sendgrid est nécessaire pour l'envoi de courriel. Cette clé doit être écrite, ainsi que l'adresse du serveur, dans Config.php.
