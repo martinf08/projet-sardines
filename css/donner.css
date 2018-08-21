@@ -99,11 +99,18 @@ h1 {
     height: 210px;
     padding: 10px;
     color: #097550;
+    text-align: center;
 }
 
 #prochainement {
     text-align: center;
     font-size: 1.1rem;
     line-height: 1.8rem;
-    margin-bottom: 7vh; /* temporaire */
+}
+
+.card svg {
+    width: 85px;
+    height: 85px;
+    display: block;
+    margin: 8px auto;
 }
