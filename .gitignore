@@ -5,3 +5,4 @@ Config.php
 vendor
 composer.lock
 images/avatar/*
+!images/avatar/avatar_default.png
