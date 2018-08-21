@@ -251,7 +251,7 @@ class UserManager extends Model
                 $allowExt = ['bmp', 'tiff', 'jpeg', 'gif', 'png', 'jpg'];
                 $testExt = false;
 
-                $dossier = $_SERVER['DOCUMENT_ROOT'] . Config::$root . '/images/avatar/';
+                $dossier = $_SERVER['DOCUMENT_ROOT'] . '/images/avatar/';
                 foreach ($allowExt as $element) {
                     if ($element == $fileExt) {
                         $testExt = true;
