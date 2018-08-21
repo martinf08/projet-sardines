@@ -15,8 +15,8 @@
     <form action="<?= Config::$root ?>accountUpdate" method="post" enctype="multipart/form-data">
         <div class="logo">
             <div class="header-left">
-                <img src="images/pictos/burger_open.svg" alt="">
-                <img src="images/pictos/arrow_back.svg" alt="">
+                <img id="open" src="images/pictos/burger_open.svg" alt="">
+                <a href="<?= Config::$root ?>donner"><img id="arrow-back" src="images/pictos/arrow_back.svg" alt=""></a>
             </div>
             <h1><?= $title ?></h1>
             <div class="header-right"></div>
