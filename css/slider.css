@@ -156,18 +156,13 @@ main {
     align-items: center;
 }
 
-.rond {
-    border-radius: 50%;
-    background-color: #0cd18f;
-
-}
 
 /* Placement */
 
 /* 34px */
 
 /* D = 216px */
-.rond {
+.picto-slider img {
     height: 20vh; /*32.5vh origin */
     width: 20vh;
     max-height: 216px;

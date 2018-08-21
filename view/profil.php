@@ -15,17 +15,21 @@
     <form action="<?= Config::$root ?>accountUpdate" method="post" enctype="multipart/form-data">
         <div class="logo">
             <div class="header-left">
-                <img src="images/pictos/burger_open.svg" alt="">
-                <img src="images/pictos/arrow_back.svg" alt="">
+                <img id="open" src="images/pictos/burger_open.svg" alt="">
+                <a href="<?= Config::$root ?>donner"><img id="arrow-back" src="images/pictos/arrow_back.svg" alt=""></a>
             </div>
             <h1><?= $title ?></h1>
             <div class="header-right"></div>
         </div>
         <div class="avatar-box">
-            <h3>Avatar</h3>
             <?php
             if (isset($avatar) && !empty($avatar)) {
                 echo '<img class="avatar-img" src="images/avatar/' . $avatar . '" alt="">';
+            }
+            else {
+                    echo '<div id="avatar-box">';
+                    echo '<img id="avatar-img" src="./images/avatar/avatar_default.png" alt="avatar">';
+                    echo '</div>';
             }
             ?>
             <input type="file" name="avatar" id="avatar">
@@ -34,7 +38,11 @@
             <div class="left-box">
                 <p>BONJOUR</p>
                 <p><?= $user->getNickname(); ?></p>
-                <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo"/>
+                <div class="input-profil">
+                    <img src="images/pictos/edit.svg" alt="">
+                    <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo"/>
+                </div>
+
             </div>
             <div class="right-box">
                 <p>ID : <?= $user->getIdentifier(); ?></p>
@@ -57,8 +65,12 @@
                 <p>Vous êtes administrateur.</p>
             <?php endif; ?>
             <?php endif; ?>
+
+        </div>
+        <div class="button-sub">
             <input type="submit" name="submit-account" class="btn-full-donation" value="Valider">
         </div>
-    </form>
 
+    </form>
+    <script src="js/profil.js"></script>
 </main>

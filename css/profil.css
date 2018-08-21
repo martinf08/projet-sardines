@@ -1,6 +1,10 @@
 main {
     height: 100vh;
     width: 100vw;
+    background-color: #f6f6f6;
+}
+div.logo, div.avatar-box, div.center-box {
+    background-color: #fefefe;
 }
 .logo {
     padding-top: 1.79vh;
@@ -28,6 +32,8 @@ main {
  text-align: center;
     width: 17px;
     height: 14px;
+}
+#open {
     margin-bottom: 4.49vh;
 }
 
@@ -45,7 +51,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 4.19vh;
+    padding-bottom: 4.19vh;
 }
 .avatar-box h3 {
     font-family: 'SourceSansProLight', 'Helvetica', sans-serif;
@@ -64,6 +70,9 @@ main {
     border-top: 1px solid #e3e3e3;
     border-bottom: 1px solid #e3e3e3;
     display: flex;
+    -webkit-box-shadow: -2px 3px 4px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: -2px 3px 4px 0px rgba(0,0,0,0.3);
+    box-shadow: -2px 3px 4px 0px rgba(0,0,0,0.3);
 
 }
 .left-box {
@@ -71,18 +80,31 @@ main {
     color: #2489B4;
     padding-right: 6.66vw;
     text-align: right;
-    padding-left: 5.6vw;
+}
+.input-profil {
+    display: flex;
+    align-items: center;
+}
+.input-profil img {
+    height: 15px;
+    width: 13px;
+    margin-left: 16.5vw;
+}
+.input-profil img {
+    color: #1b1b1b;
+
 }
 .right-box {
     padding-left: 5.6vw;
+
 }
 
 .left-box p:first-child, .right-box p:first-child {
-    margin-top: 5.09vh;
+    margin-top: 3.09vh;
     margin-bottom: 3.29vh;
 }
 .left-box p:nth-child(2), .right-box p:nth-child(2) {
-    margin-bottom: 5.99vh;
+    margin-bottom: 3.99vh;
 }
 .right-box p:nth-child(2) {
     font-size: 16px;
@@ -90,11 +112,21 @@ main {
 .left-box:nth-child(2), .right-box:nth-child(2) {
     margin-bottom: 4.64vh;
 }
-
+#pseudo-account {
+    width: 96px;
+    border:none;
+    color: #2489B4;
+    text-align: center;
+}
+#pseudo-account::placeholder {
+    color: #1b1b1b;
+    font-size: 11px;
+}
 .under-box {
     display: flex;
     flex-direction: column;
-   margin-left: 10.66vw;
+   padding-left: 10.66vw;
+
 }
 .under-box input:last-child {
     align-self: center;
@@ -105,5 +137,12 @@ main {
 }
 .under-box p {
     font-size: 13px;
-    margin-bottom: 1vh;
+    margin-bottom: 2vh;
+}
+#open {
+    cursor: pointer;
+}
+.button-sub {
+    display: flex;
+    justify-content: center;
 }

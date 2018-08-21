@@ -22,7 +22,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                 <div></div>
             </div>
             <div class="slider-info-top">
-                <div class="rond"></div> <!-- logo -->
+                <div class="picto-slider"><img src="images/pictos/leaf.svg" alt=""></div> <!-- logo -->
             </div>
             <div class="slider-info-bottom">
                 <div class="slider-txt">
@@ -54,7 +54,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                 <div></div>
             </div>
             <div class="slider-info-top">
-                <div class="rond"></div> <!-- logo -->
+                <div class="picto-slider"><img src="images/pictos/reuse.svg" alt=""></div> <!-- logo -->
             </div>
             <div class="slider-info-bottom">
                 <div class="slider-txt">
@@ -86,7 +86,7 @@ if (!isset($_SESSION['user']) || empty($_SESSION['user'])) {
                 <div></div>
             </div>
             <div class="slider-info-top">
-                <div class="rond"></div> <!-- logo -->
+                <div class="picto-slider"><img src="images/pictos/magic.svg" alt=""></div> <!-- logo -->
             </div>
             <div class="slider-info-bottom">
             <div class="slider-txt">
