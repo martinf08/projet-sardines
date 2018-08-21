@@ -22,7 +22,6 @@
             <div class="header-right"></div>
         </div>
         <div class="avatar-box">
-            <h3>Avatar</h3>
             <?php
             if (isset($avatar) && !empty($avatar)) {
                 echo '<img class="avatar-img" src="images/avatar/' . $avatar . '" alt="">';
@@ -34,7 +33,11 @@
             <div class="left-box">
                 <p>BONJOUR</p>
                 <p><?= $user->getNickname(); ?></p>
-                <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo"/>
+                <div class="input-profil">
+                    <img src="images/pictos/edit.svg" alt="">
+                    <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo"/>
+                </div>
+
             </div>
             <div class="right-box">
                 <p>ID : <?= $user->getIdentifier(); ?></p>
@@ -60,5 +63,5 @@
             <input type="submit" name="submit-account" class="btn-full-donation" value="Valider">
         </div>
     </form>
-
+    <script src="js/profil.js"></script>
 </main>

@@ -32,6 +32,8 @@ div.logo, div.avatar-box, div.center-box {
  text-align: center;
     width: 17px;
     height: 14px;
+}
+#open {
     margin-bottom: 4.49vh;
 }
 
@@ -79,16 +81,30 @@ div.logo, div.avatar-box, div.center-box {
     padding-right: 6.66vw;
     text-align: right;
 }
+.input-profil {
+    display: flex;
+    align-items: center;
+}
+.input-profil img {
+    height: 15px;
+    width: 13px;
+    margin-left: 16.5vw;
+}
+.input-profil img {
+    color: #1b1b1b;
+
+}
 .right-box {
     padding-left: 5.6vw;
+
 }
 
 .left-box p:first-child, .right-box p:first-child {
-    margin-top: 5.09vh;
+    margin-top: 3.09vh;
     margin-bottom: 3.29vh;
 }
 .left-box p:nth-child(2), .right-box p:nth-child(2) {
-    margin-bottom: 5.99vh;
+    margin-bottom: 3.99vh;
 }
 .right-box p:nth-child(2) {
     font-size: 16px;
@@ -97,7 +113,14 @@ div.logo, div.avatar-box, div.center-box {
     margin-bottom: 4.64vh;
 }
 #pseudo-account {
-    width: 70%;
+    width: 96px;
+    border:none;
+    color: #2489B4;
+    text-align: center;
+}
+#pseudo-account::placeholder {
+    color: #1b1b1b;
+    font-size: 11px;
 }
 .under-box {
     display: flex;
@@ -114,7 +137,7 @@ div.logo, div.avatar-box, div.center-box {
 }
 .under-box p {
     font-size: 13px;
-    margin-bottom: 1vh;
+    margin-bottom: 2vh;
 }
 #open {
     cursor: pointer;

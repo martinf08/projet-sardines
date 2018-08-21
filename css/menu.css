@@ -139,8 +139,10 @@ nav a {
     border-radius: 50%;
     height: 110px;
     width: 110px;
+    margin-bottom: 1vh;
 }
 #avatar-box {
     display: flex;
     justify-content: center;
+
 }
