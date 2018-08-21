@@ -53,7 +53,7 @@
                 </svg>
            </div>
          
-            <div class="flexCenter"><?php if(isset($Info)){echo $Info;}?></div>
+            <div class="flexCenter"><?php if(isset($_SESSION['errorSign'])){echo $_SESSION['errorSign'];}?></div>
             <div class="flexCenter form-input"><input class="input" type="email" id="email" name="email" placeholder="e-mail" required></div>
             <div class="flexCenter form-input">
                 <input class="input" type="password" id="password" name="password" minlength="6" placeholder="mot de passe" required>
