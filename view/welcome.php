@@ -3,7 +3,7 @@
     <img src="images/pictos/logo1.svg">
 </div>
 
-        <span class="mini-title">Fais don du matos de camping que tu n'utilises plus !</span>
+        <span class="mini-title">Fais don du matos de camping que tu n'utilises plus&nbsp;!</span>
 
         <div class="picto-welcome">
             <img src="images/pictos/tent_night.svg">
