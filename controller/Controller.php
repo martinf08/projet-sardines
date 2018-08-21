@@ -490,10 +490,14 @@ class Controller
 
     public function welcome()
     {
-        $this->set('title', 'Bienvenue');
-        $css = array('welcome');
-        $this->set('css', $css);
-        $this->render('view/welcome.php');
+        if (isset($_SESSION['islog']) AND $_SESSION['islog']) {
+            header('Location: ' . Config::$root . 'donner');
+        } else {
+            $this->set('title', 'Bienvenue');
+            $css = array('welcome');
+            $this->set('css', $css);
+            $this->render('view/welcome.php');
+        }
     }
 
     #--------------
