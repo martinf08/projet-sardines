@@ -12,7 +12,7 @@ if (open != null) {
 }
 
 if (open2 != null) {
-    open2.addEventListener('click', function() {
+    open2.addEventListener('click', function(event) {
         menu.classList.add('show');
         // stop propagation sinon le clic sur body sera déclenché !
         event.stopPropagation();

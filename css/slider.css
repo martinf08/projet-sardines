@@ -151,7 +151,6 @@ main {
 }
 
 .slider-info-top {
-    height: 64.5vh;
     display: flex;
     justify-content: center;
     align-items: center;
