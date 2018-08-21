@@ -96,14 +96,21 @@ h1 {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     max-width: 80%;
-    height: 210px;
+    height: 260px;
     padding: 10px;
     color: #097550;
+    text-align: center;
 }
 
 #prochainement {
     text-align: center;
     font-size: 1.1rem;
     line-height: 1.8rem;
-    margin-bottom: 7vh; /* temporaire */
+}
+
+.card svg {
+    width: 85px;
+    height: 85px;
+    display: block;
+    margin: 8px auto 14px auto;
 }
