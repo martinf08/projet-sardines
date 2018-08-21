@@ -36,6 +36,7 @@ input{
 
 #alert{
     text-align: center;
+    margin-top: 15px;
 }
 
 #alert > p{
