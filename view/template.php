@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#105541">
+    <meta name="msapplication-navbutton-color" content="#105541">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title><?= $title ?></title>
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="<?= Config::$root ?>css/cheatsheet.css">
     <link rel="stylesheet" href="<?= Config::$root ?>css/menu.css">
     <!-- contient simplement les classes pour position et effet tiroir -->

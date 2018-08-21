@@ -1,10 +1,9 @@
 <main>
 
     <div class="logo">
-        <div></div>
         <img src="./images/pictos/logo_text_1.svg" alt="Les Sardines">
-        <div></div>
     </div>
+
     <div class="message-validation">
         <p>
             Vous êtes maintenant inscrit sur notre site,

@@ -84,6 +84,10 @@ body {
     transform: rotateZ(-44deg);
 }
 
+#mail, #sardines-balance {
+    font-size: 1rem;
+}
+
 /*************
      NAV
 *************/
