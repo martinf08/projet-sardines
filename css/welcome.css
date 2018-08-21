@@ -13,7 +13,7 @@ main{
 }
 
 .logo-welcome{
-    width: 125px;
+    width: 180px;
     margin-top: 8vh;
 }
 
@@ -27,7 +27,7 @@ main{
 }
 
 .picto-welcome {
-    width: 143px;
+    width: 200px;
     height: 21vh;
     margin-top: 6vh;
 }
@@ -45,10 +45,11 @@ main{
 .btn-full-txt{
     font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
     letter-spacing: 0.06em;
-    line-height: 1.8;
+    line-height: 1.8em;
     color: #fefefe;
     font-size: 18px;
-    text-decoration: none;   
+    text-decoration: none; 
+    display: block;  
   }
 
 #copyright{

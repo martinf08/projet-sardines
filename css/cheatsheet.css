@@ -149,7 +149,7 @@ html{
 }
 
 a{
-    background: inherit;
+   /* background: inherit; */
     border: none;
     width: inherit;
     height: inherit;

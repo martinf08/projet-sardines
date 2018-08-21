@@ -286,6 +286,8 @@ class Controller
                     $user = new User($_POST);
                     $reponse = $userManager->logIn($user);
 
+                    $_SESSION['errorMessage'] = null;
+
                     if ($reponse) {
                         $_SESSION['islog'] = true;
                         if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
@@ -295,10 +297,6 @@ class Controller
                         header('Location: donner');
                     } else {
                         $_SESSION['islog'] = false;
-                        // $this->set('title', 'Connexion');
-                        // $css = array('tooltip', 'connexion');
-                        // $this->set('css', $css);
-                        // $this->set('email', $_POST['email']);
                         $_SESSION['errorMessage'] = 'Identifiant ou mot de passe incorrect.'; 
                         header('Location: ' . Config::$root . 'connexion');
                     }
@@ -341,6 +339,8 @@ class Controller
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
 
+                $_SESSION['errorSign'] = null;
+
                 if (is_bool($reponse)) {
                     if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                         setcookie('cookie', '1', time() + (86400 * 30));
@@ -349,12 +349,13 @@ class Controller
                     header("Location: " . Config::$root . "emailValidation");
                 } else {
 
-                    $this->set('title', 'inscription');
-                    $css = array('tooltip', 'inscription');
-                    //$this->set('Info', 'Cet email existe déjà');
-                    $this->set('css', $css);
-                    $this->render('view/inscription.php');
-                    throw new Exception($reponse); # s'il y a un throw, le set/render ci-dessus ne sert à rien
+                    // $this->set('title', 'inscription');
+                    // $css = array('tooltip', 'inscription');
+                    // //$this->set('Info', 'Cet email existe déjà');
+                    // $this->set('css', $css);
+                    // $this->render('view/inscription.php');
+                    $_SESSION['errorSign'] = $reponse;
+                    header('Location: ' . Config::$root . 'inscription');
                 }
             } else {
                 header("HTTP/1.0 400");
@@ -490,10 +491,14 @@ class Controller
 
     public function welcome()
     {
-        $this->set('title', 'Bienvenue');
-        $css = array('welcome');
-        $this->set('css', $css);
-        $this->render('view/welcome.php');
+        if (isset($_SESSION['islog']) AND $_SESSION['islog']) {
+            header('Location: ' . Config::$root . 'donner');
+        } else {
+            $this->set('title', 'Bienvenue');
+            $css = array('welcome');
+            $this->set('css', $css);
+            $this->render('view/welcome.php');
+        }
     }
 
     #--------------
