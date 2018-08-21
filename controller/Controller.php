@@ -65,6 +65,17 @@ class Controller
         $this->render('view/mentions.php');
     }
 
+    #-----------------------
+    #  CONDITIONS GÉNÉRALES
+    #-----------------------
+    public function conditions()
+
+    {
+        $this->set('title', 'Conditions générales d\'utilisation');
+        $this->set('css', array('standard'));
+        $this->render('view/conditions.php');
+    }
+
     #----------
     #  PROFIL
     #----------
