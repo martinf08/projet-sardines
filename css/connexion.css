@@ -12,6 +12,7 @@ form{
 #container{
     width: 100%;
     margin: 0 auto; 
+    position: relative;
 }
 
 .avatar{
@@ -32,7 +33,9 @@ input{
 }
 #alert{
     text-align: center;
+    margin-top: 5vh;
 }
+
 .flexCenter{
     margin: 0 auto;
     padding: 0;
@@ -41,6 +44,7 @@ input{
     font-size: 100%;
     text-align: center;
 }
+
 #submit-connect{
     margin-top: 6.9%;
 
@@ -81,4 +85,9 @@ a,p{
 #vide{
     margin-left: 15%;
     width: 5%    
+}
+
+.mdp-oublie{
+    margin-bottom: 6vh;
+    margin-top: 6vh;
 }
