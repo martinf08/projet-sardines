@@ -87,8 +87,10 @@
 </div>
 
 <div id="container">
-    <?php
-    ?>
+    
+    <!-- avertissement preprod A SUPPRIMER POUR LA PROD -->
+    <div style="position:absolute;top:-2px;width:100vw;height:21px;background:#e69404;color:#fefefe;text-align:center;">vous êtes sur la version preprod du site</div>
+    
     <?php if (isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
         <?php if (!$_SESSION['user']->getAccount_status()): ?>
             <div id="warning">ce compte n'est pas encore activé</div>
