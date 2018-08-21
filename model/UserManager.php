@@ -50,7 +50,7 @@ class UserManager extends Model
                     $reponse = $this->identifierChecker($this->identiferGenerator());
 
                     if ($reponse) {
-                        return "Identifier déjà utilisé";
+                        return "Identifiant déjà utilisé";
                     } else {
 
                         $data = array(
