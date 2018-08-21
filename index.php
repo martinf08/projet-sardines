@@ -42,6 +42,7 @@ try
     $router->setRoute('accountUpdate', 'accountUpdate');
     $router->setRoute('bienvenue', 'welcome');
     $router->setRoute('erreur', 'error');
+    $router->setRoute('conditions', 'conditions');
     $router->setRoute('mentions-legales', 'mentions');
     $router->setRoute('emailValidation', 'sendEmailValidation');
     $router->setRoute('emailActivation', 'getEmailValidation');
