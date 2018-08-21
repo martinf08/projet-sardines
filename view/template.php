@@ -37,7 +37,7 @@
             $avatar      = $userManager->findAvatar();
             if (isset($avatar) && !empty($avatar)) {
                 echo '<div id="avatar-box">';
-                echo '<img id="avatar-img" src="images/avatar/' . $avatar . '" alt="avatar">';
+                echo '<img id="avatar-img" src="../images/avatar/' . $avatar . '" alt="avatar">';
                 echo '</div>';
             }
             ?>
