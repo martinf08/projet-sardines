@@ -64,7 +64,7 @@
             </div>
             
             <div class="flexCenter"  id="condition">
-                <p><input type="checkbox" name="terms" id="terms" value="1"><label for="terms">J'accepte les <a href="conditions" target="_blank">conditions générales d'utilisation</a>.</label></p>
+                <p><input type="checkbox" name="terms" id="terms" value="1"><label for="terms"> J'accepte les <a href="conditions" target="_blank">conditions générales d'utilisation</a>.</label></p>
             </div>
 
             <div class="flexCenter">

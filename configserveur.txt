@@ -1,4 +1,6 @@
-Lignes ajoutées dans /etc/apache2/apache2.conf :
+Voici les changements effectués sur le serveur test
+
+Lignes ajoutées dans /etc/apache2/apache2.conf (pour la toute première mise en ligne avant le vhost, ces lignes ne servent probablement plus à rien) :
 
 <Directory /home/sardine/public_html/>
     Options FollowSymLinks MultiViews
@@ -6,18 +8,41 @@ Lignes ajoutées dans /etc/apache2/apache2.conf :
     Require all granted
 </Directory>
 
-Lignes ajoutées dans /etc/apache2/sites-available/preprod.les-sardines.hackardennes.com.conf (qui est une copie de 000-default.conf) :
+Lignes ajoutées dans /etc/apache2/sites-available/preprod.les-sardines.hackardennes.com.conf (qui est une copie de 000-default.conf) ;
+le fichier est plus ou moins écrit tel que tu nous l'as indiqué dans le tuto let's encrypt :
 
-ServerName preprod.les-sardines.hackardennes.com
-ServerAlias www.preprod.les-blablabla...
-DocumentRoot /home/sardine/public_html
+<VirtualHost *:80>
 
-<Directory /home/sardine/public_html>
-    Options +FollowSymLinks
-    AllowOverride all
-    Require all granted
-</Directory>
+    ServerName preprod.les-sardines.hackardennes.com
 
-Et les logs renommés en error.preprod.sardines.log, access.preprod.sardines.log.
+    RewriteEngine Options
+    RewriteCond %{HTTPS} !on
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
-Il est nécessaire d'installer composer et sendgrid sur le serveur.
+</VirtualHost>
+
+<VirtualHost *:443>
+
+    ServerAdmin webmaster@localhost
+    ServerName preprod.les-sardines.hackardennes.com
+    ServerAlias www.preprod.les-sardines.hackardennes.com
+    DocumentRoot /home/sardine/public_html
+
+    <Directory /home/sardine/public_html>
+        Options +FollowSymLinks
+        Options -Indexes
+        AllowOverride all
+        Require all granted
+        Order allow,deny
+        allow from all
+    </Directory>
+
+    # ici toutes les lignes sur le SSL telles que je les ai trouvées dans ton tuto
+
+    LogLevel warn
+    ErrorLog ${APACHE_LOG_DIR}/error.preprod.sardines.log
+    CustomLog ${APACHE_LOG_DIR}/access.preprod.sardines.log combined
+
+</VirtualHost>
+
+Il est nécessaire d'installer composer et sendgrid sur le serveur, mais ça c'est déjà expliqué dans le readme.md

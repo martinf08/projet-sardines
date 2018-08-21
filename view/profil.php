@@ -40,7 +40,7 @@
                 <p><?= $user->getNickname(); ?></p>
                 <div class="input-profil">
                     <img src="images/pictos/edit.svg" alt="">
-                    <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo"/>
+                    <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo" value="<?= $user->getNickname(); ?>"/>
                 </div>
 
             </div>
