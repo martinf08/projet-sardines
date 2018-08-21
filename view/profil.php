@@ -65,8 +65,12 @@
                 <p>Vous êtes administrateur.</p>
             <?php endif; ?>
             <?php endif; ?>
+
+        </div>
+        <div class="button-sub">
             <input type="submit" name="submit-account" class="btn-full-donation" value="Valider">
         </div>
+
     </form>
     <script src="js/profil.js"></script>
 </main>

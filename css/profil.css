@@ -142,3 +142,7 @@ div.logo, div.avatar-box, div.center-box {
 #open {
     cursor: pointer;
 }
+.button-sub {
+    display: flex;
+    justify-content: center;
+}
