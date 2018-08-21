@@ -46,6 +46,11 @@
                 echo '<img id="avatar-img" src="./images/avatar/' . $avatar . '" alt="avatar">';
                 echo '</div>';
             }
+            else {
+                echo '<div id="avatar-box">';
+                echo '<img id="avatar-img" src="./images/avatar/avatar_default.png" alt="avatar">';
+                echo '</div>';
+            }
             ?>
 
             <p id="pseudo" class="bold"><?php echo $_SESSION['user']->getNickname(); ?></p>

@@ -26,6 +26,11 @@
             if (isset($avatar) && !empty($avatar)) {
                 echo '<img class="avatar-img" src="images/avatar/' . $avatar . '" alt="">';
             }
+            else {
+                    echo '<div id="avatar-box">';
+                    echo '<img id="avatar-img" src="./images/avatar/avatar_default.png" alt="avatar">';
+                    echo '</div>';
+            }
             ?>
             <input type="file" name="avatar" id="avatar">
         </div>
