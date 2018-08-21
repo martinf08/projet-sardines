@@ -3,9 +3,9 @@
     "name": "Les Sardines",
     "icons": [
       {
-        "src": "images/logo2.svg",
-        "sizes": "192x192",
-        "type": "image/svg"
+        "src": "images/pics/sardico.png",
+        "sizes": "220x220",
+        "type": "image/png"
       }
     ],
     "start_url": "/index.php",
