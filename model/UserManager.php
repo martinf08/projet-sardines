@@ -1,8 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
 class UserManager extends Model
 {
 
@@ -53,7 +50,7 @@ class UserManager extends Model
                     $reponse = $this->identifierChecker($this->identiferGenerator());
 
                     if ($reponse) {
-                        return "Identifier déjà utilisé";
+                        return "Identifiant déjà utilisé";
                     } else {
 
                         $data = array(
@@ -65,6 +62,7 @@ class UserManager extends Model
                         $this->saveData($data);
                         $this->logIn($user);
                         $_SESSION['islog'] = true;
+
                         return true;
                     }
 
@@ -194,15 +192,15 @@ class UserManager extends Model
         try {
             $code = md5(uniqid(rand(), true));
             $email = new \SendGrid\Mail\Mail();
-            $email->setFrom("les-sardines@hackardennes.com");
+            $email->setFrom("noreply@hackardennes.com");
             $email->setSubject("Validation de compte, les Sardines");
             $email->addTo($_SESSION['user']->getEmail());
             $mail = $_SESSION['user']->getEmail();
             $message = '<html>';
             $message .= '<head><title>Activation compte Sardine</title></head>';
             $message .= '<body>';
-            $message .= '<img src="'.Config::$server_address.'/images/pictos/logo_text_1.svg" alt="Les Sardines">';
-            $message .= '<p>Bonjour !<br>Pour valder votre email <a href="' . Config::$server_address . '/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines" style="height:auto;width:200px;">';
+            $message .= '<p>Bonjour !<br>Pour valider votre email <a href="' . Config::$server_address . '/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
             $message .= '<p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a href="' . Config::$server_address . '/emailActivation/' . $code . '">' . Config::$server_address . '/emailActivation/' . $code . '</a></p>';
             $message .= '<body>';
             $message .= '</html>';
@@ -234,26 +232,93 @@ class UserManager extends Model
                 $reqActivation = $this->dbConnect()->prepare("UPDATE `user` SET account_status= '1' WHERE account_status = :code");
                 $reqActivation->bindParam(':code', $code);
                 $reqActivation->execute();
+
                 return 'Compte activé avec succès';
             } else if ($req->fetch()['account_status'] == '1') {
                 throw new \Exception('Compte déjà activé');
             }
         } else {
-            throw new \Exception('erreur');
+            throw new \Exception('Une erreur s\'est produite lors de la vérification du code.');
         }
-
     }
-    public function updateAvatar() {
+
+    public function updateAvatar()
+    {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
-                $dossier     = $_SERVER['DOCUMENT_ROOT'].Config::$root.'/images/avatar/';
-                $newFilmName = $_SESSION['user']->getIdentifier().'.jpg';
-                move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $newFilmName);
+                $name = $_FILES['avatar']['name'];
+                $fileExt = strtolower(end(explode('.', $name)));
+                $allowExt = ['bmp', 'tiff', 'jpeg', 'gif', 'png', 'jpg'];
+                $testExt = false;
+
+                $dossier = $_SERVER['DOCUMENT_ROOT'] . Config::$root . '/images/avatar/';
+                foreach ($allowExt as $element) {
+                    if ($element == $fileExt) {
+                        $testExt = true;
+                    }
+                }
+                if ($testExt == true) {
+                    if ($this->findAvatar()) {
+                        unlink('images/avatar/' . $this->findAvatar());
+                    }
+                    $newFilmName = $_SESSION['user']->getIdentifier() . '.' . $fileExt;
+                    move_uploaded_file($_FILES['avatar']['tmp_name'], $dossier . $newFilmName);
+                } else {
+                    throw new \Exception('L\'extension du fichier n\'est pas autorisé');
+                }
+            } else {
+                throw new \Exception('Erreur');
             }
-        }
-        else {
+        } else {
             throw new \Exception('Erreur');
         }
     }
+
+    public function findAvatar()
+    {
+        if (is_dir('images/avatar')) {
+            $files = scandir('images/avatar');
+            foreach ($files as $file) {
+                if (!is_dir('images/avatar/' . $file)) {
+                    $cutFile = explode('.', $file);
+                    $fileName = array_splice($cutFile, 0, count($cutFile) - 1);
+                    $fileName = implode('.', $fileName);
+                    if ($_SESSION['user']->getIdentifier() == $fileName) {
+                        return $file;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public function sendForgetPass($mail, $code)
+    {
+        try {
+            $email = new \SendGrid\Mail\Mail();
+            $email->setFrom("noreply@hackardennes.com");
+            $email->setSubject("Récupération du mot de passe, les Sardines");
+            $email->addTo($mail);
+            $message = '<html>';
+            $message .= '<head><title>Récupération mot de passe les Sardines</title></head>';
+            $message .= '<body>';
+            $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines">';
+            $message .= '<a href="' . Config::$server_address . '/forget/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<body>';
+            $message .= '</html>';
+            $email->addContent("text/html", $message);
+            $sendgrid = new \SendGrid(Config::$sendgrid_key);
+            $response = $sendgrid->send($email);
+            return 'L\'email à été envoyé';
+            /* print $response->statusCode() . "\n";
+             print_r($response->headers());
+             print $response->body() . "\n";*/
+
+        } catch (Exception $e) {
+            return 'Une erreur est survenue';
+            //echo 'Caught exception: ' . $e->getMessage() . "\n";
+        }
+    }
+
     /**------------fin de la classe ------------------ */
 }

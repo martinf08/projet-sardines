@@ -21,6 +21,7 @@
 
 
             <p id="step1" class="flex-center step">Etape 1 : Saisir l'ID du festivalier ou le code générique</p>
+            <p class="flex-center">(0000 si aucun bénéficiaire)</p>
 
             <div class="flex-center">
                 <input type="text" class="input" name="iduser" id="iduser" placeholder="identifiant">

@@ -1,13 +1,12 @@
 <main>
 
     <div class="logo">
-        <div></div>
         <img src="../images/pictos/logo_text_1.svg" alt="Les Sardines">
-        <div></div>
     </div>
+
     <div class="message-validation">
         <p class="center">
-            <?= $response; ?>
+            <?php $response; ?>
         </p>
         <div class="btn-full-2">
             <?php
@@ -18,7 +17,10 @@
                 echo '<a href="'. Config::$root .'connexion" class="btn-full-txt">Connexion</a>';
             }
             ?>
-
         </div>
     </div>
+
+    <div id="triangle-bottomleft"></div>
+    <div id="triangle-bottomright"></div>
+
 </main>

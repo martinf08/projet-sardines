@@ -4,37 +4,63 @@
 
     </div>
     <div class="connexion-content">
-          <div class="Header slideFromTop">
-          
-          <div id="arrow"><a href="welcome"><svg width="100%" height="100%" viewBox="0 0 28 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect x="0.877" y="4.291" width="27" height="1.471" style="fill:#009688;"/><path d="M4.937,0l-4.911,4.853l1.068,1.08l4.91,-4.853l-1.067,-1.08Z" style="fill:#009688;"/><path d="M1.16,3.924l4.817,5.701l-1.16,0.98l-4.817,-5.701l1.16,-0.98Z" style="fill:#009688;"/></svg></a></div>
-          <div class="titre"><?= $title;?></div>
-          <div id="vide"></div>
-      </div>
+        <div class="Header slideFromTop">
 
-       
+            <div id="arrow"><a href="welcome">
+                    <svg width="100%" height="100%" viewBox="0 0 28 11" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+                         xmlns:serif="http://www.serif.com/"
+                         style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect
+                                x="0.877" y="4.291" width="27" height="1.471" style="fill:#009688;"/>
+                        <path d="M4.937,0l-4.911,4.853l1.068,1.08l4.91,-4.853l-1.067,-1.08Z" style="fill:#009688;"/>
+                        <path d="M1.16,3.924l4.817,5.701l-1.16,0.98l-4.817,-5.701l1.16,-0.98Z"
+                              style="fill:#009688;"/></svg>
+                </a></div>
+            <div class="titre"><?= $title; ?></div>
+            <div id="vide"></div>
+        </div>
+
+
         <div class="avatar topFadeIn">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                viewBox="-426 129 512 512" style="enable-background:new -426 129 512 512;" xml:space="preserve">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                 y="0px"
+                 viewBox="-426 129 512 512" style="enable-background:new -426 129 512 512;" xml:space="preserve">
             <style type="text/css">
-                .st0{fill:none;stroke:#63FF99;stroke-width:36;stroke-linecap:round;stroke-miterlimit:10;}
-                .st1{fill:none;stroke:#63FF99;stroke-width:25;stroke-linecap:round;stroke-miterlimit:10;}
-                .st2{fill:#2489B4;}
+                .st0 {
+                    fill: none;
+                    stroke: #63FF99;
+                    stroke-width: 36;
+                    stroke-linecap: round;
+                    stroke-miterlimit: 10;
+                }
+
+                .st1 {
+                    fill: none;
+                    stroke: #63FF99;
+                    stroke-width: 25;
+                    stroke-linecap: round;
+                    stroke-miterlimit: 10;
+                }
+
+                .st2 {
+                    fill: #2489B4;
+                }
             </style>
-            <g id="Calque_2">
-                <line class="st0" x1="-288.9" y1="596" x2="-131" y2="596"/>
-                <line class="st1" x1="-385.9" y1="556" x2="-358.2" y2="556"/>
-                <line class="st1" x1="16.4" y1="556" x2="44.1" y2="556"/>
-            </g>
-            <g id="Capa_1">
-                <g>
-                    <g>
-                        <path class="st2" d="M-163.2,623.9c-1.9-1.9-4.4-2.9-7.1-2.9c-2.6,0-5.2,1.1-7.1,2.9c-1.9,1.9-2.9,4.4-2.9,7.1s1.1,5.2,2.9,7.1
-                            c1.9,1.9,4.4,2.9,7.1,2.9c2.6,0,5.2-1.1,7.1-2.9c1.9-1.9,2.9-4.4,2.9-7.1S-161.3,625.8-163.2,623.9z"/>
-                    </g>
+                <g id="Calque_2">
+                    <line class="st0" x1="-288.9" y1="596" x2="-131" y2="596"/>
+                    <line class="st1" x1="-385.9" y1="556" x2="-358.2" y2="556"/>
+                    <line class="st1" x1="16.4" y1="556" x2="44.1" y2="556"/>
                 </g>
-                <g>
+                <g id="Capa_1">
                     <g>
-                        <path class="st2" d="M32.6,456.1l-33.4-8v-13.2C17.7,423.2,30,402.5,30,379.1v-37.3c0-36.4-29.6-66-66-66
+                        <g>
+                            <path class="st2" d="M-163.2,623.9c-1.9-1.9-4.4-2.9-7.1-2.9c-2.6,0-5.2,1.1-7.1,2.9c-1.9,1.9-2.9,4.4-2.9,7.1s1.1,5.2,2.9,7.1
+                            c1.9,1.9,4.4,2.9,7.1,2.9c2.6,0,5.2-1.1,7.1-2.9c1.9-1.9,2.9-4.4,2.9-7.1S-161.3,625.8-163.2,623.9z"/>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <path class="st2" d="M32.6,456.1l-33.4-8v-13.2C17.7,423.2,30,402.5,30,379.1v-37.3c0-36.4-29.6-66-66-66
                             c-19.6,0-37.3,8.6-49.4,22.3c-10.6-36.7-44.5-63.6-84.6-63.6h0c-40.1,0-74.1,27-84.6,63.8c-12.1-13.8-29.8-22.4-49.5-22.4
                             c-36.4,0-66,29.6-66,66v37.3c0,23.5,12.3,44.1,30.8,55.8v13.2l-33.4,8c-31.5,7.5-53.4,35.4-53.4,67.7V591c0,5.5,4.5,10,10,10h80
                             v30c0,5.5,4.5,10,10,10h109.7c5.5,0,10-4.5,10-10s-4.5-10-10-10H-261v-44c0-5.5-4.5-10-10-10s-10,4.5-10,10v44H-316v-45.1
@@ -58,104 +84,113 @@
                             c0-0.4,0.1-0.7,0.1-1.1c0-0.1,0-0.2,0-0.3v-12.4c4.9,1.1,9.9,1.8,15.1,1.8c5.2,0,10.3-0.6,15.2-1.8V456c0,0.2,0,0.4,0,0.5
                             L-36,493.1L-51.1,457z M66,581H46v-44.4c0-5.5-4.5-10-10-10s-10,4.5-10,10V581H-4.2v-5.1c0-21.9-7.5-42.2-20.4-58.3l20.8-49.7
                             l31.8,7.6c22.4,5.4,38.1,25.2,38.1,48.3V581z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-196.5,363.2c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2,1.1-7.1,2.9s-2.9,4.4-2.9,7.1s1.1,5.2,2.9,7.1s4.4,2.9,7.1,2.9
+                        <g>
+                            <path class="st2" d="M-196.5,363.2c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2,1.1-7.1,2.9s-2.9,4.4-2.9,7.1s1.1,5.2,2.9,7.1s4.4,2.9,7.1,2.9
                             c2.6,0,5.2-1.1,7.1-2.9c1.9-1.9,2.9-4.4,2.9-7.1S-194.6,365-196.5,363.2z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-129.6,363.2c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2,1.1-7.1,2.9s-2.9,4.4-2.9,7.1s1.1,5.2,2.9,7.1s4.4,2.9,7.1,2.9
+                        <g>
+                            <path class="st2" d="M-129.6,363.2c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2,1.1-7.1,2.9s-2.9,4.4-2.9,7.1s1.1,5.2,2.9,7.1s4.4,2.9,7.1,2.9
                             s5.2-1.1,7.1-2.9c1.9-1.9,2.9-4.4,2.9-7.1S-127.7,365-129.6,363.2z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-150.8,396.8c-3.9-3.9-10.2-3.9-14.1,0c-3,3-7.8,3-10.7,0c-3.9-3.9-10.2-3.9-14.1,0
+                        <g>
+                            <path class="st2" d="M-150.8,396.8c-3.9-3.9-10.2-3.9-14.1,0c-3,3-7.8,3-10.7,0c-3.9-3.9-10.2-3.9-14.1,0
                             c-3.9,3.9-3.9,10.2,0,14.1c5.4,5.4,12.4,8.1,19.5,8.1c7.1,0,14.1-2.7,19.5-8.1C-146.8,407.1-146.8,400.7-150.8,396.8z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-12.5,183h-6.9c-5.5,0-10,4.5-10,10s4.5,10,10,10h6.9c5.5,0,10-4.5,10-10S-7,183-12.5,183z"/>
+                        <g>
+                            <path class="st2"
+                                  d="M-12.5,183h-6.9c-5.5,0-10,4.5-10,10s4.5,10,10,10h6.9c5.5,0,10-4.5,10-10S-7,183-12.5,183z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M36,183h-6.9c-5.5,0-10,4.5-10,10s4.5,10,10,10H36c5.5,0,10-4.5,10-10S41.5,183,36,183z"/>
+                        <g>
+                            <path class="st2"
+                                  d="M36,183h-6.9c-5.5,0-10,4.5-10,10s4.5,10,10,10H36c5.5,0,10-4.5,10-10S41.5,183,36,183z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M8.3,203.8c-5.5,0-10,4.5-10,10v6.9c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10v-6.9
+                        <g>
+                            <path class="st2" d="M8.3,203.8c-5.5,0-10,4.5-10,10v6.9c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10v-6.9
                             C18.3,208.3,13.8,203.8,8.3,203.8z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M8.3,155.3c-5.5,0-10,4.5-10,10v6.9c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10v-6.9
+                        <g>
+                            <path class="st2" d="M8.3,155.3c-5.5,0-10,4.5-10,10v6.9c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10v-6.9
                             C18.3,159.8,13.8,155.3,8.3,155.3z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-369.7,183h-6.9c-5.5,0-10,4.5-10,10s4.5,10,10,10h6.9c5.5,0,10-4.5,10-10S-364.2,183-369.7,183z"/>
+                        <g>
+                            <path class="st2"
+                                  d="M-369.7,183h-6.9c-5.5,0-10,4.5-10,10s4.5,10,10,10h6.9c5.5,0,10-4.5,10-10S-364.2,183-369.7,183z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-321.2,183h-6.9c-5.5,0-10,4.5-10,10s4.5,10,10,10h6.9c5.5,0,10-4.5,10-10S-315.7,183-321.2,183z"/>
+                        <g>
+                            <path class="st2"
+                                  d="M-321.2,183h-6.9c-5.5,0-10,4.5-10,10s4.5,10,10,10h6.9c5.5,0,10-4.5,10-10S-315.7,183-321.2,183z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-348.9,203.8c-5.5,0-10,4.5-10,10v6.9c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10v-6.9
+                        <g>
+                            <path class="st2" d="M-348.9,203.8c-5.5,0-10,4.5-10,10v6.9c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10v-6.9
                             C-338.9,208.3-343.3,203.8-348.9,203.8z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-348.9,155.3c-5.5,0-10,4.5-10,10v6.9c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10v-6.9
+                        <g>
+                            <path class="st2" d="M-348.9,155.3c-5.5,0-10,4.5-10,10v6.9c0,5.5,4.5,10,10,10c5.5,0,10-4.5,10-10v-6.9
                             C-338.9,159.8-343.3,155.3-348.9,155.3z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-170,167.1c-5.5,0-10,4.5-10,10v26.3c0,5.5,4.5,10,10,10s10-4.5,10-10v-26.3
+                        <g>
+                            <path class="st2" d="M-170,167.1c-5.5,0-10,4.5-10,10v26.3c0,5.5,4.5,10,10,10s10-4.5,10-10v-26.3
                             C-160,171.6-164.5,167.1-170,167.1z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-162.9,131.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2,1.1-7.1,2.9c-1.9,1.9-2.9,4.4-2.9,7.1s1.1,5.2,2.9,7.1
+                        <g>
+                            <path class="st2" d="M-162.9,131.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2,1.1-7.1,2.9c-1.9,1.9-2.9,4.4-2.9,7.1s1.1,5.2,2.9,7.1
                             c1.9,1.9,4.4,2.9,7.1,2.9s5.2-1.1,7.1-2.9c1.9-1.9,2.9-4.4,2.9-7.1S-161.1,133.8-162.9,131.9z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-205,169.1l-14.6-14.6c-3.9-3.9-10.2-3.9-14.1,0c-3.9,3.9-3.9,10.2,0,14.1l14.6,14.6c2,2,4.5,2.9,7.1,2.9
+                        <g>
+                            <path class="st2" d="M-205,169.1l-14.6-14.6c-3.9-3.9-10.2-3.9-14.1,0c-3.9,3.9-3.9,10.2,0,14.1l14.6,14.6c2,2,4.5,2.9,7.1,2.9
                             s5.1-1,7.1-2.9C-201.1,179.4-201.1,173-205,169.1z"/>
+                        </g>
                     </g>
-                </g>
-                <g>
                     <g>
-                        <path class="st2" d="M-106.2,153.9c-3.9-3.9-10.2-3.9-14.1,0l-15.1,15.1c-3.9,3.9-3.9,10.2,0,14.1c2,2,4.5,2.9,7.1,2.9
+                        <g>
+                            <path class="st2" d="M-106.2,153.9c-3.9-3.9-10.2-3.9-14.1,0l-15.1,15.1c-3.9,3.9-3.9,10.2,0,14.1c2,2,4.5,2.9,7.1,2.9
                             s5.1-1,7.1-2.9l15.1-15.1C-102.3,164.2-102.3,157.8-106.2,153.9z"/>
+                        </g>
                     </g>
                 </g>
-            </g>
             </svg>
 
         </div>
 
-         <div id="alert"><h3><?php if(isset($errorMessage)){echo $errorMessage;}?></h3></div>
-        <form method="POST" action="log" enctype="multipart/form-data" autocomplete="off"> 
-       
+        <div id="alert"><h3><?php if (isset($_SESSION['errorMessage'])) {
+                    echo $_SESSION['errorMessage'];
+                } ?></h3></div>
+        <form method="POST" action="log" enctype="multipart/form-data" autocomplete="off">
+
             <div class="flexCenter form-input">
-                <input class ="input" type="email" id="email" name="email" placeholder="johndoe@mail.com" value ="<?php if(isset($email)){echo $email;}?>">
+                <input class="input" type="email" id="email" name="email" placeholder="johndoe@mail.com"
+                       value="<?php if (isset($_POST['email'])) {
+                           echo $_POST['email'];
+                       } ?>">
             </div>
             <div class="form-input flexCenter">
                 <input type="password" class="input" id="password" name="password" placeholder=".......">
@@ -166,16 +201,19 @@
             <div class="flexCenter">
                 <input class="btn-full-2" name="submit-connect" type="submit" value="Se connecter">
             </div>
-    </form>
+
+
+        </form>
+
         <div id="alert"><p>Pas de compte ? <a href="inscription">Je m'inscris.</a></p></div>
-    <!--<div id="inscrire-social" class="flex-center">
-        <p>S'inscrire avec :</p>
-    </div>
-    <div class="socials-icon">
-        <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
-        <div class="cirle-social"><i class="fab fa-twitter"></i></div>
-        <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
-    </div>-->
+        <!--<div id="inscrire-social" class="flex-center">
+            <p>S'inscrire avec :</p>
+        </div>
+        <div class="socials-icon">
+            <div class="cirle-social"><i class="fab fa-facebook-f"></i></div>
+            <div class="cirle-social"><i class="fab fa-twitter"></i></div>
+            <div class="cirle-social"><i class="fab fa-google-plus-g"></i></div>
+        </div>-->
     </div>
     <div id="triangle-bottomleft"></div>
     <div id="triangle-bottomright"></div>

@@ -3,7 +3,7 @@
     <img src="images/pictos/logo1.svg">
 </div>
 
-        <span class="mini-title">Fais don du matos de camping que tu n'utilises plus !</span>
+        <span class="mini-title">Fais don du matos de camping que tu n'utilises plus&nbsp;!</span>
 
         <div class="picto-welcome">
             <img src="images/pictos/tent_night.svg">
@@ -18,5 +18,5 @@
                 <a href="inscription" class="btn-full-txt">Inscription</a>
             </div>
        
-        <span id="copyright">Les Sardines &copy; 2018 , all rights reserved. V 1.0 </span>
+        <span id="copyright">&copy; 2018 Les Sardines, tous droits réservés. V 1.0 </span>
 </main>

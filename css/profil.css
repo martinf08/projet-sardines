@@ -1,0 +1,148 @@
+main {
+    height: 100vh;
+    width: 100vw;
+    background-color: #f6f6f6;
+}
+div.logo, div.avatar-box, div.center-box {
+    background-color: #fefefe;
+}
+.logo {
+    padding-top: 1.79vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+}
+.logo h1 {
+    font-family: 'SourceSansProLight', 'Helvetica', sans-serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #009688;
+
+}
+.header-left {
+    margin-left: 8.26vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.header-left img:first-child {
+ text-align: center;
+    width: 17px;
+    height: 14px;
+}
+#open {
+    margin-bottom: 4.49vh;
+}
+
+.header-left img:last-child {
+    width: 28px;
+    height: 15px;
+}
+.header-right {
+    margin-right: 8.26vw;
+    width: 28px;
+    height: 15px;
+}
+.avatar-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4.19vh;
+}
+.avatar-box h3 {
+    font-family: 'SourceSansProLight', 'Helvetica', sans-serif;
+    color: #2489B4;
+    margin-bottom: 1vh;
+}
+.avatar-img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    height: 110px;
+    width: 110px;
+    margin-bottom: 1.5vh;
+}
+.center-box {
+    border-top: 1px solid #e3e3e3;
+    border-bottom: 1px solid #e3e3e3;
+    display: flex;
+    -webkit-box-shadow: -2px 3px 4px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: -2px 3px 4px 0px rgba(0,0,0,0.3);
+    box-shadow: -2px 3px 4px 0px rgba(0,0,0,0.3);
+
+}
+.left-box {
+    border-right: 1px solid #e3e3e3;
+    color: #2489B4;
+    padding-right: 6.66vw;
+    text-align: right;
+}
+.input-profil {
+    display: flex;
+    align-items: center;
+}
+.input-profil img {
+    height: 15px;
+    width: 13px;
+    margin-left: 16.5vw;
+}
+.input-profil img {
+    color: #1b1b1b;
+
+}
+.right-box {
+    padding-left: 5.6vw;
+
+}
+
+.left-box p:first-child, .right-box p:first-child {
+    margin-top: 3.09vh;
+    margin-bottom: 3.29vh;
+}
+.left-box p:nth-child(2), .right-box p:nth-child(2) {
+    margin-bottom: 3.99vh;
+}
+.right-box p:nth-child(2) {
+    font-size: 16px;
+}
+.left-box:nth-child(2), .right-box:nth-child(2) {
+    margin-bottom: 4.64vh;
+}
+#pseudo-account {
+    width: 96px;
+    border:none;
+    color: #2489B4;
+    text-align: center;
+}
+#pseudo-account::placeholder {
+    color: #1b1b1b;
+    font-size: 11px;
+}
+.under-box {
+    display: flex;
+    flex-direction: column;
+   padding-left: 10.66vw;
+
+}
+.under-box input:last-child {
+    align-self: center;
+    margin-top: 1.5vh;
+}
+.under-box p:first-child {
+    margin-top: 2.84vh;
+}
+.under-box p {
+    font-size: 13px;
+    margin-bottom: 2vh;
+}
+#open {
+    cursor: pointer;
+}
+.button-sub {
+    display: flex;
+    justify-content: center;
+}

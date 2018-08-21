@@ -4,35 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#105541">
+    <meta name="msapplication-navbutton-color" content="#105541">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <title><?= $title ?></title>
+    <link rel="manifest" href="/manifest.json">
     <link rel="stylesheet" href="<?= Config::$root ?>css/cheatsheet.css">
-    <link rel="stylesheet" href="<?= Config::$root ?>css/menu.css"><!-- contient simplement les classes pour position et effet tiroir -->
+    <link rel="stylesheet" href="<?= Config::$root ?>css/menu.css">
+    <!-- contient simplement les classes pour position et effet tiroir -->
     <link rel="stylesheet" href="<?= Config::$root ?>css/anim.css">
 
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
-        <?php foreach ($css as $value){?>
-        <link rel="stylesheet" href="<?= Config::$root ?>css/<?= $value ?>.css">
-    <?php } endif; ?>
+        <?php foreach ($css as $value) { ?>
+            <link rel="stylesheet" href="<?= Config::$root ?>css/<?= $value ?>.css">
+        <?php } endif; ?>
 
 </head>
 <body>
 
-    <div id="menu">
+<div id="menu">
 
-        <div id="display-user"><!-- ici l'affiche des infos de l'user connecté -->
+    <div id="display-user"><!-- ici l'affiche des infos de l'user connecté -->
 
-            <div id="close"><!-- fermeture du menu -->
-                <svg width="100%" height="100%" viewBox="0 0 16 9" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect x="2.252" y="0" width="12.748" height="1.513" style="fill:#0cd18f;"/><rect x="0" y="3.738" width="12.77" height="1.513" style="fill:#0cd18f;"/><rect x="6.006" y="7.416" width="8.988" height="1.513" style="fill:#0cd18f;"/></svg>
-            </div>
+        <div id="close"><!-- fermeture du menu -->
+            <svg width="100%" height="100%" viewBox="0 0 16 9" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/"
+                 style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect
+                        x="2.252" y="0" width="12.748" height="1.513" style="fill:#0cd18f;"/>
+                <rect x="0" y="3.738" width="12.77" height="1.513" style="fill:#0cd18f;"/>
+                <rect x="6.006" y="7.416" width="8.988" height="1.513" style="fill:#0cd18f;"/></svg>
+        </div>
 
-            <?php if(isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
-                <p id="pseudo" class="bold"><?php echo $_SESSION['user']->getNickname(); ?></p>
-                <p id="mail"><?php echo $_SESSION['user']->getEmail(); ?></p>
-                <p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>
-                <p id="sardines-balance">J'ai <span class="bold">
+        <?php if (isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
+            <?php
+            $userManager = new UserManager();
+            $avatar      = $userManager->findAvatar();
+            if (isset($avatar) && !empty($avatar)) {
+                echo '<div id="avatar-box">';
+                echo '<img id="avatar-img" src="./images/avatar/' . $avatar . '" alt="avatar">';
+                echo '</div>';
+            }
+            else {
+                echo '<div id="avatar-box">';
+                echo '<img id="avatar-img" src="./images/avatar/avatar_default.png" alt="avatar">';
+                echo '</div>';
+            }
+            ?>
+
+            <p id="pseudo" class="bold"><?php echo $_SESSION['user']->getNickname(); ?></p>
+            <p id="mail"><?php echo $_SESSION['user']->getEmail(); ?></p>
+            <p id="user-id" class="bold">ID : <?php echo strtoupper($_SESSION['user']->getIdentifier()); ?></p>
+            <p id="sardines-balance">J'ai <span class="bold">
                     <?php echo $_SESSION['user']->getBalance(); ?>
-                </span> <span id="sardines-pic"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 369.209 369.209" style="enable-background:new 0 0 369.209 369.209;" xml:space="preserve">
+                </span> <span id="sardines-pic"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                                                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                     viewBox="0 0 369.209 369.209"
+                                                     style="enable-background:new 0 0 369.209 369.209;"
+                                                     xml:space="preserve">
 <g>
 	<g>
 		<path d="M308.79,55.355c-1.86-1.815-4.348-2.842-6.947-2.866c-5.567,0.052-10.038,4.607-9.986,10.173
@@ -51,30 +81,32 @@
 	</g>
 </g>
 </svg></span></p>
-            <?php endif; ?>
-        </div>
-
-        <?php include_once 'inc/_menu.php'; ?>
-
-        <div id="triangle-bottomleft"></div>
-        <div id="triangle-bottomright"></div>
-
-    </div>
-
-    <div id="container">
-        <?php
-        ?>
-        <?php if (isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
-            <?php if (!$_SESSION['user']->getAccount_status()): ?>
-            <div id="warning">ce compte n'est pas encore activé</div>
-            <?php endif; ?>
         <?php endif; ?>
-
-        <?= $content ?>
-
     </div>
 
-    <script src="<?= Config::$root ?>js/menu_toggle.js"></script>
+    <?php include_once 'inc/_menu.php'; ?>
+
+    <div id="triangle-bottomleft"></div>
+    <div id="triangle-bottomright"></div>
+
+</div>
+
+<div id="container">
+    
+    <!-- avertissement preprod A SUPPRIMER POUR LA PROD -->
+    <div style="position:absolute;top:-2px;width:100vw;height:21px;background:#e69404;color:#fefefe;text-align:center;">vous êtes sur la version preprod du site</div>
+    
+    <?php if (isset($_SESSION['user']) AND !empty($_SESSION['user'])): ?>
+        <?php if (!$_SESSION['user']->getAccount_status()): ?>
+            <div id="warning">ce compte n'est pas encore activé</div>
+        <?php endif; ?>
+    <?php endif; ?>
+
+    <?= $content ?>
+
+</div>
+
+<script src="<?= Config::$root ?>js/menu_toggle.js"></script>
 
 </body>
 </html>

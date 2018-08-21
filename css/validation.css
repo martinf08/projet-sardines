@@ -1,12 +1,7 @@
-#menu {
-    display: none;
-}
 main {
     height: 100vh;
-    background-image: none;
-    background-color: #fefefe;
-
 }
+
 .logo {
     padding-top: 5.09vh;
     width: 100vw;
@@ -15,17 +10,22 @@ main {
     align-items: center;
 }
 
+.logo img {
+    width: 60%;
+    margin: auto;
+}
 
 .logo img:nth-child(2) {
     height: auto;
-    width: 41vw;
-    max-width: 154px;
+    /*width: 41vw;
+    max-width: 154px;*/
 }
 
 .logo div {
     width: 28px;
     margin-right: 8.53vw;
 }
+
 .message-validation {
     display: flex;
     flex-direction: column;
@@ -33,17 +33,33 @@ main {
     align-items: center;
    height: 100%;
 }
+
 .message-validation div {
-    margin-top: 10vh;
+    margin-top: 15vh;
 }
 
 .message-validation p {
     width: 70vw;
     font-size: 14px;
-    color: #1c1c1c;
+    color: #097550;
 }
+
 .center {
     text-align: center;
+}
+
+.btn-full-2 {
+    text-align: center;
+    text-decoration:none;
+}
+
+.btn-full-txt{
+    font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+    color: #fefefe;
+    font-size: 18px;
+    text-decoration: none;   
 }
 
 #triangle-bottomleft, #triangle-bottomright {
@@ -55,12 +71,12 @@ main {
 }
 
 #triangle-bottomleft {
-	border-bottom: 140px solid rgba(12,209,143,0.2);
-    border-right: 260px solid transparent;
+	border-bottom: 58vh solid rgba(129, 199, 132,0.2);
+    border-right: 100vw solid transparent;
 }
 
 #triangle-bottomright {
     right: 0;
-	border-bottom: 245px solid rgba(12,209,143,0.1);
-    border-left: 300px solid transparent;
+	border-bottom: 75vh solid rgba(12,209,143,0.1);
+    border-left: 100vw solid transparent;
 }

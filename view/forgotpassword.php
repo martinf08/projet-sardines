@@ -35,8 +35,8 @@
 
     </div><!-- /header -->
 
-    <div id="arrow">
-        <a href="<?= Config::$root ?>donner"><svg width="100%" height="100%" viewBox="0 0 28 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect x="0.877" y="4.291" width="27" height="1.471" style="fill:#009688;"/><path d="M4.937,0l-4.911,4.853l1.068,1.08l4.91,-4.853l-1.067,-1.08Z" style="fill:#009688;"/><path d="M1.16,3.924l4.817,5.701l-1.16,0.98l-4.817,-5.701l1.16,-0.98Z" style="fill:#009688;"/></svg></a>
+    <div id="arrow" class="slideFromTop">
+        <a href="<?php echo (!isset($_SESSION['islog']) OR $_SESSION['islog'] == false) ? Config::$root : 'donner'; ?>"><svg width="100%" height="100%" viewBox="0 0 28 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;"><rect x="0.877" y="4.291" width="27" height="1.471" style="fill:#009688;"/><path d="M4.937,0l-4.911,4.853l1.068,1.08l4.91,-4.853l-1.067,-1.08Z" style="fill:#009688;"/><path d="M1.16,3.924l4.817,5.701l-1.16,0.98l-4.817,-5.701l1.16,-0.98Z" style="fill:#009688;"/></svg></a>
     </div>
 
     <div class="forgot-content">
@@ -67,6 +67,18 @@
                     <input class="btn-full-2"  name="recover_submit"  value="Envoyer" type="submit">
                 </div>
             </form>
+
+
+
+            <?php
+            if (isset( $_SESSION['pass_message']) && !empty($_SESSION['pass_message'])) {
+                echo '<br/>';
+                echo '<div class="flex-center">';
+                echo  '<p class="pass-info">'.$_SESSION['pass_message'].'</p>';
+                unset($_SESSION['pass_message']);
+                echo '</div>';
+            }
+            ?>
         <?php }?>
         <div class="flex-center"><?php if(isset($errors)){echo'<br><span style="color:red">'.$errors.'</span>';}else{echo'<br/>';}?></div>
     </div>

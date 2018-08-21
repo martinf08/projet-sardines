@@ -1,7 +1,7 @@
 main{
     width: 100%;
     align-content: center;
-
+    height: 100vh;
 }
 
 form{
@@ -11,7 +11,8 @@ form{
 }
 #container{
     width: 100%;
-    margin: 0 auto; 
+    margin: 0 auto;
+    position: relative; 
 }
 
 .avatar{
@@ -30,11 +31,18 @@ form{
 
 input{
     display: inline-block;
-    margin-bottom: 3.9%;
+    margin-bottom: 2vh;
 }
+
 #alert{
     text-align: center;
 }
+
+#alert > p{
+
+    margin-bottom: 20px;
+}
+
 .flexCenter{
     margin: 0 auto;
     padding: 0;
@@ -88,7 +96,8 @@ a,p{
     text-align: justify;
     margin-left: 11%;
     margin-right: 11%;
-    margin-bottom: 4%;
+    margin-bottom: 6vh;
+    margin-top: 6vh;
 }
 
 input[type="checkbox"] {

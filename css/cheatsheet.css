@@ -81,7 +81,7 @@ html{
 
 .btn-full-1, .btn-full-2, .btn-full-donation, .btn-outlined{
   font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
-  line-height: 0.15;
+  line-height: 0.15em;
   letter-spacing: 0.06em;
   color: #fefefe;
   font-size: 18px;
@@ -142,20 +142,20 @@ html{
   height: inherit;
   margin: auto;
   font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
-  line-height: 0.15;
+  line-height: 0.15em;
   letter-spacing: 0.06em;
   color: #009688;
   font-size: 18px;
 }
 
 a{
-    background: inherit;
+   /* background: inherit; */
     border: none;
     width: inherit;
     height: inherit;
     margin: auto;
     font-family: 'SourceSansProRegular', 'Helvetica', sans-serif;
-    line-height: 0.15;
+    line-height: 0.15em;
     letter-spacing: 0.06em;
     color: #009688;
     font-size: 18px;

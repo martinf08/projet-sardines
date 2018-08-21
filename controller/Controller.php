@@ -65,6 +65,17 @@ class Controller
         $this->render('view/mentions.php');
     }
 
+    #-----------------------
+    #  CONDITIONS GÉNÉRALES
+    #-----------------------
+    public function conditions()
+
+    {
+        $this->set('title', 'Conditions générales d\'utilisation');
+        $this->set('css', array('standard'));
+        $this->render('view/conditions.php');
+    }
+
     #----------
     #  PROFIL
     #----------
@@ -74,11 +85,16 @@ class Controller
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if ($_SESSION['user']->getIdentifier()) {
                 $userManager = new UserManager();
+                $avatar = $userManager->findAvatar();
                 if (strtolower($userManager->getIdByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getId_user())) {
                     $user = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
-
                     $this->set('title', 'Mon compte');
                     $this->set('user', $user);
+                    if (isset($avatar) && !empty($avatar)) {
+                        $this->set('avatar', $avatar);
+                    }
+                    $css = array('profil');
+                    $this->set('css', $css);
                     $this->render('view/profil.php');
                 }
             } else {
@@ -91,11 +107,13 @@ class Controller
 
     public function accountUpdate()
     {
+
         if (isset($_POST['submit-account'])) { # vérifie que le submit ayant le name convenu sur la vue profil existe
 
             $userManager = new UserManager();
             if (strtolower($userManager->getEmailUserByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                 if (isset($_POST['pseudo_account'])) {
+
                     if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
                         $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{3,25}#";
                         if (preg_match($regex, $_POST['pseudo_account']) OR $_POST['pseudo_account'] === '') {
@@ -104,16 +122,22 @@ class Controller
                             # forcer la création d'un pseudo par défaut à partir de l'email est une autre possibilité
                             $_SESSION['user']->setNickname($_POST['pseudo_account']);
                             $userManager->updatePseudo($_SESSION['user']);
-                            header('Location: profil');
+                            if ($_FILES['avatar']['error'] == 4) {
+                                header('Location: profil');
+                            }
+
                         } else {
                             throw new Exception('La valeur que vous avez passé est invalide.');
                         }
-                    }
-                    if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
-                        $userManager = new UserManager();
-                        $userManager->updateAvatar();
-                    }
-                    else {
+                        if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
+                            if (!is_dir('images/avatar')) {
+                                mkdir('images/avatar', 0777);
+                            }
+                            $userManager = new UserManager();
+                            $userManager->updateAvatar();
+                            header('Location: profil');
+                        }
+                    } else {
                         throw new Exception('Vous ne pouvez pas modifier ce compte.');
                     }
                 }
@@ -177,25 +201,13 @@ class Controller
 
                                 $pre->execute(array($code, $email));
                             }
-
-                            $to = $email;
-                            $subject = "Récupération de mot de passe";
-                            $link = Config::$root . "forget" . DS . $sending_code;
-                            $message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
-
-                            // Always set content-type when sending HTML email
-                            $headers = "MIME-Version: 1.0" . "\r\n";
-                            $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                            $headers .= "content-Transfer-Encoding: 8bit";
-                            // More headers
-                            $headers .= 'From:"sardines"<adress@sardine.fr>' . "\r\n";
+                            //$message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
+                            //Load Composer's autoloader
+                            require 'vendor/autoload.php';
+                            $message = $model->sendForgetPass($email, $code);
+                            $_SESSION['pass_message'] = $message;
 
 
-                            if (mail($to, $subject, $message, $headers)) {
-                                echo "message envoyé";
-                            } else {
-                                $this->set('message', $message);
-                            }
                         } else {
                             $error = "Cette adresse email n'est pas enregistrée";
                         }
@@ -212,7 +224,7 @@ class Controller
         if (isset($request)) {
 
             try {
-                $code = md5(htmlspecialchars($request));
+                $code = $request;
                 $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code', $code);
                 $pre->execute();
@@ -234,7 +246,6 @@ class Controller
 
         }
 
-
         if (isset($_POST['submitNewpassword'])) {
             if (isset($_POST['newPasseword'], $_POST['confirmNewpasseword'])) {
 
@@ -245,7 +256,6 @@ class Controller
                     if ($newPasseword === $confirmNewpasseword) {
                         $newPasseword = md5($newPasseword);
                         //update
-
                         $pre = $model->dbConnect()->prepare("UPDATE user SET password= ? WHERE email = ?");
 
                         $pre->execute(array($newPasseword, $_SESSION['email']));
@@ -287,6 +297,8 @@ class Controller
                     $user = new User($_POST);
                     $reponse = $userManager->logIn($user);
 
+                    $_SESSION['errorMessage'] = null;
+
                     if ($reponse) {
                         $_SESSION['islog'] = true;
                         if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
@@ -296,18 +308,15 @@ class Controller
                         header('Location: donner');
                     } else {
                         $_SESSION['islog'] = false;
-                        $this->set('title', 'Connexion');
-                        $css = array('tooltip', 'connexion');
-                        $this->set('css', $css);
-                        $this->set('email', $_POST['email']);
-                        $this->set('errorMessage', 'Identifiant ou mot de passe incorrect.');
-                        $this->render('view/connexion.php');
+                        $_SESSION['errorMessage'] = 'Identifiant ou mot de passe incorrect.'; 
+                        header('Location: ' . Config::$root . 'connexion');
                     }
                 }
             } else {
                 throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
             }
         } else {
+            http_response_code(403);
             header('Location: ' . Config::$root);
         }
     }
@@ -341,6 +350,8 @@ class Controller
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
 
+                $_SESSION['errorSign'] = null;
+
                 if (is_bool($reponse)) {
                     if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                         setcookie('cookie', '1', time() + (86400 * 30));
@@ -349,12 +360,13 @@ class Controller
                     header("Location: " . Config::$root . "emailValidation");
                 } else {
 
-                    $this->set('title', 'inscription');
-                    $css = array('tooltip', 'inscription');
-                    //$this->set('Info', 'Cet email existe déjà');
-                    $this->set('css', $css);
-                    $this->render('view/inscription.php');
-                    throw new Exception($reponse); # s'il y a un throw, le set/render ci-dessus ne sert à rien
+                    // $this->set('title', 'inscription');
+                    // $css = array('tooltip', 'inscription');
+                    // //$this->set('Info', 'Cet email existe déjà');
+                    // $this->set('css', $css);
+                    // $this->render('view/inscription.php');
+                    $_SESSION['errorSign'] = $reponse;
+                    header('Location: ' . Config::$root . 'inscription');
                 }
             } else {
                 header("HTTP/1.0 400");
@@ -490,10 +502,14 @@ class Controller
 
     public function welcome()
     {
-        $this->set('title', 'Bienvenue');
-        $css = array('welcome');
-        $this->set('css', $css);
-        $this->render('view/welcome.php');
+        if (isset($_SESSION['islog']) AND $_SESSION['islog']) {
+            header('Location: ' . Config::$root . 'donner');
+        } else {
+            $this->set('title', 'Bienvenue');
+            $css = array('welcome');
+            $this->set('css', $css);
+            $this->render('view/welcome.php');
+        }
     }
 
     #--------------
@@ -526,7 +542,6 @@ class Controller
      */
     public function render($view)
     {
-
         if (file_exists($view)) {
             extract($this->vars);
             ob_start();
@@ -567,7 +582,9 @@ class Controller
         $this->render('view/erreur.php');
     }
 
-    /* MAIL TEST */
+    #---------------------------------
+    #  COURRIER (ENVOI ET VALIDATION)
+    #---------------------------------
     function sendEmailValidation()
     {
 
@@ -582,14 +599,16 @@ class Controller
                 $userManager = new UserManager();
                 $userManager->sendEmailValidation();
                 $this->set('title', 'Validation');
-                $css = array('welcome', 'validation');
+                $css = array('validation');
                 $this->set('css', $css);
                 $this->render('view/validation.php');
             } else {
-                throw new Exception('Erreur');
+                http_response_code(403);
+                header('Location: ' . Config::$root);
             }
         } else {
-            throw new Exception('Erreur');
+            http_response_code(403);
+            header('Location: ' . Config::$root);
         }
     }
 
@@ -601,7 +620,7 @@ class Controller
             $response = $userManager->getEmailValidation($code);
             if (isset($response) && !empty($response)) {
                 $this->set('title', 'Activation');
-                $css = array('welcome', 'validation');
+                $css = array('validation');
                 $this->set('css', $css);
                 $this->set('response', $response);
                 if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {

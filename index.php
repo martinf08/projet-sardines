@@ -42,6 +42,7 @@ try
     $router->setRoute('accountUpdate', 'accountUpdate');
     $router->setRoute('bienvenue', 'welcome');
     $router->setRoute('erreur', 'error');
+    $router->setRoute('conditions', 'conditions');
     $router->setRoute('mentions-legales', 'mentions');
     $router->setRoute('emailValidation', 'sendEmailValidation');
     $router->setRoute('emailActivation', 'getEmailValidation');
@@ -51,5 +52,5 @@ try
 catch(Exception $e)
 {
   $_SESSION['error_msg'] = $e->getMessage();
-  header('Location: erreur');
+  header('Location: ' . Config::$root . 'erreur');
 }

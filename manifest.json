@@ -1,0 +1,14 @@
+{
+    "short_name": "Les Sardines",
+    "name": "Les Sardines",
+    "icons": [
+      {
+        "src": "images/pics/sardico.png",
+        "sizes": "220x220",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/index.php",
+    "display": "fullscreen",
+    "orientation": "portrait"
+  }
