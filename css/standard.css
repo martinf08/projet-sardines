@@ -36,14 +36,14 @@ a svg {
 }
 
 #triangle-bottomleft {
-	border-bottom: 140px solid rgba(129, 199, 132,0.2);
-    border-right: 260px solid transparent;
+	border-bottom: 58vh solid rgba(129, 199, 132,0.2);
+    border-right: 100vw solid transparent;
 }
 
 #triangle-bottomright {
     right: 0;
-	border-bottom: 245px solid rgba(12,209,143,0.1);
-    border-left: 300px solid transparent;
+	border-bottom: 75vh solid rgba(12,209,143,0.1);
+    border-left: 100vw solid transparent;
 }
 
 /*************************

@@ -118,8 +118,8 @@ nav a {
     height: 0;
     position: absolute;
     bottom: 0;
-	  border-bottom: 140px solid rgba(12,209,143,0.2);
-    border-right: 260px solid transparent;
+	border-bottom: 30vh solid rgba(129, 199, 132,0.2);
+    border-right: 100vw solid transparent;
     z-index:-1;
 }
 
@@ -129,8 +129,8 @@ nav a {
     position: absolute;
     bottom: 0;
     right: 0;
-	  border-bottom: 245px solid rgba(12,209,143,0.1);
-    border-left: 300px solid transparent;
+	border-bottom: 50vh solid rgba(12,209,143,0.1);
+    border-left: 100vw solid transparent;
     z-index:-1;
 }
 #avatar-img {
