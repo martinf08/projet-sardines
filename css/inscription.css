@@ -31,7 +31,7 @@ form{
 
 input{
     display: inline-block;
-    margin-bottom: 3.9%;
+    margin-bottom: 2vh;
 }
 #alert{
     text-align: center;
