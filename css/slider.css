@@ -30,8 +30,11 @@ main {
 }
 
 .slider-info-top, .slider-txt, .page-info {
+    -webkit-transition: transform 500ms;
+    -moz-transition: transform 500ms;
+    -ms-transition: transform 500ms;
+    -o-transition: transform 500ms;
     transition: transform 500ms;
-
 }
 
 .slider-item {
@@ -81,8 +84,6 @@ main {
     text-align: left;
     list-style-type: disc;
 }
-
-
 
 .slider-info-bottom div ul li {
     padding-left: 18px;
@@ -155,7 +156,6 @@ main {
     justify-content: center;
     align-items: center;
 }
-
 
 /* Placement */
 
