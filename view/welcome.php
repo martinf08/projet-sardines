@@ -18,5 +18,5 @@
                 <a href="inscription" class="btn-full-txt">Inscription</a>
             </div>
        
-        <span id="copyright">Les Sardines &copy; 2018 , all rights reserved. V 1.0 </span>
+        <span id="copyright">&copy; 2018 Les Sardines, tous droits réservés. V 1.0 </span>
 </main>
