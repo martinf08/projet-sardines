@@ -32,7 +32,7 @@ a svg {
     position: absolute;
     bottom: 0;
 	border-bottom: 58vh solid rgba(129, 199, 132,0.2);
-    border-right: 100vw solid transparent;
+    border-right: 98vw solid transparent;
     z-index:-1;
 
 }
@@ -44,7 +44,7 @@ a svg {
     bottom: 0;
     right: 0;
 	border-bottom: 75vh solid rgba(12,209,143,0.1);
-    border-left: 100vw solid transparent;
+    border-left: 98vw solid transparent;
     z-index:-1;
 }
 
