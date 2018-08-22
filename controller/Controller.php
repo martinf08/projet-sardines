@@ -29,9 +29,14 @@ class Controller
     public function dropGear()
 
     {
-        $this->set('title', 'Les Sardines');
-        $this->set('css', array('donner'));
-        $this->render('view/donner.php');
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $this->set('title', 'Les Sardines');
+            $this->set('css', array('donner'));
+            $this->render('view/donner.php');
+        } else {
+            http_response_code(403);
+            header('Location: bienvenue');
+        }
     }
 
     #--------
