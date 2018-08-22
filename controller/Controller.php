@@ -597,6 +597,7 @@ class Controller
             if (isset($_SESSION['justSign']) && $_SESSION['justSign'] == true) {
 
                 unset($_SESSION['justSign']);
+                $_SESSION['emailResend'] = 0;
 
                 //Load Composer's autoloader
                 require 'vendor/autoload.php';
@@ -634,6 +635,25 @@ class Controller
             }
         } else {
             throw new Exception('erreur');
+        }
+    }
+    public function sendSecondEmailValidation() {
+        //Load Composer's autoloader
+
+        if (isset($_SESSION['emailResend']) && $_SESSION['emailResend'] == 0) {
+            $_SESSION['emailResend'] += 1;
+            require 'vendor/autoload.php';
+
+            $userManager = new UserManager();
+            $userManager->sendEmailValidation();
+            $this->set('title', 'Validation');
+            $css = array('validation');
+            $this->set('css', $css);
+            $this->render('view/validation.php');
+            unset($_SESSION['emailResend']);
+        }
+        else {
+            throw new Exception('Si le problème persiste contacter un organisateur');
         }
     }
 }
