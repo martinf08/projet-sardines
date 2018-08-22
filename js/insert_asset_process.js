@@ -73,6 +73,8 @@
                             asValidate = 1;
                             pictoUser.src = "images/pictos/valid.svg";
                             pictoUser.style.display = 'block';
+                            firstSelect.innerText = seekEmailInString(xhttp.responseText);
+                            firstSelect.style.fontSize = '11px';
                             setTimeout(function () {
                                 smoothScroll(1, 60);
                                 divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
@@ -159,6 +161,7 @@
                     if (imgLogo2 != null) {
                         document.querySelector('.logo').replaceChild(firstSelect, imgLogo);
                         firstSelect.style.marginTop = imgcurrentMarginTop + 'px';
+
                     }
 
                 }
@@ -169,7 +172,9 @@
             header.classList.add('not-fixed');
             header.classList.remove('fixed');
             steps[0].style.marginTop = currentMarginTop + 'px';
-            //Dodge the dome exception
+            firstSelect.innerText = 'Nouvelle saisie';
+            firstSelect.style.fontSize = '14px';
+            //Dodge the dom exception
             try {
                 open2.insertAdjacentElement('afterend', imgLogo);
                 let responseType = document.querySelector('.response-types');
@@ -374,5 +379,8 @@
 
             header.appendChild(divResponseHeader);
         }
+    }
+    function seekEmailInString(string) {
+        return string.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
     }
 })();
