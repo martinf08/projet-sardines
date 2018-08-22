@@ -120,23 +120,25 @@ class Controller
                 if (isset($_POST['pseudo_account'])) {
 
                     if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
-                        $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{3,25}#";
+                        $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{1,25}#";
                         if (preg_match($regex, $_POST['pseudo_account']) OR $_POST['pseudo_account'] === '') {
                             # j'autorise temporairement le changement de pseudo en chaîne vide
                             # puisqu'il est vide de base donc on doit avoir le droit d'effacer notre pseudo
                             # forcer la création d'un pseudo par défaut à partir de l'email est une autre possibilité
                             $_SESSION['user']->setNickname($_POST['pseudo_account']);
-                            $userManager->updatePseudo($_SESSION['user']);
-                            if ($_FILES['avatar']['error'] == 4) {
+                                $userManager->updatePseudo($_SESSION['user']);
+
+                            if ($_FILES['avatar']['error'] == 4 || $_FILES['avatar'] == null) {
                                 header('Location: profil');
                             }
 
                         } else {
                             throw new Exception('La valeur que vous avez passé est invalide.');
                         }
-                        if (isset($_FILES) and $_FILES['avatar']['error'] == 0) {
+                        if (isset($_FILES['avatar']) and $_FILES['avatar']['error'] == 0 && !empty($_FILES['avatar'])) {
                             if (!is_dir('images/avatar')) {
                                 mkdir('images/avatar', 0777);
+
                             }
                             $userManager = new UserManager();
                             $userManager->updateAvatar();

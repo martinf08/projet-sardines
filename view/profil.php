@@ -25,23 +25,23 @@
             <?php
             if (isset($avatar) && !empty($avatar)) {
                 echo '<img class="avatar-img" src="images/avatar/' . $avatar . '" alt="">';
-            }
-            else {
-                    echo '<div id="avatar-box">';
-                    echo '<img id="avatar-img" src="./images/avatar/avatar_default.png" alt="avatar">';
-                    echo '</div>';
+            } else {
+                echo '<div id="avatar-box">';
+                echo '<img id="avatar-img" src="./images/avatar/avatar_default.png" alt="avatar">';
+                echo '</div>';
             }
             ?>
-<!--            <input type="file" name="avatar" id="avatar">-->
+            <!--            <input type="file" name="avatar" id="avatar">-->
         </div>
         <div class="center-box">
             <div class="left-box">
                 <p>BONJOUR</p>
                 <div class="input-profil">
                     <img src="images/pictos/edit.svg" alt="">
-                    <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo" value="<?= $user->getNickname(); ?>"/>
+                    <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo"
+                           value="<?= $user->getNickname(); ?>"/>
                 </div>
-
+                <p id="pseudo-info">25 caractères max<br/> sans espaces</p>
             </div>
             <div class="right-box">
                 <p>ID : <?= $user->getIdentifier(); ?></p>
