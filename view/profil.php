@@ -32,7 +32,7 @@
                     echo '</div>';
             }
             ?>
-            <input type="file" name="avatar" id="avatar">
+<!--            <input type="file" name="avatar" id="avatar">-->
         </div>
         <div class="center-box">
             <div class="left-box">
