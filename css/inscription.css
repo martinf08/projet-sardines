@@ -115,7 +115,7 @@ input[type="checkbox"] {
     margin-bottom: 3.9%;
 }
 
-#proxy {
+#proxy { /* ne pas toucher, important pour le wizz */
     position: absolute;
     height: 35px;
     width: 218px;

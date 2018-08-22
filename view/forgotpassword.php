@@ -80,7 +80,7 @@
             }
             ?>
         <?php }?>
-        <div class="flex-center"><?php if(isset($errors)){echo'<br><span style="color:red">'.$errors.'</span>';}else{echo'<br/>';}?></div>
+        <div class="flex-center"><?php if(isset($error)){echo'<br><span style="color:red">'.$error.'</span>';}else{echo'<br/>';}?></div>
     </div>
     <div id="triangle-bottomleft"></div>
     <div id="triangle-bottomright"></div>  
