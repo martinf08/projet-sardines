@@ -199,6 +199,7 @@
 
             <div id="mdp-oublie" class="flex-center flexCenter"><a href="forget">mot de passe oublié ?</a></div>
             <div class="flexCenter">
+                <div id="proxy"></div>
                 <input class="btn-full-2" name="submit-connect" type="submit" value="Se connecter">
             </div>
 
