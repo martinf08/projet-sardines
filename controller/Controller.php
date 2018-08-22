@@ -165,6 +165,8 @@ class Controller
         $css = array('tooltip', 'connexion');
         $this->set('css', $css);
         $this->render('view/connexion.php');
+
+        $_SESSION['errorMessage'] = null;
     }
 
     public function passForget($request = null)
@@ -318,7 +320,9 @@ class Controller
                     }
                 }
             } else {
-                throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
+                $_SESSION['islog'] = false;
+                $_SESSION['errorMessage'] = 'Veuillez remplir tous les champs obligatoires pour vous connecter.'; 
+                header('Location: ' . Config::$root . 'connexion');
             }
         } else {
             http_response_code(403);
@@ -329,7 +333,7 @@ class Controller
     public function logOut()
     {
         $_SESSION['user'] = "";
-        $_SESSION['islog'] = 0;
+        $_SESSION['islog'] = false;
 
         header('Location: ' . Config::$root);
     }
@@ -350,7 +354,9 @@ class Controller
     public function insertUser()
     {
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
+
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "" && $_POST['terms'] == "1") {
+
                 $userManager = new UserManager();
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
@@ -358,30 +364,34 @@ class Controller
                 $_SESSION['errorSign'] = null;
 
                 if (is_bool($reponse)) {
+
                     if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                         setcookie('cookie', '1', time() + (86400 * 30));
                     }
                     $_SESSION['justSign'] = true;
                     header("Location: " . Config::$root . "emailValidation");
+
                 } else {
 
-                    // $this->set('title', 'inscription');
-                    // $css = array('tooltip', 'inscription');
-                    // //$this->set('Info', 'Cet email existe déjà');
-                    // $this->set('css', $css);
-                    // $this->render('view/inscription.php');
                     $_SESSION['errorSign'] = $reponse;
                     header('Location: ' . Config::$root . 'inscription');
+
                 }
+
             } else {
-                header("HTTP/1.0 400");
-                throw new Exception('Il reste des champs à remplir.');
+
+                $_SESSION['errorSign'] = 'Il reste des champs à remplir.';
+                header('Location: ' . Config::$root . 'inscription');
+
             }
 
         } else {
+
             header("HTTP/1.0 403");
             header('Location: ' . Config::$root);
+
         }
+
     }
 
     public function emailValidation()
