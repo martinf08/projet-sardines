@@ -84,6 +84,7 @@ div.logo, div.avatar-box, div.center-box {
 .input-profil {
     display: flex;
     align-items: center;
+    margin-bottom: 3vh;
 }
 .input-profil img {
     height: 15px;
@@ -146,4 +147,8 @@ div.logo, div.avatar-box, div.center-box {
 .button-sub {
     display: flex;
     justify-content: center;
+}
+#pseudo-info {
+    font-size: 0.85rem;
+    color: #1b1b1b;
 }
