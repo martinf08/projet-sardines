@@ -13,6 +13,7 @@ h1 {
 main {
     background-color: #fefefe;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 @keyframes slideRight {
