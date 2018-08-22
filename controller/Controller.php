@@ -614,19 +614,16 @@ class Controller
 
     function getEmailValidation($code)
     {
-
         if (isset($code) && !empty($code)) {
             $userManager = new UserManager();
             $response = $userManager->getEmailValidation($code);
-            if (isset($response) && !empty($response)) {
                 $this->set('title', 'Activation');
                 $css = array('validation');
                 $this->set('css', $css);
                 $this->set('response', $response);
+                $this->render('view/activation.php');
                 if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     $_SESSION['user']->setAccount_status('1');
-                }
-                $this->render('view/activation.php');
             } else {
                 throw new Exception('erreur');
             }
