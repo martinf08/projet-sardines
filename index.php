@@ -46,6 +46,7 @@ try
     $router->setRoute('mentions-legales', 'mentions');
     $router->setRoute('emailValidation', 'sendEmailValidation');
     $router->setRoute('emailActivation', 'getEmailValidation');
+    $router->setRoute('emailResend', 'sendSecondEmailValidation');
 
     $router->execute();
 }

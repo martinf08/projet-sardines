@@ -41,6 +41,12 @@ INSERT INTO `price_catalog` (`id_quality`, `id_type`, `value`) VALUES
 --
 
 INSERT INTO `user` (`id_user`, `nickname`, `email`, `avatar`, `identifier`, `account_creation_date`, `last_login`, `password`, `terms`, `account_status`, `balance`, `admin`, `staff`) VALUES
-(1, 'Testeur', 'test@test.fr', NULL, 'v5d6', '2018-07-31 14:42:21', '2018-07-31 14:42:09', '05a671c66aefea124cc08b76ea6d30bb', '1','1', 0, 0, 0),
-(2, 'im-a-staffmaaaan', 'staff@staff.fr', NULL, 't03s', '2018-07-31 14:43:10', '2018-07-31 14:42:37', '65b240be59a308af3e840efb5bea320b', '1', '1', 0, 0, 1),
-(3, 'Adm1nistrat0R', 'admin@admin.fr', NULL, 'sr33', '2018-07-31 14:43:55', '2018-07-31 14:43:34', 'f6fdffe48c908deb0f4c3bd36c032e72', '1', '1', 0, 1, 1);
+(1, 'Testeur', 'test@test.fr', NULL, 'v5d6', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '05a671c66aefea124cc08b76ea6d30bb', '1','1', 0, 0, 0),
+(2, 'im-a-staffmaaaan', 'staff@staff.fr', NULL, 't03s', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '65b240be59a308af3e840efb5bea320b', '1', '1', 0, 0, 1),
+(3, 'Adm1nistrat0R', 'admin@admin.fr', NULL, 'sr33', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'f6fdffe48c908deb0f4c3bd36c032e72', '1', '1', 0, 1, 1),
+
+--
+-- Ghost user (compte équivalant à un ajout sans bénéficiaire)
+--
+INSERT INTO `user` (`nickname`, `email`, `identifier`, `account_creation_date`, `last_login`, `password`, `terms`, `account_status`, `balance`, `admin`, `staff`) 
+VALUES ('ghost', 'cabaretvert@hackardennes.fr', '0000', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '09d50722cde279a0c3f48a3849ee1b1f', '1', '1', 0, 0, 0);

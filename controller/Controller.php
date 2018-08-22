@@ -29,9 +29,14 @@ class Controller
     public function dropGear()
 
     {
-        $this->set('title', 'Les Sardines');
-        $this->set('css', array('donner'));
-        $this->render('view/donner.php');
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $this->set('title', 'Les Sardines');
+            $this->set('css', array('donner'));
+            $this->render('view/donner.php');
+        } else {
+            http_response_code(403);
+            header('Location: bienvenue');
+        }
     }
 
     #--------
@@ -592,6 +597,7 @@ class Controller
             if (isset($_SESSION['justSign']) && $_SESSION['justSign'] == true) {
 
                 unset($_SESSION['justSign']);
+                $_SESSION['emailResend'] = 0;
 
                 //Load Composer's autoloader
                 require 'vendor/autoload.php';
@@ -614,24 +620,40 @@ class Controller
 
     function getEmailValidation($code)
     {
-
         if (isset($code) && !empty($code)) {
             $userManager = new UserManager();
             $response = $userManager->getEmailValidation($code);
-            if (isset($response) && !empty($response)) {
                 $this->set('title', 'Activation');
                 $css = array('validation');
                 $this->set('css', $css);
                 $this->set('response', $response);
+                $this->render('view/activation.php');
                 if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
                     $_SESSION['user']->setAccount_status('1');
-                }
-                $this->render('view/activation.php');
             } else {
                 throw new Exception('erreur');
             }
         } else {
             throw new Exception('erreur');
+        }
+    }
+    public function sendSecondEmailValidation() {
+        //Load Composer's autoloader
+
+        if (isset($_SESSION['emailResend']) && $_SESSION['emailResend'] == 0) {
+            $_SESSION['emailResend'] += 1;
+            require 'vendor/autoload.php';
+
+            $userManager = new UserManager();
+            $userManager->sendEmailValidation();
+            $this->set('title', 'Validation');
+            $css = array('validation');
+            $this->set('css', $css);
+            $this->render('view/validation.php');
+            unset($_SESSION['emailResend']);
+        }
+        else {
+            throw new Exception('Si le problème persiste contacter un organisateur');
         }
     }
 }

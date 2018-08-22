@@ -234,11 +234,10 @@ class UserManager extends Model
                 $reqActivation->execute();
 
                 return 'Compte activé avec succès';
-            } else if ($req->fetch()['account_status'] == '1') {
-                throw new \Exception('Compte déjà activé');
+
+            } else {
+                throw new \Exception('Une erreur s\'est produite lors de la vérification du code.');
             }
-        } else {
-            throw new \Exception('Une erreur s\'est produite lors de la vérification du code.');
         }
     }
 
