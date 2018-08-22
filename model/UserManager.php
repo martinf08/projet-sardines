@@ -193,7 +193,7 @@ class UserManager extends Model
             $code = md5(uniqid(rand(), true));
             $email = new \SendGrid\Mail\Mail();
             $email->setFrom("noreply@hackardennes.com");
-            $email->setSubject("Validation de compte, les Sardines");
+            $email->setSubject("Les Sardines, Validation de compte");
             $email->addTo($_SESSION['user']->getEmail());
             $mail = $_SESSION['user']->getEmail();
             $message = '<html>';
@@ -296,13 +296,14 @@ class UserManager extends Model
         try {
             $email = new \SendGrid\Mail\Mail();
             $email->setFrom("noreply@hackardennes.com");
-            $email->setSubject("Récupération du mot de passe, les Sardines");
+            $email->setSubject("Les Sardines, Récupération du mot de passe");
             $email->addTo($mail);
             $message = '<html>';
             $message .= '<head><title>Récupération mot de passe les Sardines</title></head>';
             $message .= '<body>';
             $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines">';
-            $message .= '<a href="' . Config::$server_address . '/forget/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<p>Pour réinitialiser le mot de passe,<a href="' . Config::$server_address . '/forget/' . $code . '"><button>Cliquez ici</button></a></p>';
+            $message .= '<p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a href="' . Config::$server_address . '/forget/' . $code . '">' . Config::$server_address . '/forget/' . $code . '</a></p>';
             $message .= '<body>';
             $message .= '</html>';
             $email->addContent("text/html", $message);
