@@ -178,7 +178,7 @@ class Controller
 
         $this->set('title', 'Mot de passe oublié');
         if (!isset($_POST['email_recuperation'])) {
-
+            # ??
         } else {
             if (isset($_POST['recover_submit'], $_POST['email_recuperation'])) {
 
@@ -208,7 +208,6 @@ class Controller
 
                                 $pre->execute(array($code, $email));
                             }
-                            //$message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
                             //Load Composer's autoloader
                             require 'vendor/autoload.php';
                             $message = $model->sendForgetPass($email, $code);
@@ -217,12 +216,18 @@ class Controller
 
                         } else {
                             $error = "Cette adresse email n'est pas enregistrée";
+                            // $_SESSION['errorPass'] = "Cette adresse email n'est pas enregistrée";
+                            // header('Location: ' . Config::$root . 'forget');
                         }
                     } else {
                         $error = "Adresse email non valide";
+                        // $_SESSION['errorPass'] = "Adresse email non valide";
+                        // header('Location: ' . Config::$root . 'forget');
                     }
                 } else {
                     $error = "Veuillez entrer votre adresse email";
+                    // $_SESSION['errorPass'] = "Veuillez entrer votre adresse email";
+                    // header('Location: ' . Config::$root . 'forget');
                 }
             }
 
@@ -230,7 +235,7 @@ class Controller
         //password change procedure
         if (isset($request)) {
 
-            try {
+            /*try {*/
                 $code = $request;
                 $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code', $code);
@@ -243,13 +248,14 @@ class Controller
                     $pre->execute(array($email));
                 } else {
                     $error = "Modification de mot de passe impossible";
+                    // $_SESSION['errorPass'] = "Modification de mot de passe impossible";
                 }
                 $code_recover = true;
                 $this->set('title', 'Réinitialisation du mot de passe');
 
-            } catch (Exception $e) {
+            /*} catch (Exception $e) {
                 debug($e);
-            }
+            }*/ # il vaut mieux ne pas tomber sur ça dans la prod
 
         }
 
@@ -275,15 +281,18 @@ class Controller
 
                     } else {
                         $error = "Vos deux mots de passe ne sont pas identiques";
+                        //$_SESSION['errorPass'] = "Vos deux mots de passe ne sont pas identiques";
                     }
                 } else {
                     $error = "Veuiller remplir tous les champs";
+                    //$_SESSION['errorPass'] = "Veuiller remplir tous les champs";
                 }
 
             } else {
                 $error = "Veuiller remplir tous les champs";
+                //$_SESSION['errorPass'] = "Veuiller remplir tous les champs";
             }
-            if ($error === "Veuiller remplir tous les champs") {
+            if ($error = "Veuiller remplir tous les champs") {
                 $code_recover = true;
             }
         }
@@ -293,6 +302,8 @@ class Controller
         $this->set('code_recover', $code_recover);
         $this->set('css', array('forgotpassword', 'tooltip'));
         $this->render('view/forgotpassword.php');
+
+        //$_SESSION['errorPass'] = null;
     }
 
     public function logIn()
