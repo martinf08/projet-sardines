@@ -165,6 +165,8 @@ class Controller
         $css = array('tooltip', 'connexion');
         $this->set('css', $css);
         $this->render('view/connexion.php');
+
+        $_SESSION['errorMessage'] = null;
     }
 
     public function passForget($request = null)
@@ -176,7 +178,7 @@ class Controller
 
         $this->set('title', 'Mot de passe oublié');
         if (!isset($_POST['email_recuperation'])) {
-
+            # ??
         } else {
             if (isset($_POST['recover_submit'], $_POST['email_recuperation'])) {
 
@@ -206,7 +208,6 @@ class Controller
 
                                 $pre->execute(array($code, $email));
                             }
-                            //$message = '<br>Cliquez <a href="' . $link . '">ici</a> pour modifier votre mot de passe NB ceci est un test<br><br>';
                             //Load Composer's autoloader
                             require 'vendor/autoload.php';
                             $message = $model->sendForgetPass($email, $code);
@@ -215,12 +216,18 @@ class Controller
 
                         } else {
                             $error = "Cette adresse email n'est pas enregistrée";
+                            // $_SESSION['errorPass'] = "Cette adresse email n'est pas enregistrée";
+                            // header('Location: ' . Config::$root . 'forget');
                         }
                     } else {
                         $error = "Adresse email non valide";
+                        // $_SESSION['errorPass'] = "Adresse email non valide";
+                        // header('Location: ' . Config::$root . 'forget');
                     }
                 } else {
                     $error = "Veuillez entrer votre adresse email";
+                    // $_SESSION['errorPass'] = "Veuillez entrer votre adresse email";
+                    // header('Location: ' . Config::$root . 'forget');
                 }
             }
 
@@ -228,7 +235,7 @@ class Controller
         //password change procedure
         if (isset($request)) {
 
-            try {
+            /*try {*/
                 $code = $request;
                 $pre = $model->dbConnect()->prepare("SELECT * FROM recovery_password WHERE code =:code");
                 $pre->bindParam(':code', $code);
@@ -241,13 +248,14 @@ class Controller
                     $pre->execute(array($email));
                 } else {
                     $error = "Modification de mot de passe impossible";
+                    // $_SESSION['errorPass'] = "Modification de mot de passe impossible";
                 }
                 $code_recover = true;
                 $this->set('title', 'Réinitialisation du mot de passe');
 
-            } catch (Exception $e) {
+            /*} catch (Exception $e) {
                 debug($e);
-            }
+            }*/ # il vaut mieux ne pas tomber sur ça dans la prod
 
         }
 
@@ -273,15 +281,18 @@ class Controller
 
                     } else {
                         $error = "Vos deux mots de passe ne sont pas identiques";
+                        //$_SESSION['errorPass'] = "Vos deux mots de passe ne sont pas identiques";
                     }
                 } else {
                     $error = "Veuiller remplir tous les champs";
+                    //$_SESSION['errorPass'] = "Veuiller remplir tous les champs";
                 }
 
             } else {
                 $error = "Veuiller remplir tous les champs";
+                //$_SESSION['errorPass'] = "Veuiller remplir tous les champs";
             }
-            if ($error === "Veuiller remplir tous les champs") {
+            if ($error = "Veuiller remplir tous les champs") {
                 $code_recover = true;
             }
         }
@@ -291,6 +302,8 @@ class Controller
         $this->set('code_recover', $code_recover);
         $this->set('css', array('forgotpassword', 'tooltip'));
         $this->render('view/forgotpassword.php');
+
+        //$_SESSION['errorPass'] = null;
     }
 
     public function logIn()
@@ -318,7 +331,9 @@ class Controller
                     }
                 }
             } else {
-                throw new Exception('Veuillez remplir tous les champs obligatoires pour vous connecter.');
+                $_SESSION['islog'] = false;
+                $_SESSION['errorMessage'] = 'Veuillez remplir tous les champs obligatoires pour vous connecter.'; 
+                header('Location: ' . Config::$root . 'connexion');
             }
         } else {
             http_response_code(403);
@@ -329,7 +344,7 @@ class Controller
     public function logOut()
     {
         $_SESSION['user'] = "";
-        $_SESSION['islog'] = 0;
+        $_SESSION['islog'] = false;
 
         header('Location: ' . Config::$root);
     }
@@ -350,7 +365,9 @@ class Controller
     public function insertUser()
     {
         if (isset($_POST['submit-signin'])) { # accès interdit si on est pas passé par le submit-signin
+
             if ($_POST['email'] != "" && $_POST['password'] != "" && $_POST['confirmPassword'] != "" && $_POST['terms'] == "1") {
+
                 $userManager = new UserManager();
                 $user = new User($_POST);
                 $reponse = $userManager->insertUser($user);
@@ -358,30 +375,34 @@ class Controller
                 $_SESSION['errorSign'] = null;
 
                 if (is_bool($reponse)) {
+
                     if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                         setcookie('cookie', '1', time() + (86400 * 30));
                     }
                     $_SESSION['justSign'] = true;
                     header("Location: " . Config::$root . "emailValidation");
+
                 } else {
 
-                    // $this->set('title', 'inscription');
-                    // $css = array('tooltip', 'inscription');
-                    // //$this->set('Info', 'Cet email existe déjà');
-                    // $this->set('css', $css);
-                    // $this->render('view/inscription.php');
                     $_SESSION['errorSign'] = $reponse;
                     header('Location: ' . Config::$root . 'inscription');
+
                 }
+
             } else {
-                header("HTTP/1.0 400");
-                throw new Exception('Il reste des champs à remplir.');
+
+                $_SESSION['errorSign'] = 'Il reste des champs à remplir.';
+                header('Location: ' . Config::$root . 'inscription');
+
             }
 
         } else {
+
             header("HTTP/1.0 403");
             header('Location: ' . Config::$root);
+
         }
+
     }
 
     public function emailValidation()
