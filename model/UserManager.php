@@ -198,7 +198,7 @@ class UserManager extends Model
             $mail = $_SESSION['user']->getEmail();
             $message = '<html>';
             $message .= '<head><title>Activation compte Sardine</title></head>';
-            $message .= '<body>';
+            $message .= '<body style="color: #000000; font-family: Arial, sans-serif;">';
             $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines" style="height:auto;width:200px;">';
             $message .= '<p>Bonjour !<br>Pour valider votre email <a href="' . Config::$server_address . '/emailActivation/' . $code . '"><button>Cliquez ici</button></a></p>';
             $message .= '<p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a href="' . Config::$server_address . '/emailActivation/' . $code . '">' . Config::$server_address . '/emailActivation/' . $code . '</a></p>';
@@ -300,7 +300,7 @@ class UserManager extends Model
             $email->addTo($mail);
             $message = '<html>';
             $message .= '<head><title>Récupération mot de passe les Sardines</title></head>';
-            $message .= '<body>';
+            $message .= '<body style="color: #000000; font-family: Arial, sans-serif;">';
             $message .= '<img src="' . Config::$server_address . '/images/pictos/logo_text_1.svg" alt="Les Sardines">';
             $message .= '<p>Pour réinitialiser le mot de passe,<a href="' . Config::$server_address . '/forget/' . $code . '"><button>Cliquez ici</button></a></p>';
             $message .= '<p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a href="' . Config::$server_address . '/forget/' . $code . '">' . Config::$server_address . '/forget/' . $code . '</a></p>';
