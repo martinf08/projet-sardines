@@ -185,8 +185,9 @@ button {
     display: flex;
     flex-direction: column;
     background: #2489B4;
-    position: absolute;
-    bottom: 50%;
+    position: fixed;
+    min-height: 105px;
+    bottom: 0;
     left: 0;
     width: 100vw;
     z-index: 999;

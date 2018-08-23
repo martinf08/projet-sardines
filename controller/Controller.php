@@ -650,12 +650,11 @@ class Controller
                 $css = array('validation');
                 $this->set('css', $css);
                 $this->set('response', $response);
-                $this->render('view/activation.php');
-                if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
-                    $_SESSION['user']->setAccount_status('1');
-            } else {
-                throw new Exception('erreur');
+            if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+                $_SESSION['user']->setAccount_status('1');
             }
+                $this->render('view/activation.php');
+
         } else {
             throw new Exception('erreur');
         }
