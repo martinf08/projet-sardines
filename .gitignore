@@ -3,6 +3,5 @@ Config.php
 .vscode
 .vendor
 vendor
-composer.lock
 images/avatar/*
 !images/avatar/avatar_default.png
