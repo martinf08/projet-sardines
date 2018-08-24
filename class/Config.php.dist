@@ -15,6 +15,6 @@ class Config
     public static $root = '/';
     public static $sendgrid_key = 'sendgrid_api_key';
     public static $server_address = 'http://example.com';
-    public static $flag_environnement = 'dev' or 'prod';
+    public static $flag_environnement = sef::ENV_DEV or ENV_PROD;
 
 }
