@@ -120,7 +120,7 @@ class Controller
                 if (isset($_POST['pseudo_account'])) {
 
                     if (strtolower($userManager->getEmailUser($_SESSION['user'])) == strtolower($_SESSION['user']->getEmail())) {
-                        $regex = "#[A-Za-z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ\-\_]{1,25}#";
+                        $regex = '`^([a-zA-Z0-9-_]{1,25})$`';
                         if (preg_match($regex, $_POST['pseudo_account']) OR $_POST['pseudo_account'] === '') {
                             # j'autorise temporairement le changement de pseudo en chaîne vide
                             # puisqu'il est vide de base donc on doit avoir le droit d'effacer notre pseudo
