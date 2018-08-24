@@ -27,7 +27,7 @@ Exécuter la commande `php composer.phar install`
 
 Pour que fonctionne l'API Sendgrid, installer `sudo apt-get install php-curl` si ça n'est pas déjà fait.
 
-### BDD 
+### BDD
 Importer le fichier structure.sql dans phpmyadmin puis le fichier fixtures.sql pour remplir les tables avec les valeurs prédéfinies.
 
 ### Accès BDD
@@ -40,3 +40,22 @@ Une clé d'API Sendgrid est nécessaire pour l'envoi de courriel. Cette clé doi
 
 ### Navigation
 On peut redéfinir le chemin de la racine du site dans la variable statique $root dans le fichier Config.php. De cette manière, la redirection sur l'index fonctionnera quel que soit le type d'hôte et de chemins utilisés.
+
+
+## Déploiement
+
+Le déploiement est assuré par [Ansistrano](https://github.com/ansistrano/deploy), un rôle [Ansible](https://github.com/ansible/ansible).
+
+#### Preprod (default inventory)
+
+Exécuter :
+
+    $ cd ansible
+    $ ansible-playbook deploy.yml
+
+#### Prod
+
+Exécuter :
+
+    $ cd ansible
+    $ ansible-playbook -i inventories/prod deploy.yml
