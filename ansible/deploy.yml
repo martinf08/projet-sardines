@@ -7,5 +7,6 @@
     ansistrano_deploy_to: "/var/www/html"
     ansistrano_shared_files:
       - class/Config.php
+    ansistrano_after_update_code_tasks_file: "{{ playbook_dir }}/after-update-code-tasks.yml"
   roles:
     - ansistrano.deploy
