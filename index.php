@@ -38,8 +38,8 @@ try
     $router->setRoute('sardines', 'sardines');
     $router->setRoute('donner', 'dropGear');
     $router->setRoute('stand', 'instructionsView');
-    
-    if($_SESSION['islog']!=1){
+  
+    if($_SESSION['islog'] === User::isNotlog){
       $router->setRoute('forget', 'passForget');
     }
     $router->setRoute('accountUpdate', 'accountUpdate');

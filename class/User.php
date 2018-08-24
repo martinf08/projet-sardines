@@ -2,7 +2,10 @@
 	
 	class User
 	{
-        private $id_user;
+		const isLog = true;
+        const isNotlog = false;
+    
+		private $id_user;
         private $nickname;
         private $identifier;
 		private $email;
