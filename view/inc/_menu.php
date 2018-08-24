@@ -30,5 +30,6 @@
         <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] == true): ?>
             <li><a id="logout-link" href="<?= Config::$root ?>exit">Me déconnecter</a></li>
         <?php endif; ?>
+        <li><a href="<?= Config::$root ?>welcome" onclick="logout()">Déco facebook</a></li>
     </ul>
 </nav>

@@ -203,6 +203,13 @@
                 <input class="btn-full-2" name="submit-connect" type="submit" value="Se connecter">
             </div>
 
+            <div class="flexCenter">
+                <fb:login-button 
+                scope="public_profile,email"
+                onlogin="checkLoginState();">
+                </fb:login-button>
+            </div>
+
 
         </form>
 
@@ -219,4 +226,12 @@
     <div id="triangle-bottomleft"></div>
     <div id="triangle-bottomright"></div>
     <script src="<?= Config::$root ?>js/signin_login_validation.js"></script>
+    <script>
+        // évènement bouton connexion
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });   
+        }
+    </script>
 </main>

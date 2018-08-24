@@ -21,6 +21,58 @@
             <link rel="stylesheet" href="<?= Config::$root ?>css/<?= $value ?>.css">
         <?php } endif; ?>
 
+    <script>
+        // SDK FACEBOOK
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1346849788751275',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v3.1'
+            });
+            
+            // check if logged
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });  
+        };
+    
+        (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        // what to do when user is connected through the API
+        function statusChangeCallback(response) {
+            if(response.status === 'connected') {
+                console.log(response.status);
+                // do smthing
+                testAPI(); // pas de reponse
+            } else {
+                console.log(response.status);
+            }
+        }
+
+        // SELF EXPLANATORY
+        function logout() {
+            FB.logout();
+        }
+
+        // getting user info
+        function testAPI() {
+            FB.api('me?fields=name,email', function() {
+                console.log(response.error);
+                /*if(response && !response.error) {
+                    console.log(response);
+                }*/
+            });
+        }
+    </script>    
+
 </head>
 <body>
 
