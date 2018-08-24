@@ -3,7 +3,7 @@
 class Config 
 {
     const ENV_DEV = 'dev';
-    const ENV_PROD = 'production';
+    const ENV_PROD = 'prod';
 
     public static $config = array( 
                             'host'=> 'nom du serveur', 
