@@ -5,3 +5,4 @@ Config.php
 vendor
 images/avatar/*
 !images/avatar/avatar_default.png
+ansible/*.retry

@@ -1,0 +1,12 @@
+---
+- name: Deploy
+  hosts: all
+  vars:
+    ansistrano_deploy_via: "git"
+    ansistrano_git_repo: "git@github.com:martinf08/projet-sardines.git"
+    ansistrano_deploy_to: "/var/www/html"
+    ansistrano_shared_files:
+      - class/Config.php
+    ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/after-symlink-shared-tasks.yml"
+  roles:
+    - ansistrano.deploy
