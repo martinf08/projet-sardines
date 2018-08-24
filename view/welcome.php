@@ -9,7 +9,7 @@
             <img src="images/pictos/tent_night.svg">
         </div>
 
-        
+
             <div class="btn-full-1">
                 <a href="connexion" class="btn-full-txt">Connexion</a>
             </div> <br>
@@ -17,6 +17,6 @@
             <div class="btn-full-2">
                 <a href="inscription" class="btn-full-txt">Inscription</a>
             </div>
-       
-        <span id="copyright">&copy; 2018 Les Sardines, tous droits réservés. V 1.0 </span>
+
+        <span id="copyright">&copy; 2018 Les Sardines, tous droits réservés. V 3.0 Dragon Force</span>
 </main>
