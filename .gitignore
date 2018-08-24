@@ -1,7 +1,4 @@
 Config.php
-.idea
-.vscode
-.vendor
 vendor
 images/avatar/*
 !images/avatar/avatar_default.png
