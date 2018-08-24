@@ -1,15 +1,19 @@
 <?php
 
-class Config 
-{ 
-    public static $config = array( 
-                            'host'=> 'nom du serveur', 
-                            'db'=> 'nom de la bdd', 
-                            'username'=> 'le username', 
-                            'password'=> 'le mdp' ); 
-    
+class Config
+{
+    const ENV_DEV = 'dev';
+    const ENV_PROD = 'prod';
+
+    public static $config = array(
+                            'host'=> 'nom du serveur',
+                            'db'=> 'nom de la bdd',
+                            'username'=> 'le username',
+                            'password'=> 'le mdp' );
+
     public static $ghost = 'email@mail.com';
     public static $root = '/';
     public static $sendgrid_key = 'sendgrid_api_key';
     public static $server_address = 'http://example.com';
+    public static $flag_environnement = self::ENV_DEV or ENV_PROD;
 }
