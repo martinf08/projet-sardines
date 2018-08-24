@@ -29,3 +29,14 @@ document.querySelector('#container').addEventListener('click', function(e) {
         menu.classList.remove('show');
     }
 });
+if (is_touch_device() == true) {
+    menu.addEventListener('touchstart', function touchStart(e) {
+        if (e.target.id == "open" || e.target.id == "open2") {
+            open.addEventListener('click', function(event) {
+                menu.classList.add('show');
+                // stop propagation sinon le clic sur body sera déclenché !
+                event.stopPropagation();
+            });
+        }
+    })
+}
