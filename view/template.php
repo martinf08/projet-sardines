@@ -95,7 +95,7 @@
 
     
     <?php 
-        if(Config::$flag_environnement === 'dev'){
+        if(Config::$flag_environnement === Config::ENV_DEV){
              echo'<div style="position:absolute;top:-2px;width:100vw;height:21px;background:#e69404;color:#fefefe;text-align:center;">
             vous êtes sur la version preprod du site
             </div>';

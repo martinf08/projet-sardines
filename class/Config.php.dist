@@ -1,7 +1,10 @@
 <?php
 
 class Config 
-{ 
+{
+    const ENV_DEV = 'dev';
+    const ENV_PROD = 'production';
+
     public static $config = array( 
                             'host'=> 'nom du serveur', 
                             'db'=> 'nom de la bdd', 
