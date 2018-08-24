@@ -95,7 +95,7 @@
 
     <!-- avertissement preprod A SUPPRIMER POUR LA PROD -->
     <?php 
-        if(Config::$flag_envirenement){
+        if(Config::$flag_environnement){
              echo'<div style="position:absolute;top:-2px;width:100vw;height:21px;background:#e69404;color:#fefefe;text-align:center;">
             vous êtes sur la version preprod du site
             </div>';
