@@ -46,14 +46,23 @@ On peut redéfinir le chemin de la racine du site dans la variable statique $roo
 
 Le déploiement est assuré par [Ansistrano](https://github.com/ansistrano/deploy), un rôle [Ansible](https://github.com/ansible/ansible).
 
-#### Preprod (default inventory)
+_L'installation de Ansible est donc un prérequis._
+
+### Installation des dépendances
+
+Exécuter :
+
+    $ cd ansible
+    $ ansible-galaxy install -r requirements.yml
+
+### Preprod (default inventory)
 
 Exécuter :
 
     $ cd ansible
     $ ansible-playbook deploy.yml
 
-#### Prod
+### Prod
 
 Exécuter :
 
