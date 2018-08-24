@@ -40,7 +40,7 @@
     </div>
 
     <div id="carte">
-        <p>Rendez-vous à l'accueil du camping. Nos bénévoles examineront le matériel. N'oublie rien ; ta tente, ta chaise, ton matelas, ou ton sac de couchage, peu importe son état, aura de la valeur.</p>
+        <p>Rendez-vous à l'espace animation du camping 1. Nos bénévoles examineront le matériel. N'oublies rien ; ta tente, ta chaise, ton matelas, ou ton sac de couchage, peu importe son état. Horaires: 10h00-12h00 et 13h30-15h00</p>
         <div class="btn-outlined">
             <button class="btn-outlined-txt">J'ai compris</button>
         </div>

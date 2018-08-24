@@ -1,8 +1,14 @@
 main {
     height: 100vh;
     width: 100vw;
-    background: #ccc;
     box-sizing: border-box;
+    background-color: #ccc;
+    background-image: url(../images/pics/plan_donation.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    
 }
 
 #header {
