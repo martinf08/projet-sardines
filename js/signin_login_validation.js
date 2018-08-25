@@ -74,7 +74,6 @@ if (confirm != null) {
 // is conditions générales acceptées
 if (disc != null) {
     disc.addEventListener('click', function(e) {
-        console.log(this.checked);
         enable();
     });
 }
