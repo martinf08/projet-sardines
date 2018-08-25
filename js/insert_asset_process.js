@@ -26,7 +26,6 @@
     let quality;
 
 
-
     let asValidate = 0;
 
     //Cancel default button
@@ -78,7 +77,7 @@
                             textUser.blur();
                             firstSelect.innerText = seekEmailInString(xhttp.responseText);
                             firstSelect.style.fontSize = '11px';
-                                divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
+                            divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
                             //Types
                             for (let i = 0; i < typeButtons.length; i++) {
                                 typeButtons[i].addEventListener('click', function (event) {
@@ -90,7 +89,7 @@
                                     radioTarget.checked = true;
                                     type = i + 1;
                                     getValue();
-                                        createResponseHeaderType(event.target.name);
+                                    createResponseHeaderType(event.target.name);
                                 });
                             }
                             //Qualities
@@ -122,7 +121,6 @@
                         }
 
                     }
-
                 }
             };
             xhttp.open("POST", "./traitements/checkuserid.php", true); //True = async
@@ -158,9 +156,7 @@
                     if (imgLogo2 != null) {
                         document.querySelector('.logo').replaceChild(firstSelect, imgLogo);
                         firstSelect.style.marginTop = imgcurrentMarginTop + 'px';
-
                     }
-
                 }
             }
         }
@@ -347,6 +343,7 @@
             header.appendChild(divResponseHeader);
         }
     }
+
     function seekEmailInString(string) {
         return string.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
     }
