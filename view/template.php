@@ -59,16 +59,16 @@
 
         // SELF EXPLANATORY
         function logout() {
+            console.log('fb deconnect');
             FB.logout();
         }
 
         // getting user info
         function testAPI() {
-            FB.api('me?fields=name,email', function() {
-                console.log(response.error);
-                /*if(response && !response.error) {
+            FB.api('/me?fields=name,email', function() {
+                if(response && !response.error) {
                     console.log(response);
-                }*/
+                }
             });
         }
     </script>    
