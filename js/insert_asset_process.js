@@ -79,7 +79,6 @@
                             firstSelect.innerText = seekEmailInString(xhttp.responseText);
                             firstSelect.style.fontSize = '11px';
                             setTimeout(function () {
-                                //smoothScroll(1, 60);
                                 divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
                             }, 2000);
                             //Types
@@ -95,7 +94,6 @@
                                     getValue();
                                     setTimeout(function () {
                                         createResponseHeaderType(event.target.name);
-                                        //smoothScroll(2, 60);
                                     }, 2000);
                                 });
                             }
@@ -225,36 +223,6 @@
             let radioTarget = document.getElementById(nameId);
             radioTarget.checked = false;
         }
-    }
-
-    //Smooth scroll
-    function smoothScroll(nb_viewport, speed_millisecond) {
-        let scrollPage = window.pageYOffset;
-        let target = window.innerHeight;
-        let range = target * nb_viewport;
-        let speed = range / speed_millisecond;
-        let i = scrollPage;
-        setInterval(function () {
-
-            if (i <= range) {
-                if (i >= range - (range / 2) && i <= range - (range / 4)) {
-                    scrollTo(0, i);
-                    i = i + speed / 2;
-                }
-                else if (i >= range - (range / 4) && i <= range - (range / 8)) {
-                    scrollTo(0, i);
-                    i = i + speed / 2.8;
-                }
-                else if (i >= range - (range / 8)) {
-                    scrollTo(0, i);
-                    i = i + speed / 3.6;
-                }
-                else {
-                    scrollTo(0, i);
-                    i = i + speed;
-                }
-            }
-        }, 1)
     }
 
     function getValue() {
