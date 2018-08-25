@@ -74,6 +74,7 @@
                             asValidate = 1;
                             pictoUser.src = "images/pictos/valid.svg";
                             pictoUser.style.display = 'block';
+                            textUser.blur();
                             firstSelect.innerText = seekEmailInString(xhttp.responseText);
                             firstSelect.style.fontSize = '11px';
                             setTimeout(function () {
