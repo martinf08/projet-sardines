@@ -64,7 +64,7 @@ Exécuter :
 
 Pour déployer une branche particulière, par exemple `feature-foobar` :
 
-    $ ansible-playbook -e ansistrano_git_branch=feature deploy.yml
+    $ ansible-playbook -e ansistrano_git_branch=feature-foobar deploy.yml
 
 ### Prod
 

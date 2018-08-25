@@ -57,6 +57,9 @@ main{
     color: #368D6F;
     font-size: 0.75rem;
     margin-top: 7vh;
+    padding: 0 15px;
+    text-align: center;
+    margin-bottom: 2px;
 }
 
 @media only screen 

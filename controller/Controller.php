@@ -10,6 +10,10 @@ class Controller
     private $vars = array();
     private $rendered = false;
 
+    private function refreshUser() {
+        $userManager = new UserManager();
+        $_SESSION['user'] = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
+    }
 
     #---------
     #  INDEX
@@ -30,6 +34,8 @@ class Controller
 
     {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $this->refreshUser();
+
             $this->set('title', 'Les Sardines');
             $this->set('css', array('donner'));
             $this->render('view/donner.php');
@@ -45,6 +51,8 @@ class Controller
     public function instructionsView()
 
     {
+        $this->refreshUser();
+
         $this->set('title', 'Donner');
         $this->set('css', array('stand'));
         $this->render('view/stand.php');
@@ -56,7 +64,11 @@ class Controller
     public function sardines()
 
     {
-        require_once './view/sardines.php';
+        $this->refreshUser();
+
+        $this->set('title', 'Les Sardines');
+        $this->set('css', array('slider', 'sardines'));
+        $this->render('view/sardines.php');
     }
 
     #-------------------
@@ -65,6 +77,8 @@ class Controller
     public function mentions()
 
     {
+        $this->refreshUser();
+
         $this->set('title', 'Mentions légales');
         $this->set('css', array('standard'));
         $this->render('view/mentions.php');
@@ -93,16 +107,17 @@ class Controller
                 $userManager = new UserManager();
                 $avatar = $userManager->findAvatar();
                 if (strtolower($userManager->getIdByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getId_user())) {
-                    $user = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
-                    $this->set('title', 'Mon compte');
-                    $this->set('user', $user);
-                    if (isset($avatar) && !empty($avatar)) {
+
+                    $this->refreshUser();
+                    
+                    if (isset($avatar) && !empty($avatar))
                         $this->set('avatar', $avatar);
-                    }
-                    $css = array('profil');
-                    $this->set('css', $css);
+
                     $this->set('update',$updateAccount);
+                    $this->set('title', 'Mon compte');
+                    $this->set('css', array('profil'));
                     $this->render('view/profil.php');
+                    
                 }
             } else {
                 header('Location: ' . Config::$root . 'donner');
@@ -335,20 +350,20 @@ class Controller
                     $_SESSION['errorMessage'] = null;
 
                     if ($reponse) {
-                        $_SESSION['islog'] = true;
+                        $_SESSION['islog'] = User::isLog;
                         if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                             setcookie('cookie', '1', time() + (86400 * 30));
                         }
 
                         header('Location: donner');
                     } else {
-                        $_SESSION['islog'] = false;
+                        $_SESSION['islog'] = User::isNotlog;
                         $_SESSION['errorMessage'] = 'Identifiant ou mot de passe incorrect.'; 
                         header('Location: ' . Config::$root . 'connexion');
                     }
                 }
             } else {
-                $_SESSION['islog'] = false;
+                $_SESSION['islog'] = User::isNotlog;
                 $_SESSION['errorMessage'] = 'Veuillez remplir tous les champs obligatoires pour vous connecter.'; 
                 header('Location: ' . Config::$root . 'connexion');
             }
@@ -361,7 +376,7 @@ class Controller
     public function logOut()
     {
         $_SESSION['user'] = "";
-        $_SESSION['islog'] = false;
+        $_SESSION['islog'] = User::isNotlog;
 
         header('Location: ' . Config::$root);
     }
