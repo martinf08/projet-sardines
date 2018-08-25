@@ -10,6 +10,10 @@ class Controller
     private $vars = array();
     private $rendered = false;
 
+    private function refreshUser() {
+        $userManager = new UserManager();
+        $_SESSION['user'] = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
+    }
 
     #---------
     #  INDEX
@@ -30,6 +34,8 @@ class Controller
 
     {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $this->refreshUser();
+
             $this->set('title', 'Les Sardines');
             $this->set('css', array('donner'));
             $this->render('view/donner.php');
@@ -45,6 +51,8 @@ class Controller
     public function instructionsView()
 
     {
+        $this->refreshUser();
+
         $this->set('title', 'Donner');
         $this->set('css', array('stand'));
         $this->render('view/stand.php');
@@ -65,6 +73,8 @@ class Controller
     public function mentions()
 
     {
+        $this->refreshUser();
+
         $this->set('title', 'Mentions légales');
         $this->set('css', array('standard'));
         $this->render('view/mentions.php');
@@ -93,16 +103,17 @@ class Controller
                 $userManager = new UserManager();
                 $avatar = $userManager->findAvatar();
                 if (strtolower($userManager->getIdByIdentifier($_SESSION['user'])) == strtolower($_SESSION['user']->getId_user())) {
-                    $user = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
-                    $this->set('title', 'Mon compte');
-                    $this->set('user', $user);
-                    if (isset($avatar) && !empty($avatar)) {
+
+                    $this->refreshUser();
+                    
+                    if (isset($avatar) && !empty($avatar))
                         $this->set('avatar', $avatar);
-                    }
-                    $css = array('profil');
-                    $this->set('css', $css);
+
                     $this->set('update',$updateAccount);
+                    $this->set('title', 'Mon compte');
+                    $this->set('css', array('profil'));
                     $this->render('view/profil.php');
+                    
                 }
             } else {
                 header('Location: ' . Config::$root . 'donner');
