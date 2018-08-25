@@ -25,7 +25,6 @@
     let quality;
 
 
-
     let asValidate = 0;
 
     //Cancel default button
@@ -75,10 +74,7 @@
                             pictoUser.style.display = 'block';
                             firstSelect.innerText = seekEmailInString(xhttp.responseText);
                             firstSelect.style.fontSize = '11px';
-                            setTimeout(function () {
-                                smoothScroll(1, 60);
-                                divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
-                            }, 2000);
+                            divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
                             //Types
                             for (let i = 0; i < typeButtons.length; i++) {
                                 typeButtons[i].addEventListener('click', function (event) {
@@ -90,10 +86,7 @@
                                     radioTarget.checked = true;
                                     type = i + 1;
                                     getValue();
-                                    setTimeout(function () {
-                                        createResponseHeaderType(event.target.name);
-                                        smoothScroll(2, 60);
-                                    }, 2000);
+                                    createResponseHeaderType(event.target.name);
                                 });
                             }
                             //Qualities
@@ -125,7 +118,6 @@
                         }
 
                     }
-
                 }
             };
             xhttp.open("POST", "./traitements/checkuserid.php", true); //True = async
@@ -161,9 +153,7 @@
                     if (imgLogo2 != null) {
                         document.querySelector('.logo').replaceChild(firstSelect, imgLogo);
                         firstSelect.style.marginTop = imgcurrentMarginTop + 'px';
-
                     }
-
                 }
             }
         }
@@ -222,36 +212,6 @@
             let radioTarget = document.getElementById(nameId);
             radioTarget.checked = false;
         }
-    }
-
-    //Smooth scroll
-    function smoothScroll(nb_viewport, speed_millisecond) {
-        let scrollPage = window.pageYOffset;
-        let target = window.innerHeight;
-        let range = target * nb_viewport;
-        let speed = range / speed_millisecond;
-        let i = scrollPage;
-        setInterval(function () {
-
-            if (i <= range) {
-                if (i >= range - (range / 2) && i <= range - (range / 4)) {
-                    scrollTo(0, i);
-                    i = i + speed / 2;
-                }
-                else if (i >= range - (range / 4) && i <= range - (range / 8)) {
-                    scrollTo(0, i);
-                    i = i + speed / 2.8;
-                }
-                else if (i >= range - (range / 8)) {
-                    scrollTo(0, i);
-                    i = i + speed / 3.6;
-                }
-                else {
-                    scrollTo(0, i);
-                    i = i + speed;
-                }
-            }
-        }, 1)
     }
 
     function getValue() {
@@ -380,6 +340,7 @@
             header.appendChild(divResponseHeader);
         }
     }
+
     function seekEmailInString(string) {
         return string.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi);
     }
