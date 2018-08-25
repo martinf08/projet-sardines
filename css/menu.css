@@ -107,7 +107,7 @@ nav li {
 }
 
 nav li:last-child {
-    margin-top: 40px;
+    margin-top: 25px;
     align-self: flex-end;
     z-index: 2;
 }
