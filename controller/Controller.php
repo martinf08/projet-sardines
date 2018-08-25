@@ -320,20 +320,20 @@ class Controller
                     $_SESSION['errorMessage'] = null;
 
                     if ($reponse) {
-                        $_SESSION['islog'] = true;
+                        $_SESSION['islog'] = User::isLog;
                         if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                             setcookie('cookie', '1', time() + (86400 * 30));
                         }
 
                         header('Location: donner');
                     } else {
-                        $_SESSION['islog'] = false;
+                        $_SESSION['islog'] = User::isNotlog;
                         $_SESSION['errorMessage'] = 'Identifiant ou mot de passe incorrect.'; 
                         header('Location: ' . Config::$root . 'connexion');
                     }
                 }
             } else {
-                $_SESSION['islog'] = false;
+                $_SESSION['islog'] = User::isNotlog;
                 $_SESSION['errorMessage'] = 'Veuillez remplir tous les champs obligatoires pour vous connecter.'; 
                 header('Location: ' . Config::$root . 'connexion');
             }
@@ -346,7 +346,7 @@ class Controller
     public function logOut()
     {
         $_SESSION['user'] = "";
-        $_SESSION['islog'] = false;
+        $_SESSION['islog'] = User::isNotlog;
 
         header('Location: ' . Config::$root);
     }
