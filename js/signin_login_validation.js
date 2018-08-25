@@ -73,8 +73,9 @@ if (confirm != null) {
 
 // is conditions générales acceptées
 if (disc != null) {
-    disc.addEventListener('input', function(e) {
-            enable();
+    disc.addEventListener('click', function(e) {
+        console.log(this.checked);
+        enable();
     });
 }
 
