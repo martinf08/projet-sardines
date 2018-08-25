@@ -9,6 +9,7 @@
     let header = document.querySelector('.header');
     let steps = document.querySelectorAll('.step');
     let pictoUser = document.getElementById('logoResponse');
+    pictoUser.style.display = 'none';
 
     let errorDiv = document.getElementById('error-id');
     let divEmail = document.createElement('div');
