@@ -1,9 +1,5 @@
 <main>
 
-
-    <!-- je mets les champs brut sans me soucier du layout, il suffira de les copier/coller où il faut -->
-    <!-- je suppose que les valeurs seront récupérées dans l'objet user et pas dans la session -->
-
     <!--<div id="avatar-field">-->
     <?php #if(!empty($user->getAvatar())): ?>
     <!--<div id="avatar" style="background-image: url('../css/img/<?php #echo $user->getAvatar(); ?>');"></div>-->
@@ -42,30 +38,30 @@
                            value="<?php if(!empty($update['error_msg'])){
                                echo $update['pseudo'];
                            }else{
-                            echo $user->getNickname();
+                            echo $_SESSION['user']->getNickname();
                            }
                        ?>"/>
                 </div>
                 <p id="pseudo-info"><?= $update['error_msg'];?></p>
             </div>
             <div class="right-box">
-                <p>ID : <?= $user->getIdentifier(); ?></p>
+                <p>ID : <?= $_SESSION['user']->getIdentifier(); ?></p>
                 <p>Solde Sardines : </p>
-                <p> <?= $user->getBalance(); ?> </p>
+                <p> <?= $_SESSION['user']->getBalance(); ?> </p>
             </div>
         </div>
 
         <div class="under-box">
-            <p>Email : <?= $user->getEmail(); ?></p>
-            <p>Date de création du compte : <?= $user->getAccount_creation_date(); ?>
-            <p>Dernière connexion : <?= $user->getLast_Login(); ?></p>
+            <p>Email : <?= $_SESSION['user']->getEmail(); ?></p>
+            <p>Date de création du compte : <?= $_SESSION['user']->getAccount_creation_date(); ?>
+            <p>Dernière connexion : <?= $_SESSION['user']->getLast_Login(); ?></p>
             <?php
-            if ($user->getStaff() OR $user->getAdmin()):
+            if ($_SESSION['user']->getStaff() OR $_SESSION['user']->getAdmin()):
                 ?>
-                <?php if ($user->getStaff()): ?>
+                <?php if ($_SESSION['user']->getStaff()): ?>
                 <p>Vous êtes membre interne des Sardines.</p>
             <?php endif; ?>
-                <?php if ($user->getAdmin()): ?>
+                <?php if ($_SESSION['user']->getAdmin()): ?>
                 <p>Vous êtes administrateur.</p>
             <?php endif; ?>
             <?php endif; ?>
