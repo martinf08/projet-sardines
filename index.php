@@ -25,21 +25,14 @@ try
 
     $router->setRoute('', 'index');
     $router->setRoute('index', 'index');
-    $router->setRoute('index.php', 'index');
-    $router->setRoute('insertUser', 'insertUser');
-    $router->setRoute('ajout', 'newAsset');
-    $router->setRoute('insertAsset', 'insertAsset');
-    $router->setRoute('success', 'successInsertAsset');
-    $router->setRoute('inscription', 'signIn');
-    $router->setRoute('connexion', 'logView');
-    $router->setRoute('log', 'logIn');
+   
     $router->setRoute('exit', 'logOut');
     $router->setRoute('profil', 'account');
     $router->setRoute('sardines', 'sardines');
     $router->setRoute('donner', 'dropGear');
     $router->setRoute('stand', 'instructionsView');
   
-    if(isset($_SESSION['islog']) AND $_SESSION['islog'] === User::isNotlog){
+    if(!isset($_SESSION['islog']) OR $_SESSION['islog'] === User::isNotlog){
       $router->setRoute('forget', 'passForget');
     }
     $router->setRoute('accountUpdate', 'accountUpdate');
