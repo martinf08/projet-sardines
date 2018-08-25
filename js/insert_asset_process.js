@@ -78,9 +78,7 @@
                             textUser.blur();
                             firstSelect.innerText = seekEmailInString(xhttp.responseText);
                             firstSelect.style.fontSize = '11px';
-                            setTimeout(function () {
                                 divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
-                            }, 2000);
                             //Types
                             for (let i = 0; i < typeButtons.length; i++) {
                                 typeButtons[i].addEventListener('click', function (event) {
@@ -92,9 +90,7 @@
                                     radioTarget.checked = true;
                                     type = i + 1;
                                     getValue();
-                                    setTimeout(function () {
                                         createResponseHeaderType(event.target.name);
-                                    }, 2000);
                                 });
                             }
                             //Qualities
