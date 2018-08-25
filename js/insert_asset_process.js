@@ -78,7 +78,7 @@
                             firstSelect.innerText = seekEmailInString(xhttp.responseText);
                             firstSelect.style.fontSize = '11px';
                             setTimeout(function () {
-                                smoothScroll(1, 60);
+                                //smoothScroll(1, 60);
                                 divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
                             }, 2000);
                             //Types
@@ -94,7 +94,7 @@
                                     getValue();
                                     setTimeout(function () {
                                         createResponseHeaderType(event.target.name);
-                                        smoothScroll(2, 60);
+                                        //smoothScroll(2, 60);
                                     }, 2000);
                                 });
                             }
