@@ -39,7 +39,7 @@ try
     $router->setRoute('donner', 'dropGear');
     $router->setRoute('stand', 'instructionsView');
   
-    if(isset($_SESSION['islog']) AND $_SESSION['islog'] === User::isNotlog){
+    if(!isset($_SESSION['islog']) OR $_SESSION['islog'] === User::isNotlog){
       $router->setRoute('forget', 'passForget');
     }
     $router->setRoute('accountUpdate', 'accountUpdate');
