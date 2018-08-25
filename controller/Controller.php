@@ -30,6 +30,9 @@ class Controller
 
     {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $userManager = new UserManager();
+            $_SESSION['user'] = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
+
             $this->set('title', 'Les Sardines');
             $this->set('css', array('donner'));
             $this->render('view/donner.php');
@@ -45,6 +48,9 @@ class Controller
     public function instructionsView()
 
     {
+        $userManager = new UserManager();
+        $_SESSION['user'] = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
+
         $this->set('title', 'Donner');
         $this->set('css', array('stand'));
         $this->render('view/stand.php');
@@ -65,6 +71,9 @@ class Controller
     public function mentions()
 
     {
+        $userManager = new UserManager();
+        $_SESSION['user'] = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
+
         $this->set('title', 'Mentions légales');
         $this->set('css', array('standard'));
         $this->render('view/mentions.php');
