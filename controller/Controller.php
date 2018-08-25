@@ -64,7 +64,11 @@ class Controller
     public function sardines()
 
     {
-        require_once './view/sardines.php';
+        $this->refreshUser();
+
+        $this->set('title', 'Les Sardines');
+        $this->set('css', array('slider', 'sardines'));
+        $this->render('view/sardines.php');
     }
 
     #-------------------
