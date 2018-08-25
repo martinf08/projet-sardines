@@ -191,60 +191,64 @@ class UserManager extends Model
     {
         try {
             $code = md5(uniqid(rand(), true));
-            $email = new \SendGrid\Mail\Mail();
-            $email->setFrom("noreply@hackardennes.com");
-            $email->setSubject("Les Sardines, Validation de compte");
-            $email->addTo($_SESSION['user']->getEmail());
             $mail = $_SESSION['user']->getEmail();
-            $message = '<html>';
-            $message .= '<body bgcolor="#ffffff" leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0">';
-            $message .= '<div align="center" style="background-color:#ffffff">';
-            $message .= '<table style="display:inline-table; max-width:500px;" border="0" cellpadding="0" cellspacing="0" width="500" bgcolor="#ffffff">';
-            $message .= '<tr>';
-            $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
-            $message .= '</tr >';
-            $message .= '<tr >';
-            $message .= '<td align = "center" valign = "top" style = "padding:0;margin:0;" ><img src = src="' . Config::$server_address . '/images/pics/logo_text_1.gif" width = "300" height = "44" border = "0" alt = "Les Sardines" style = "display: block;" ></td >';
-            $message .= '</tr >';
-            $message .= '<tr >';
-            $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
-            $message .= '</tr >';
-            $message .= '<tr >';
-            $message .= '<td align = "left" valign = "top" style = "padding:0;margin:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;color:#000000;line-height:normal;" > <p>Pour valider votre email : <a target = "_blank" style = "color:#000000;text-decoration:underline;" href="' . Config::$server_address . '/emailActivation/' . $code . '"><span style = "color:#000000;">Cliquez ici</span></a></p></td >';
-            $message .= '</tr >';
-            $message .= '<tr >';
-            $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
-            $message .= '</tr >';
-            $message .= '<tr >';
-            $message .= '<td align = "left" valign = "top" style = "padding:0;margin:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;color:#000000;line-height:normal;" > <p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a target = "_blank" style = "color:#000000;text-decoration:underline;" href="' . Config::$server_address . '/emailActivation/' . $code . '">' . Config::$server_address . '/emailActivation/' . $code . '</a></p></td>';
-            $message .= '</tr>';
-            $message .= '<tr >';
-            $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
-            $message .= '</tr >';
-            $message .= '<tr >';
-            $message .= '<td align = "left" valign = "top" style = "padding:0;margin:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;color:#000000;line-height:normal;" > L\'&Eacute;quipe des Sardines</td>';
-            $message .= '</tr>';
-            $message .= '<tr>';
-            $message .= '<td style="padding:0;margin:0;">&nbsp;</td>';
-            $message .= '</tr>';
-            $message .= '</table>';
-            $message .= '</div>';
-            $message .= '</body>';
-            $message_text = 'Bonjour, Pour validez votre compte, insérez ce lien dans votre navigateur : ' . Config::$server_address . '/emailActivation/' . $code .
-            $email->addContent("text/html", $message);
-            $email->addContent("text/plain", $message_text);
-            $sendgrid = new \SendGrid(Config::$sendgrid_key);
             $req = $this->dbConnect()->prepare('UPDATE `user` SET account_status= :code WHERE email= :email');
             $req->bindParam(':code', $code);
             $req->bindParam(':email', $mail);
             if ($req->execute()) {
+                $email = new \SendGrid\Mail\Mail();
+                $email->setFrom("noreply@hackardennes.com");
+                $email->setSubject("Les Sardines, Validation de compte");
+                $email->addTo($_SESSION['user']->getEmail());
+
+                $message = '<html>';
+                $message .= '<body bgcolor="#ffffff" leftmargin="0" topmargin="0" rightmargin="0" bottommargin="0">';
+                $message .= '<div align="center" style="background-color:#ffffff">';
+                $message .= '<table style="display:inline-table; max-width:500px;" border="0" cellpadding="0" cellspacing="0" width="500" bgcolor="#ffffff">';
+                $message .= '<tr>';
+                $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
+                $message .= '</tr >';
+                $message .= '<tr >';
+                $message .= '<td align = "center" valign = "top" style = "padding:0;margin:0;" ><img src = src="' . Config::$server_address . '/images/pics/logo_text_1.gif" width = "300" height = "44" border = "0" alt = "Les Sardines" style = "display: block;" ></td >';
+                $message .= '</tr >';
+                $message .= '<tr >';
+                $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
+                $message .= '</tr >';
+                $message .= '<tr >';
+                $message .= '<td align = "left" valign = "top" style = "padding:0;margin:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;color:#000000;line-height:normal;" > <p>Pour valider votre email : <a target = "_blank" style = "color:#000000;text-decoration:underline;" href="' . Config::$server_address . '/emailActivation/' . $code . '"><span style = "color:#000000;">Cliquez ici</span></a></p></td >';
+                $message .= '</tr >';
+                $message .= '<tr >';
+                $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
+                $message .= '</tr >';
+                $message .= '<tr >';
+                $message .= '<td align = "left" valign = "top" style = "padding:0;margin:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;color:#000000;line-height:normal;" > <p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a target = "_blank" style = "color:#000000;text-decoration:underline;" href="' . Config::$server_address . '/emailActivation/' . $code . '">' . Config::$server_address . '/emailActivation/' . $code . '</a></p></td>';
+                $message .= '</tr>';
+                $message .= '<tr >';
+                $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
+                $message .= '</tr >';
+                $message .= '<tr >';
+                $message .= '<td align = "left" valign = "top" style = "padding:0;margin:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;color:#000000;line-height:normal;" > L\'&Eacute;quipe des Sardines</td>';
+                $message .= '</tr>';
+                $message .= '<tr>';
+                $message .= '<td style="padding:0;margin:0;">&nbsp;</td>';
+                $message .= '</tr>';
+                $message .= '</table>';
+                $message .= '</div>';
+                $message .= '</body>';
+
+                $message_text = 'Bonjour, Pour validez votre compte, insérez ce lien dans votre navigateur : ' . Config::$server_address . '/emailActivation/' . $code;
+                $email->addContent("text/html", $message);
+                $email->addContent("text/plain", $message_text);
+                $sendgrid = new \SendGrid(Config::$sendgrid_key);
                 $response = $sendgrid->send($email);
                 /* print $response->statusCode() . "\n";
                  print_r($response->headers());
                  print $response->body() . "\n";*/
+            } else {
+                throw new Exception('Une erreur est survenue.');
             }
         } catch (Exception $e) {
-            echo 'Une erreur est survenue';
+            throw new Exception('Une erreur est survenue.');
             //echo 'Caught exception: ' . $e->getMessage() . "\n";
         }
     }
@@ -267,6 +271,7 @@ class UserManager extends Model
                 throw new \Exception('Une erreur s\'est produite lors de la vérification du code.');
             }
         }
+        return new \Exception('Une erreur est survenue');
     }
 
     public function updateAvatar()
