@@ -210,6 +210,8 @@
                 </fb:login-button>
             </div>
 
+            <a href="#" onclick="logout()">Déco facebook</a>
+
 
         </form>
 
