@@ -7,5 +7,6 @@
     ansistrano_shared_files:
       - class/Config.php
     ansistrano_after_symlink_shared_tasks_file: "{{ playbook_dir }}/after-symlink-shared-tasks.yml"
+    ansistrano_keep_releases: 5
   roles:
     - ansistrano.deploy
