@@ -39,9 +39,14 @@
                 <div class="input-profil">
                     <img src="images/pictos/edit.svg" alt="">
                     <input type="text" name="pseudo_account" id="pseudo-account" placeholder="modifier le pseudo"
-                           value="<?= $user->getNickname(); ?>"/>
+                           value="<?php if(!empty($update['error_msg'])){
+                               echo $update['pseudo'];
+                           }else{
+                            echo $user->getNickname();
+                           }
+                       ?>"/>
                 </div>
-                <p id="pseudo-info">25 caractères max<br/> sans espaces</p>
+                <p id="pseudo-info"><?= $update['error_msg'];?></p>
             </div>
             <div class="right-box">
                 <p>ID : <?= $user->getIdentifier(); ?></p>

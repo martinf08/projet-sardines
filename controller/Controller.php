@@ -85,8 +85,9 @@ class Controller
     #  PROFIL
     #----------
 
-    public function account()
+    public function account($updateAccount = null)
     {
+     
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             if ($_SESSION['user']->getIdentifier()) {
                 $userManager = new UserManager();
@@ -100,6 +101,7 @@ class Controller
                     }
                     $css = array('profil');
                     $this->set('css', $css);
+                    $this->set('update',$updateAccount);
                     $this->render('view/profil.php');
                 }
             } else {
@@ -133,7 +135,20 @@ class Controller
                             }
 
                         } else {
-                            throw new Exception('La valeur que vous avez passé est invalide.');
+                           // throw new Exception('La valeur que vous avez passé est invalide.');
+                           //die(strlen($_POST['pseudo_account']).'ou');
+                           //header('Location: profil');
+                           if(strlen($_POST['pseudo_account']) > 25){
+                               $error_msg = "25 caractères maximum";
+                           }else{
+                              $error_msg = "Votre pseudo ne doit pas contenir d'espace ni d'accent.";
+                           }
+                           $updateAccount = array(
+                               'pseudo'=> $_POST['pseudo_account'],
+                               'error_msg' =>  $error_msg
+                            );
+                           $this->account($updateAccount);
+                           
                         }
                         if (isset($_FILES['avatar']) and $_FILES['avatar']['error'] == 0 && !empty($_FILES['avatar'])) {
                             if (!is_dir('images/avatar')) {
