@@ -96,21 +96,26 @@ nav {
     padding: 15px;
 }
 
+nav ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
 nav li {
-    margin: 20px 0;
+    margin: 10px 0;
+}
+
+nav li:last-child {
+    margin-top: 40px;
+    align-self: flex-end;
+    z-index: 2;
 }
 
 nav a {
     text-decoration: none;
     color: #097550;
     font-size: 1.2rem;
-}
-
-#logout-link {
-    position: absolute;
-    bottom: 35px;
-    right: 25px;
-    z-index: 2;
 }
 
 #menu #triangle-bottomleft {
