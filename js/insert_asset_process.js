@@ -9,6 +9,7 @@
     let header = document.querySelector('.header');
     let steps = document.querySelectorAll('.step');
     let pictoUser = document.getElementById('logoResponse');
+    pictoUser.style.display = 'none';
 
     let errorDiv = document.getElementById('error-id');
     let divEmail = document.createElement('div');
@@ -66,17 +67,18 @@
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
+                    textUser.blur();
                     pictoUser.src = "images/pictos/valid.svg";
                     response.innerHTML = xhttp.responseText;
                     if (xhttp.responseText != '<p>Cet utilisateur n\'existe pas</p>') {
                         if (xhttp.response.search('validé') == -1) {
-                            asValidate = 1;
+                            asValidate += 1;
                             pictoUser.src = "images/pictos/valid.svg";
                             pictoUser.style.display = 'block';
+                            textUser.blur();
                             firstSelect.innerText = seekEmailInString(xhttp.responseText);
                             firstSelect.style.fontSize = '11px';
                             setTimeout(function () {
-                                smoothScroll(1, 60);
                                 divEmail.innerHTML = '<p>' + errorDiv.textContent + '</p>';
                             }, 2000);
                             //Types
@@ -92,7 +94,6 @@
                                     getValue();
                                     setTimeout(function () {
                                         createResponseHeaderType(event.target.name);
-                                        smoothScroll(2, 60);
                                     }, 2000);
                                 });
                             }
@@ -119,7 +120,7 @@
                     else if (xhttp.responseText == '<p>Cet utilisateur n\'existe pas</p>') {
                         pictoUser.src = "images/pictos/invalid.svg";
                         pictoUser.style.display = 'block';
-                        if (asValidate == 1 || textUser.value.length == 4) {
+                        if (asValidate >= 1 && textUser.value.length == 4) {
                             //if the user has find a good result and second result is false;
                             window.location.reload(true);
                         }
@@ -222,36 +223,6 @@
             let radioTarget = document.getElementById(nameId);
             radioTarget.checked = false;
         }
-    }
-
-    //Smooth scroll
-    function smoothScroll(nb_viewport, speed_millisecond) {
-        let scrollPage = window.pageYOffset;
-        let target = window.innerHeight;
-        let range = target * nb_viewport;
-        let speed = range / speed_millisecond;
-        let i = scrollPage;
-        setInterval(function () {
-
-            if (i <= range) {
-                if (i >= range - (range / 2) && i <= range - (range / 4)) {
-                    scrollTo(0, i);
-                    i = i + speed / 2;
-                }
-                else if (i >= range - (range / 4) && i <= range - (range / 8)) {
-                    scrollTo(0, i);
-                    i = i + speed / 2.8;
-                }
-                else if (i >= range - (range / 8)) {
-                    scrollTo(0, i);
-                    i = i + speed / 3.6;
-                }
-                else {
-                    scrollTo(0, i);
-                    i = i + speed;
-                }
-            }
-        }, 1)
     }
 
     function getValue() {
