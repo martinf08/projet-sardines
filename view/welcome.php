@@ -18,5 +18,5 @@
                 <a href="inscription" class="btn-full-txt">Inscription</a>
             </div>
 
-        <span id="copyright">&copy; 2018 Les Sardines, tous droits réservés. <br>V 4.0 Pogo Car Crash Control</span>
+        <span id="copyright">&copy; 2018 Les Sardines, tous droits réservés. <br>V 5.0 Shaka Ponk</span>
 </main>
