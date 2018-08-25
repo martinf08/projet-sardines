@@ -209,7 +209,7 @@ class UserManager extends Model
                 $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
                 $message .= '</tr >';
                 $message .= '<tr >';
-                $message .= '<td align = "center" valign = "top" style = "padding:0;margin:0;" ><img src = src="' . Config::$server_address . '/images/pics/logo_text_1.gif" width = "300" height = "44" border = "0" alt = "Les Sardines" style = "display: block;" ></td >';
+                $message .= '<td align = "center" valign = "top" style = "padding:0;margin:0;" ><img src ="' . Config::$server_address . '/images/pics/logo_text_1.gif" width = "300" height = "44" border = "0" alt = "Les Sardines" style = "display: block;" ></td >';
                 $message .= '</tr >';
                 $message .= '<tr >';
                 $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
