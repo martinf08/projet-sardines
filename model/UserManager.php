@@ -230,7 +230,9 @@ class UserManager extends Model
             $message .= '</table>';
             $message .= '</div>';
             $message .= '</body>';
+            $message_text = 'Bonjour, Pour validez votre compte, insérez ce lien dans votre navigateur : ' . Config::$server_address . '/emailActivation/' . $code .
             $email->addContent("text/html", $message);
+            $email->addContent("text/plain", $message_text);
             $sendgrid = new \SendGrid(Config::$sendgrid_key);
             $req = $this->dbConnect()->prepare('UPDATE `user` SET account_status= :code WHERE email= :email');
             $req->bindParam(':code', $code);
@@ -339,13 +341,13 @@ class UserManager extends Model
             $message .= '</tr >';
             $message .= '<tr >';
             $message .= '<td align = "left" valign = "top" style = "padding:0;margin:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;color:#000000;line-height:normal;" > <p>Pour réinitialiser le mot de passe : <a target = "_blank" style = "color:#000000;text-decoration:underline;" href="' . Config::$server_address . '/forget/' . $code . '"><span style = "color:#000000;">Cliquez ici</span></a></p></td >';
-			$message .= '</tr >';
+            $message .= '</tr >';
             $message .= '<tr >';
             $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
             $message .= '</tr >';
             $message .= '<tr >';
             $message .= '<td align = "left" valign = "top" style = "padding:0;margin:0;font-family:Arial, Helvetica, sans-serif;font-size:14px;font-weight:normal;color:#000000;line-height:normal;" > <p>Si le bouton n\'apparaît pas cliquez sur le lien suivant : <a target = "_blank" style = "color:#000000;text-decoration:underline;" href="' . Config::$server_address . '/forget/' . $code . '">' . Config::$server_address . '/forget/' . $code . '</a></p></td>';
-			$message .= '</tr>';
+            $message .= '</tr>';
             $message .= '<tr >';
             $message .= '<td style = "padding:0;margin:0;" >&nbsp;</td >';
             $message .= '</tr >';
@@ -355,8 +357,8 @@ class UserManager extends Model
             $message .= '<tr>';
             $message .= '<td style="padding:0;margin:0;">&nbsp;</td>';
             $message .= '</tr>';
-		    $message .= '</table>';
-	        $message .= '</div>';
+            $message .= '</table>';
+            $message .= '</div>';
             $message .= '</body>';
             $email->addContent("text/html", $message);
             $sendgrid = new \SendGrid(Config::$sendgrid_key);
