@@ -1,4 +1,55 @@
-#top-content{
-    align-items: center;
+#header {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+#open {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin-left: 30px;
+    display:block !important;
+}
+
+#open svg rect {
+    fill: #009487 !important;
+}
+
+h1 {
+    height: 25px;
+    text-transform: uppercase;
+    font-size: 1.35rem;
+    letter-spacing: 1px;
+    color: #009487;
+    line-height: 1.2rem;
+    display: block !important;
+}
+
+#sardines {
+    height: 35px;
+    min-width: 35px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fefefe;
+    text-align: center;
+    margin-right: 30px;
+    margin-top: -4px;
+    font-size: 1.2rem;
+    padding-left: 4px;
+    padding-right: 6px;
+    padding-top: 10px;
+}
+
+#sardines svg {
+    height: 16px;
+    fill: #fefefe;
+    padding-top: 6px;
+    transform: rotateZ(-44deg);
+}
+
+#menu {
+    display: block !important;
 }
