@@ -141,7 +141,7 @@ class Controller
                            if(strlen($_POST['pseudo_account']) > 25){
                                $error_msg = "25 caractères maximum";
                            }else{
-                              $error_msg = "Votre pseudo ne doit pas contenir d'espace ni d'accent.";
+                              $error_msg = "Votre pseudo ne doit pas contenir de caractères spéciaux, accentués ou d'espaces";
                            }
                            $updateAccount = array(
                                'pseudo'=> $_POST['pseudo_account'],
