@@ -61,7 +61,7 @@ class UserManager extends Model
                         );
                         $this->saveData($data);
                         $this->logIn($user);
-                        $_SESSION['islog'] = true;
+                        $_SESSION['islog'] = User::isLog ;
 
                         return true;
                     }
