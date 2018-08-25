@@ -67,11 +67,12 @@
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
+                    textUser.blur();
                     pictoUser.src = "images/pictos/valid.svg";
                     response.innerHTML = xhttp.responseText;
                     if (xhttp.responseText != '<p>Cet utilisateur n\'existe pas</p>') {
                         if (xhttp.response.search('validé') == -1) {
-                            asValidate = 1;
+                            asValidate += 1;
                             pictoUser.src = "images/pictos/valid.svg";
                             pictoUser.style.display = 'block';
                             textUser.blur();
@@ -121,7 +122,7 @@
                     else if (xhttp.responseText == '<p>Cet utilisateur n\'existe pas</p>') {
                         pictoUser.src = "images/pictos/invalid.svg";
                         pictoUser.style.display = 'block';
-                        if (asValidate == 1 || textUser.value.length == 4) {
+                        if (asValidate >= 1 && textUser.value.length == 4) {
                             //if the user has find a good result and second result is false;
                             window.location.reload(true);
                         }
