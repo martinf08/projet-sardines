@@ -78,10 +78,6 @@ h1 {
     justify-content: space-evenly;
 }
 
-td {
-    text-align: center;
-}
-
 table tr:nth-child(odd) {
     background: rgba(25, 170, 187, 0.3);
 }
@@ -97,4 +93,6 @@ table tr:first-child th:first-child {
 
 td, th {
     border: 1px solid rgba(25, 170, 187, 0.4);
+    padding: 3px;
+    text-align: center;
 }
