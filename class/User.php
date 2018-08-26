@@ -4,6 +4,7 @@ class User
 {
     const isLog = true;
     const isNotlog = false;
+    const activeAccount = 1;
 
     private $id_user;
     private $nickname;

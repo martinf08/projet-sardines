@@ -15,7 +15,47 @@
     width: 70%;
     margin: auto;
     animation: flash 3s ease-out;
-    z-index: 5;
+
+}
+
+#warnnigHide{
+    text-decoration: none;
+    margin-left: 18px;
+    color: #fefefe;
+}
+
+#warnnigHide {
+    height: 12px;
+    width: 15px;
+    position: absolute;
+    top: 5px;
+    right: 2px;
+} 
+
+#accounrwarning{
+    position:absolute;
+    width:100vw;
+    background:red;
+    color:#fefefe;
+    text-align:center;
+    z-index: 99;
+}
+
+#envwarning{
+    position:absolute;top:-2px;
+    width:100vw;height:21px;
+    background:#e69404;
+    color:#fefefe;
+    text-align:center;
+}
+#envwarning {
+    font-size: 0.75rem;
+    color: #fefefe;
+}
+#mailLink{
+    color: #097550;
+    font-size: 0.90rem;
+    text-decoration: none;
 }
 
 @keyframes flash {
