@@ -2,6 +2,12 @@ const open = document.querySelector('#open');
 const close = document.querySelector('#close');
 const menu = document.querySelector('#menu');
 const open2 = document.querySelector('#open2');
+const closewarning = document.getElementById('warnnigHide'); 
+
+
+
+
+
 
 if (open != null) {
     open.addEventListener('click', function(event) {
@@ -29,3 +35,12 @@ document.querySelector('#container').addEventListener('click', function(e) {
         menu.classList.remove('show');
     }
 });
+
+
+
+closewarning.onclick = function() {
+    var div = document.getElementById('accounrwarning');
+    if (div.style.display !== 'none') {
+        div.style.display = 'none';
+    }
+};
