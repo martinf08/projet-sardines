@@ -25,6 +25,7 @@
         <?php endif; ?>
 
         <li><a href="<?= Config::$root ?>sardines">Le système Sardines</a></li>
+        <li><a href="<?= Config::$root ?>tableau">Barème des Sardines</a></li>
         <li><a href="<?= Config::$root ?>mentions-legales">Mentions légales</a></li>
 
         <?php if (isset($_SESSION['islog']) AND $_SESSION['islog'] === User::isLog ): ?>
