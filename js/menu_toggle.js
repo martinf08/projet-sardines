@@ -2,7 +2,7 @@ const open = document.querySelector('#open');
 const close = document.querySelector('#close');
 const menu = document.querySelector('#menu');
 const open2 = document.querySelector('#open2');
-const closewarning = document.getElementById('warnnigHide'); 
+const closewarning = document.getElementById('warnnigHide');
 
 
 
