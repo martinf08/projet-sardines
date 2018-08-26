@@ -50,29 +50,30 @@
                     <th>Bon état</th>
                     <th>Excellent état</th>
                 </tr>
+
                 <tr>
-                    <th>Tente</th>
-                    <td>5</td>
-                    <td>10</td>
-                    <td>20</td>
+                    <th><?= ucfirst($values[0]['name']); ?></th>
+                    <td><?= number_format($values[0]['value'], 2) ?> s</td>
+                    <td><?= number_format($values[1]['value'], 2) ?> s</td>
+                    <td><?= number_format($values[2]['value'], 2) ?> s</td>
                 </tr>
                 <tr>
-                    <th>Sac de couchage</th>
-                    <td>2</td>
-                    <td>5</td>
-                    <td>10</td>
+                    <th><?= ucfirst($values[3]['name']); ?></th>
+                    <td><?= number_format($values[3]['value'], 2) ?> s</td>
+                    <td><?= number_format($values[4]['value'], 2) ?> s</td>
+                    <td><?= number_format($values[5]['value'], 2) ?> s</td>
                 </tr>
                 <tr>
-                    <th>Chaise</th>
-                    <td>2</td>
-                    <td>4</td>
-                    <td>8</td>
+                    <th><?= ucfirst($values[6]['name']); ?></th>
+                    <td><?= number_format($values[6]['value'], 2) ?> s</td>
+                    <td><?= number_format($values[7]['value'], 2) ?> s</td>
+                    <td><?= number_format($values[8]['value'], 2) ?> s</td>
                 </tr>
                 <tr>
-                    <th>Matelas</th>
-                    <td>4</td>
-                    <td>6</td>
-                    <td>12</td>
+                    <th><?= ucfirst($values[9]['name']); ?></th>
+                    <td><?= number_format($values[9]['value'], 2) ?> s</td>
+                    <td><?= number_format($values[10]['value'], 2) ?> s</td>
+                    <td><?= number_format($values[11]['value'], 2) ?> s</td>
                 </tr>
             </table>
         </div>
