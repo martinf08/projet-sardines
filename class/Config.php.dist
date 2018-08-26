@@ -4,6 +4,7 @@ class Config
 {
     const ENV_DEV = 'dev';
     const ENV_PROD = 'prod';
+    const VERSION = '6';
 
     public static $config = array(
                             'host'=> 'nom du serveur',

@@ -38,9 +38,13 @@ document.querySelector('#container').addEventListener('click', function(e) {
 
 
 
-closewarning.onclick = function() {
-    var div = document.getElementById('accounrwarning');
-    if (div.style.display !== 'none') {
-        div.style.display = 'none';
-    }
-};
+if (typeof(closewarning) !== 'undefined' && closewarning !== null)
+{
+    // exists.
+    closewarning.onclick = function() {
+        var div = document.getElementById('accounrwarning');
+        if (div.style.display !== 'none') {
+            div.style.display = 'none';
+        }
+    };
+}
