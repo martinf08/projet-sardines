@@ -11,14 +11,14 @@
     <meta name="mobile-web-app-capable" content="yes">
     <title><?= $title ?></title>
     <link rel="manifest" href="/manifest.json">
-    <link rel="stylesheet" href="<?= Config::$root ?>css/cheatsheet.css">
-    <link rel="stylesheet" href="<?= Config::$root ?>css/menu.css">
+    <link rel="stylesheet" href="<?= Config::$root ?>css/cheatsheet.css?v=<?=Config::VERSION ?>">
+    <link rel="stylesheet" href="<?= Config::$root ?>css/menu.css?v=<?=Config::VERSION ?>">
     <!-- contient simplement les classes pour position et effet tiroir -->
-    <link rel="stylesheet" href="<?= Config::$root ?>css/anim.css">
+    <link rel="stylesheet" href="<?= Config::$root ?>css/anim.css?v=<?=Config::VERSION ?>">
 
     <?php if (isset($css)): # passer du css depuis le controller (changer ça en boucle s'il faut) ?>
         <?php foreach ($css as $value) { ?>
-            <link rel="stylesheet" href="<?= Config::$root ?>css/<?= $value ?>.css">
+            <link rel="stylesheet" href="<?= Config::$root ?>css/<?= $value ?>.css?v=<?=Config::VERSION ?>">
         <?php } endif; ?>
 
 </head>
@@ -122,6 +122,6 @@
 
 </div>
 
-<script src="<?= Config::$root ?>js/menu_toggle.js"></script>
+<script src="<?= Config::$root ?>js/menu_toggle.js?v=<?=Config::VERSION ?>"></script>
 
 </body>
