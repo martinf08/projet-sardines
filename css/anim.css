@@ -53,9 +53,9 @@
     color: #fefefe;
 }
 #mailLink{
-    color: #097550;
+    color: #fefefe;
     font-size: 0.90rem;
-    text-decoration: none;
+    
 }
 
 @keyframes flash {
