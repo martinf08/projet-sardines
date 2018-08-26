@@ -411,7 +411,6 @@ class Controller
                     if (!isset($_COOKIE['cookie']) && empty($_COOKIE['cookie'])) {
                         setcookie('cookie', '1', time() + (86400 * 30));
                     }
-                    $_SESSION['justSign'] = true;
                     header("Location: " . Config::$root . "emailValidation");
 
                 } else {
@@ -647,9 +646,9 @@ class Controller
     {
 
         if (isset($_SESSION['user']) && !empty($_SESSION)) {
-            if (isset($_SESSION['justSign']) && $_SESSION['justSign'] == true) {
 
-                unset($_SESSION['justSign']);
+
+
                 $_SESSION['emailResend'] = 0;
 
                 //Load Composer's autoloader
@@ -665,10 +664,7 @@ class Controller
                 http_response_code(403);
                 header('Location: ' . Config::$root);
             }
-        } else {
-            http_response_code(403);
-            header('Location: ' . Config::$root);
-        }
+
     }
 
     function getEmailValidation($code)
