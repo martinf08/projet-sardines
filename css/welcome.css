@@ -56,10 +56,25 @@ main{
     font-family: 'SourceSansProLight', 'Helvetica', sans-serif;
     color: #368D6F;
     font-size: 0.75rem;
-    margin-top: 7vh;
+    margin-top: 4vh;
     padding: 0 15px;
     text-align: center;
     margin-bottom: 2px;
+}
+
+#bareme {
+    color: #009688;
+    margin-top: 15px;
+}
+
+#bareme a {
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+.sardinette svg {
+    width: 12px;
+    fill: #009688;
 }
 
 @media only screen 
