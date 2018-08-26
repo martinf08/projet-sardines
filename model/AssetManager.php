@@ -12,6 +12,15 @@ class AssetManager extends Model
         return $req->fetchAll();
     }
 
+    public function getAssetToPrice() {
+        $sql = "SELECT type.name, price_catalog.value FROM type INNER JOIN price_catalog ON type.id_type=price_catalog.id_type";
+        $req = $this->dbConnect()->prepare($sql);
+        $req->execute();
+        $req->setFetchMode(PDO::FETCH_ASSOC);
+
+        return $req->fetchAll();
+    }
+
     public function insertAsset(Asset $asset)
     {
         unset($_SESSION['lastAsset']);

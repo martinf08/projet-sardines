@@ -78,8 +78,11 @@ class Controller
     #----------------------
     public function tableau() {
         $this->refreshUser();
+        $assetManager = new AssetManager();
+        $catalog = $assetManager->getAssetToPrice();
 
         $this->set('title', 'Barème');
+        $this->set('values', $catalog);
         $this->set('css', array('tableau'));
         $this->render('view/tableau.php');
     }
