@@ -38,6 +38,7 @@ try
     $router->setRoute('sardines', 'sardines');
     $router->setRoute('donner', 'dropGear');
     $router->setRoute('stand', 'instructionsView');
+    $router->setRoute('tableau', 'tableau');
   
     if(!isset($_SESSION['islog']) OR $_SESSION['islog'] === User::isNotlog){
       $router->setRoute('forget', 'passForget');

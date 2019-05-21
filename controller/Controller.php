@@ -11,8 +11,10 @@ class Controller
     private $rendered = false;
 
     private function refreshUser() {
-        $userManager = new UserManager();
-        $_SESSION['user'] = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            $userManager = new UserManager();
+            $_SESSION['user'] = new User($userManager->getUser($_SESSION['user']->getIdentifier()));
+        }
     }
 
     #---------
@@ -69,6 +71,20 @@ class Controller
         $this->set('title', 'Les Sardines');
         $this->set('css', array('slider', 'sardines'));
         $this->render('view/sardines.php');
+    }
+
+    #----------------------
+    #  TABLEAU DES VALEURS
+    #----------------------
+    public function tableau() {
+        $this->refreshUser();
+        $assetManager = new AssetManager();
+        $catalog = $assetManager->getAssetToPrice();
+
+        $this->set('title', 'Barème');
+        $this->set('values', $catalog);
+        $this->set('css', array('tableau'));
+        $this->render('view/tableau.php');
     }
 
     #-------------------
